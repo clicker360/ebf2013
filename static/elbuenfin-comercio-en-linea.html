@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>El buen fin- comercio electronico</title>
+<meta http-equiv="Cache-control" content="public">
+<!-- meta words -->
+<meta name="Title" content="El Buen Fin" /> 
+<meta name="keywords" content="descuentos, tiendas departamentales, electrodomesticos, comercio en line, compra en line, buen fin, el buen fin" /> 
+<meta name="Author" content="Clicker360" />
+<meta name="Copyright" content="El Buen Fin" />
+<meta name="Revisit" content="1 days" />
+<meta name="UI Designer" content="Carlos Zavala czavala@clicker360.com" />
+<meta name="ROBOTS" content="INDEX, All"/>
+<meta name="ROBOTS" content="INDEX, FOLLOW">
+<meta name="description" content="El Buen Fin" />
+<link href="../css/OrigamiRev.css" rel="stylesheet" type="text/css" />
+<link href="../css/HomelbuenfinSkin.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26907178-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	getcarrousel();
+	scrolea();
+});
+function scrolea(){
+	$('#logos').animate({
+		top: -825,
+	}, 45000, 'linear', function() {
+		$('#logos').append($('#logos').children("div:first").clone());
+		$('#logos').children("div:first").remove();
+		$('#logos').css('top',20);
+		scrolea();
+	});
+}
+function getcarrousel() {
+	$.get("/carr", "", function(response){
+		$('#logo1').html(response);
+	});
+}
+</script>
+</head>
+
+<body class="bg-main">
+<div class="logosPat">
+<img src="imgs/logos/ABM.jpg" width="65" height="65" alt="abm" /> <img src="imgs/logos/Amicsi.jpg" width="65" height="65" alt="Amicii" /> <img src="imgs/logos/antad.jpg" width="65" height="65"  alt="Antad"/> <img src="imgs/logos/CCC.jpg" width="65" height="65" alt="CCE" /> <img src="imgs/logos/coparmex.jpg" width="65" height="65" alt="coparmex" /> <img src="imgs/logos/concamin.jpg" width="65" height="65" alt="coparmex" /><img src="imgs/logos/concanaco.jpg" width="65" height="65" /><img src="imgs/logos/gobierno-Federal.jpg" width="65" height="65" alt="gob federal" /> <img src="imgs/logos/Imx.jpg" width="65" height="65" alt="Iniciativa mexico" />  </div>
+<div class="col-cent">
+  <div class="col-24 Bg-Wh padd-10px">
+  <!--Comienza Contenido-->
+  <div class="col-24">
+  <!--Comienza header-->
+ 
+  <div class="M-menu"> <a href="/"><img src="gfx/front/el-buen-fin.png" width="145" height="142"  class="logo"/></a>
+  <ul>
+      <li><a href="elbuenfin-que-es.html">¿Qué es <br />El Buen Fin?</a></li>
+      <li> <a href="elbuenfin-organizadores.html">Organizadores</a></li>
+      <li> <a href="directorio.html">Empresas participantes</a></li>
+      <li> <a href="#">El Buen Fin en Línea</a></li>
+    </ul>
+    </div>
+  <!--termina header-->
+  <div class="col-24">
+  <!--Columna Izquierda-->
+  <div class="col-15 Bg-ky">
+    <div class="box1 padd-B40px">
+      <p class="alineCenter typeTle"><span class="typ-Pr typ-Bold">El Buen Fin en Línea</span></p>
+      <p>El Buen Fin en Línea tiene como objetivo fomentar el comercio electrónico en México apoyando a las empresas y a los consumidores para que puedan vender y/o comprar a través de Internet aprovechando todas las ventajas y beneficios que esta forma de intercambio tiene. </p>
+      <p>El Internet se ha convertido en un nuevo canal por el que  las personas pueden realizar transacciones de compra y venta. Los negocios están llegando a muchos más clientes y los consumidores tienen la posibilidad de acceder a un mayor número de productos a un clic de distancia.</p><p>Comprar en línea bienes y servicios puede ayudarte a ahorrar tiempo, acceder a una mayor selección de productos y puedes investigar sobre cada uno de ellos, ayudándote así a ahorrar dinero. Aprovecha las ventajas del Internet y compara precios antes de decidirte a comprar. Intercambia opinión con otros consumidores, puedes aprovechar el foro en este sitio para aconsejarse de los mejores y más seguros sitios para comprar. Te aconsejamos que leas siempre las letras chiquitas y que compres en sitios seguros.</p>
+      
+      <p>La Asociación Mexicana de Internet AMIPCI preparó una serie de videos en los que encontrarás los puntos que debes tomar en cuenta para realizar tus compras o comercio en línea. <br /></p>
+      <!--liga para docuemnto-->
+      <div class="col-6 marg-T15px"><a href="http://www.elbuenfin.org/AMIPCI-eCommerce-EBF-121028.pdf"  target="_blank" class="button"><span class="col-5 Dsblock alineCenter">CONOCE MÁS</span></a></div>
+            <div class="col-6 last marg-T15px"><a href="http://www.amipci.org.mx/elbuenfin"  target="_blank" class="button last"><span class="col-5 Dsblock alineCenter">VER  VIDEOS</span></a></div>
+       
+    </div>
+    <!-- video--></div>
+  <!--Columna derecha-->
+  <div class="col-9 last">
+    <div class="col-9 Bg-Drk ">
+      
+      <h3 class="alineCenter typ-Wh">Empresas participantes</h3>
+    </div>
+   <div class="col-9" style="overflow:hidden; height:500px;" id="scrolllog">
+      <div id="logos">
+      <div id="logo1" class="first">
+        </div> 
+        <div id="logo2" class="first">
+        </div> 
+      </div>
+       </div>
+  </div>
+  </div>
+  <!--Termina Contenido-->
+  </div>
+</div>
+</div>
+  <!--Footer-->
+  <div class="col-100PR first Bg-Prm fixedbottom alineCenter"><p class="typeMin typ-Wh">El Buen Fin 2012 © Todos los derechos reservados   |   Avisos de privacidad   |   Políticas</p>
+  </div>
+</body>
+</html>

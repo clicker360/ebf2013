@@ -1,0 +1,141 @@
+application: ebfmxorg
+version: 11
+runtime: go
+api_version: go1
+
+default_expiration: "1h"
+
+handlers:
+# css
+- url: /r/css/(.*\.(css))
+  static_files: css/\1
+  upload: css/(.*\.(css))
+  expiration: "1h"
+
+- url: /static/css/(.*\.(css))
+  static_files: css/\1
+  upload: css/(.*\.(css))
+  expiration: "1h"
+
+- url: /css/(.*\.(css))
+  static_files: css/\1
+  upload: css/(.*\.(css))
+  expiration: "1h"
+
+# scripts
+- url: /r/scripts/(.*\.(js))
+  static_files: scripts/\1
+  upload: scripts/(.*\.(js))
+  expiration: "1h"
+
+- url: /static/scripts/(.*\.(js))
+  static_files: scripts/\1
+  upload: scripts/(.*\.(js))
+  expiration: "1h"
+
+- url: /scripts/(.*\.(js))
+  static_files: scripts/\1
+  upload: scripts/(.*\.(js))
+  expiration: "1h"
+
+# imgs
+- url: /r/imgs/(.*\.(gif|png|jpg))
+  static_files: imgs/\1
+  upload: imgs/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
+- url: /static/imgs/(.*\.(gif|png|jpg))
+  static_files: imgs/\1
+  upload: imgs/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
+- url: /imgs/(.*\.(gif|png|jpg))
+  static_files: imgs/\1
+  upload: imgs/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
+# gfx
+- url: /r/gfx/(.*\.(gif|png|jpg))
+  static_files: css/gfx/\1
+  upload: css/gfx/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
+- url: /r/css/gfx/(.*\.(gif|png|jpg))
+  static_files: css/gfx/\1
+  upload: css/gfx/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
+- url: /css/gfx/(.*\.(gif|png|jpg))
+  static_files: css/gfx/\1
+  upload: css/gfx/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
+- url: /static/css/gfx/(.*\.(gif|png|jpg))
+  static_files: css/gfx/\1
+  upload: css/gfx/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
+- url: /gfx/(.*\.(gif|png|jpg))
+  static_files: css/gfx/\1
+  upload: css/gfx/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
+# html
+- url: /r/(.*\.html)
+  mime_type: text/html
+  static_files: static/\1
+  upload: static/(.*\.html)
+  expiration: "1h"
+
+- url: /(.*\.html)
+  mime_type: text/html
+  static_files: static/\1
+  upload: static/(.*\.html)
+  expiration: "1h"
+
+- url: /app
+  mime_type: text/html
+  static_files: static/iphone-app.html
+  upload: static/iphone-app.html
+  expiration: "1h"
+
+- url: /busqueda
+  mime_type: text/html
+  static_files: static/busqueda-de-ofertas.html
+  upload: static/busqueda-de-ofertas.html
+  expiration: "1h"
+
+- url: /favicon\.ico
+  static_files: static/favicon.ico
+  upload: static/favicon\.ico
+  expiration: "1d"
+
+- url: /(.*\.css)
+  mime_type: text/css
+  static_files: static/\1
+  upload: static/(.*\.css)
+  expiration: "1h"
+
+- url: /(.*\.js)
+  mime_type: text/javascript
+  static_files: static/\1
+  upload: static/(.*\.js)
+  expiration: "1h"
+
+- url: /(.*\.json)
+  mime_type: application/json
+  static_files: static/\1
+  upload: static/(.*\.json)
+  expiration: "1h"
+
+- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png|zip|pdf))
+  static_files: static/\1
+  upload: static/(.*\.(bmp|gif|ico|jpeg|jpg|png|zip|pdf))
+  expiration: "1d"
+
+- url: /backend/.*
+  script: _go_app
+  login: admin
+
+- url: /.*
+  script: _go_app

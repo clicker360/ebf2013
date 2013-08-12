@@ -1,0 +1,237 @@
+{{define "pageContent"}}
+<div class="block">
+    {{with .FormDataEmp}}
+    <h3>
+        <i class="icon-building"></i> 
+        Detalle de 
+        {{if .IdEmp}}
+        {{.Nombre}}
+        {{else}}
+        empresa 
+        {{end}}
+    </h3>
+    <div class="well well-small">
+        <form class="form-horizontal" action="/r/e/{{if .IdEmp}}u{{else}}c{{end}}" method="post" id="enviar">
+            {{if .IdEmp}}
+                <input type="hidden" name="IdEmp" value="{{.IdEmp}}"/>
+            {{end}}
+            <input type="hidden" name="DirMunSel" value="{{.DirMun}}" id="CveMun"/>
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="nombre" class="control-label">R.F.C. *</label>
+                        <div class="controls">
+                            <input type="text" class="validate[required,custom[onlyRFC]] {{.ErrRFC}}" name="RFC" value="{{.RFC}}" onchange="activateCancel()" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Nombre comercial *</label>
+                        <div class="controls">
+                            <input type="text" class="validate[required] {{.ErrNombre}}" name="Nombre" value="{{.Nombre}}" onchange="activateCancel()" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Razón Social *</label>
+                        <div class="controls">
+                            <input type="text" class="validate[required] {{.ErrRazonSoc}}" name="RazonSoc" value="{{.RazonSoc}}" onchange="activateCancel()" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Entidad Federativa *</label>
+                        <div class="controls">
+                            <select name="DirEnt" id="CveEnt">
+                                {{range .Entidades}}
+                                <option value="{{.CveEnt}}" {{if .Selected}}selected="{{.Selected}}"{{end}}>{{.Entidad}}</option>
+                                {{end}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Delegación o municipio *</label>
+                        <div class="controls" id="show_mun">
+                            <img src="imgs/loader.gif" id="loader" alt="" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Calle y numero</label>
+                        <div class="controls">
+                            <input type="text" class="validate[required] {{.ErrDirCalle}}" name="DirCalle" value="{{.DirCalle}}"  onchange="activateCancel()"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Colonia y/o localidad * </label>
+                        <div class="controls">
+                            <input type="text" class="validate[required] {{.ErrDirCol}}" name="DirCol" value="{{.DirCol}}"  onchange="activateCancel()"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Código Postal * </label>
+                        <div class="controls">
+                            <input type="text" class="validate[required,minSize[5],maxSize[5],custom[onlyNumberSp]] {{.ErrDirCp}}" name="DirCp"  value="{{.DirCp}}"  onchange="activateCancel()"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Número de sucursales</label>
+                        <div class="controls">
+                            <input type="text" class="validate[optional,minSize[1],custom[integer]] {{.ErrNumSuc}}" name="NumSuc" value="{{.NumSuc}}" onchange="activateCancel()" />
+                        </div>
+                    </div>											
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="" class="control-label">Organismo empresarial</label>
+                        <div class="controls">
+                            <select name="OrgEmp">
+                                {{range .Organismos}}
+                                <option value="{{.Siglas}}" {{if .Selected}}selected="{{.Selected}}"{{end}}>{{.Siglas}}</option>
+                                {{end}}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="" class="control-label">Otro (Especificar)</label>
+                        <div class="controls">
+                            <input type="text" class="validate[optional,custom[onlyLetterSp]] {{.ErrOrgEmpOtro}}" name="OrgEmpOtro" value="{{.OrgEmpOtro}}"  onchange="activateCancel()"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Número de registro o afiliación a tu organismo empresarial</label>
+                        <div class="controls">
+                            <input type="text" class="validate[optional] {{.ErrOrgEmpReg}}" name="OrgEmpReg" value="{{.OrgEmpReg}}"  onchange="activateCancel()"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox">
+                            <input type="checkbox" name="PartLinea" value="1" id="quest1" {{if .PartLinea}}checked="{{.PartLinea}}"{{end}}  onchange="activateCancel()"/> ¿Desea participar en El Buen Fin en línea?
+
+                        </label>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="" class="control-label"> Sitio de internet (con prefijo http://)</label>
+                        <div class="formErrorContent" id="urlreq" onclick="$('#urlreq').hide()">
+                            Obligatorio indicar sitio de internet si su empresa ya tiene experiencia en comercio electrónico
+                        </div>
+                        <div class="controls">
+                            <input type="text" class="validate[optional,custom[url]] {{.ErrUrl}}" name="Url" value="{{.Url}}" id="url1" onchange="activateCancel()"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox">
+                            <input type="checkbox" name="ExpComer" value="1" id="quest2" {{if .ExpComer}}checked="{{.ExpComer}}"{{end}} onchange="activateCancel()"/> ¿Tu empresa ya tiene experiencia en el comercio electrónico?
+
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label"> ¿Qué retos o dificultades identificas para implementar o mejorar el comercio electrónico de tu empresa?</label>
+                        <div class="controls">
+                            <textarea cols="30" class="validate[optional] {{.ErrDesc}}" name="Desc" onchange="activateCancel()">{{.Desc}}
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="checkbox">
+                            <input type="checkbox" class="validate[required]" name="accept" value="1" id="accept"/>
+                            {{if .IdEmp}}
+                            <label class="col-7" for="accept">Para aceptar y realizar cambios a esta empresa haga clic en el recuadro *
+                            {{else}}
+                            <label class="col-7" for="accept">Para aceptar este nuevo registro de empresa haga clic en el recuadro *
+                            {{end}}
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        {{if .IdEmp}}
+                        <input type="hidden" value="a" name="d"/>
+                        <button type="submit" value="1" class="btn">Modificar</button>
+                        <button type="reset" class="btn" id="cancelbtn">Restablecer</button>
+                        {{else}}
+                        <input type="hidden" value="a" name="d"/>
+                        <button type="submit" value="" class="btn">Aplicar</button>
+                        <button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {{else}}
+    {{end}}
+</div>
+<div class="block">
+    <h3><i class="icon-globe"></i> Micrositio de empresa</h3>
+    <div class="well well-small">
+        <form class="form-horizontal">
+            <div class="row-fluid">
+                <div class="span6">
+                    <h4>Subir tu logotipo</h4>
+                    <div class="control-group">
+                        <label for="" class="control-label">Selecciona archivo</label>
+                        <div class="controls">
+                            <div class="input-append">
+                                <input class="span12" id="appendedInputButton" type="text">
+                                <button class="btn" type="button">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Progreso de subida</label>
+                        <div class="controls">
+                                <div class="progress progress-striped active">
+                                    <div class="bar" style="width: 40%;"></div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="well well-small">
+                        <ul>
+                            <li>Sólo imágenes formato jpeg o png.</li>
+                            <li>Tamaño máximo 800x600 pixeles.</li>
+                            <li>Logotipo con fondo blanco.</li>
+                            <li>La imagen debe ser el logotipo de la empresa.</li>
+                            <li>No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
+                        </ul>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Título de logotipo:</label>
+                        <div class="controls">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label"> Sitio de internet al que debe apuntar el logotipo (opcional, con prefijo http://)</label>
+                        <div class="controls">
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <h4>Datos adicionales</h4>
+                    <div class="control-group">
+                        <label for="" class="control-label"> Descripción de la empresa visible al público:</label>
+                        <div class="controls">
+                            <textarea name="" id="" cols="30" rows="">
+                            </textarea>
+                        </div>
+                    </div>
+                    <h4>Redes sociales</h4>
+                    <div class="control-group">
+                        <label for="" class="control-label">Sitio de Facebook:</label>
+                        <div class="controls">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label"> Twitter:</label>
+                        <div class="controls">
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <button type="submit" class="btn">Modificar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{{end}}

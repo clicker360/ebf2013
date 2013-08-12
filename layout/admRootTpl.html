@@ -1,0 +1,21 @@
+{{define "pageRoot"}}<!DOCTYPE html>
+<html lang="en">
+	<head>
+    {{template "pageHeader" .}}
+    {{template "pageScript" .}}
+	</head>
+    <body>
+        {{template "pageMenu" .}}
+        <div id="sidebar" class="nav-collapse collapse">
+        </div>
+	    <div id="container" class="row-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    {{template "pageContent" .}}
+                </div>
+            </div>
+        </div>
+        {{template "pageFooter" .}}
+	</body>
+</html>
+{{end}}

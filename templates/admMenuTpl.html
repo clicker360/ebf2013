@@ -1,0 +1,17 @@
+{{define "pageMenu"}}
+<div class="col-5" style="min-height:600px;">
+    <img src="imgs/menutitle.jpg" width="208" height="19" alt="menu" />
+    <ul class="menuAdmin">
+        <li><a {{with .Page}}{{if eq .Name "dash" }} class="selected" {{end}}{{end}} href="/r/dash"><span><img src="imgs/inicio.png" width="17" height="19" alt="inicio" /></span> Inicio</a></li>
+        <li><a {{with .Page}}{{if eq .Name "cta" }} class="selected" {{end}}{{end}} href="/r/cta"><span><img src="imgs/admin.png" width="19" height="19" alt="administrador" /></span> Usuario</a></li>
+        <li><a {{with .Page}}{{if eq .Name "lea" }} class="selected" {{end}}{{end}} href="/r/le?d=a"><span><img src="imgs/empresa.png" width="24" height="19" alt="empresas" /></span> Empresas</a></li>
+        <li><a {{with .Page}}{{if eq .Name "les" }} class="selected" {{end}}{{end}} href="/r/le?d=s"><span><img src="imgs/sucursal.png" width="20" height="19" alt="sucursales" /></span> Sucursales</a></li>
+        <li><a {{with .Page}}{{if eq .Name "leo" }} class="selected" {{end}}{{end}} href="/r/le?d=o"><span><img src="imgs/oferta.png" width="20" height="19" alt="ofertas" /></span> Ofertas</a></li>
+        <li><a {{with .Page}}{{if eq .Name "lem" }} class="selected" {{end}}{{end}} href="/r/le?d=m"><span><img src="imgs/micrositio.png" width="25" height="19" alt="micrositios" /></span> Micrositios</a></li>
+        <li><a {{with .Page}}{{if eq .Name "avisos" }} class="selected" {{end}}{{end}} href="/r/avisos" class="resalt"><span><img src="imgs/Adviceicon.png" width="38" height="35" alt="avisos" /></span>Avisos</a></li>
+        <li><a {{with .Page}}{{if eq .Name "mg" }} class="selected" {{end}}{{end}} href="/r/mg"><span><img src="imgs/descargas.png" width="35" height="35" alt="materiales" /></span>Descargas</a></li>
+        <li><a {{with .Page}}{{if eq .Name "bfl" }} class="selected" {{end}}{{end}} href="/r/bfl"><span><img src="imgs/buenfinEnLiena.png" width="38" height="35" alt="Buen Fin en Linea" /></span>Buen Fin en Línea</a></li>
+    </ul>
+    <div class="box1 marg-U15pix"><strong>Recuerda:<br />El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</strong></div>
+</div>
+{{end}}

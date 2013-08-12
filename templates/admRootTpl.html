@@ -1,0 +1,36 @@
+{{define "pageRoot"}}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+    {{template "pageHeader" .}}
+    {{template "pageScript" .}}
+	<title>{{with .Page}}{{.Title}}/{{.Name}}{{end}}</title>
+	</head>
+    <body class="bgt-main">
+        <div class="col-100PR  bgt-red-top first">
+            <div class="col-cent">
+                <div class="col-24 first  BR-R-10px">
+                    <div class="col-4">
+                        <img src="imgs/logo_header.png" width="124" height="124"  alt="el buen fin" class="marg-5px last"/>
+                    </div>
+                    <div class="col-14 typ-Wh marg-U80pix"></div>
+                    {{with .Sess}}
+                    <div class="pestana">
+                        <p class="first marg-10px">Hola {{.Name}}</p>
+                        <div class="last">
+                            <a href="/r/salir" class="button blue marg-10pix last"><span>SALIR</span></a>
+                        </div>
+                    </div>
+                    {{end}}
+                </div>
+                <div class="col-24  Bg-Wh marg-D10pix">
+                    <div class="menuAdmin">
+                        {{template "pageMenu" .}}
+                        {{template "pageContent" .}}
+					</div>
+				</div>
+			</div>
+            {{template "pageFooter" .}}
+		</div>
+	</body>
+</html>
+{{end}}

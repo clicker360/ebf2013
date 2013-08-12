@@ -1,0 +1,46 @@
+{{define "pageContent"}}
+<div class="block">
+    <div class="row-fluid">
+        <div class="span9"><h3><i class="icon-sitemap"></i> {{with .Empresa}}{{.Nombre}}{{end}} / Sucursales </h3></div>
+        <div class="span3"><a href="/r/s/c?IdEmp={{with .Empresa}}{{.IdEmp}}{{end}}" class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+    </div>
+    <div class="well well-small">
+        <table class="table-condensed table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sucursal</th>
+                    <th>Empresa</th>
+                    <th>Estado</th>
+                    <th>Municipio</th>
+                    <th>Editar</th>
+                    <th>Ver empresa</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+				{{range .Sucursal}}
+                <tr>
+                    <td>{{.Nombre}}</td>
+                    <td>empresa patito de hule morado 3</td>
+                    <td>Distrito Federal</td>
+                    <td>Benito Juarez</td>											
+                    <th><a href="/r/s/d?IdSuc={{.IdSuc}}&IdEmp={{.IdEmp}}" class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                    <th><a href="/r/e/d?IdEmp={{.IdEmp}}" class="btn btn-mini btn-primary"><i class="icon-building"></i> Ver empresa</a></th>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+        <div class="pagination">
+            <ul>
+                <li class="disabled"><a href="#">Prev</a></li>
+                <li class="active" ><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{{end}}

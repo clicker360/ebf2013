@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="css/Origami.css" rel="stylesheet" type="text/css" />
+	<link href="css/elbuenfinSkin.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-26907178-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+	<script type="text/javascript">
+    	$(document).ready(function(){ $("#enviar").validationEngine({promptPosition : "topRight", scroll: false}); });
+	</script>
+	<title>Materiales gráficos</title>
+</head>
+
+<body class="bgt-main">
+    <div class="col-100PR bgt-red-top first">
+      <div class="col-cent">
+        <div class="col-24 first BR-R-10px">
+          <div class="col-24">
+       <div class="col-4">
+		   <img src="imgs/logo_header.png" width="124" height="124"  alt="el buen fin" class="marg-5px last"/>
+	   </div>
+	
+          {{with .Sess}}
+              <div class="pestana">
+              <p class="first marg-10px  ">Hola {{.Name}}</p>
+              <a href="/r/salir" class="button blue marg-10pix last"><span>SALIR</span></a> 
+              </div>
+              {{end}}
+		</div>
+
+        <div class="col-24 Bg-Wh marg-D10pix">
+          <div class="menuAdmin">
+            <div class="col-19 last">
+              <div class="titlecond">
+                <h2 class="first"> Descargas</h2>
+                </div>
+				<div class="gridtwo marg-L10pix marg-D10pix"> 
+              		<form method="post" class="frmE" id="enviar" name="enviar" action="/r/dmg">
+					<div class="box1"> 
+                    <h3>Manual corporativo y logotipo</h3>
+						<p><strong>En esta sección podrás descargar el logotipo oficial de El Buen Fin para que elabores la publicidad de tu empresa. </strong></p>
+						<p><strong>El uso de la obra de arte aplicado El BUEN FIN (el “Logotipo”) deberá limitarse única y exclusivamente a aquellas cuestiones inherentes a la promoción o difusión del proyecto y/o campaña de Iniciativa México, A.C. conocida como “EL BUEN FIN, EL FIN DE SEMANA MÁS BARATO DEL AÑO”, misma que se llevará a cabo del próximo 16 al 19 de noviembre. </strong> </p>
+						<div class=" marg-U20pix">
+							<div class="col-5 last"> 
+								<div class="col-4"> 
+									<h4 class="first">Estoy de acuerdo</h4>
+								</div>
+								<div class="col-1 marg-U5pix"> 
+									<input type="checkbox" name="TermCond" class="validate[required] last" value="acepted" id="acepted" />
+								</div>
+							</div>
+							<div class="col-4 mar-10pix last clear"> 
+								<button  name="enviar" type="submit" value="enviar" class="big red last"><span>Descargar</span></button>
+							</div>
+						</div>
+					</div>
+          			</form>
+				</div>
+
+              </div>
+           
+
+            <div class="col-5" style="min-height:600px;">
+              <img src="imgs/menutitle.jpg" width="208" height="19" alt="menu" />
+
+              <ul class="menuAdmin">
+                <li><a href="/r/dash"><span><img src="imgs/inicio.png" width="37" height="35" alt="inicio" /></span> Inicio</a></li>
+                <li><a href="/r/cta"><span><img src="imgs/admin.png" width="37" height="35" alt="administrador" /></span> Usuario</a></li>
+                <li><a href="/r/le?d=a"><span><img src="imgs/empresa.png" width="24" height="19" alt="empresas" /></span> Empresas</a></li>
+                <li><a href="/r/le?d=s"><span><img src="imgs/sucursal.png" width="37" height="35" alt="sucursales" /></span> Sucursales</a></li>
+                <li><a href="/r/le?d=o"><span><img src="imgs/oferta.png" width="37" height="35" alt="ofertas" /></span> Ofertas</a></li>
+                <li><a href="/r/le?d=m"><span><img src="imgs/micrositio.png" width="25" height="19" alt="micrositios" /></span> Micrositios</a></li>
+				<li><a href="/r/avisos" class="resalt"><span><img src="imgs/Adviceicon.png" width="38" height="35" alt="avisos" /></span>Avisos</a></li>
+				<li><a class="selected" href="/r/mg"><span><img src="imgs/descargas.png" width="35" height="35" alt="materiales" /></span>Descargas</a></li>
+				<li><a href="/r/bfl"><span><img src="imgs/buenfinEnLiena.png" width="38" height="35" alt="Buen Fin en Linea" /></span>Buen Fin en Línea</a></li>
+              </ul>
+			  <div class="box1 marg-U15pix"><strong>Recuerda:<br />El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</strong></div>
+            </div>
+          </div>
+
+          <div class="box1 alineCenter"><img src="imgs/abmlogo1.jpg" width="80" height="73" alt="abm" /><img src="imgs/amipcilogo80.jpg" width="76" height="80" alt="amici" /><img src="imgs/orgn_5.jpg" width="98" height="68" alt="consejo cordinador empresarial" class="padd-10px" /><img src="imgs/orgn_4.jpg" width="107" height="80" alt="organismo" class="padd-10px" /><img src="imgs/concamin-75x80.jpg" width="75" height="80" alt="concamin" /><img src="imgs/logo-concanaco-107x76.jpg" width="96" height="62" alt="coparmex" class="padd-10px" /> <img src="imgs/Logo-COPARMEX-95x80.jpg"
+          width="67" height="49" alt="concanaco" class="padd-10px" /><img src="imgs/orgn_6.jpg" alt="gobierno federal" width="98" height="73" /><img src="imgs/orgn_7.jpg" width="95" height="65" alt="iniciativa mexico" class="padd-10px" /></div>
+
+          <div class=" box1">
+            <p class="typeMin">El Buen Fin © Todos los derechos reservados, México 2011 Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta
+            de los productos.<br />
+            Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

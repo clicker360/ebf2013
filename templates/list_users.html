@@ -1,0 +1,22 @@
+<html>
+  <body>
+    {{range .}}
+      {{with .UsuarioInt}}
+        <p>Un usuario Interno <b>{{.}}</b> registró su cuenta administrativa:</p>
+      {{else}}
+        <p>Un usuario <b>Normal</b> registró su cuenta administrativa:</p>
+      {{end}}
+      <pre>{{.Folio}}</pre>
+      <pre>{{.Nombre}}</pre>
+      <pre>{{.Apellidos}}</pre>
+      <pre>{{.Puesto}}</pre>
+      <pre>{{.Email}}</pre>
+      <pre>{{.EmailAlt}}</pre>
+      <pre>{{.Pass}}</pre>
+      <pre>{{.Tel}}</pre>
+      <pre>{{.Cel}}</pre>
+      <pre>{{.FechaHora}}</pre>
+      <pre>{{.CodigoCfm}}</pre>
+    {{end}}
+  </body>
+</html>

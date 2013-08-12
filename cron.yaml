@@ -1,0 +1,9 @@
+#cron:
+#- description: Lowercase the emails
+#  url: /normalize-mail
+#  schedule: every 30 minutes
+
+cron:
+- description: Generar tabla MvBlob para concepto movil
+  url: /mvblob
+  schedule: every 60 minutes synchronized

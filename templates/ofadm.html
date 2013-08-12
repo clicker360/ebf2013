@@ -1,0 +1,438 @@
+{{define "oferta"}}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">
+			#size {
+			width: 300px;
+			margin: 10px 10px;
+			}
+			.progress {
+			float: right;
+			position: relative;
+			width: 310px;
+			border: 1px solid #ddd;
+			padding: 1px;
+			border-radius: 3px;
+			}
+			.bar {
+			background-color: grey;
+			width: 0%;
+			height: 20px;
+			border-radius: 3px;
+			}
+			.percent {
+			position: absolute;
+			display: inline-block;
+			top: 3px;
+			left: 48%;
+			}
+		</style>
+		<link href="css/Origami.css" rel="stylesheet" type="text/css" />
+		<link href="css/elbuenfinSkin.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/jquery.form.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/ofertas.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/datepicker.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-26907178-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+		<script type="text/javascript" charset="utf-8">
+				
+			var idoft = "{{with .FormDataOf}}{{.IdOft|js}}{{end}}"; 
+			var idblob = "{{with .FormDataOf}}{{.BlobKey}}{{end}}"; 
+			var idemp = "{{with .Empresa}}{{.IdEmp}}{{end}}"; 
+			$(document).ready(function() { $("#urlimg").attr('href', "{{with .FormDataOf}}{{.Url|js}}{{end}}");});
+			
+		</script>
+		<title>Ofertas</title>
+	</head>
+	<body class="bgt-main">
+		
+		<!--Subir imagen light box-->
+		<div class="lightcenterdiv hidden" id="box">
+			<div class="last pullRight-20 pullup-20">
+				<a href="#null" onclick="deactiveLghtbx()"><img src="imgs/closeBTN.png" width="30" height="29" alt="cerrar" /></a>
+			</div>
+		</div>
+		<div class="lghtbox hidden" id="light"></div>
+		<!-- termina Subir imagen-->
+
+		<div class="col-100PR  bgt-red-top first">
+			<div class="col-cent">
+				<div class="col-24 first  BR-R-10px">
+					<div class="col-4"> <img src="imgs/logo_header.png" width="124" height="124"  alt="el buen fin" class="marg-5px last"/> </div>
+					{{with .Sess}}
+					<div class="pestana">
+						<p class="first marg-10px">Hola {{.Name}}</p>
+						<div class="last"><a href="/r/salir" class="button blue marg-10pix last"><span>SALIR</span></a></div>
+					</div>
+					{{end}} 
+				</div>
+				<div class="col-24  Bg-Wh marg-D10pix">
+					<div class="menuAdmin">
+						<div class="col-5" style="min-height:600px;">
+							<img src="imgs/menutitle.jpg" width="208" height="19" alt="menu" />
+							<ul class="menuAdmin">
+								<li><a href="/r/dash"><span><img src="imgs/inicio.png" width="17" height="19" alt="inicio" /></span> Inicio</a></li>
+								<li><a href="/r/cta"><span><img src="imgs/admin.png" width="19" height="19" alt="administrador" /></span> Usuario</a></li>
+								<li><a href="/r/le?d=a"><span><img src="imgs/empresa.png" width="24" height="19" alt="empresas" /></span> Empresas</a></li>
+								<li><a href="/r/le?d=s"><span><img src="imgs/sucursal.png" width="20" height="19" alt="sucursales" /></span> Sucursales</a></li>
+								<li><a href="/r/le?d=o" class="selected"><span><img src="imgs/oferta.png" width="20" height="19" alt="ofertas" /></span> Ofertas</a></li>
+								<li><a href="/r/le?d=m"><span><img src="imgs/micrositio.png" width="25" height="19" alt="micrositios" /></span> Micrositios</a></li>
+								<li><a href="/r/avisos" class="resalt"><span><img src="imgs/Adviceicon.png" width="38" height="35" alt="avisos" /></span>Avisos</a></li>
+								<li><a href="/r/mg"><span><img src="imgs/descargas.png" width="35" height="35" alt="materiales" /></span>Descargas</a></li>
+								<li><a href="/r/bfl"><span><img src="imgs/buenfinEnLiena.png" width="38" height="35" alt="Buen Fin en Linea" /></span>Buen Fin en Línea</a></li>
+							</ul>
+							<div class="box1 marg-U15pix"><strong>Recuerda:<br />
+								El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</strong>
+							</div>
+						</div>
+						<div class="col-19 last">
+							<div class="titlecond">
+								<div class="col-18" style="overflow:hidden;height:38px;">
+	                             	<a href="/r/ofmod?IdEmp={{with .Empresa}}{{.IdEmp}}{{end}}&IdOft=new"  class="orange button last big" id=""><span>Nueva Oferta</span></a>
+									<h6 class="marg-L5pix first typ-Tr">Oferta de <span class="typ-BK">{{with .Empresa}}{{.Nombre}}{{end}}</span></h6>
+									<a href="/r/ofs?IdEmp={{with .Empresa}}{{.IdEmp}}{{end}}" class="button big grey last marg-R10pix"><span>&lt;&lt;Regresar</span></a>
+	                                   
+								</div>
+							</div>
+	                        <!--vista preliminar de la oferta en la búsqueda-->
+	                		<div class="col-19 ">
+	                			<div class="last col-8 marg-R5pix"> 
+									<div class="col-8 Bg-Drks" id="previewer">
+	                                    <div class=" col-8 padd-D20px">
+	                                        <h6 class="col-100PR typeMx typ-Tr alineCenter"> Vista preliminar </h6>
+	                                        <div class="col-7 marg-L20pix marg-U10pix marg-D10pix Bg-Wh outlined SHW-div-D3px"> 
+	                                            <div class="box1">
+	                                                <div id="urlimg"><img src="" alt="Imagen de la oferta" width="258" id="pic" /> </div>
+	                                            </div>
+	                                            <div class="box1">
+	                                                <h3 class="typeStnd" id="Empre">{{with .Empresa}}{{.Nombre}}{{end}}</h3>
+	                                                <h4 class="typ-Sc typeMx" id="oferTit">{{with .FormDataOf}}{{.Oferta}}{{end}}</h4>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div id="imgform" class="col-8 padd-D10px">
+											<form action="{{with .FormDataOf}}{{.UploadURL}}{{end}}" method="post" id="enviar" enctype="multipart/form-data">
+												<input type="hidden" name="IdOft" value="{{with .FormDataOf}}{{.IdOft}}{{end}}"/>
+												<div class="col-7 marg-L15pix Bg-Wh">
+													<div class=" col-100PR">
+							                        <p>Acompaña la oferta con una imagen</p>
+														<ul>
+															<li>SOLO EN FORMATO JPG O PNG</li>
+															<li>ANCHO MÁXIMO 600 PIXELES</li>
+															<li>PESO MÁXIMO 1 MEGABYTE</li>
+														</ul>
+													</div>
+													<div class="typ-Sc" id="status"></div>
+													<input id="imgfile" type="text" class="style3 marg-R25pix" readonly="readonly" />
+													<div class="btn-upload last" style="width:65px; height:27px; margin:0px 25px 0px 0px; overflow: hidden;">
+														<input id="infile" type="file" class="validate[required]" name="image" onchange="$('#imgfile').val($('#infile').val()); $('#enviar').submit();" style="height: 27px; width: 136px; display:inline-block; cursor: pointer; opacity: 0; margin-left: -168px;" />
+													</div>
+													<img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
+													<div class="col-4 bg-Gry2 marg-D10pix marg-L10pix">
+														<div class="progress">
+															<div class="bar"></div>
+															<div class="percent"> 0% </div>
+														</div>
+							                           
+													</div>
+													 <div class="col-6 marg-L10pix">
+														<ul>
+															<li>Su imagen será ajustada en la vista previa</li>
+															<li>Recomendamos subir la imagen en formato cuadrado</li>
+														</ul>
+													</div>
+												</div>
+											</form>
+	                					</div>
+	           						</div>
+	           					</div>
+									   
+								<!-- Inicia estructura de campos Oferta -->    
+								{{with .FormDataOf}}
+								<form action="/r/ofmod" method="post" id="enviardata">
+									<input type="hidden" value="a" name="s"/>
+									<input type="hidden" name="IdOft" value="{{.IdOft}}" id="IdOft"/>
+									<input type="hidden" name="IdEmp" value="{{.IdEmp}}" id="IdEmp"/>
+									<input type="hidden" name="pchain" id="pchain"/>
+									<input type="hidden" name="schain" id="schain"/>
+						 			<div class="col-11 marg-L5pix">
+
+										<!--TITULO DE LA OFERTA-->
+										<div class=" col-10 padd-UD5px padd-LR15px marg-D5pix marg-L5pix Bg-Drks">
+											<label class="col-5"><span class="typ-Sc">*</span> Título de la oferta</label>
+											<input type="text" class="validate[required, maxSize[55]] medium {{.ErrOferta}}" name="Oferta" value="{{.Oferta}}" id="oferta" maxlength="55" onchange="javascript:$('#oferTit').text($('#oferta').val()); activateCancel();"/>
+											<div class="formErrorContent" id="tituloreq" onclick="$('#tituloreq').hide()">Obligatorio indicar un título descriptivo de su oferta</div>
+											<div class="col-7 Addvice last"> Máximo 55 caracteres</div>
+										</div>
+								
+										<!--Descripcion de ofertas-->
+										<div class=" col-10 padd-UD5px padd-LR15px marg-D5pix marg-L5pix Bg-Drks">
+											<label class="col-5"><span class="typ-Sc">*</span>¿En qué consiste la oferta?</label>
+											<textarea class="validate[required, maxSize[350]] medium last {{.ErrDescripcion}}" name="Descripcion" cols="6" rows="6" id="descripcion" maxlength="350" onchange="javascript:$('#oferDesc').text($('#descripcion').val()); activateCancel();">{{.Descripcion}}</textarea>
+											<span class="col-7 last Addvice">Máximo 350 caracteres</span><div class="col-10">
+													<p class="typeMin">Esta es la información que quieres compartirle al público sobre tu oferta. Te recomendamos incluir algunos de los siguientes datos: monto del descuento, tipo de promoción, producto o servicio, departamento, público objetivo.<br />
+												    Por ejemplo: “40% de descuento en zapatos para dama en todas las marcas.”</p>
+	                                    	</div>
+										</div>
+	                                    
+	                                    <!--CATEGORIAS-->
+										<div class=" col-10 padd-UD5px padd-LR15px marg-L5pix  marg-D5pix Bg-Drks">
+											<label class="col-3"><span class="typ-Sc">*</span> Categoría</label>
+											<select name="IdCat" size="1" id="categoria" class="validate[required] last medium" onchange="activateCancel();">
+												<option value=""> SELECCIONAR UNA </option>
+												{{range .Categorias}} 
+												<option value="{{.IdCat}}" {{if .Selected}}selected="{{.Selected}}"{{end}}>{{.Categoria}}</option>
+												{{end}}					
+											</select>
+										</div>
+									<!-- Date picker -->
+										<div class="col-10 padd-UD5px padd-LR15px marg-5px Bg-Drks">
+											<div class="col-10">
+												<label class="col-7">La oferta estará publicada a partir de</label>
+												<input type="text" class="validate[optional] small last marg-U10pix" name="FechaHoraPub" id="date1" readonly="readonly" onclick="return toggleCalendar(this);" value="{{.ErrFechaHoraPub}}"/>
+                                                <div class=" col-10">
+												<p class="typeMin">Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.</p></div>
+											</div>
+											<div class="dateoverlay SHW-div-D3px toggleZero" id="datePick">
+												<a href="#null" class="ltlbtn" onclick="untogleCalendar();">X</a>
+												<p class="typ-Wh typeStnd col-3"> Noviembre 2012</p>
+												<ul class="datepicker">
+													<li>L</li>
+													<li>M</li>
+													<li>M</li>
+													<li>J</li>
+													<li>V</li>
+													<li>S</li>
+													<li>D</li>
+													<li></li>
+													<li></li>
+													<li></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="1">1</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="2">2</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="3">3</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="4">4</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="5">5</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="6">6</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="7">7</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="8">8</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="9">9</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="10">10</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="11">11</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="12">12</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="13">13</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="14">14</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="15">15</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="16">16</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="17">17</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="18">18</a></li>
+													<li><a href="#null" onClick="getTheDate(this)" id="19">19</a></li>
+													<li>20</li>
+													<li>21</li>
+													<li>22</li>
+													<li>23</li>
+													<li>24</li>
+													<li>25</li>
+													<li>26</li>
+													<li>27</li>
+													<li>28</li>
+													<li>29</li>
+													<li>30</li>
+													<li>31</li>
+												</ul>
+											</div>
+										</div>
+										<!-- termina datepicker -->
+                                        <!--SUCURSALES-->
+										<div class="col-10 padd-LR15px marg-L5pix Bg-Drks padd-D10px ">
+											<!--EL BUEN FIN EN LINEA-->
+											<p class="marg-5px"><strong><span class="typ-Sc">*</span>¿Dónde estará disponible esta oferta?</strong></p>
+											<div class="formErrorContent" id="placereq" onclick="$('#placereq').hide()"> Obligatorio indicar algún lugar donde su oferta participa </div>
+											<div class="first marg-L6pix bg-Gry3 col-10" >
+												<label class="col-8 marg-L10pix typ-BK">El Buen Fin en línea (Comercio electrónico) </label>
+												<input type="checkbox" class="last marg-U5pix marg-R10pix" name="Enlinea" value="1" id="enlinea" {{if .Enlinea}}checked="{{.Enlinea}}"{{end}} />
+											</div>
+											<div id="muestraurl">
+												<div class="first marg-L6pix bg-Gry2 col-10" > 
+													<label class="col-8 marg-L10pix "> Sitio de internet de la oferta</label>
+													<div class="formErrorContent" id="urlreq" onclick="$('#urlreq').hide()"> Obligatorio indicar enlace si participa en El Buen Fin en línea </div>
+													<input type="text" class="validate[optional,custom[url]] medium  last {{.ErrUrl}}" name="Url" value="{{.Url}}" id="url" onchange="/*javascript:$('#urlimg').attr('href', $('#url').val());*/ activateCancel();" />
+												</div>
+											</div>
+											<div class="col-10" id="sucursales">
+												<div class="first col-10" id="listasuc" style="max-height:150px; overflow:auto;"> 
+													<div class="gridsubRow bg-Gry3"><label class="col-5 marg-L10pix typ-BK">En sucursales</label><div class="col-2 last"><input name="todassuc" type="checkbox" class="last marg-U5pix marg-R10pix" id="todassuc"/><span class="Dsblock typ-BK" style="margin-top: 3px">(todas)</span></div>
+													</div>
+													<!-- relleno ajax -->
+												</div>
+											</div>
+										</div>
+						
+										<!--SELECTOR DE PALABRAS CLAVE-->
+										<div class="col-10 padd-LR15px marg-L5pix Bg-Drks marg-U5pix">
+											<p class="Dsblock first">Palabras relacionadas con la oferta</p>
+											<div class="col-100PR first  Bg-Wh padd-UD10px">
+											  <input type="text" class="validate[optional, onlyLetterSp, minSize[3], maxSize[25]] selectWord  marg-L20pix marg-R10pix marg-U5pix" maxlength="25" name="textopcve" value="" id="tokenpcve" />
+												<div class=" first marg-U5pix" id="btnaddWords">
+													<a href="#null" class=" button orange medium" id="nuevapcve"><span>Añadir palabra <img src="imgs/iconDown.png" width="15" height="20" /></span></a>
+												</div>
+												<div id="pcvepicker">
+		                                          	<div class=" divAsInput col-9 marg-L20pix marg-U10pix" id="unpickpcve">
+														<!--esto se llena automáticamente-->
+													</div>
+													<label class="col-7 marg-L20pix marg-U5pix" id="titleWord">Otras palabras que has capturado</label>
+													<div class=" divAsInput2  col-9 marg-L20pix" id="pickpcve">
+														<!--esto se llena automáticamente-->
+													</div>
+												</div>
+                                                <div class="last marg-R15pix"><a href="#null" class="last padd-5px typeMin"  id="elimilink">Clic aquí para remover palabras que no necesites</a></div>
+											</div>
+										</div>
+	                                    <div class="col-10 padd-LR15px marg-L5pix Bg-Drks">
+											
+                                            <div class=" col-10">
+                                            <p>Máximo 5 palabras.</p>
+												<p class="typeMin">Para facilitar la búsqueda de tu oferta, escribe las palabras que se relacionan directamente con ella y que piensas que la gente escribirá para encontrarte. Del ejemplo anterior, las palabras clave podrían ser: zapatos, mujeres, damas, zapatería.</p></div>
+		                                </div>
+	                                </div>
+										
+				
+
+									<div class=" marg-L15pix Addvice col-10"> <span class="typ-Sc">*</span> Todos los campos marcados son obligatorios </div>
+									<div class="col-10 marg-L15pix" id="newbtn">
+										<button type="submit" class="big red last"><span class="col-9">Guardar</span></button>
+										<button type="reset" class="orange hidden" id="cancelbtn"><span class="col-5">Limpiar Campos</span></button>
+									</div>
+									<div class="col-10 marg-L15pix" id="modbtn">
+										<button type="submit" class="big red last"><span class="col-9">Guardar</span></button>
+										<button type="reset" class="grey last marg-U15pix hidden" id="cancelbtn"><span>Limpiar Campos</span></button>
+	                                    
+									</div>
+								</form>
+								{{end}}
+							</div>
+						</div>
+						<!-- Termina estructura de campos Oferta --> 
+					</div>
+					<div class="box1 alineCenter">
+						<img src="imgs/abmlogo1.jpg" width="80" height="73" alt="abm" /><img src="imgs/amipcilogo80.jpg" width="76" height="80" alt="amici" />
+						<img src="imgs/orgn_4.jpg" width="107" height="80" alt="organismo"  class="padd-10px"/>
+						<img src="imgs/orgn_5.jpg" width="98" height="68" alt="consejo cordinador empresarial"  class="padd-10px"/>
+						<img src="imgs/concamin-75x80.jpg" width="75" height="80" alt="concamin" />
+						<img src="imgs/logo-concanaco-107x76.jpg" width="96" height="62" alt="coparmex"  class="padd-10px" />
+						<img src="imgs/Logo-COPARMEX-95x80.jpg" width="67" height="49" alt="concanaco"  class="padd-10px"/>
+						<img src="imgs/orgn_6.jpg" alt="gobierno federal" width="98" height="73" /><img src="imgs/orgn_7.jpg" width="95" height="65" alt="iniciativa mexico"  class="padd-10px"/>
+					</div>
+					<div class=" box1">
+						<p class="typeMin">El Buen Fin © Todos los derechos reservados, México 2011 Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta de los productos.<br /> Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+{{end}}
+{{define "ofertas"}}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-26907178-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+	<title>Listado de Ofertas</title>
+	<link href="css/Origami.css" rel="stylesheet" type="text/css" />
+	<link href="css/elbuenfinSkin.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body class="bgt-main">
+		<div class="col-100PR  bgt-red-top first">
+			<div class="col-cent">
+				<div class="col-24 first  BR-R-10px">
+					<div class="col-4">
+						<img src="imgs/logo_header.png" width="124" height="124"  alt="el buen fin" class="marg-5px last"/>
+					</div>
+					<div class="col-14 typ-Wh marg-U80pix">
+						<!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
+					</div>
+	
+					{{with .Sess}}
+					<div class="pestana">
+						<p class="first marg-10px">Hola {{.Name}}</p>
+						<div class="last"><a href="/r/salir" class="button blue marg-10pix last"><span>SALIR</span></a></div>
+					</div>
+					{{end}}
+			
+				</div>
+				<div class="col-24  Bg-Wh marg-D10pix">
+					<div class="menuAdmin">
+						<div class="col-5" style="min-height:600px;">
+							<img src="imgs/menutitle.jpg" width="208" height="19" alt="menu" />
+							<ul class="menuAdmin">
+								<li><a href="/r/dash"><span><img src="imgs/inicio.png" width="17" height="19" alt="inicio" /></span> Inicio</a></li>
+								<li><a href="/r/cta"><span><img src="imgs/admin.png" width="19" height="19" alt="administrador" /></span> Usuario</a></li>
+								<li><a href="/r/le?d=a"><span><img src="imgs/empresa.png" width="24" height="19" alt="empresas" /></span> Empresas</a></li>
+								<li><a href="/r/le?d=s"><span><img src="imgs/sucursal.png" width="20" height="19" alt="sucursales" /></span> Sucursales</a></li>
+                				<li><a href="/r/le?d=o" class="selected"><span><img src="imgs/oferta.png" width="20" height="19" alt="ofertas" /></span> Ofertas</a></li>
+								<li><a href="/r/le?d=m"><span><img src="imgs/micrositio.png" width="25" height="19" alt="micrositios" /></span> Micrositios</a></li>
+								<li><a href="/r/avisos" class="resalt"><span><img src="imgs/Adviceicon.png" width="38" height="35" alt="avisos" /></span>Avisos</a></li>
+								<li><a href="/r/mg"><span><img src="imgs/descargas.png" width="35" height="35" alt="materiales" /></span>Descargas</a></li>
+								<li><a href="/r/bfl"><span><img src="imgs/buenfinEnLiena.png" width="38" height="35" alt="Buen Fin en Linea" /></span>Buen Fin en Línea</a></li>
+							</ul>
+							<div class="box1 marg-U15pix"><strong>Recuerda: <br/>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</strong></div>
+						</div>
+						<div class="col-19 last">
+							<div class="titlecond">
+								<h2 class="first">Ofertas de</h2>
+								<a href="/r/ofmod?IdEmp={{with .Empresa}}{{.IdEmp}}{{end}}&IdOft=new" class="button big red last"><span>AGREGAR OFERTA</span></a>
+								<a href="/r/le?d=o" class="button big grey last"><span>&lt;&lt;Regresar</span></a>
+							</div>
+							<div class="box1"><h3 class="first">{{with .Empresa}}{{.Nombre}}{{end}}</h3></div>
+							{{range .Oferta}}
+							<div class="dataGrid">
+								<div class="gridRow">
+									<a href="/r/of?IdOft={{.IdOft}}&IdEmp={{.IdEmp}}"><span class="icon icochevroright"></span>{{.Oferta}}</a><a href="/r/ofdel?IdOft={{.IdOft}}&IdEmp={{.IdEmp}}&d=s" class="button orange marg-10pix last customDialog" onclick="javascript:if(confirm('¿Desea continuar y dar de baja esta oferta?')){return true;}else{return false;}"><span>ELIMINAR</span></a>
+								</div>
+							</div>
+							{{else}}
+							<div class="dataGrid">
+								<div class="warning" >No hay ofertas</div>
+							</div>
+							{{end}}
+						</div>
+					</div>
+				<div class="box1 alineCenter">
+					<img src="imgs/abmlogo1.jpg" width="80" height="73" alt="abm" /><img src="imgs/orgn_4.jpg" width="107" height="80" alt="organismo"  class="padd-10px"/><img src="imgs/amipcilogo80.jpg" width="76" height="80" alt="amici" /><img src="imgs/orgn_5.jpg" width="98" height="68" alt="consejo cordinador empresarial"  class="padd-10px"/><img src="imgs/concamin-75x80.jpg" width="75" height="80" alt="concamin" /><img src="imgs/logo-concanaco-107x76.jpg" width="96" height="62" alt="coparmex"  class="padd-10px" /> <img src="imgs/Logo-COPARMEX-95x80.jpg" width="67" height="49" alt="concanaco"  class="padd-10px"/><img src="imgs/orgn_6.jpg" alt="gobierno federal" width="98" height="73" /><img src="imgs/orgn_7.jpg" width="95" height="65" alt="iniciativa mexico"  class="padd-10px"/> 
+				</div>
+				<div class=" box1">
+					<p class="typeMin">El Buen Fin © Todos los derechos reservados, México 2011
+					Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta de los productos. <br />
+					Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen. </p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+{{end}}

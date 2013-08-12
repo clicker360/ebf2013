@@ -1,0 +1,196 @@
+{{define "cta"}}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="css/Origami.css" rel="stylesheet" type="text/css" />
+	<link href="css/elbuenfinSkin.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-26907178-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){ $("#enviar").validationEngine({promptPosition : "topRight", scroll: true}); });
+		function activateCancel(){ $("#cancelbtn").addClass("show") }
+		function deactivateCancel(){ $("#cancelbtn").removeClass("show") }
+		function activeLghtbx(){ $('#contrano').removeClass("hidden");  $('#contrasi').addClass("hidden"); }
+		function deactiveLghtbx(){ $('#contrasi').removeClass("hidden");  $('#contrano').addClass("hidden"); }
+		function activeCancelCtaLghtbx(){ $('#cancelctano').removeClass("hidden");  $('#cancelctasi').addClass("hidden"); }
+		function deactiveCancelCtaLghtbx(){ $('#cancelctasi').removeClass("hidden");  $('#cancelctano').addClass("hidden"); }
+		function validateEmail(field, rules, i, options) {
+			var err=0;
+			$.each( field.val().split(","), function(i,candidate) { 
+				if($.trim(candidate) != "") {
+					if(!$.trim(candidate).match(options.allrules.email.regex)) err++;
+				}
+			});
+			if(err) return options.allrules.email.alertText+". Puede introducir varios correos separados por coma";
+		}
+	</script>
+	<title>Administración de cuenta</title>
+</head>
+
+<body class="bgt-main">
+    <div class="col-100PR bgt-red-top first">
+      <div class="col-cent">
+        <div class="col-24 first BR-R-10px">
+          <div class="col-24">
+       <div class="col-4">
+		   <img src="imgs/logo_header.png" width="124" height="124"  alt="el buen fin" class="marg-5px last"/>
+	   </div>
+		<div class="col-14 typ-Wh marg-U80pix">
+			<!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
+		</div>
+
+          {{with .FormDataCta}}
+              <div class="pestana">
+              <p class="first marg-10px  ">Hola {{.Nombre}}</p>
+              <a href="/r/salir" class="button blue marg-10pix last"><span>SALIR</span></a> </div>
+              {{end}}
+        
+</div>
+
+        <div class="col-24 Bg-Wh marg-D10pix">
+          <div class="menuAdmin">
+            <div class="col-19 last">
+              <div class="titlecond">
+                <h2 class="first">Usuario</h2>
+              </div>
+
+			  <form method="post" class="frmE" id="enviar" name="enviar" action="/r/ctamod">
+              <div class="col-15 marg-L50pix marg-U10pix">
+                {{with .FormDataCta}}
+
+                <div class="Bg-Wh col-15 BR-R-5px">
+                  <div class="line">
+                    <label>Nombre(s) <span class="typ-Sc">*</span></label> <input type="text" class="validate[required,custom[onlyLetterSp]] small {{.ErrNombre}}" name="Nombre" value="{{.Nombre}}" onchange="activateCancel()" />
+                  </div>
+
+                  <div class="line">
+                    <label>Apellidos <span class="typ-Sc">*</span></label> <input type="text" class="validate[required,custom[onlyLetterSp]] small {{.ErrApellidos}}" name="Apellidos" value="{{.Apellidos}}" onchange="activateCancel()" />
+                  </div>
+
+                  <div class="line">
+                    <label>Perfil de puesto</label> <input type="text" class="validate[optional] small {{.ErrPuesto}}" name="Puesto" value="{{.Puesto}}" onchange="activateCancel()" />
+                  </div>
+
+                  <div class="line">
+                    <label>Teléfono fijo con lada<span class="typ-Sc">*</span></label> <input type="text" class="validate[required,custom[phone]] small {{.ErrTel}}" name="Tel" value="{{.Tel}}" onchange="activateCancel()" />
+                  </div>
+
+                  <div class="line">
+                    <label>Teléfono celular</label> <input type="text" class="validate[optional,custom[cellphone]] small {{.ErrCel}}" name="Cel" value="{{.Cel}}" onchange="activateCancel()" />
+                  </div>
+
+                  <div class="line">
+                    <label>Correo electrónico principal<br />
+                    <span class="typ-Sc">(Usuario de acceso)</span></label> <input type="text" class="validate[required,custom[email]] small {{.ErrEmail}}" name="Email" value="{{.Email}}" readonly="readonly" />
+                  </div>
+
+                  <div class="line">
+					  <label>Correo electrónico segundo contacto<br />
+					  <span class="typ-Sc">(Puede incluir varios correos separados por coma)</span></label> <input type="text" class="validate[optional,funcCall[validateEmail]] small {{.ErrEmailAlt}}" name="EmailAlt" value="{{.EmailAlt}}" onchange="activateCancel()" />
+                  </div>
+
+                  <div class="line" id="contrasi">
+                    <p><a href="#null" onclick="activeLghtbx()"><span class="typ-Sc">Cambiar contraseña (clic aquí)</span></a></p>
+                  </div>
+
+                  <div id="contrano" class="hidden">
+                    <div class="line">
+                      <p><a href="#null" onclick="deactiveLghtbx()"><span class="typ-Sc">Cerrar contraseña (clic aquí)</span></a></p><label>Contraseña (capture sólo para cambiar)<br /></label> <input type="password" id="cpass" class="validate[optional] small {{.ErrPass}}" value="{{.Pass}}" name=
+                      "Pass" onchange="activateCancel()" />
+                    </div>
+
+                    <div class="line">
+                      <label>Confirma contraseña (capture sólo para cambiar)<br /></label> <input type="password" id="cpassconfirm" class="validate[optional,equals[cpass]] small {{.ErrPass1}}" value="{{.Pass}}" name="Pass1" onchange="activateCancel()" />
+                    </div>
+                  </div>
+
+                  <div class="line">
+                    <label for="accept">Para aceptar y realizar cambios a esta cuenta haga clic en el recuadro <span class="typ-Sc">*</span></label> <input type="checkbox" class="validate[required] last" name="accept" value="1" id="accept" /><br />
+                    <br />
+                  </div>
+                </div>
+
+                <div class="box1">
+                  <span class="typ-Sc">*</span> Todos los campos marcados son obligatorios
+                </div>
+
+                <div class="col-15">
+                  {{end}} {{with .Sess}} <input type="hidden" name="key" value="{{.Id}}" /> <button type="submit" value="1" name="modificar" class="red last big"><span>Guardar datos</span></button> <button type="reset" class="grey last big hidden" id="cancelbtn" onclick=
+                  "deactivateCancel()"><span>Restablecer</span></button> {{end}}
+                </div>
+              </div>
+ 			  </form>
+              <form action="/r/ctadel" method="post" name="cancelcta" id="cancelcta">
+				<input type="hidden" name="desactiva" value="1"/>
+                <div class="col-15 marg-L50pix marg-U10pix">
+                  <div class="col-15 BR-R-5px">
+                    <div class="line" id="cancelctasi">
+                      <p><a href="#null" onclick="activeCancelCtaLghtbx()">Para cancelar cuenta (clic aquí)</a></p>
+                    </div>
+
+                    <div id="cancelctano" class="hidden">
+                      <div class="line">
+                        <p><a href="#null" onclick="deactiveCancelCtaLghtbx()">Cerrar cancelación (clic aquí)</a></p>
+
+                        <p>Para cancelar la cuenta primero debes dar de baja las empresas. Al cancelar una cuenta se pierden los beneficios adquiridos así como los datos capturados de empresas, sucursales, ofertas y logotipos. La cancelación no puede revertirse, sin embargo puedes registrarte
+                        nuevamente con el mismo u otro correo electrónico en otro momento antes de la fecha límite del evento El Buen Fin, que será el 19 de noviembre a las 23 hrs.</p>
+                      </div>
+
+                      <div class="line">
+                        <label>Nos sería de mucha utilidad conocer sus comentarios sobre el motivo de cancelación</label><br />
+                        <br />
+                        <textarea class="medium last" name="motivo" onchange="activateCancel()">
+</textarea>
+                      </div><button type="submit" class="grey marg-10pix last" onclick="javascript:if(confirm(&#39;¿Está seguro de continuar? La cancelación de una cuenta no se puede revertir&#39;)){return true;}else{return false;}"><span>Cancelar cuenta</span></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-5" style="min-height:600px;">
+              <img src="imgs/menutitle.jpg" width="208" height="19" alt="menu" />
+
+              <ul class="menuAdmin">
+                <li><a href="/r/dash"><span><img src="imgs/inicio.png" width="37" height="35" alt="inicio" /></span> Inicio</a></li>
+                <li><a class="selected" href="#"><span><img src="imgs/admin.png" width="37" height="35" alt="administrador" /></span> Usuario</a></li>
+                <li><a href="/r/le?d=a"><span><img src="imgs/empresa.png" width="24" height="19" alt="empresas" /></span> Empresas</a></li>
+                <li><a href="/r/le?d=s"><span><img src="imgs/sucursal.png" width="37" height="35" alt="sucursales" /></span> Sucursales</a></li>
+                <li><a href="/r/le?d=o"><span><img src="imgs/oferta.png" width="37" height="35" alt="ofertas" /></span> Ofertas</a></li>
+                <li><a href="/r/le?d=m"><span><img src="imgs/micrositio.png" width="25" height="19" alt="micrositios" /></span> Micrositios</a></li>
+				<li><a href="/r/avisos" class="resalt"><span><img src="imgs/Adviceicon.png" width="38" height="35" alt="avisos" /></span>Avisos</a></li>
+				<li><a href="/r/mg"><span><img src="imgs/descargas.png" width="35" height="35" alt="materiales" /></span>Descargas</a></li>
+				<li><a href="/r/bfl"><span><img src="imgs/buenfinEnLiena.png" width="38" height="35" alt="Buen Fin en Linea" /></span>Buen Fin en Línea</a></li>
+              </ul>
+			  <div class="box1 marg-U15pix"><strong>Recuerda:<br />El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</strong></div>
+            </div>
+          </div>
+
+          <div class="box1 alineCenter"><img src="imgs/abmlogo1.jpg" width="80" height="73" alt="abm" /><img src="imgs/amipcilogo80.jpg" width="76" height="80" alt="amici" /><img src="imgs/orgn_4.jpg" width="107" height="80" alt="organismo" class="padd-10px" /><img src="imgs/orgn_5.jpg" width="98"
+          height="68" alt="consejo cordinador empresarial" class="padd-10px" /><img src="imgs/concamin-75x80.jpg" width="75" height="80" alt="concamin" /><img src="imgs/logo-concanaco-107x76.jpg" width="96" height="62" alt="coparmex" class="padd-10px" /> <img src="imgs/Logo-COPARMEX-95x80.jpg"
+          width="67" height="49" alt="concanaco" class="padd-10px" /><img src="imgs/orgn_6.jpg" alt="gobierno federal" width="98" height="73" /><img src="imgs/orgn_7.jpg" width="95" height="65" alt="iniciativa mexico" class="padd-10px" /></div>
+
+          <div class=" box1">
+            <p class="typeMin">El Buen Fin © Todos los derechos reservados, México 2011 Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta
+            de los productos.<br />
+            Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+{{end}}

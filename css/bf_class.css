@@ -1,0 +1,83 @@
+@charset "utf-8";
+.bf_class {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	color: #333;
+}
+h1 {
+	font-size: 14px;
+	color: #333;
+	font-family: Verdana, Geneva, sans-serif;
+}
+h2 {
+	font-size: 18px;
+	color: #333;
+	font-family: Verdana, Geneva, sans-serif;
+}
+h3 {
+	font-size: 18px;
+	color: #F00;
+	font-family: Verdana, Geneva, sans-serif;
+}
+#contenedor {
+	margin: 0px auto;
+	width: 800px;
+	background-image: url(../imgs/app/back_bf.jpg);
+	background-repeat: repeat-x;
+}
+#cabecera {
+	width: 800px;
+	height:135px;
+	float: left;
+	margin-left: 25px;
+	padding-top: 15px;
+}
+#pg_oficial{
+	width: 224px;
+	float:left;
+	margin-top: -75px;
+	margin-left: 500px;
+}	
+#info{
+	clear: both;
+	margin: 0px auto;
+	text-align:center;
+	width:550px;
+}	
+#bullet {
+  float: left;
+  width: 67px;
+  height: 305px;
+  margin-left:30px;
+}
+#contenido {
+  float: left;
+  width: 450px;
+  height: 305px;
+}
+#contenedor #contenido ul {
+	float: left;
+	list-style: none;
+	line-height:22px;
+	padding: 0px 12px 0px 12px;
+	margin-top:-10px;
+	width:425px;
+}
+#app {
+  float:left;
+}
+#bf {
+	float: left;
+	width: 507px;
+	margin-left:40px;
+	margin-top:-40px;
+	line-height:16px;
+}
+#fb {
+float:right;
+ width: 200px;
+
+}
+#pie {
+  clear: both;
+}

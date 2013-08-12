@@ -1,0 +1,186 @@
+{{define "cta"}}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="css/Origami.css" rel="stylesheet" type="text/css" />
+	<link href="css/elbuenfinSkin.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    	<script type="text/javascript" src="scripts/ieDetect.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/home.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-26907178-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+
+	<title>Registrate para participar</title>
+	</head>
+	<body class="bgt-main">
+
+<div class="hide IEoldbox" id="ieDetected">
+<div class="last pullRight-30 pullup-30">
+<a href="#null" onclick="javascript:$('#ieDetected').hide();"><img src="imgs/closeBTN.png" width="30" height="29" alt="cerrar" /></a>
+ </div>
+<iframe src="iedetection.html" width="100%" height="360"  allowTransparency="true" frameborder="0" scrolling="no" style="background-color:transparent;"   class="pullup-20"></iframe>
+</div>
+<div class="lghtbox hidden" id="light"></div>
+<div class="lightcenterdiv hidden" id="box">
+      <div class="last pullRight-20 pullup-20">
+      <a href="#null" onclick="deactiveLghtbx()"><img src="imgs/closeBTN.png" width="30" height="29" alt="cerrar" /></a>
+      </div>
+      <div class="col-7 pullup-10">
+    <h2>Accede a El Buen Fin</h2>
+    <div class="hr-line"></div>
+    <form id="acceso" action="/r/acceso" method="post">
+          <div class="col-7">
+        <label class="col-2">Usuario</label>
+        <input type="text" class="validate[required,custom[email]] small last" name="u" value="" />
+      </div>
+          <div class=" col-7">
+        <label class="col-2">Contraseña</label>
+        <input type="password" class="validate[required] small last" name="p" />
+      </div>
+          <div class="col-7 last"> <a href="recupera.html" class="Dsblock first">¿Olvidaste tu contraseña?</a>
+        <button type="submit" class="medium red last marg-U3pix "><span>acceder</span></button>
+      </div>
+        </form>
+  </div>
+    </div>
+<!--termina login-->
+
+<div class="col-100PR  bgt-red-top first">
+      <div class="col-cent">
+    <div class="col-100PR first  BR-R-10px">
+          <div class="col-24">
+        <div class="col-4 marg-L10pix"> <a href="/"><img src="imgs/logo_header.png" width="127" height="127"  alt="el buen fin" class="marg-5px first"/></a> </div>
+        <div class="col-6 last marg-U40pix marg-R15pix"><a href="#null" onclick="activeLghtbx()" class="btnInicio"></a></div>
+      </div>
+          <div class="col-24 marg-D10pix Bg-Wh marg-D10pix">
+        <div class=" box1">
+              <div class=" col-23 marg-L10pix" style="height:280px;">
+            <div class="box284x284px marg-R5pix marg-U5pix fade0Alp height1px" id="toggler1"> <img src="imgs/Activa-Tu-Cuenta.jpg" width="284" height="280" alt="registra tu usuario y activa tu cuenta en el buen fin" /></div>
+            <div class="box284x284px marg-L30pix marg-U5pix fade0Alp height1px" id="toggler2"><img src="imgs/publica-tus-ofertas-en-el-buen-fin.jpg" width="281" height="280" alt="reciviras un mail para activar tu cuenta" /></div>
+            <div class="box284x284px last fade0Alp marg-U5pix height1px" id="toggler3"><img src="imgs/empresas-en-el-buen-fin.jpg" width="282" height="280" alt="registra todas las empresas en tu cuenta" /></div>
+          </div>
+            </div>
+        <div class="box1 boxback Bg-Drks BR-R-3px marg-L10pix marg-U10pix">
+              <div class="col-24 pullRight-20 pullup-30">
+            <h2 class="first marg-U30pix">Registra un usuario</h2>
+            <img src="imgs/paso1.png" width="71" height="71" alt="paso uno" class="last"/> </div>
+              {{with .FormDataCta}}
+              <form method="post" class="frmE" id="enviar" name="enviar" action="/r/registrar">
+            <input type="hidden" name="t" value="r"/>
+            <div class="box3 pullup-50">
+                  <div class="Bg-Wh box1">
+                <div class="line">
+                      <label for="cname">Nombre(s) <span class="typ-Sc">*</span></label>
+                      <input type="text"  name="Nombre" class="validate[required,custom[onlyLetterSp]] small {{.ErrNombre}}" value="{{.Nombre}}"/>
+                    </div>
+              </div>
+                  <div class="Bg-Wh box1">
+                <div class="line">
+                      <label for="clastname">Apellidos <span class="typ-Sc">*</span></label>
+                      <input type="text" id="clastname" name="Apellidos"  class="validate[required,custom[onlyLetterSp]] small {{.ErrApellidos}}" value="{{.Apellidos}}" />
+                    </div>
+              </div>
+                  <div class="Bg-Wh box1">
+                <div class="line">
+                      <label for="cjob">Perfil de puesto</label>
+                      <input type="text" id="cjob"  name="Puesto" class="validate[optional] small {{.ErrPuesto}}" value="{{.Puesto}}"/>
+                    </div>
+              </div>
+                  <div class="Bg-Wh box1">
+                <div class="line">
+                      <label for="cphone">Teléfono fijo con lada <span class="typ-Sc">*</span></label>
+                      <input type="text" id="cphone" name="Tel" class="validate[required,custom[phone]] small {{.ErrTel}}" value="{{.Tel}}" />
+                    </div>
+              </div>
+                  <div class="Bg-Wh box1">
+                <div class="line">
+                      <label for="cmobile">Teléfono celular</label>
+                      <input type="text" class="validate[optional,custom[cellphone]] small {{.ErrCel}}" value="{{.Cel}}" id="cmobile" name="Cel"/>
+                    </div>
+              </div>
+                  <div class="col-100PR first marg-U10pix">
+                <p><span class="typ-Sc"> * </span>Todos los campos marcados son obligatorios </p>
+              </div>
+                </div>
+            <div class="box3 pullup-50 BR-R-3px last marg-R15pix ">
+                  <div class="Bg-Wh box1">
+                <div class="line ">
+                      <label for="cmail">Correo electrónico<br />
+                    principal<span class="typ-Sc">*</span></label>
+                      <input type="text" id="cmail" name="Email" class="validate[required,custom[email]] small {{.ErrEmail}}" value="{{.Email}}" />
+                      <div class="col-100PR first">
+                    <p class="typeMin">*Éste será tu usuario. Con él administrarás el registro de tu(s) empresa(s).</p>
+                  </div>
+                    </div>
+              </div>
+                  <div class="Bg-Wh box1">
+                <div class="line">
+                      <label for="cmail2">Correo electrónico alterno<br />
+                  </label>
+                      <input type="text" class="validate[optional,funcCall[validateEmail]] small {{.ErrEmailAlt}}" id="cmail2" name="EmailAlt" value="{{.EmailAlt}}"/>
+                      <div class="col-100PR first">
+						  <p class="typeMin">*Puedes incluir varios correos separados por una coma.<br />Ejemplo: contacto@elbuenfin.org, ejemplo@elbuenfin.com</p>
+                  </div>
+                    </div>
+              </div>
+                  <div class="Bg-Wh box1">
+                <div class="line">
+                      <label for="cpass">Contraseña <span class="typ-Sc">*</span></label>
+                      <input type="password" id="cpass" name="Pass" class="validate[required] small {{.ErrPass}}" value="{{.Pass}}"/>
+                    </div>
+              </div>
+                  <div class="Bg-Wh box1">
+                <div class="line">
+                      <label for="cpassconfirm">Confirmar contraseña <span class="typ-Sc">*</span></label>
+                      <input type="password" id="cpassconfirm" name="Pass1" class="validate[required,equals[cpass]] small {{.ErrPass1}}" value="{{.Pass1}}"/>
+                    </div>
+              </div>
+                  <div class="Bg-Wh box1 marg-D5pix">
+                <div class="line">
+                      <div class="col-9 typeMin" style="padding-bottom:5px;">
+                    <div class="col-8">
+                          <label>Acepto compromiso<span class="typ-Sc">*</span></label>
+                          <ol class="col-7 padd-0 marg-L15pix clear">
+                        <li>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</li>
+                        <li>Sólo las empresas registradas en El Buen Fin podrán hacer uso del logotipo.</li>
+                        <li>Al enviar sus datos acepta el <a href="terminosCondiciones.html" target="_blank">Aviso legal</a></li>
+                      </ol>
+                        </div>
+                    <div class="last marg-U10pix">
+                          <input type="checkbox" name="TermCond" class="validate[required] last" value="acepted" id="acepted" />
+                        </div>
+                  </div>
+                    </div>
+              </div>
+                  <button  name="enviar" type="submit" value="enviar" class="big red last"><span>Enviar</span></button>
+                </div>
+          </form>
+              {{end}} </div>
+        <div class="box1 alineCenter"> <img src="imgs/abmlogo1.jpg" width="80" height="73" alt="abm" /><img src="imgs/amipcilogo80.jpg" width="76" height="80" alt="amici" /><img src="imgs/orgn_4.jpg" width="107" height="80" alt="organismo"  class="padd-10px"/><img src="imgs/orgn_5.jpg" width="98" height="68" alt="consejo cordinador empresarial"  class="padd-10px"/><img src="imgs/concamin-75x80.jpg" width="75" height="80" alt="concamin" /><img src="imgs/logo-concanaco-107x76.jpg" width="96" height="62" alt="coparmex"  class="padd-10px" /> <img src="imgs/Logo-COPARMEX-95x80.jpg" width="67" height="49" alt="concanaco"  class="padd-10px"/><img src="imgs/orgn_6.jpg" alt="gobierno federal" width="98" height="73" /><img src="imgs/orgn_7.jpg" width="95" height="65" alt="iniciativa mexico"  class="padd-10px"/> </div>
+        <div class=" box1">
+              <p class="typeMin">El Buen Fin © Todos los derechos reservados, México 2011
+            Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta de los productos. <br />
+            Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen. </p>
+            </div>
+      </div>
+        </div>
+  </div>
+    </div>
+</body>
+</html>
+{{end}}

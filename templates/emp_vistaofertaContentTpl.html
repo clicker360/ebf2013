@@ -1,0 +1,18 @@
+{{define "pageContent"}}
+<div class="col-19 last">
+    <div class="titlecond">
+        <h2 class="first">Ofertas por empresa</h2>
+    </div>
+    {{range .Empresa}}
+    <div class="dataGrid">
+        <div class="gridRow">
+            <a style="width:680px" href="/r/ofs?IdEmp={{.IdEmp}}&Emp={{.Nombre}}"><span class="icon icochevroright"></span>{{.Nombre}}</a>
+        </div>
+    </div>
+    {{else}}
+    <div class="dataGrid">
+        <div class="warning" >No hay ofertas</div>
+    </div>
+    {{end}}
+</div>
+{{end}}

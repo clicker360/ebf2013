@@ -1,0 +1,57 @@
+{{define "pageContent"}}
+<div class="block">
+    <div class="row-fluid">
+        <div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
+        {{with .Empresa}}
+        <div class="span3"><a href="/r/se" class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+        {{end}}
+    </div>
+    <div class="well well-small">
+        <table class="table-condensed table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>RFC</th>
+                    <th>Estado</th>
+                    <th>Web</th>
+                    <th>Editar</th>
+                    <th>Sucursales</th>
+                    <th>Ofertas</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {{range .Empresa}}
+                <tr>
+                    <td>{{.Nombre}}</td>
+                    <td>{{.RFC}}</td>
+                    <td>{{.DirEnt}}</td>
+                    <td>{{with .Url}}<a href="{{.}}" class="btn btn-mini"><i class="icon-globe"> Web</i></a>{{end}}</td>
+                    <td><a href="/r/e/d?IdEmp={{.IdEmp}}" class="btn btn-mini"><i class="icon-edit"></i> Editar</a></td>
+                    <td>
+                        <a href="/r/s/l?IdEmp={{.IdEmp}}" class="btn btn-mini btn-primary"><i class="icon-sitemap"></i> Sucursales</a>
+                        <a href="/r/s/c?IdEmp={{.IdEmp}}" class="btn btn-mini btn-primary"><i class="icon-plus"></i> Añadir</a>
+                    </td>
+                    <td>
+                        <a href="/r/o/l?IdEmp={{.IdEmp}}" class="btn btn-mini btn-primary"><i class="icon-tags"></i> Ofertas</a>
+                        <a href="/r/o/c?IdEmp={{.IdEmp}}" class="btn btn-mini btn-primary"><i class="icon-plus"></i> Añadir</a>
+                    </td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+        
+        <div class="pagination">
+            <ul>
+                <li class="disabled"><a href="#">Prev</a></li>
+                <li class="active" ><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{{end}}

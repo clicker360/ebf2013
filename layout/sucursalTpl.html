@@ -1,0 +1,98 @@
+{{define "pageContent"}}
+<div class="block">
+    <h3><i class="icon-sitemap"></i> {{with .Empresa}}{{.Nombre}}{{end}} / Detalle de sucursal </h3>
+    <div class="well well-small">
+        <form class="form-horizontal" action="/r/s/c" method="post" id="enviar">
+            {{with .Empresa}}<input type="hidden" name="IdEmp" value="{{.IdEmp}}"/>{{end}}
+            {{with .FormDataSuc}}
+            <input type="hidden" name="IdSuc" value="{{.IdSuc}}"/>
+            <input type="hidden" id="lat" name="Geo1" value="{{.Geo1}}" />
+            <input type="hidden" id="lng" name="Geo2" value="{{.Geo2}}" />
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="nombre" class="control-label">Nombre de sucursal * </label>
+                        <div class="controls">
+							<input type="text" class="validate[required] {{.ErrNombre}}" name="Nombre" value="{{.Nombre}}" onchange="activateCancel()" />	
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="" class="control-label">Teléfono fijo con lada</label>
+                        <div class="controls">
+							<input type="text" id="cphone" name="Tel" class="validate[optional,custom[phone]] {{.ErrTel}}" value="{{.Tel}}" onchange="activateCancel()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="well well-small">
+                        <ol>
+                            <li>Captura la dirección de la sucursal y en el mapa se irá ubicando conforme la ingreses.</li>
+                            <li>Puedes mover, alejar o acercar el mapa para verificar la ubicación de la sucursal.</li>
+                            <li>Si el puntero no está en la ubicación puedes moverlo al lugar preciso.</li>
+                        </ol>
+                        {{if .Ackn}}
+                        <div class="">
+                            <p>Los datos han sido guardados correctamente.</p>
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+                        <label for="" class="control-label">Entidad Federativa *</label>
+                        <div class="controls">
+                            <select name="DirEnt" id="estado" onchange="activateCancel()">
+                                {{range .Entidades}}
+                                <option value="{{.CveEnt}}" {{if .Selected}}selected="{{.Selected}}"{{end}}>{{.Entidad}}</option>
+                                {{end}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Delegación o municipio *</label>
+						<input type="hidden" name="DirMunSel" value="{{.DirMun}}" id="municipio" onchange="activateCancel()"/>
+                        <div class="controls" id="show_mun">
+                            <img src="imgs/loader.gif" id="loader" alt="" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Calle y numero</label>
+                        <div class="controls">
+							<input type="text" class="validate[required] {{.ErrDirCalle}}" name="DirCalle" value="{{.DirCalle}}" id="calle" onchange="activateCancel()"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">Colonia y/o localidad * </label>
+                        <div class="controls">
+							<input type="text" class="validate[required] {{.ErrDirCol}}" name="DirCol" value="{{.DirCol}}" id="colonia"  onchange="activateCancel()"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div id="map" class='embed-container'></div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span14">
+                    <div class="control-group">
+                        {{if .IdSuc}}
+                        <button class="btn" type="submit" value="1" name="modificar"><span>Modificar</span></button>
+                        <button class="btn" type="reset" id="cancelbtn"><span>Restablecer</span></button>
+                        {{else}}
+                        <button class="btn" type="submit"><span>Guardar</span></button>
+                        <button class="btn" type="reset" id="cancelbtn"><span>Limpiar Campos</span></button>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </form>
+    </div>
+</div>
+{{end}}

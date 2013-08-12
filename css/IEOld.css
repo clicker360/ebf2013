@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.IEoldbox{
+	background-image: url(../imgs/navegadores/centerbox.jpg);
+	background-repeat: no-repeat;
+	padding: 15px;
+	float: left;
+	height: 357px;
+	width: 714px;
+	position: fixed;
+	left: 21.5%;
+	top: 22%;
+	z-index:9999;
+	visibility:visible;
+	display:block;
+}
+.btnbox{width:135px; float:left;}
+.hide.IEoldbox{	display:block; visibility:visible; }

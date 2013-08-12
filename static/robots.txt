@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /registro
+Disallow: /dashboard
+Disallow: /simg
+Disallow: /ofimg
+Disallow: /Manual_EBF_2012_v2.pdf

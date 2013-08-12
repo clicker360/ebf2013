@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="css/Origami.css" rel="stylesheet" type="text/css" />
+	<link href="css/elbuenfinSkin.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/jquery.form.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-26907178-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+	<script type="text/javascript">
+		var id = "{{with .FormData}}{{ .IdEmp|js}}{{end}}";
+		$(document).ready(function(){ $("#enviar").validationEngine({promptPosition : "topRight", scroll: false}); });
+		$(document).ready(function(){ $("#enviarmidata").validationEngine({promptPosition : "topRight", scroll: false}); });
+		function activateCancel(){ $("#cancelbtn").addClass("show") }
+		function deactivateCancel(){ $("#cancelbtn").removeClass("show") }
+	</script>
+   	<script type="text/javascript" src="scripts/micrositios.js" charset="utf-8"></script>
+	<title>Administración de Micrositio</title>
+</head>
+<body class="bgt-main">
+<div class="col-100PR  bgt-red-top first">
+  <div class="col-cent">
+    <div class="col-24 first  BR-R-10px">
+		<div class="col-4">
+			<img src="imgs/logo_header.png" width="124" height="124"  alt="el buen fin" class="marg-5px last"/>
+		</div>
+      {{with .Sess}}
+        <div class="pestana">
+          <p class="first marg-10px">Hola {{.Name}}</p>
+          <div class="last"><a href="/r/salir" class="button blue marg-10pix last"><span>SALIR</span></a></div>
+        </div>
+        {{end}} 
+    </div>
+    <div class="col-24 Bg-Wh marg-D10pix">
+      <div class="menuAdmin">
+        <div class="col-5" style="min-height:600px;"> <img src="imgs/menutitle.jpg" width="208" height="19" alt="menu" />
+          <ul class="menuAdmin">
+            <li><a href="/r/dash"><span><img src="imgs/inicio.png" width="17" height="19" alt="inicio" /></span> Inicio</a></li>
+            <li><a href="/r/cta"><span><img src="imgs/admin.png" width="19" height="19" alt="administrador" /></span> Usuario</a></li>
+            <li><a href="/r/le?d=a"><span><img src="imgs/empresa.png" width="24" height="19" alt="empresas" /></span> Empresas</a></li>
+            <li><a href="/r/le?d=s"><span><img src="imgs/sucursal.png" width="20" height="19" alt="sucursales" /></span> Sucursales</a></li>
+            <li><a href="/r/le?d=o"><span><img src="imgs/oferta.png" width="20" height="19" alt="ofertas" /></span> Ofertas</a></li>
+            <li><a class="selected" href="/r/le?d=m"><span><img src="imgs/micrositio.png" width="25" height="19" alt="micrositios" /></span> Micrositios</a></li>
+			<li><a href="/r/avisos" class="resalt"><span><img src="imgs/Adviceicon.png" width="38" height="35" alt="avisos" /></span>Avisos</a></li>
+			<li><a href="/r/mg"><span><img src="imgs/descargas.png" width="35" height="35" alt="materiales" /></span>Descargas</a></li>
+			<li><a href="/r/bfl"><span><img src="imgs/buenfinEnLiena.png" width="38" height="35" alt="Buen Fin en Linea" /></span>Buen Fin en Línea</a></li>
+          </ul>
+		  <div class="box1 marg-U15pix"><strong>Recuerda:<br />El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</strong></div>
+        </div>
+        <div class="col-19 last "> {{with .Empresa}}
+          <div class="titlecond">
+            <h2 class="first">Micrositio de {{.Nombre}}</h2>
+          </div>
+          {{end}}
+          {{with .Error}}
+          {{if .Badformat}}
+          <p>Formato de imagen Inválido, solo se acepta jpg y png de 1200 pixeles máximo</p>
+          {{end}}
+          {{if .Badencode}}
+          <p>Imagen no puede codificarse intente otra</p>
+          {{end}}
+          {{if .Cantsave}}
+          <p>Su imagen no puede ser almacenada en nuestra base de datos, intente más tarde</p>
+          {{end}}
+          {{end}}
+          {{with .FormData}}
+          <div class="first">
+             <div class="col-19" id="addCont">
+              <div class="col-18 marg-L10pix padd-10px">
+            <form action="/r/logoup" method="post" id="enviar" enctype="multipart/form-data">
+              <input type="hidden" name="IdEmp" value="{{.IdEmp}}"/>
+              <input type="hidden" name="tipo" value="async"/>
+              <div class="col-7 last">
+                <div class="col-100PR first outlined SHW-div-D3px" id="theImage">
+                <img  id="pic" src='' alt="Logotipo empresa" width="100%" />
+                </div>
+                     <div class="box1">
+                       <div class="first padd-5px Addvice">Si deseas sustituir la imagen sólo necesitas seleccionar otra.</div>
+                    </div>
+                 </div>
+              <div class="col-10">
+              <h3>Subir tu logotipo</h3>
+              <div class="warning box2 alineLeft">La imagen del logotipo de su empresa se actualiza en el sitio público en un lapso de 72 horas.</div>
+              <div class="line"> <img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" />
+                <div class="typ-Sc" id="status"></div>
+                <input id="imgfile" type="text" class="medium" readonly="readonly"/>
+                <div class="btn-upload last" style="width: 65px; height: 27px; margin: 0px; overflow: hidden;">
+                  <input id="infile" type="file" class="validate[required]" name="image" onchange="$('#imgfile').val($('#infile').val()); $('#enviar').submit();" style="height: 27px; width: 166px; display: inline; cursor: pointer; opacity: 0; margin-left: -168px;"/>
+              </div>
+              <div class="col-6 last marg-R10pix">
+                <div class="progress">
+                  <div class="bar"></div >
+                  <div class="percent">0%</div >
+                </div>
+              </div>
+              </div>
+				<div class="first Addvice">
+                    <ul class= "alineLeft">
+                      <li class="alineLeft">Sólo imágenes formato jpeg o png.</li>
+                      <li class="alineLeft">Tamaño máximo 800x600 pixeles.</li>
+                      <li class="alineLeft">Logotipo con fondo blanco.</li>
+                      <li class="alineLeft">La imagen debe ser el logotipo de la empresa.</li>
+                      <li class="alineLeft">No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
+                    </ul>
+				</div>
+            </form>
+          <form action="/r/midata" method="post" id="enviarmidata" enctype="multipart/form-data">
+            <input type="hidden" name="IdEmp" value="{{.IdEmp}}"/>
+            <div class="col-19" id="addCont">
+              <div class="col-18 marg-L10pix">
+                <div class="col-10">
+                  <div class="line"> </div>
+                  <div class="line ">
+                    <label>Título de logotipo:</label>
+                    <input type="text" class="validate[optional] medium {{.ErrName}}" name="Name" value="{{.Name}}" onchange="activateCancel()" />
+                  </div>
+                  <div class="line ">
+                    <label>Sitio de internet al que debe apuntar el logotipo (opcional, con prefijo http://)</label>
+                    <input type="text" class="validate[optional,custom[url]] medium {{.ErrUrl}}" name="Url" value="{{.Url}}"  onchange="activateCancel()"/>
+                  </div>
+                  <div class="line ">
+                    <h3>Datos adicionales</h3>
+                    <label>Descripción de la empresa visible al público:</label>
+                    <textarea class="validate[optional] medium last {{.ErrDesc}}" name="Desc" rows="3" cols="10" onchange="activateCancel()">{{.Desc}}</textarea>
+                  </div>
+                  <div class="line ">
+                    <h3>Redes sociales</h3>
+                    <label>Sitio de Facebook:</label>
+                    <input type="text" class="validate[optional,custom[url]] medium {{.ErrSp1}}" name="Sp1" value="{{.Sp1}}"  onchange="activateCancel()"/>
+                  </div>
+                  <div class="line ">
+                    <label>Twitter:</label>
+                    <input type="text" class="validate[optional] medium {{.ErrSp2}}" name="Sp2" value="{{.Sp2}}"  onchange="activateCancel()"/>
+                  </div>
+                  <div class="line ">
+                    <button  name="Upload"  id="Uploadmidata" type="submit" class="red medium last" value="Upload"  ><span>Guardar</span></button>
+                  </div>
+                </div>
+                <div class="col-18 marg-L10pix marg-D10pix"> </div>
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+        {{end}} </div>
+</div></div></div>   
+  <div class="box1 alineCenter"> <img src="imgs/abmlogo1.jpg" width="80" height="73" alt="abm" /><img src="imgs/amipcilogo80.jpg" width="76" height="80" alt="amici" /> <img src="imgs/orgn_4.jpg" width="107" height="80" alt="organismo"  class="padd-10px"/><img src="imgs/orgn_5.jpg" width="98" height="68" alt="consejo cordinador empresarial"  class="padd-10px"/><img src="imgs/concamin-75x80.jpg" width="75" height="80" alt="concamin" /><img src="imgs/logo-concanaco-107x76.jpg" width="96" height="62" alt="coparmex"  class="padd-10px" /> <img src="imgs/Logo-COPARMEX-95x80.jpg" width="67" height="49" alt="concanaco"  class="padd-10px"/><img src="imgs/orgn_6.jpg" alt="gobierno federal" width="98" height="73" /><img src="imgs/orgn_7.jpg" width="95" height="65" alt="iniciativa mexico"  class="padd-10px"/> </div>
+  <div class=" box1">
+    <p class="typeMin">El Buen Fin © Todos los derechos reservados, México 2011
+      Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta de los productos. <br />
+      Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen. </p>
+  </div>
+  
+
+</body>
+</html>

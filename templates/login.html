@@ -1,0 +1,12 @@
+{{define "acceso"}}
+<form action="/r/acceso" method="post">
+		<button type="submit" class="red last marg-U3pix"><span>acceder</span></button>
+		<div class="first col-4">
+			<input type="password" class="small" value="password" />
+		</div>
+		<div class="first marg-LR10pix">
+			<input type="text" class="small" value="usuario" value="{{.User}}"/>
+		</div>
+		{{.ErrMsg}}
+</form>
+{{end}}

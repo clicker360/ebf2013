@@ -1,0 +1,21 @@
+{{define "pageContent"}}
+<div class="col-19 last">
+    <div class="titlecond">
+        <h2 class="first">Sucursales por empresa</h2>
+    </div>
+    {{range .Empresa}}
+    <div class="dataGrid">
+        <div class="gridRow">
+            <a style="width:680px" href="/r/sucursales?IdEmp={{.IdEmp}}"><span class="icon icochevroright"></span>{{.Nombre}}</a>
+        </div>
+    </div>
+    {{else}}
+        {{if .FormDataSuc}}
+        {{else}}
+        <div class="dataGrid">
+            <div class="warning" >No hay Sucursales</div>
+        </div>
+        {{end}}
+    {{end}}
+</div>
+{{end}}

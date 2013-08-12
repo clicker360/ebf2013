@@ -1,0 +1,21 @@
+<div class="col-19 last">
+    <div class="titlecond">
+        <h2 class="first">Sucursales por empresa</h2>
+    </div>
+    
+    <!--Empiezan Sucusales -->
+    <div class="box1">
+        <div style="z-index:999; position:absolute; z-index:999; margin-top:5px; margin-left:560px;">
+            <a href="/r/sucursal?IdEmp={{.IdEmp}}&IdSuc=none" class="button orange last customDialog"><span>Agregar sucursal</span></a>
+        </div>
+        <div id="accordion">
+            {{range .Empresa}}
+            <h3><a href="#" onclick="javascript:getsuc({{.IdEmp}})">{{.Nombre}}</a></h3>
+            <div>
+                <!--Contenido Acordion-->
+                <p id="show-{{.IdEmp}}" class="col-100PR first marg-U20pix"></p>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>

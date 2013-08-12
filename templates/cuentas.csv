@@ -1,0 +1,3 @@
+Folio,Nombre,Apellidos,Puesto,Email,EmailAlt,Pass,Tel,Cel,UsuarioInt,CodigoCfm,Status
+{{range .}}{{with .Folio}}{{.}}{{else}}{{end}},{{with .Nombre}}{{.}}{{else}}{{end}},{{with .Apellidos}}{{.}}{{else}}{{end}},{{with .Puesto}}{{.}}{{else}}{{end}},{{with .Email}}{{.}}{{else}}{{end}},{{with .EmailAlt}}{{.}}{{else}}{{end}},{{with .Pass}}{{.}}{{else}}{{end}},{{with .Tel}}{{.}}{{else}}{{end}},{{with .Cel}}{{.}}{{else}}{{end}},{{with .UsuarioInt}}{{.}}{{else}}{{end}},{{with .CodigoCfm}}{{.}}{{else}}{{end}},{{with .Status}}{{.}}{{else}}{{end}},{{with .NombreE}}{{.}}{{else}}{{end}}
+{{end}}

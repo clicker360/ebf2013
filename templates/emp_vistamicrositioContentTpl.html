@@ -1,0 +1,21 @@
+{{define "pageContent"}}
+<div class="col-19 last">
+    <div class="titlecond">
+         <h2 class="first">Micrositios por empresa</h2>
+    </div>
+    {{range .Empresa}}
+    <div class="dataGrid">
+        <div class="gridRow">
+            <a  style="width:680px" href="/r/mi?IdEmp={{.IdEmp}}&amp;Emp={{.Nombre}}"><span class="icon icochevroright"></span>{{.Nombre}}</a>
+        </div>
+    </div>
+    {{else}}
+        {{if .FormDataEmp}}
+        {{else}}
+        <div class="dataGrid">
+            <div class="warning" >No hay Empresas</div>
+        </div>
+        {{end}}
+    {{end}}
+</div>
+{{end}}

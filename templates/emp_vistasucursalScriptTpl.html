@@ -1,0 +1,24 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+         $("#accordion").accordion({ 
+            //disabled: true,
+            collapsible: false,
+            autoHeight: false,
+            clearStyle: true,
+        });
+    });
+    function getsuc(IdEmp) {
+        $.get("/r/suc", {
+            IdEmp: IdEmp,
+        }, function(response){
+            //alert("loadsuc('show-"+IdEmp+"', '"+escape(response)+"')");
+            setTimeout("loadsuc('show-"+IdEmp+"', '"+escape(response)+"')", 400);
+            //$( "#accordion" ).accordion( "option", "disable", false );	
+        });
+    }
+    function loadsuc(id, response){
+        //$('#loader').hide();
+        $('#'+id).html(unescape(response));
+        $('#'+id).fadeIn();
+    }
+</script>

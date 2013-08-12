@@ -1,0 +1,59 @@
+/* IE7 */
+*:first-child+html .ftr {
+    clear: both;
+    margin: 11px 0 0;
+}
+*:first-child+html #password .placeholder {
+    /*
+	padding-top:0px !important;
+	height:60px !important;
+	*/
+}
+
+*:first-child+html .frmE .opRr .rdo {
+    clear: none;
+    float: left;
+    margin: 14px 0 0 9px;
+    width: 10%;
+	padding-top:15px;
+}
+
+*:first-child+html .frmE .opcC input {
+	height:4%;
+}
+
+/* IE8 */
+.frmE input {
+	padding-top:16px;
+	height:31px;
+}
+.frmE input.btn-env {
+	text-transform:capitalize;
+	line-height:0;
+}
+.ftr {
+    clear: both;
+    margin: 17px 0 0;
+}
+.frmE .opRr .rdo { 
+	margin-top:0;
+	margin-left:0;
+	background:transparent;
+}
+.frmE .selectA {
+	line-height:40px;
+}
+.frmE .opcC {
+	margin-bottom:3px;
+	width:44%;
+}
+.frmE .opcC input {
+	margin:5px 0 5px;
+	background:transparent;
+}
+		.frmE .opcC span {
+			padding:22px 0 0 3px;
+			float:left;
+			font-size:13px;
+			color:#000;
+		}

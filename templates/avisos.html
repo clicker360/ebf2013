@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="css/Origami.css" rel="stylesheet" type="text/css" />
+	<link href="css/elbuenfinSkin.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-26907178-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+  <title>Administración de cuenta / Avisos</title>
+</head>
+
+<body class="bgt-main">
+    <div class="col-100PR bgt-red-top first">
+      <div class="col-cent">
+        <div class="col-24 first BR-R-10px">
+          <div class="col-24">
+       <div class="col-4">
+		   <img src="imgs/logo_header.png" width="124" height="124"  alt="el buen fin" class="marg-5px last"/>
+	   </div>
+	
+          {{with .Sess}}
+              <div class="pestana">
+              <p class="first marg-10px  ">Hola {{.Name}}</p>
+              <a href="/r/salir" class="button blue marg-10pix last"><span>SALIR</span></a> 
+              </div>
+              {{end}}
+		</div>
+
+        <div class="col-24 Bg-Wh marg-D10pix">
+          <div class="menuAdmin">
+            <div class="col-19 last">
+              <div class="titlecond">
+                <h2 class="first ">Avisos</h2>
+              </div>
+              <h3 class="Dsblock marg-L20pix col-18"><strong>En esta sección encontrarás avisos e información relevante que se irá publicando para mantenerte al tanto.</strong></h3>
+              <div class=" gridtwo marg-U10pix padd-UD20px marg-L10pix"> 
+				<p class="typeMx">Ya puedes empezar a registrar tus ofertas y seleccionar el día en que quieres que se publiquen. Visita la sección "Ofertas".</p>
+			  </div>
+			  <div class=" gridtwo marg-U10pix padd-UD20px marg-L10pix"> 
+				<p class="typeMx">El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</p>
+				</div>
+			  <div class=" gridtwo marg-U10pix padd-UD20px marg-L10pix"> 
+				<p class="typeMx">Todas las campañas publicitarias podrán iniciar a partir del 5 de noviembre y deberán estar enfocadas a las ofertas, promociones y descuentos que se ofrecerán del 16 al 19 de noviembre. Del 20 al 30 de noviembre sólo se podrán difundir campañas de agradecimiento</p>
+				</div>
+			  <div class=" gridtwo marg-U10pix padd-UD20px marg-L10pix"> 
+				<p class="typeMx">
+					El fin de semana mas barato del año está por comenzar y miles de usuarios ya están buscando ofertas. Queremos compartir contigo  los siguientes tips  para hacer tus ofertas mucho más atractivas:
+					Título: Lo más importante. Debe ser muy atractivo, específico, contener el nombre de tu marca, el producto que estás ofertando y el tipo de promoción.
+					<ul>
+						<li>Ejemplo: <strong>En Zapaterías Flor compra 1 par y llévate otro ¡GRATIS!</strong><br /><br /></li>
+						<li>Descripción: En este campo deberás incluir todas las especificaciones de tu oferta como horarios de atención, especificaciones del producto y restricciones. Revisa la ortografía de tu texto.
+						<br />
+						<br />
+						Ejemplo: <strong>¡Aprovecha y visítanos! Tenemos calzado de excelente calidad para toda la familia. En la compra de un par de zapatos escoge otro y paga el de mayor precio. Oferta valida en el Distrito Federal y Área Metropolitana. El descuento no aplica en calzado deportivo para mujer. Te esperamos a partir de las 11:00 a.m. hasta las 9:00 p.m.</strong><br /><br /></li>
+						<li>Imagen: Acompaña tu oferta con una imagen para que sea más atracitva. Te recomendamos que tenga la información principal de tu promoción, oferta o descuento y la marca. Debe cumplir con los siguientes requisitos:
+							<ul>
+								<li>Solo en formato JPG o PNG</li>
+								<li>Ancho máximo 600 pixeles</li>
+								<li>Peso máximo de 1 Megabyte</li>
+							</ul>
+						</li>
+					</ul>
+				</p>
+				<p class="typeMx">
+				  NOTA: Si quieres que tu oferta aparezca en la aplicación móvil de El Buen Fin, obligatoriamente deberá incluir una imagen. 
+				</p>
+				<p class="typeMx">
+				  IMPORTANTE: Recuerda que no puedes alterar o modificar el logo de El Buen Fin. Si lo haces, tu empresa será dada de baja del sitio.
+				</p>
+			  </div>
+            </div>
+            <div class="col-5" style="min-height:600px;">
+              <img src="imgs/menutitle.jpg" width="208" height="19" alt="menu" />
+
+              <ul class="menuAdmin">
+                <li><a href="/r/dash"><span><img src="imgs/inicio.png" width="37" height="35" alt="inicio" /></span> Inicio</a></li>
+                <li><a href="/r/cta"><span><img src="imgs/admin.png" width="37" height="35" alt="administrador" /></span> Usuario</a></li>
+                <li><a href="/r/le?d=a"><span><img src="imgs/empresa.png" width="24" height="19" alt="empresas" /></span> Empresas</a></li>
+                <li><a href="/r/le?d=s"><span><img src="imgs/sucursal.png" width="37" height="35" alt="sucursales" /></span> Sucursales</a></li>
+            	<li><a href="/r/le?d=o"><span><img src="imgs/oferta.png" width="20" height="19" alt="ofertas" /></span> Ofertas</a></li>
+                <li><a href="/r/le?d=m"><span><img src="imgs/micrositio.png" width="25" height="19" alt="micrositios" /></span> Micrositios</a></li>
+				<li><a class="selected" class="resalt" href="/r/avisos"><span><img src="imgs/Adviceicon.png" width="38" height="35" alt="avisos" /></span>Avisos</a></li>
+				<li><a href="/r/mg"><span><img src="imgs/descargas.png" width="35" height="35" alt="materiales" /></span>Descargas</a></li>
+				<li><a href="/r/bfl"><span><img src="imgs/buenfinEnLiena.png" width="38" height="35" alt="Buen Fin en Linea" /></span>Buen Fin en Línea</a></li>
+              </ul>
+			  <div class="box1 marg-U15pix"><strong>Recuerda:<br />El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</strong></div>
+            </div>
+          </div>
+
+          <div class="box1 alineCenter"><img src="imgs/abmlogo1.jpg" width="80" height="73" alt="abm" /><img src="imgs/amipcilogo80.jpg" width="76" height="80" alt="amici" /><img src="imgs/orgn_5.jpg" width="98" height="68" alt="consejo cordinador empresarial" class="padd-10px" /><img src="imgs/orgn_4.jpg" width="107" height="80" alt="organismo" class="padd-10px" /><img src="imgs/concamin-75x80.jpg" width="75" height="80" alt="concamin" /><img src="imgs/logo-concanaco-107x76.jpg" width="96" height="62" alt="coparmex" class="padd-10px" /> <img src="imgs/Logo-COPARMEX-95x80.jpg"
+          width="67" height="49" alt="concanaco" class="padd-10px" /><img src="imgs/orgn_6.jpg" alt="gobierno federal" width="98" height="73" /><img src="imgs/orgn_7.jpg" width="95" height="65" alt="iniciativa mexico" class="padd-10px" /></div>
+
+          <div class=" box1">
+            <p class="typeMin">El Buen Fin © Todos los derechos reservados, México 2011 Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta
+            de los productos.<br />
+            Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
