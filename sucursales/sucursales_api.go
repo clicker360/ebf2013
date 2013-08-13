@@ -54,15 +54,16 @@ func PutSucursal(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out WsSucursal
     defer jsonDispatch(w, &out)
-	if _, ok := sess.IsSess(w, r, c); ok {
+	if _, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
     }
-    if r.Method != "PUT" {
+    // PUT
+    if r.Method != "POST" {
 		out.Status = "wrongMethod"
         return
     }
-    out.IdEmp = r.FormValue("idemp")
+    out.IdEmp = r.FormValue("IdEmp")
     sucursal := fill(r)
     out.Errors, out.Status = validate(sucursal)
     if out.Status != "ok" {
@@ -70,9 +71,8 @@ func PutSucursal(w http.ResponseWriter, r *http.Request) {
     }
     empresa := model.GetEmpresa(c, out.IdEmp)
     if empresa != nil {
-        sucursal := fill(r)
-        setWsSucursal(&out, sucursal)
         _, err := empresa.PutSuc(c, &sucursal)
+        setWsSucursal(&out, sucursal)
         if err != nil {
             out.Status = "writeErr"
         } else {
@@ -88,7 +88,7 @@ func PostSucursal(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out WsSucursal
     defer jsonDispatch(w, &out)
-	if _, ok := sess.IsSess(w, r, c); ok {
+	if _, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
     }
@@ -96,7 +96,7 @@ func PostSucursal(w http.ResponseWriter, r *http.Request) {
 		out.Status = "wrongMethod"
         return
     }
-    out.IdEmp = r.FormValue("idemp")
+    out.IdEmp = r.FormValue("IdEmp")
     sucursal := fill(r)
     out.Errors, out.Status = validate(sucursal)
     if out.Status != "ok" { 
@@ -104,8 +104,8 @@ func PostSucursal(w http.ResponseWriter, r *http.Request) {
     }
     empresa := model.GetEmpresa(c, out.IdEmp)
     if empresa != nil {
-        setWsSucursal(&out, sucursal)
         _, err := empresa.PutSuc(c, &sucursal)
+        setWsSucursal(&out, sucursal)
         if err != nil {
             out.Status = "writeErr"
         } else {
@@ -132,7 +132,7 @@ func GetSucursal(w http.ResponseWriter, r *http.Request) {
 		out.Status = "wrongMethod"
         return
     }
-	s := model.GetSuc(c, r.FormValue("idsuc"))
+	s := model.GetSuc(c, r.FormValue("IdSuc"))
     setWsSucursal(&out, *s)
     if s.IdEmp == "none" {
         out.Status = "notFound"
@@ -157,7 +157,7 @@ func GetSucursales(w http.ResponseWriter, r *http.Request) {
 		out.Status = "wrongMethod"
         jsonDispatch(w, &out)
     }
-	s := model.GetEmpSucursales(c, r.FormValue("idemp"))
+	s := model.GetEmpSucursales(c, r.FormValue("IdEmp"))
 	ws := make([]WsSucursal, len(*s), cap(*s))
 	for i,v:= range *s {
         setWsSucursal(&ws[i], v)
@@ -176,7 +176,8 @@ func DelSucursal(w http.ResponseWriter, r *http.Request) {
 		out.Status = "noSession"
         return
     }
-    if r.Method != "DELETE" {
+    // DELETE
+    if r.Method != "GET" {
 		out.Status = "wrongMethod"
         return
     }

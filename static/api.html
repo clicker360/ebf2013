@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>pruebas api</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $.post("http://localhost:8080/r/wss/post", { 
+                IdSuc: "aibnqkgndupjqixfqtcb",
+                IdEmp: "ghjkhxiwknbpvftwdrsm",
+                Nombre: "Sucursal X",
+                Tel: "77777777",
+                DirCalle: "Calle de la amargura 111",
+                DirCol: "Colonia El COLMILLO",
+                DirEnt: "09",
+                DirMun: "010",
+                DirCp: "56566",
+                GeoUrl: "http://foofle.com",
+                Geo1: "19.4779908",
+                Geo2: "-99.23963370000001",
+                Geo3: "1",
+                Geo4: "2" 
+            },
+            function(data) {
+                console.log(data.idsuc);
+                console.log(data.idemp);
+                console.log(data.sucursal);
+                console.log(data.tel);
+                console.log(data.calle);
+                console.log(data.colonia);
+                console.log(data.entidad);
+                console.log(data.municipio);
+                console.log(data.cp);
+                console.log(data.geourl);
+                console.log(data.geo1);
+                console.log(data.geo2);
+                console.log(data.geo3);
+                console.log(data.geo4);
+                console.log(data.timestamp);
+                console.log(data.latitud);
+                console.log(data.longitud);
+                console.log(data.status);
+                console.log(data.ackn);
+                console.log(data.errors);
+            }, "json");
+    </script>
+    
+    <body>
+        <div id="result">...</div>
+    </body>
+</html>
+ 
