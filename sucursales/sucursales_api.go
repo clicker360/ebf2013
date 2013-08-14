@@ -37,6 +37,7 @@ type WsSucursal struct{
 }
 
 func init() {
+    /* CRUD */
     http.HandleFunc("/r/wss/put", PutSucursal)
     http.HandleFunc("/r/wss/post", PostSucursal)
     http.HandleFunc("/r/wss/get", GetSucursal)
@@ -156,6 +157,7 @@ func GetSucursales(w http.ResponseWriter, r *http.Request) {
     if r.Method != "GET" {
 		out.Status = "wrongMethod"
         jsonDispatch(w, &out)
+        return
     }
 	s := model.GetEmpSucursales(c, r.FormValue("IdEmp"))
 	ws := make([]WsSucursal, len(*s), cap(*s))
