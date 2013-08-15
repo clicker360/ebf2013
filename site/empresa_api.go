@@ -121,13 +121,13 @@ func PostEmpresa(w http.ResponseWriter, r *http.Request) {
         }
 
         // se obtiene la empresa existente a actualizar
-        empresa, err := u.GetEmpresa(c, r.FormValue("IdEmp"))
+        _, err := u.GetEmpresa(c, r.FormValue("IdEmp"))
         if err != nil {
             out.Status = err.Error()
             return
         }
         _, err = u.PutEmpresa(c, &eTmp)
-        setWsEmpresa(&out, *eTmp)
+        setWsEmpresa(&out, eTmp)
         if err == datastore.ErrNoSuchEntity {
             out.Status = "notFound"
             return
@@ -187,6 +187,7 @@ func GetEmpresas(w http.ResponseWriter, r *http.Request) {
         for i,v:= range *e {
             setWsEmpresa(&ws[i], v)
         }
+        out.Status = "ok"
         sortutil.AscByField(ws, "Nombre")
         w.Header().Set("Content-Type", "application/json; charset=utf-8")
         b, _ := json.Marshal(ws)
