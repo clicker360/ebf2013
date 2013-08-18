@@ -2,6 +2,7 @@ package model
 
 import (
         "math/rand"
+	    "encoding/json"
 		"net/http"
         "time"
 		"regexp"
@@ -18,6 +19,12 @@ var funcMap = template.FuncMap{
         "eq": func(s1, s2 string) bool {
                 return s1 == s2
         },
+}
+
+func JsonDispatch(w http.ResponseWriter, out interface{}) {
+    w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	b, _ := json.Marshal(out)
+	w.Write(b)
 }
 
 // check aborts the current execution if err is non-nil.

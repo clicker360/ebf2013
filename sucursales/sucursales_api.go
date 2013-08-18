@@ -23,17 +23,17 @@ type WsSucursal struct{
 	DirEnt			string `json:"entidad"`
 	DirMun			string `json:"municipio"`
 	DirCp			string `json:"cp"`
-	GeoUrl			string `json:"geourl"`
-	Geo1			string `json:"geo1"`
-	Geo2			string `json:"geo2"`
-	Geo3			string `json:"geo3"`
-	Geo4			string `json:"geo4"`
+	GeoUrl			string `json:"geourl,omitempty"`
+	Geo1			string `json:"geo1,omitempty"`
+	Geo2			string `json:"geo2,omitempty"`
+	Geo3			string `json:"-"`
+	Geo4			string `json:"-"`
 	FechaHora       time.Time `json:"timestamp"`
 	Latitud		    float64 `json:"latitud"`
 	Longitud	    float64 `json:"longitud"`
 	Status		    string `json:"status"`
-	Ackn		    string `json:"ackn"`
-	Errors		    map[string]bool `json:"errors"`
+	Ackn		    string `json:"ackn,omitempty"`
+	Errors		    map[string]bool `json:"errors,omitempty"`
 }
 
 func init() {
@@ -45,16 +45,10 @@ func init() {
     http.HandleFunc("/r/wss/del", DelSucursal)
 }
 
-func jsonDispatch(w http.ResponseWriter, out *WsSucursal) {
-    w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	b, _ := json.Marshal(out)
-	w.Write(b)
-}
-
 func PutSucursal(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out WsSucursal
-    defer jsonDispatch(w, &out)
+    defer model.JsonDispatch(w, &out)
 	if _, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
@@ -88,7 +82,7 @@ func PutSucursal(w http.ResponseWriter, r *http.Request) {
 func PostSucursal(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out WsSucursal
-    defer jsonDispatch(w, &out)
+    defer model.JsonDispatch(w, &out)
 	if _, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
@@ -124,7 +118,7 @@ func PostSucursal(w http.ResponseWriter, r *http.Request) {
 func GetSucursal(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
     var out WsSucursal
-    defer jsonDispatch(w, &out)
+    defer model.JsonDispatch(w, &out)
 	if _, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
@@ -151,12 +145,12 @@ func GetSucursales(w http.ResponseWriter, r *http.Request) {
     var out WsSucursal
 	if _, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
-        jsonDispatch(w, &out)
+        model.JsonDispatch(w, &out)
         return
     }
     if r.Method != "GET" {
 		out.Status = "wrongMethod"
-        jsonDispatch(w, &out)
+        model.JsonDispatch(w, &out)
         return
     }
 	s := model.GetEmpSucursales(c, r.FormValue("IdEmp"))
@@ -173,7 +167,7 @@ func GetSucursales(w http.ResponseWriter, r *http.Request) {
 func DelSucursal(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
     var out WsSucursal
-    defer jsonDispatch(w, &out)
+    defer model.JsonDispatch(w, &out)
 	if _, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return

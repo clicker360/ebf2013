@@ -85,23 +85,23 @@ type EmpresaNm struct {
 }
 
 type Sucursal struct {
-	IdSuc		string
-	IdEmp		string
-	Nombre		string
-	Tel			string
-	DirCalle	string
-	DirCol		string
-	DirEnt		string
-	DirMun		string
-	DirCp		string
-	GeoUrl		string
-	Geo1		string
-	Geo2		string
-	Geo3		string
-	Geo4		string
-	FechaHora	time.Time
-	Latitud		float64
-	Longitud	float64
+	IdSuc		string `json:"idsuc"`
+	IdEmp		string `json:"idemp"`
+	Nombre		string `json:"sucursal"`
+	Tel			string `json:"tel"`
+	DirCalle	string `json:"calle"`
+	DirCol		string `json:"colonia"`
+	DirEnt		string `json:"entidad"`
+	DirMun		string `json:"municipio"`
+	DirCp		string `json:"cp"`
+	GeoUrl		string `json:"geourl,omitempty"`
+	Geo1		string `json:"geo1,omitempty"`
+	Geo2		string `json:"geo2,omitempty"`
+	Geo3		string `json:"-"`
+	Geo4		string `json:"-"`
+	FechaHora	time.Time `json:"timestamp"`
+	Latitud		float64 `json:"latitud"`
+	Longitud	float64 `json:"longitud"`
 }
 
 type Quest struct {
@@ -111,29 +111,29 @@ type Quest struct {
 }
 
 type Entidad struct {
-	CveEnt		string
-	Entidad		string
-	Abrv		string
-	CveCap		string
-	Capital		string
-	Selected	string
+	CveEnt		string `json:"cveent"`
+	Entidad		string `json:"entidad"`
+	Abrv		string `json:"abrv"`
+	CveCap		string `json:"cvecap"`
+	Capital		string `json:"capital"`
+	Selected	string `json:"-"`
 }
 
 type Municipio struct {
-	CveEnt		string
-	Entidad		string
-	Abrv		string
-	CveMun		string
-	Municipio	string
-	CvaCab		string
-	Cabecera	string
-	Selected	string
+	CveEnt		string `json:"-"`
+	Entidad		string `json:"-"`
+	Abrv		string `json:"abrv"`
+	CveMun		string `json:"cvemun"`
+	Municipio	string `json:"municipio"`
+	CvaCab		string `json:"cvecab"`
+	Cabecera	string `json:"cabecera"`
+	Selected	string `json:"-"`
 }
 
 type Organismo struct {
-	Siglas		string
-	Nombre		string
-	Selected	string
+	Siglas		string `json:"siglas"`
+	Nombre		string `json:"organismo"`
+	Selected	string `json:"-"`
 }
 
 type Image struct {

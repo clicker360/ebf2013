@@ -11,44 +11,44 @@ import (
 )
 
 type Oferta struct {
-	IdOft       string
-	IdEmp       string
-	IdCat       int
-	Empresa		string
-	Oferta		string
-	Descripcion		string
-	Codigo      string
-	Precio      string
-	Descuento   string
-	Promocion	string
-	Enlinea     bool
-	Url         string
-	Meses       string
-	FechaHoraPub    time.Time
-	StatusPub   bool
-	FechaHora   time.Time
-	BlobKey	appengine.BlobKey
+	IdOft       string `json:"idoft"`
+	IdEmp       string `json:"idemp"`
+	IdCat       int `json:"idcat"`
+	Empresa		string `json:"empresa"`
+	Oferta		string `json:"oferta"`
+	Descripcion	string `json:"desc"`
+	Codigo      string `json:"codigo,omitempty"`
+	Precio      string `json:"precio,omitempty"`
+	Descuento   string `json:"descuento,omitempty"`
+	Promocion	string `json:"promocion,omitempty"`
+	Enlinea     bool `json:"enlinea"`
+	Url         string `json:"url,omitempty"`
+	Meses       string `json:"meses,omitempty"`
+	FechaHoraPub    time.Time `json:"fechapub"`
+	StatusPub   bool `json:"publicada"`
+	FechaHora   time.Time `json:"timestamp"`
+	BlobKey	appengine.BlobKey `json:"-"`
 }
 
 type OfertaSucursal struct {
-	IdOft       string
-	IdEmp       string
-	IdSuc       string
-	Sucursal    string
-	Lat         float64
-	Lng         float64
-	Empresa     string
-	Oferta      string
-	Descripcion		string
-	Promocion	string
-	Precio      string
-	Descuento   string
-	Enlinea     bool
-	Url         string
-	StatusPub   bool
-	FechaHora	time.Time
-	IdCat       int
-	Categoria   string
+	IdOft       string `json:"idoft"`
+	IdEmp       string `json:"idemp"`
+	IdSuc       string `json:"idsuc"`
+	Sucursal    string `json:"sucursal"`
+	Lat         float64 `json:"lat"`
+	Lng         float64 `json:"lng"`
+	Empresa     string `json:"empresa"`
+	Oferta      string `json:"oferta"`
+	Descripcion		string `json:"desc"`
+	Promocion	string `json:"promocion,omitempty"`
+	Precio      string `json:"precio,omitempty"`
+	Descuento   string `json:"descuento,omitempty"`
+	Enlinea     bool `json:"enlinea"`
+	Url         string `json:"url,omitempty"`
+	StatusPub   bool `json:"publicada"`
+	FechaHora	time.Time `json:"timestamp"`
+	IdCat       int `json:"idcat"`
+	Categoria   string `json:"categoria"`
 }
 
 type SearchData struct {
@@ -62,21 +62,21 @@ type SearchData struct {
 }
 
 type Categoria struct {
-	IdCat       int
-	Categoria   string
-	Selected	string `datastore:"-"`
+	IdCat       int `json:"idcat"`
+	Categoria   string `json:"categoria"`
+	Selected	string `datastore:"-" json:"-"`
 }
 
 type OfertaPalabra struct {
-	IdOft      string
-	IdEmp      string
-	Palabra    string
-	FechaHora	time.Time
+	IdOft      string `json:"idoft"`
+	IdEmp      string `json:"idemp"`
+	Palabra    string `json:"palabra"`
+	FechaHora	time.Time `json:"timestamp"`
 }
 
 type OfertaEstado struct {
-	IdOft      string
-	IdEnt      string
+	IdOft      string `json:"idoft"`
+	IdEnt      string `json:"ident"`
 }
 
 func (r *Oferta) Key(c appengine.Context) *datastore.Key {

@@ -26,15 +26,15 @@ type WsEmpresa struct {
 	DirCp			string `json:"cp"`
 	NumSuc			string `json:"numsuc"`
 	OrgEmp			string `json:"organismo"`
-	OrgEmpOtro		string `json:"otro_organismo"`
-	OrgEmpReg		string `json:"registro_empresarial"`
-	Url				string `json:"url"`
+	OrgEmpOtro		string `json:"otro_organismo,omitempty"`
+	OrgEmpReg		string `json:"registro_empresarial,omitempty"`
+	Url				string `json:"url,omitempty"`
 	PartLinea		int `json:"partlinea"`
 	ExpComer		int `json:"expcomer"`
 	Desc			string `json:"descripcion"`
 	Status		    string `json:"status"`
-	Ackn		    string `json:"ackn"`
-	Errors		    map[string]bool `json:"errors"`
+	Ackn		    string `json:"ackn,omitempty"`
+	Errors		    map[string]bool `json:"errors,omitempty"`
 }
 
 func init() {
@@ -46,16 +46,10 @@ func init() {
     http.HandleFunc("/r/wse/del", DelEmpresa)
 }
 
-func jsonDispatch(w http.ResponseWriter, out *WsEmpresa) {
-    w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	b, _ := json.Marshal(out)
-	w.Write(b)
-}
-
 func PutEmpresa(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out WsEmpresa
-    defer jsonDispatch(w, &out)
+    defer model.JsonDispatch(w, &out)
 	if s, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
@@ -98,7 +92,7 @@ func PutEmpresa(w http.ResponseWriter, r *http.Request) {
 func PostEmpresa(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out WsEmpresa
-    defer jsonDispatch(w, &out)
+    defer model.JsonDispatch(w, &out)
 	if s, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
@@ -143,7 +137,7 @@ func PostEmpresa(w http.ResponseWriter, r *http.Request) {
 func GetEmpresa(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
     var out WsEmpresa
-    defer jsonDispatch(w, &out)
+    defer model.JsonDispatch(w, &out)
 	if s, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
@@ -170,16 +164,15 @@ func GetEmpresa(w http.ResponseWriter, r *http.Request) {
 func GetEmpresas(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
     var out WsEmpresa
-    defer jsonDispatch(w, &out)
 	if s, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
-        jsonDispatch(w, &out)
+        model.JsonDispatch(w, &out)
         return
     } else {
 	    u, _ := model.GetCta(c, s.User)
         if r.Method != "GET" {
             out.Status = "wrongMethod"
-            jsonDispatch(w, &out)
+            model.JsonDispatch(w, &out)
             return
         }
         e :=listEmp(c, u)
@@ -198,7 +191,7 @@ func GetEmpresas(w http.ResponseWriter, r *http.Request) {
 func DelEmpresa(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
     var out WsEmpresa
-    defer jsonDispatch(w, &out)
+    defer model.JsonDispatch(w, &out)
 	if s, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
