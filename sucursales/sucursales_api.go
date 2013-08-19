@@ -79,6 +79,8 @@ func PutSucursal(w http.ResponseWriter, r *http.Request) {
     return
 }
 
+/* OJO FALTA HACER LA MODIFICACION DE SUCURSAL!!!
+*/
 func PostSucursal(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out WsSucursal
@@ -94,7 +96,7 @@ func PostSucursal(w http.ResponseWriter, r *http.Request) {
     out.IdEmp = r.FormValue("IdEmp")
     sucursal := fill(r)
     out.Errors, out.Status = validate(sucursal)
-    if out.Status != "ok" { 
+    if out.Status != "ok" {
         return
     }
     empresa := model.GetEmpresa(c, out.IdEmp)

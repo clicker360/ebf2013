@@ -99,6 +99,7 @@ func PostEmpresa(w http.ResponseWriter, r *http.Request) {
     } else {
         // se obtiene el detalle de cta
         u, _ := model.GetCta(c, s.User)
+
         // POST
         if r.Method != "POST" {
             out.Status = "wrongMethod"

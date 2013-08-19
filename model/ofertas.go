@@ -27,7 +27,9 @@ type Oferta struct {
 	FechaHoraPub    time.Time `json:"fechapub"`
 	StatusPub   bool `json:"publicada"`
 	FechaHora   time.Time `json:"timestamp"`
-	BlobKey	appengine.BlobKey `json:"-"`
+	BlobKey	appengine.BlobKey `json:"blobkey"`
+    ImageSmall  string `json:"imagesmall,omitempty"`
+    ImageBig    string `json:"imagebig,omitempty"`
 }
 
 type OfertaSucursal struct {
@@ -123,7 +125,8 @@ func PutOferta(c appengine.Context, oferta *Oferta) error {
 		return err
 	}
 	/* 
-		relación oferta sucursal 
+		Recorre las relaciones oferta sucursal para copiar los datos y tenerlos listos
+        para lecturas posteriores
 	*/
 	ofsucs, _ := GetOfertaSucursales(c, oferta.IdOft)
 	for _,os:= range *ofsucs {
@@ -144,6 +147,7 @@ func PutOferta(c appengine.Context, oferta *Oferta) error {
 		ofsuc.Url = oferta.Url
 		ofsuc.StatusPub = oferta.StatusPub
 		ofsuc.FechaHora = time.Now().Add(time.Duration(GMTADJ)*time.Second)
+
 		oferta.PutOfertaSucursal(c, &ofsuc)
 		TouchSuc(c, os.IdSuc)
 	}
@@ -221,6 +225,18 @@ func GetCategoria(c appengine.Context, id int) *Categoria {
 		return &c
 	}
 	return nil
+}
+
+/*
+	Llenar primero struct de OfertaSucursal y luego guardar
+*/
+func (e *Empresa) PutOferta(c appengine.Context, o *Oferta) (*Oferta, error) {
+	parentKey := e.Key(c)
+    _, err := datastore.Put(c, datastore.NewKey(c, "Oferta", o.IdOft, 0, parentKey), o)
+	if err != nil {
+		return nil, err
+	}
+	return o, nil
 }
 
 /*

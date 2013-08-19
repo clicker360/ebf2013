@@ -1,25 +1,83 @@
 package model
 
 import (
-        "math/rand"
-	    "encoding/json"
-		"net/http"
-        "time"
-		"regexp"
-		"html/template"
+    "math/rand"
+    "appengine"
+    "appengine/memcache"
+    "encoding/json"
+    "net/http"
+    "time"
+    "regexp"
+    "html/template"
 )
 
 // Template handling
 type PageMeta struct {
-        Name  string
-        Title string
+    Name  string
+    Title string
 }
 
 var funcMap = template.FuncMap{
-        "eq": func(s1, s2 string) bool {
-                return s1 == s2
-        },
+    "eq": func(s1, s2 string) bool {
+            return s1 == s2
+    },
 }
+
+type LockEntity struct {
+    Id string
+    Kind string
+    Key string
+}
+
+/*
+    Lock an entity kind with id
+    if returns true, lock is aquired.
+    if returns false, there is a lock already in use or there is an error
+    Always returns the LockEntity struct
+*/
+func LockItem(r *http.Request, kind string, id string) (LockEntity, bool) {
+    c := appengine.NewContext(r)
+    lock := LockEntity{id, kind, RandId(5) }
+    if _, err := memcache.Get(c, "lock_"+kind+"_"+id); err == memcache.ErrCacheMiss {
+		b, _ := json.Marshal(lock)
+        item := &memcache.Item {
+            Key:   "lock_"+kind+"_"+id,
+            Value: b,
+        }
+        if err := memcache.Add(c, item); err == memcache.ErrNotStored {
+            c.Infof("lock with key %q already exists", item.Key)
+            return lock, false
+        } else if err != nil {
+            c.Errorf("memcache.Add error in LockEntity : %v", err)
+            return lock, false
+        }
+        return lock, true
+    } else {
+        return lock, false
+    }
+}
+
+/*
+    Unlock a LockEntity
+    if returns true, unlock is done.
+    if returns false, theres no lock at all
+*/
+func UnlockItem(r *http.Request, lock LockEntity) bool {
+    c := appengine.NewContext(r)
+    if item, err := memcache.Get(c, "lock_"+lock.Kind+"_"+lock.Id); err != memcache.ErrCacheMiss {
+        var lockTmp LockEntity
+        if err := json.Unmarshal(item.Value, &lockTmp); err != nil {
+            c.Errorf("error unmarshaling item: %v", err)
+        }
+        if lock.Key == lockTmp.Key {
+            if err := memcache.Delete(c, "lock_"+lock.Kind+"_"+lock.Id); err != memcache.ErrCacheMiss {
+                return true
+            }
+        }
+    }
+    return false
+}
+
 
 func JsonDispatch(w http.ResponseWriter, out interface{}) {
     w.Header().Set("Content-Type", "application/json; charset=utf-8")
