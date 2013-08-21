@@ -125,7 +125,6 @@ func GetOferta(w http.ResponseWriter, r *http.Request) {
 */
 func PutOferta(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	var nvaOferta model.Oferta
 	var out WsOferta
     defer model.JsonDispatch(w, &out)
 	if _, ok := sess.IsSess(w, r, c); !ok {
@@ -141,25 +140,21 @@ func PutOferta(w http.ResponseWriter, r *http.Request) {
     // Se obtienen y validan los campos del cgi
     out.IdEmp = r.FormValue("IdEmp")
     oTmp := fill(r)
+    oTmp.IdOft = "" // Se inicializa el id pase lo que pase, es un put!
     if out.Errors, out.Status = validate(oTmp); out.Status != "ok" {
         return
     }
     empresa := model.GetEmpresa(c, out.IdEmp)
     if empresa != nil {
-        nvaOferta.IdEmp = empresa.IdEmp
-        nvaOferta.Empresa = strings.ToUpper(empresa.Nombre)
-        nvaOferta.Oferta = oTmp.Oferta
-        nvaOferta.FechaHora = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
-        nvaOferta.FechaHoraPub = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
-        nvaOferta.BlobKey = "none"
-        o, err := model.NewOferta(c, &nvaOferta)
+        oTmp.IdEmp = empresa.IdEmp
+        oTmp.BlobKey = "none"
+        o, err := empresa.PutOferta(c, &oTmp)
         if err != nil {
             out.Status = "writeErr"
             return
         }
-
         // Se pasa a la estructura de salida para JSON
-        out.IdOft = o.IdOft
+        setWsOferta(&out, *o)
         out.Status = "ok"
     } else {
         out.Status = "notFound"
@@ -172,7 +167,6 @@ func PutOferta(w http.ResponseWriter, r *http.Request) {
 */
 func PostOferta(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	var modOferta model.Oferta
 	var out WsOferta
     defer model.JsonDispatch(w, &out)
 	if _, ok := sess.IsSess(w, r, c); !ok {
@@ -184,7 +178,7 @@ func PostOferta(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    ofertaOld, keyOferta := model.GetOferta(c, r.FormValue("IdOft"))
+    _, keyOferta := model.GetOferta(c, r.FormValue("IdOft"))
     if keyOferta == nil {
 		out.Status = "notFound"
         return
@@ -318,73 +312,16 @@ func DelOferta(w http.ResponseWriter, r *http.Request) {
     return
 }
 
-func xofForm(w http.ResponseWriter, r *http.Request, valida bool) (FormDataOf, bool){
+func setUploadUrl(r *http.Request) (string, error) {
 	c := appengine.NewContext(r)
-	var fh time.Time
-	if r.FormValue("FechaHoraPub") != "" {
-		fh, _ = time.Parse("_2 Jan 15:04:05", strings.TrimSpace(r.FormValue("FechaHoraPub"))+" 00:00:00")
-		fh = fh.AddDate(2012,0,0)
-	} else {
-		fh = time.Now().Add(time.Duration(model.GMTADJ)*time.Second) // 5 horas menos
-	}
-	el, _ := strconv.ParseBool(strings.TrimSpace(r.FormValue("Enlinea")))
-	st, _ := strconv.ParseBool(strings.TrimSpace(r.FormValue("StatusPub")))
-	ic, _ := strconv.Atoi(strings.TrimSpace(r.FormValue("IdCat")))
-	fd := FormDataOf {
-		IdOft:			strings.TrimSpace(r.FormValue("IdOft")),
-		IdEmp:			strings.TrimSpace(r.FormValue("IdEmp")),
-		IdCat:			ic,
-		Oferta:			strings.TrimSpace(r.FormValue("Oferta")),
-		ErrOferta:		"",
-		Descripcion:	strings.TrimSpace(r.FormValue("Descripcion")),
-		ErrDescripcion: "",
-		Enlinea:		el,
-		Url:			strings.TrimSpace(r.FormValue("Url")),
-		ErrUrl:			"",
-		ErrMeses:		"",
-		FechaHoraPub:	fh,
-		ErrFechaHoraPub: strings.TrimSpace(fh.Format("_2 Jan")),
-		StatusPub:		st,
-	}
-	if valida {
-		var ef bool
-		ef = false
-		if fd.Oferta == "" || !model.ValidSimpleText.MatchString(fd.Oferta) {
-			fd.ErrOferta = "invalid"
-			ef = true
-		}
-		if fd.Descripcion == "" || !model.ValidSimpleText.MatchString(fd.Descripcion) && len(fd.Descripcion) > 200 {
-			fd.ErrDescripcion = "invalid"
-			ef = true
-		}
-		if fd.Url != "" && !model.ValidUrl.MatchString(fd.Url) {
-			fd.ErrUrl = "invalid"
-			ef = true
-		}
-
-		fd.Categorias = model.ListCat(c, ic);
-		if ef {
-			return fd, false
-		}
-	}
-	return fd, true
-}
-
-func xofToForm(e model.Oferta) FormDataOf {
-	fd := FormDataOf {
-		IdOft:			e.IdOft,
-		IdEmp:			e.IdEmp,
-		IdCat:			e.IdCat,
-		Oferta:			e.Oferta,
-		Descripcion:	e.Descripcion,
-		Enlinea:		e.Enlinea,
-		Url:			e.Url,
-		FechaHoraPub:	e.FechaHoraPub,
-		ErrFechaHoraPub:	strings.TrimSpace(e.FechaHoraPub.Format("_2 Jan")),
-		StatusPub:		e.StatusPub,
-		BlobKey:		e.BlobKey,
-	}
-	return fd
+    blobOpts := blobstore.UploadURLOptions{
+        MaxUploadBytesPerBlob: 1048576,
+    }
+    if uploadURL, err := blobstore.UploadURL(c, "/r/ofimgup", &blobOpts); err != nil {
+        return "", err
+    } else {
+        return strings.Replace(uploadURL.String(), "http", "https", 1), nil
+    }
 }
 
 func setWsOferta(out *WsOferta, oferta model.Oferta) {
@@ -406,15 +343,57 @@ func setWsOferta(out *WsOferta, oferta model.Oferta) {
 	    out.FechaHora = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
 }
 
-func setUploadUrl(r *http.Request) (string, error) {
-	c := appengine.NewContext(r)
-    blobOpts := blobstore.UploadURLOptions{
-        MaxUploadBytesPerBlob: 1048576,
+func fill(r *http.Request) model.Oferta {
+    loc, _ := time.LoadLocation("America/Mexico_City")
+    var fh time.Time
+	if r.FormValue("FechaHoraPub") != "" {
+		fh, _ = time.ParseInLocation("_2 Jan 15:04:05", strings.TrimSpace(r.FormValue("FechaHoraPub"))+" 00:00:00", loc)
+		fh = fh.AddDate(2013,0,0)
+	} else {
+		fh = time.Now().Add(time.Duration(model.GMTADJ)*time.Second) // 5 horas menos
+	}
+	el, _ := strconv.ParseBool(strings.TrimSpace(r.FormValue("Enlinea")))
+	st, _ := strconv.ParseBool(strings.TrimSpace(r.FormValue("StatusPub")))
+	ic, _ := strconv.Atoi(strings.TrimSpace(r.FormValue("IdCat")))
+	o := model.Oferta {
+		IdEmp:		    strings.TrimSpace(r.FormValue("IdEmp")),
+		IdOft:		    strings.TrimSpace(r.FormValue("IdOft")),
+		IdCat:		    ic,
+		Empresa:	    strings.ToUpper(strings.TrimSpace(r.FormValue("Empresa"))),
+		Oferta:		    strings.TrimSpace(r.FormValue("Oferta")),
+		Descripcion:	strings.TrimSpace(r.FormValue("Descripcion")),
+		Codigo:		    strings.TrimSpace(r.FormValue("Codigo")),
+		Precio:		    strings.TrimSpace(r.FormValue("Precio")),
+		Descuento:		strings.TrimSpace(r.FormValue("Descuento")),
+		Promocion:		strings.TrimSpace(r.FormValue("Promocion")),
+		Enlinea:		el,
+		Url:		    strings.TrimSpace(r.FormValue("Url")),
+		Meses:		    strings.TrimSpace(r.FormValue("Meses")),
+		FechaHoraPub:   fh,
+		StatusPub:		st,
+		FechaHora:	    time.Now().Add(time.Duration(model.GMTADJ)*time.Second),
+		//BlobKey:		strings.TrimSpace(r.FormValue("IdCat")),
     }
-    if uploadURL, err := blobstore.UploadURL(c, "/r/ofimgup", &blobOpts); err != nil {
-        return "", err
-    } else {
-        return strings.Replace(uploadURL.String(), "http", "https", 1), nil
-    }
+    return o
 }
 
+func validate(s model.Oferta) (map[string]bool, string) {
+    errmsg := "ok"
+    err := make(map[string]bool)
+	if s.Oferta == "" || !model.ValidSimpleText.MatchString(s.Oferta) {
+        err["Oferta"] = false
+    }
+	if s.Descripcion == "" || !model.ValidSimpleText.MatchString(s.Descripcion) && len(s.Descripcion) > 200 {
+        err["Descripcion"] = false
+    }
+	if s.Url != "" && !model.ValidUrl.MatchString(s.Url) {
+        err["Url"] = false
+    }
+
+    for _, v := range err {
+        if v == false {
+            errmsg = "invalidInput"
+        }
+    }
+	return err, errmsg
+}

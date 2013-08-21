@@ -240,7 +240,7 @@ func fill(r *http.Request) model.Sucursal {
 		Geo4:		strings.TrimSpace(r.FormValue("Geo4")),
 		FechaHora:	time.Now().Add(time.Duration(model.GMTADJ)*time.Second),
 	}
-	return s;
+	return s
 }
 
 func getForm(e model.Sucursal) FormDataSuc {

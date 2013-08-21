@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>pruebas api</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $.post("http://localhost:8080/r/wso/put", { 
+                IdEmp: "ghjkhxiwknbpvftwdrsm",
+                IdCat: "7",
+                Oferta: "Guantes de Box 2 x 1",
+                Descripcion: "En todos los guantes marca acme",
+                Codigo: "xx34",
+                Precio: "1500",
+                Descuento: "50",
+                Promocion: "p1",
+                Enlinea: "True",
+                Url: "http://www.guantesbonitos.com.mx",
+                Meses: "6 meses sin intereses",
+                FechaHoraPub: "19 Nov",
+                StatusPub: "False"
+            },
+            function(data) {
+                console.log(data.idemp);
+                console.log(data.idoft);
+                console.log(data.idcat);
+                console.log(data.empresa);
+                console.log(data.oferta);
+                console.log(data.desc);
+                console.log(data.codigo);
+                console.log(data.precio);
+                console.log(data.descuento);
+                console.log(data.promocion);
+                console.log(data.enlinea);
+                console.log(data.url);
+                console.log(data.meses);
+                console.log(data.fechapub);
+                console.log(data.publicada);
+                console.log(data.timestamp);
+                console.log(data.blobkey);
+                console.log(data.imagesmall);
+                console.log(data.imagebig);
+
+                console.log(data.ofertas)
+                console.log(data.categorias)
+                console.log(data.sucursales)
+                console.log(data.uploadurl)
+
+                console.log(data.ackn)
+                console.log(data.status)
+                console.log(data.errors)
+            }, "json");
+    </script>
+    
+    <body>
+        <div id="result">...</div>
+    </body>
+</html>
+ 

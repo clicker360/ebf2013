@@ -231,6 +231,12 @@ func GetCategoria(c appengine.Context, id int) *Categoria {
 	Llenar primero struct de OfertaSucursal y luego guardar
 */
 func (e *Empresa) PutOferta(c appengine.Context, o *Oferta) (*Oferta, error) {
+    if(o.IdOft == "") {
+		o.IdOft = RandId(20)
+		_ = PutChangeControl(c, o.IdOft, "Oferta", "A")
+	} else {
+		_ = PutChangeControl(c, o.IdOft, "Oferta", "M")
+	}
 	parentKey := e.Key(c)
     _, err := datastore.Put(c, datastore.NewKey(c, "Oferta", o.IdOft, 0, parentKey), o)
 	if err != nil {
