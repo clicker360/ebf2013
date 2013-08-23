@@ -1,4 +1,4 @@
-application: ebfmxtest
+application: ebfmxorg
 version: v01
 runtime: go
 api_version: go1
