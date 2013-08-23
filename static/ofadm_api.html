@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">
+			#size {
+			width: 300px;
+			margin: 10px 10px;
+			}
+			.progress {
+			float: right;
+			position: relative;
+			width: 310px;
+			border: 1px solid #ddd;
+			padding: 1px;
+			border-radius: 3px;
+			}
+			.bar {
+			background-color: grey;
+			width: 0%;
+			height: 20px;
+			border-radius: 3px;
+			}
+			.percent {
+			position: absolute;
+			display: inline-block;
+			top: 3px;
+			left: 48%;
+			}
+		</style>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/jquery.form.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/ofertas_v01.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/datepicker.js" charset="utf-8"></script>
+		<title>Ofertas</title>
+	</head>
+	<body class="bgt-main">
+		
+		<!--Subir imagen light box-->
+		<div class="hidden" id="box">
+			<div class="last pullRight-20 pullup-20">
+				<a href="#null" onclick="deactiveLghtbx()"><img src="imgs/closeBTN.png" width="30" height="29" alt="cerrar" /></a>
+			</div>
+		</div>
+		<div class="hidden" id="light"></div>
+		<!-- termina Subir imagen-->
+
+	                        <!--vista preliminar de la oferta en la búsqueda-->
+        <div id="urlimg"><img src="" alt="Imagen de la oferta" width="258" id="pic" /> </div>
+        <form action="UploadURL" method="post" id="enviar" enctype="multipart/form-data">
+            <input type="hidden" name="IdOft" value="IdOft"/>
+            <div class="typ-Sc" id="status"></div>
+            <input id="imgfile" type="text" class="style3 marg-R25pix" readonly="readonly" />
+            <input id="infile" type="file" class="validate[required]" name="image" onchange="$('#imgfile').val($('#infile').val()); $('#enviar').submit();"/>
+            <img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
+            <div class="progress">
+                <div class="bar"></div>
+                <div class="percent"> 0% </div>
+            </div>
+        </form>
+
+        <!-- Inicia estructura de campos Oferta -->    
+        <form action="/r/ofmod" method="post" id="enviardata">
+            <input type="hidden" value="a" name="s"/>
+            <input type="hidden" name="IdOft" value="IdOft" id="IdOft"/>
+            <input type="hidden" name="IdEmp" value="IdEmp" id="IdEmp"/>
+            <input type="hidden" name="pchain" id="pchain"/>
+            <input type="hidden" name="schain" id="schain"/>
+            <div class="col-11 marg-L5pix">
+
+                <!--TITULO DE LA OFERTA-->
+                <div>
+                    <label><span>*</span> Título de la oferta</label>
+                    <input type="text" class="validate[required, maxSize[55]]" name="Oferta" id="oferta" maxlength="55" onchange="javascript:$('#oferTit').text($('#oferta').val()); activateCancel();"/>
+                    <div id="tituloreq" onclick="$('#tituloreq').hide()">Obligatorio indicar un título descriptivo de su oferta</div>
+                    <div> Máximo 55 caracteres</div>
+                </div>
+        
+                <!--Descripcion de ofertas-->
+                <div>
+                    <label><span>*</span>¿En qué consiste la oferta?</label>
+                    <textarea class="validate[required, maxSize[350]]" name="Descripcion" cols="6" rows="6" id="descripcion" maxlength="350" onchange="javascript:$('#oferDesc').text($('#descripcion').val()); activateCancel();"></textarea>
+                    <span>Máximo 350 caracteres</span>
+                    <div>
+                            <p>Esta es la información que quieres compartirle al público sobre tu oferta. Te recomendamos incluir algunos de los siguientes datos: monto del descuento, tipo de promoción, producto o servicio, departamento, público objetivo.<br />
+                            Por ejemplo: “40% de descuento en zapatos para dama en todas las marcas.”</p>
+                    </div>
+                </div>
+                
+                <!--CATEGORIAS-->
+                <div>
+                    <label><span>*</span> Categoría</label>
+                    <select name="IdCat" size="1" id="categoria" class="validate[required]" onchange="activateCancel();">
+                        <option value=""> SELECCIONAR UNA </option>
+                        <!-- relleno ajax -->
+                    </select>
+                </div>
+            <!-- Date picker -->
+                    <div>
+                        <label>La oferta estará publicada a partir de</label>
+                        <input type="text" class="validate[optional]" name="FechaHoraPub" id="date1" readonly="readonly" onclick="return toggleCalendar(this);"/>
+                        <p>Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.</p>
+                    </div>
+                    <div id="datePick">
+                        <a href="#null" onclick="untogleCalendar();">X</a>
+                        <p> Noviembre 2012</p>
+                        <ul class="datepicker">
+                            <li>L</li>
+                            <li>M</li>
+                            <li>M</li>
+                            <li>J</li>
+                            <li>V</li>
+                            <li>S</li>
+                            <li>D</li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="1">1</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="2">2</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="3">3</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="4">4</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="5">5</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="6">6</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="7">7</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="8">8</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="9">9</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="10">10</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="11">11</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="12">12</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="13">13</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="14">14</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="15">15</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="16">16</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="17">17</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="18">18</a></li>
+                            <li><a href="#null" onClick="getTheDate(this)" id="19">19</a></li>
+                            <li>20</li>
+                            <li>21</li>
+                            <li>22</li>
+                            <li>23</li>
+                            <li>24</li>
+                            <li>25</li>
+                            <li>26</li>
+                            <li>27</li>
+                            <li>28</li>
+                            <li>29</li>
+                            <li>30</li>
+                            <li>31</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- termina datepicker -->
+                <!--SUCURSALES-->
+                <div>
+                    <!--EL BUEN FIN EN LINEA-->
+                    <p><strong><span>*</span>¿Dónde estará disponible esta oferta?</strong></p>
+                    <div id="placereq" onclick="$('#placereq').hide()"> Obligatorio indicar algún lugar donde su oferta participa </div>
+                    <div>
+                        <label>El Buen Fin en línea (Comercio electrónico) </label>
+                        <input type="checkbox" name="Enlinea" value="1" id="enlinea"/>
+                    </div>
+                    <div id="muestraurl">
+                        <div> 
+                            <label> Sitio de internet de la oferta</label>
+                            <div id="urlreq" onclick="$('#urlreq').hide()"> Obligatorio indicar enlace si participa en El Buen Fin en línea </div>
+                            <input type="text" class="validate[optional,custom[url]]" name="Url" id="url" onchange="/*javascript:$('#urlimg').attr('href', $('#url').val());*/ activateCancel();" />
+                        </div>
+                    </div>
+                    <div id="sucursales">
+                        <div id="listasuc"> 
+                            <div><label>En sucursales</label><div><input name="todassuc" type="checkbox" id="todassuc"/><span>(todas)</span></div>
+                            </div>
+                            <!-- relleno ajax -->
+                        </div>
+                    </div>
+                </div>
+
+                <!--SELECTOR DE PALABRAS CLAVE-->
+                <div>
+                    <p>Palabras relacionadas con la oferta</p>
+                    <div>
+                      <input type="text" class="validate[optional, onlyLetterSp, minSize[3], maxSize[25]] selectWord" maxlength="25" name="textopcve" value="" id="tokenpcve" />
+                        <div id="btnaddWords">
+                            <a href="#null" id="nuevapcve"><span>Añadir palabra <img src="imgs/iconDown.png" width="15" height="20" /></span></a>
+                        </div>
+                        <div id="pcvepicker">
+                            <div id="unpickpcve">
+                                <!--esto se llena automáticamente-->
+                            </div>
+                            <label id="titleWord">Otras palabras que has capturado</label>
+                            <div class="divAsInput2" id="pickpcve">
+                                <!--esto se llena automáticamente-->
+                            </div>
+                        </div>
+                        <div><a href="#null"  id="elimilink">Clic aquí para remover palabras que no necesites</a></div>
+                    </div>
+                </div>
+                    <p>Máximo 5 palabras.</p>
+                    <p>Para facilitar la búsqueda de tu oferta, escribe las palabras que se relacionan directamente con ella y que piensas que la gente escribirá para encontrarte. Del ejemplo anterior, las palabras clave podrían ser: zapatos, mujeres, damas, zapatería.</p>
+            </div>
+            <div><span>*</span> Todos los campos marcados son obligatorios </div>
+            <div id="newbtn">
+                <button type="submit">Guardar</button>
+                <button type="reset" id="cancelbtn">Limpiar Campos</button>
+            </div>
+            <div id="modbtn">
+                <button type="submit">Guardar</button>
+                <button type="reset" id="cancelbtn">Limpiar Campos</button>
+                
+            </div>
+        </form>
+        <!-- Termina estructura de campos Oferta --> 
+	</body>
+</html>

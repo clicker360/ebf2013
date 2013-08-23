@@ -66,7 +66,7 @@ type SearchData struct {
 type Categoria struct {
 	IdCat       int `json:"idcat"`
 	Categoria   string `json:"categoria"`
-	Selected	string `datastore:"-" json:"-"`
+	Selected	string `datastore:"-" json:"selected,omitempty"`
 }
 
 type OfertaPalabra struct {
@@ -497,8 +497,8 @@ func ListCat(c appengine.Context, IdCat int) *[]Categoria {
 	var categorias []Categoria
 	if item, err := memcache.Get(c, "categorias"); err == memcache.ErrCacheMiss {
 		q := datastore.NewQuery("Categoria")
-		//n, _ := q.Count(c)
-		//cats := make([]Categoria, 0, n)
+		n, _ := q.Count(c)
+		categorias = make([]Categoria, 0, n)
 		if _, err := q.GetAll(c, &categorias); err != nil {
 			return nil
 		}

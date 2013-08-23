@@ -22,7 +22,7 @@ type WsOferta struct {
 	IdCat       int `json:"idcat,omitempty"`
 	Empresa		string `json:"empresa,omitempty"`
 	Oferta		string `json:"oferta,omitempty"`
-	Descripcion	string `json:"desc,omitempty"`
+	Descripcion	string `json:"descripcion,omitempty"`
 	Codigo      string `json:"codigo,omitempty"`
 	Precio      string `json:"precio,omitempty"`
 	Descuento   string `json:"descuento,omitempty"`
@@ -99,6 +99,7 @@ func GetOferta(w http.ResponseWriter, r *http.Request) {
 		out.Status = "notFound"
         return
     } else {
+        setWsOferta(&out, *oferta)
         out.Categorias = model.ListCat(c, oferta.IdCat);
 
         /*
@@ -144,8 +145,7 @@ func PutOferta(w http.ResponseWriter, r *http.Request) {
     if out.Errors, out.Status = validate(oTmp); out.Status != "ok" {
         return
     }
-    empresa := model.GetEmpresa(c, out.IdEmp)
-    if empresa != nil {
+    if empresa := model.GetEmpresa(c, out.IdEmp); empresa != nil {
         oTmp.IdEmp = empresa.IdEmp
         oTmp.BlobKey = "none"
         o, err := empresa.PutOferta(c, &oTmp)
@@ -185,8 +185,7 @@ func PostOferta(w http.ResponseWriter, r *http.Request) {
     }
     // Se obtienen y validan los campos del cgi
     oTmp := fill(r)
-    out.Errors, out.Status = validate(oTmp)
-    if out.Status != "ok" {
+    if out.Errors, out.Status = validate(oTmp); out.Status != "ok" {
         return
     }
 
