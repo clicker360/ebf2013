@@ -1,5 +1,5 @@
-application: ebfmxorg
-version: 11
+application: ebfmxtest
+version: v01
 runtime: go
 api_version: go1
 
@@ -9,7 +9,7 @@ handlers:
 # css
 - url: /r/.*/library/(.*\.*)
   static_files: library/\1
-  upload: library/(.*\.*))
+  upload: library/(.*\.*)
   expiration: "1h"
 
 - url: /library/(.*\.*)
@@ -20,6 +20,11 @@ handlers:
 - url: /library/(.*\.(css|scss|less|js|gif|jpg|png))
   static_files: library/\1
   upload: library/(.*\.(css|scss|less|js|gif|jpg|png))
+  expiration: "1h"
+
+- url: /r/css/(.*\.(css))
+  static_files: css/\1
+  upload: css/(.*\.(css))
   expiration: "1h"
 
 - url: /r/.*/css/(.*\.(css))
@@ -38,6 +43,11 @@ handlers:
   expiration: "1h"
 
 # scripts
+- url: /r/scripts/(.*\.(js))
+  static_files: scripts/\1
+  upload: scripts/(.*\.(js))
+#  expiration: "1h"
+
 - url: /r/.*/scripts/(.*\.(js))
   static_files: scripts/\1
   upload: scripts/(.*\.(js))
@@ -54,6 +64,11 @@ handlers:
 #  expiration: "1h"
 
 # imgs
+- url: /r/imgs/(.*\.(gif|png|jpg))
+  static_files: imgs/\1
+  upload: imgs/(.*\.(gif|png|jpg))
+  expiration: "1h"
+
 - url: /r/.*/imgs/(.*\.(gif|png|jpg))
   static_files: imgs/\1
   upload: imgs/(.*\.(gif|png|jpg))

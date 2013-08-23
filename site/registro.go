@@ -81,9 +81,9 @@ func Registrar(w http.ResponseWriter, r *http.Request) {
 			var hbody bytes.Buffer
 			var sender string
 			if (appengine.AppID(c) == "ebfmxorg") {
-				sender =  "El Buen Fin <contacto@elbuenfin.org>"
+				sender =  "El Buen Fin <ahuezo@gmail.com>"
 			} else {
-				sender =  "El Buen Fin <ahuezo@clicker360.com>"
+				sender =  "El Buen Fin <ahuezo@gmail.com>"
 			}
 			// Envia código activación 
 			if err := mailActivationCodeTpl.Execute(&hbody, m); err != nil {
@@ -230,9 +230,9 @@ func ConfirmaCodigo(w http.ResponseWriter, r *http.Request) {
 					var hbody bytes.Buffer
 					var sender string
 					if (appengine.AppID(c) == "ebfmxorg") {
-						sender =  "El Buen Fin <contacto@elbuenfin.org>"
+						sender =  "El Buen Fin <ahuezo@gmail.com>"
 					} else {
-						sender =  "El Buen Fin <ahuezo@clicker360.com>"
+						sender =  "El Buen Fin <ahuezo@gmail.com>"
 					}
 					if err := mailAvisoActivacionTpl.Execute(&hbody, g); err != nil {
 						http.Error(w, err.Error(), http.StatusInternalServerError)
