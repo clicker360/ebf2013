@@ -2,6 +2,7 @@
 *.o
 *.a
 *.so
+app.yaml
 
 # Folders
 _obj
