@@ -1,0 +1,756 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"s",
+				"script	Tag"
+			],
+			[
+				"lists",
+				"list-style-type"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"r",
+				"right"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"paddi",
+				"padding-right"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"the_e",
+				"the_excerpt"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"bor",
+				"border-top"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"border",
+				"border"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"h",
+				"h1	Tag"
+			],
+			[
+				"max",
+				"max-width"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "admin/empresas.html",
+			"settings":
+			{
+				"buffer_size": 9680,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/alonso/Descargas/scripts.js",
+			"settings":
+			{
+				"buffer_size": 6094,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/alonso/Descargas/home.php",
+			"settings":
+			{
+				"buffer_size": 7173,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/alonso/ebf2013/library/js/scripts.js",
+			"settings":
+			{
+				"buffer_size": 2114,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 52.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"jquer",
+				"Set Syntax: jQuery (JavaScript)"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"linter",
+				"SublimeLinter: Show Error List"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/alonso/ebf2013/static/index.html",
+		"/home/alonso/ebf2013/static/emp_api.html",
+		"/home/alonso/ebf2013/static/admin/empresa-micrositio.html",
+		"/home/alonso/ebf2013/static/admin/empresas.html",
+		"/home/alonso/ebf2013/static/admin/index.html",
+		"/home/alonso/ebf2013/static/admin/oferta-detalle.html",
+		"/home/alonso/ebf2013/static/admin/ofertas(2).html",
+		"/home/alonso/ebf2013/static/admin/ofertas.html",
+		"/home/alonso/ebf2013/static/admin/sucursal-detalle.html",
+		"/home/alonso/ebf2013/static/admin/sucursales.html",
+		"/home/alonso/ebf2013/static/admin/usuario.html",
+		"/home/alonso/ebf2013/library/less/style.less",
+		"/home/alonso/ebf2013/layout/admHeaderTpl.html",
+		"/home/alonso/ebf2013/static/admin/library/css/font-awesome/css/font-awesome.css",
+		"/home/alonso/ebf2013/static/empresas.html",
+		"/home/alonso/ebf2013/layout/empresasTpl.html",
+		"/home/alonso/ebf2013/library/css/font-awesome/css/font-awesome.css",
+		"/home/alonso/ebf2013/library/css/style.css",
+		"/home/alonso/ebf2013/static/admin.html",
+		"/home/alonso/ebf2013/templates/emp_empresaContentTpl.html",
+		"/home/alonso/prueba/prueba.html",
+		"/home/alonso/metodos api elbuenfin.html",
+		"/home/alonso/Escritorio/prueba.html",
+		"/home/alonso/Escritorio/prueba.htl",
+		"/home/alonso/ebf2013/layout/admRootTpl.html",
+		"/home/alonso/ebf2013/layout/empresaScriptTpl.html",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Femexfut/magazinum/saveTokenJS.php",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/miseleccion/wp-content/plugins/punchtab/wp-punchtab.js",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/crea_session.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/punchtabsso.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/page-prueba-punchtab.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/functions.php",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/miseleccion/wp-content/plugins/punchtab/punchtab_options_form.php",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/miseleccion/wp-content/plugins/punchtab/punchtab.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/page-login-wp.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/page-crea-sesion.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/server.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/section-header.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/options.css",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/app.css",
+		"/C/Users/Chematrix/Desktop/options.css",
+		"/C/Users/Chematrix/Desktop/app.css",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/app.js",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/crumina_menu.css",
+		"/C/Users/Chematrix/Documents/My Web Sites/WPGenerico/wp-content/themes/maestro/templates/section-bott-footer.php",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Buen Fin/HTML/library/less/mixins.less",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Buen Fin/HTML/library/less/variables.less",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Buen Fin/HTML/library/less/bootstrap.less",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Buen Fin/HTML/library/less/style.less",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Buen Fin/HTML/library/less/labels-badges.less",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Master HTML LESS/library/less/style.less",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Buen Fin/HTML/starter-template.html",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Buen Fin/HTML/index.html",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/home.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/header-home.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/header.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/functions.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/header.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/header-home.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/footer.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/functions 2.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/page-loop-grid.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/wp-config.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/archive.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/index.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/library/bones.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/bones.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/single.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/clickerblog/themes/clickerblog/home.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/attachment.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/WPGenerico/wp-content/themes/chematrix/library/less/_768up.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/WPGenerico/wp-content/themes/chematrix/library/less/_base.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/WPGenerico/wp-content/themes/chematrix/404.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/WPGenerico/wp-content/themes/chematrix/library/bones.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/_base.less",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/_768up.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/WPGenerico/wp-content/themes/chematrix/style.css",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/scripts.js",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/js/scripts.js",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Valores/juegodevaloresenzip/Respeto Web/Respeto/Respeto.html",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-juego.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/functions.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/footer-home.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/header.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/_mixins.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/_grid.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/style.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/_base.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/home.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/ie.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/css/ie.css",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/bones.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/phpMyAdmin/setup/scripts.js",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-includes/functions.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-2/home.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-ajax.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-2/csc-style.css",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single-profesores.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/footer.php",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/amba_2013/index.php",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/contacto/index.php",
+		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/style.css",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single - Copy.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive - copia.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-maestros.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-valores.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single-calendarios.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/sliders-markup.html",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/category-videos.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/_768up.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/_960min.less",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-padres.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/images/bg_azul_75.png",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-en-tu-escuela.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-participa-escuela.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-participa.php",
+		"/C/Users/Chematrix/Downloads/jquery-state-select-master/jquery-state-select-master/example.html",
+		"/L/Server/root/FINAL/wp-content/themes/clicker360/home.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/plugins/new-royalslider/lib/royalslider/templates-css/rs-gallery-with-text-thumbs.css",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive-custom_type.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/plugins-faltantes",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Valores/OldSite/valores/page-registro.php",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Valores/OldSite/valores/page-registro_old.php",
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/style.css",
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/miseleccion/wp-content/themes/miseleccionwp/functions.php"
+	],
+	"find":
+	{
+		"height": 45.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"",
+			"/home/alonso/ebf2013/library",
+			"",
+			"/home/alonso/ebf2013/static/admin",
+			"",
+			"C:\\Users\\Chematrix\\Documents\\My Web Sites\\WPGenerico\\wp-content\\themes\\maestro\\",
+			"C:\\Users\\Chematrix\\Documents\\My Web Sites\\WPGenerico\\wp-content\\themes\\maestro\\templates",
+			"",
+			"C:\\Users\\Chematrix\\Documents\\My Web Sites\\Valores\\wp-content\\themes\\valores\\library\\less",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"	  ",
+			"profileBlock",
+			"profileTemplate",
+			"templateText",
+			"demoTemplate",
+			"parsedTemplate",
+			"exampleValues",
+			"header",
+			"library/css/",
+			"\"",
+			"../library/css/",
+			"?v=3.2.1",
+			"'",
+			"../font/",
+			"<div class=\"footer\">\n		<p>Todos los derechos reservados © El Buen Fin 2013 Av. Chapultepec #18, Col. Doctores, Deleg. Cuauhtémoc, México D.F. 06724</p>\n	</div>",
+			"</div>\n	</div> <!-- /container -->",
+			"<div id=\"body\">",
+			"<div id=\"sidebar\" class=\"nav-collapse collapse\">\n			<ul>\n				<li>\n					<a href=\"index.html\">\n					<i class=\"icon-home\"></i> \n					<span class=\"title\">Inicio</span>\n					</a>\n				</li>\n				<li class=\"has-sub active\">\n					<a href=\"javascript:;\">\n					<i class=\"icon-building\"></i> \n					<span class=\"title\">Empresas</span>\n					<span class=\"arrow\"></span>\n					</a>\n					<ul class=\"sub\" >\n						<li><a href=\"\">submenu</a></li>\n						<li><a href=\"\">submenu</a></li>\n						<li><a href=\"\">submenu</a></li>\n						<li><a href=\"\">submenu</a></li>\n						<li><a href=\"\">submenu</a></li>\n					</ul>\n				</li>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-sitemap\"></i> \n					<span class=\"title\">Sucursales</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-tags\"></i> \n					<span class=\"title\">Ofertas</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-globe\"></i> \n					<span class=\"title\">Micrositios</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-info\"></i> \n					<span class=\"title\">Avisos</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-download-alt\"></i> \n					<span class=\"title\">Descargas</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-shopping-cart\"></i> \n					<span class=\"title\">Buen fin en linea</span>\n					</a>\n				</li>\n			</ul>\n		</div>",
+			"footer",
+			".footer",
+			"library/images/",
+			"library/js/",
+			"library/css/",
+			"well well-small",
+			"empresa",
+			"box-sha",
+			"90",
+			"has-submenu",
+			"wp_nav_menu",
+			"top-menu",
+			"brand",
+			"h2",
+			"radius",
+			"@shadow",
+			"shadow",
+			"@shadow",
+			".box-shadow",
+			"shadow",
+			";\n",
+			"navbarBackground",
+			"navbarBackgroundHighlight",
+			"/js/",
+			"/ico/",
+			"../assets/",
+			"add_post_type_support",
+			"?>",
+			"<?php",
+			"localhost",
+			".home",
+			"@ch",
+			"@che",
+			"@ch",
+			".home",
+			"; ",
+			"$",
+			"src=\"demogrid/",
+			"images/",
+			";\n",
+			"simple_overlay",
+			"over1",
+			".simple_overlay",
+			"simple_overlay",
+			"BOLETIN INTRO",
+			"table",
+			"jQuery",
+			"$",
+			"hover",
+			"fotValCalDes",
+			"fotValCalDes ",
+			"post_type",
+			"vid",
+			"article",
+			"new",
+			"article .article-footer a:hover",
+			"jQuery",
+			"article",
+			"excerpt-read-more",
+			".head-image",
+			".head-image img",
+			"head-image img",
+			"$",
+			"type",
+			"$name",
+			"enviar",
+			"$para = 'noricumbo@gmail.com';",
+			"$para2 = 'mdominguezf@televisa.com.mx';",
+			"$",
+			"$myQuery",
+			"valores-rojo",
+			"#container",
+			"head_televisa",
+			"rsContenidoBox",
+			".rsContenidoBox",
+			"%;\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"	",
+			"empresasBlock",
+			"empresaTemplate",
+			"underTemplateID",
+			"underTemplate",
+			"imprimeTemplate",
+			"empresasArray",
+			"../library/css/",
+			"'",
+			"library/css/",
+			"",
+			"\"",
+			"",
+			"<div class=\"footer\">\n		<p>\n	    El Buen Fin © Todos los derechos reservados, México 2011\n	    Toda la información aquí publicada relativa a las características\n	    de los productos y servicios que participan en El Buen Fin © es \n	    responsabilidad exclusiva de las tiendas que ofrecen los servicios \n	    y/o la venta de los productos. \n	    <br />\n	    Del mismo modo, los precios, los porcentajes de descuento, \n	    las promociones y todas las ofertas financieras y/o económicas \n	    aquí publicadas son responsabilidad de las tiendas que lo ofrecen.\n	    </p>\n	</div>",
+			"<!-- </div> -->\n	</div> <!-- /container -->",
+			"<!-- <div id=\"body\"> -->",
+			"<!-- <div id=\"sidebar\" class=\"nav-collapse collapse\">\n			<ul>\n				<li>\n					<a href=\"index.html\">\n					<i class=\"icon-home\"></i> \n					<span class=\"title\">Inicio</span>\n					</a>\n				</li>\n				<li class=\"has-sub active\">\n					<a href=\"javascript:;\">\n					<i class=\"icon-building\"></i> \n					<span class=\"title\">empresa patito de hule morados</span>\n					<span class=\"arrow\"></span>\n					</a>\n					<ul class=\"sub\" >\n						<li><a href=\"\">submenu</a></li>\n						<li><a href=\"\">submenu</a></li>\n						<li><a href=\"\">submenu</a></li>\n						<li><a href=\"\">submenu</a></li>\n						<li><a href=\"\">submenu</a></li>\n					</ul>\n				</li>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-sitemap\"></i> \n					<span class=\"title\">Sucursales</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-tags\"></i> \n					<span class=\"title\">Ofertas</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-globe\"></i> \n					<span class=\"title\">Micrositios</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-info\"></i> \n					<span class=\"title\">Avisos</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-download-alt\"></i> \n					<span class=\"title\">Descargas</span>\n					</a>\n				</li>\n				<li class=\"\">\n					<a href=\"\">\n					<i class=\"icon-shopping-cart\"></i> \n					<span class=\"title\">Buen fin en linea</span>\n					</a>\n				</li>\n			</ul>\n		</div> -->",
+			"../library/images/",
+			"../library/js/",
+			"../library/css/",
+			"empresa patito de hule morado",
+			"empresa patito de hule",
+			"empresa patito",
+			"h3",
+			"/js/libs/",
+			"/js/libs",
+			"/images/ico/",
+			"library/",
+			"",
+			"jQuery",
+			"src=\"<?php echo get_template_directory_uri(); ?>/library/images/demogrid/",
+			"demogrid/",
+			"$",
+			"jQuery",
+			"$para = 'avila@clicker360.com';",
+			"//$para2 = 'mdominguezf@televisa.com.mx';",
+			"jQuery",
+			"valores-verde"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "admin/empresas.html",
+					"settings":
+					{
+						"buffer_size": 9680,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4855,
+								4855
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1962.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/alonso/Descargas/scripts.js",
+					"settings":
+					{
+						"buffer_size": 6094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4798,
+								4798
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2670.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/alonso/Descargas/home.php",
+					"settings":
+					{
+						"buffer_size": 7173,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2627,
+								2627
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 15.0,
+						"translation.y": 813.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/alonso/ebf2013/library/js/scripts.js",
+					"settings":
+					{
+						"buffer_size": 2114,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								922,
+								922
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 195.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"empresa",
+				"static/admin/empresas.html"
+			],
+			[
+				"fon",
+				"library/css/font-awesome/css/font-awesome.css"
+			],
+			[
+				"empres",
+				"static/admin/empresas.html"
+			],
+			[
+				"style.les",
+				"library/less/style.less"
+			],
+			[
+				"sty",
+				"library/css/style.css"
+			],
+			[
+				"mixi",
+				"library/less/mixins.less"
+			],
+			[
+				"gri",
+				"library/less/_grid.less"
+			],
+			[
+				"_7",
+				"library/less/_768up.less"
+			],
+			[
+				"_4",
+				"library/less/_481up.less"
+			],
+			[
+				"",
+				"404.php"
+			],
+			[
+				"mixin",
+				"library/less/_mixins.less"
+			],
+			[
+				"bones",
+				"library/bones.php"
+			],
+			[
+				"side",
+				"sidebar.php"
+			],
+			[
+				"_base",
+				"library/less/_base.less"
+			],
+			[
+				"page-",
+				"valores/page-maestros.php"
+			],
+			[
+				"scr",
+				"Valores/wp-content/themes/valores/library/js/scripts.js"
+			],
+			[
+				"home",
+				"valores/home.php"
+			],
+			[
+				"fun",
+				"Valores/wp-content/themes/valores/functions.php"
+			],
+			[
+				"func",
+				"Valores/wp-includes/functions.php"
+			],
+			[
+				"footer",
+				"valores/footer-home.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 111.0,
+	"status_bar_visible": true
+}

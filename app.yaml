@@ -12,6 +12,11 @@ handlers:
   upload: library/(.*\.*))
   expiration: "1h"
 
+- url: /library/(.*\.*)
+  static_files: library/\1
+  upload: library/(.*\.*))
+  expiration: "1h"
+
 - url: /library/(.*\.(css|scss|less|js|gif|jpg|png))
   static_files: library/\1
   upload: library/(.*\.(css|scss|less|js|gif|jpg|png))
