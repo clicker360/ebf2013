@@ -4,18 +4,20 @@ import (
 	"appengine"
 	"appengine/datastore"
 	"appengine/mail"
-	"strings"
-	"model"
-	"time"
 	"fmt"
+	"model"
+	"strings"
+	"time"
 )
 
 const MailServer = "gmail"
+
 func init() {
+
 }
 
 func putSearchData(c appengine.Context, value string, key *datastore.Key, idoft string, idcat int, enlinea bool) {
-	r := strings.NewReplacer("."," ",","," ",";"," ",":"," ","!"," ","~"," ","¿"," ","?"," ","#"," ","_"," ","-"," ","+"," ","'"," ","\""," ","*"," ","$"," ","("," ",")"," ","="," ","%"," ","&"," ","<"," ",">"," ","|"," ","@"," ","·"," ","["," ","]"," ","{"," ","}"," ","¡"," ","!"," ", "\n", " ", "\r", " ", "\t", " ")
+	r := strings.NewReplacer(".", " ", ",", " ", ";", " ", ":", " ", "!", " ", "~", " ", "¿", " ", "?", " ", "#", " ", "_", " ", "-", " ", "+", " ", "'", " ", "\"", " ", "*", " ", "$", " ", "(", " ", ")", " ", "=", " ", "%", " ", "&", " ", "<", " ", ">", " ", "|", " ", "@", " ", "·", " ", "[", " ", "]", " ", "{", " ", "}", " ", "¡", " ", "!", " ", "\n", " ", "\r", " ", "\t", " ")
 	blacklist := []string{
 		"imbec",
 		"imbéc",
@@ -110,19 +112,19 @@ func putSearchData(c appengine.Context, value string, key *datastore.Key, idoft 
 			i := 0
 			for _, vv := range blacklist {
 				if strings.HasPrefix(v, vv) {
-					i = i+1
+					i = i + 1
 				}
 			}
 			if i > 0 {
 				c.Errorf("BLACKLIST PutSearchData, IdOft:%s, word:%s", idoft, value)
-				if (MailServer == "gmail") {
+				if MailServer == "gmail" {
 					msg := &mail.Message{
-						Sender:  "contacto@elbuenfin.org",
-						To:      []string{"ahuezo@clicker360.com", "daniela@iniciativamexico.com", "adan@clicker360.com"},
-						Subject: "Alerta de actividad anormal de blacklist / El Buen Fin",
+						Sender:   "contacto@elbuenfin.org",
+						To:       []string{"ahuezo@clicker360.com", "daniela@iniciativamexico.com", "adan@clicker360.com"},
+						Subject:  "Alerta de actividad anormal de blacklist / El Buen Fin",
 						HTMLBody: fmt.Sprintf("Se evitó integrar a búsquedas la siguiente Oferta ID: %v, \n Con el siguiente Texto: %v \n Favor de revisar el resto de la actividad relacionada a la oferta.", idoft, value),
 					}
-					//To:      []string{"ahuezo@clicker360.com", "thomas@clicker360.com", "adan@clicker360.com"},
+					//To:      []string{"ahuezo@clicker360.com" , "rodolfo@clicker360.com"},
 					if err := mail.Send(c, msg); err != nil {
 						/* Problemas para enviar el correo NOK */
 						c.Errorf("BLACKLIST MAIL NOT SEND, IdOft:%s, word:%s", idoft, value)
@@ -135,20 +137,21 @@ func putSearchData(c appengine.Context, value string, key *datastore.Key, idoft 
 				//return
 			}
 		}
+
 		/*
 		 * All clear
 		 */
 		for _, v := range strings.Split(r.Replace(value), " ") {
-			if(len(v)>3) {
+			if len(v) > 3 {
 				w := strings.ToLower(v)
-				if(model.ValidSearchData.MatchString(w)) {
-					sd := &model.SearchData {
-						Sid: key.Encode(),
-						Kind: "Oferta",
-						Field: "Descripcion",
-						Value: w,
-						IdCat: idcat,
-						Enlinea: enlinea,
+				if model.ValidSearchData.MatchString(w) {
+					sd := &model.SearchData{
+						Sid:       key.Encode(),
+						Kind:      "Oferta",
+						Field:     "Descripcion",
+						Value:     w,
+						IdCat:     idcat,
+						Enlinea:   enlinea,
 						FechaHora: time.Now(),
 					}
 					// Pa llave es el idoft + palabra clave
@@ -163,4 +166,3 @@ func putSearchData(c appengine.Context, value string, key *datastore.Key, idoft 
 		}
 	}
 }
-

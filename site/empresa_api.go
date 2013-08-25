@@ -233,7 +233,6 @@ func fill(r *http.Request) model.Empresa {
 		ExpComer:	expcomer,
 		Desc:		strings.TrimSpace(r.FormValue("Desc")),
 		FechaHora:	time.Now().Add(time.Duration(model.GMTADJ)*time.Second),
-		Status:		true,
 	}
 	return e
 }

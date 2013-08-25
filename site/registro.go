@@ -64,7 +64,7 @@ func Registrar(w http.ResponseWriter, r *http.Request) {
 		if(u.Status == false) {
 
 			// Se agrega la cuenta sin activar para realizar el proceso de código de confirmación
-			if u, err = model.PutCta(c, u); err != nil {
+			if err = model.PutCta(c, u); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
 			}
@@ -173,7 +173,7 @@ func pendienteVerifica(w http.ResponseWriter, r *http.Request) {
 		u.Status = true
 		u.CodigoCfm = "Verificar"
 		// Se agrega la cuenta sin activar para realizar el proceso de código de confirmación
-		if u, err = model.PutCta(c, u); err != nil {
+		if err = model.PutCta(c, u); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}

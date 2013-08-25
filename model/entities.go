@@ -224,12 +224,12 @@ func (r *Cta) DelCta(c appengine.Context) error {
 	return nil
 }
 
-func PutCta(c appengine.Context, u *Cta) (*Cta, error) {
+func PutCta(c appengine.Context, u *Cta) error {
 	_, err := datastore.Put(c, u.Key(c), u)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return u, err
+	return nil
 }
 
 func (r *Cta) GetEmpresa(c appengine.Context, id string) (*Empresa, error) {

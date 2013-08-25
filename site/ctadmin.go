@@ -116,7 +116,7 @@ func CtaMod(w http.ResponseWriter, r *http.Request) {
 				return 
 			} else {
 				ctaFill(r, u)
-				if _, err := model.PutCta(c, u); err != nil {
+				if err := model.PutCta(c, u); err != nil {
 					http.Error(w, err.Error(), http.StatusInternalServerError)
 					return
 				}
@@ -154,7 +154,7 @@ func CtaDel(w http.ResponseWriter, r *http.Request) {
 					}
 					u.CodigoCfm = "Desactivado"
 					u.Status = false
-					_, err = model.PutCta(c, u)
+					err = model.PutCta(c, u)
 					if err != nil {
 						http.Error(w, err.Error(), http.StatusInternalServerError)
 						return
