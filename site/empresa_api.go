@@ -35,6 +35,8 @@ type WsEmpresa struct {
 	Status		    string `json:"status"`
 	Ackn		    string `json:"ackn,omitempty"`
 	Errors		    map[string]bool `json:"errors,omitempty"`
+	Ofertas	    *[]model.Oferta `json:"ofertas,omitempty"`
+    Sucursales  *[]model.Sucursal `json:"sucursales,omitempty"`
 }
 
 func init() {

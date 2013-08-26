@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var idoft = "gtpckqdxqfmwipnnkbua";
+    var idoft = "vhxigcmlzkbnlbxzfayk";
     var idblob;
     var idemp;
     var uploadurl;
@@ -12,11 +12,12 @@ $(document).ready(function() {
         if(resp.status=="ok") {
             idemp = resp.idemp;
             idblob = resp.idblob;
+            var d = new Date(Date.parse(resp.fechapub));
             uploadurl = resp.uploadurl;
             $("#urlimg").attr('href', uploadurl);
             $("#oferta").val(resp.oferta);
             $("#descripcion").val(resp.descripcion);
-            $("#date1").val(resp.fechapub);
+            $("#date1").val(d.getUTCDate()+ " Nov");
             $("#url").val(resp.url);
             $(resp.categorias).each(function() {
                 $("#categoria").append($("<option>").attr('value',this.idcat).attr("selected",this.selected).text(this.categoria));
@@ -89,6 +90,8 @@ $(document).ready(function() {
 		/* 
 		 * Manejo de sucursales
 		 */
+        $("#IdOft").attr("value", idoft);
+        $("#IdEmp").attr("value", idemp);
 		var sucs = $("#listasuc").find("input");
 		var pcves = $("#unpickpcve").find("a");
 		var chain = ""; var sep = "";
@@ -140,6 +143,7 @@ $(document).ready(function() {
 		}
 		return true;
 	});
+
 	$("#enviar").validationEngine({promptPosition : "topRight", scroll: false});
 	$("#enviardata").validationEngine({promptPosition : "topRight", scroll: false});
 	var $pic = $("#pic");

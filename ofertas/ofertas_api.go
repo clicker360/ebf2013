@@ -16,6 +16,17 @@ import (
 	"time"
 )
 
+type WsEmpresa struct {
+	IdEmp			string `json:"idemp"`
+	Nombre			string `json:"nombre"`
+	Url				string `json:"url,omitempty"`
+	Status		    string `json:"status"`
+	Ackn		    string `json:"ackn,omitempty"`
+	Errors		    map[string]bool `json:"errors,omitempty"`
+	Ofertas	    *[]model.Oferta `json:"ofertas,omitempty"`
+}
+
+
 type WsOferta struct {
 	IdOft       string `json:"idoft,omitempty"`
 	IdEmp       string `json:"idemp,omitempty"`
@@ -46,7 +57,10 @@ type WsOferta struct {
 	Errors		map[string]bool `json:"errors,omitempty"`
 }
 
+var Loc *time.Location
+
 func init() {
+    Loc, _ = time.LoadLocation("America/Mexico_City")
 	http.HandleFunc("/r/wso/put", PutOferta)
 	http.HandleFunc("/r/wso/post", PostOferta)
 	http.HandleFunc("/r/wso/get", GetOferta)
@@ -54,12 +68,13 @@ func init() {
 	http.HandleFunc("/r/wso/del", DelOferta)
 }
 
+
 /*
 	Regresa todas las ofertas por empresa
 */
 func GetOfertas(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-    var out WsOferta
+    var out WsEmpresa
     defer model.JsonDispatch(w, &out)
 	if _, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
@@ -71,7 +86,8 @@ func GetOfertas(w http.ResponseWriter, r *http.Request) {
     }
 	if empresa := model.GetEmpresa(c, r.FormValue("IdEmp")); empresa != nil {
         out.IdEmp = empresa.IdEmp
-        out.Empresa = empresa.Nombre
+        out.Nombre = empresa.Nombre
+        out.Url = empresa.Url
         out.Status = "ok"
         out.Ofertas = model.ListOf(c, empresa.IdEmp)
     }
@@ -235,7 +251,7 @@ func PostOferta(w http.ResponseWriter, r *http.Request) {
                     ofsuc.Descuento = ofertamod.Descuento
                     ofsuc.Url = ofertamod.Url
                     ofsuc.StatusPub = ofertamod.StatusPub
-                    ofsuc.FechaHora = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
+                    ofsuc.FechaHora = time.Now().In(Loc)
 
                     // Se añade el estado de la sucursal al mapa de estados
                     edomap[suc.DirEnt] = ofertamod.IdOft
@@ -324,7 +340,7 @@ func setUploadUrl(r *http.Request) (string, error) {
 }
 
 func setWsOferta(out *WsOferta, oferta model.Oferta) {
-        out.IdEmp = oferta.IdOft
+        out.IdOft = oferta.IdOft
         out.IdEmp = oferta.IdEmp
         out.IdCat = oferta.IdCat
         out.Empresa = oferta.Empresa
@@ -339,17 +355,16 @@ func setWsOferta(out *WsOferta, oferta model.Oferta) {
 	    out.Meses = oferta.Meses
 	    out.FechaHoraPub = oferta.FechaHoraPub
 	    out.StatusPub = oferta.StatusPub
-	    out.FechaHora = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
+	    out.FechaHora = time.Now().In(Loc)
 }
 
 func fill(r *http.Request) model.Oferta {
-    loc, _ := time.LoadLocation("America/Mexico_City")
     var fh time.Time
 	if r.FormValue("FechaHoraPub") != "" {
-		fh, _ = time.ParseInLocation("_2 Jan 15:04:05", strings.TrimSpace(r.FormValue("FechaHoraPub"))+" 00:00:00", loc)
-		fh = fh.AddDate(2013,0,0)
+		fh, _ = time.ParseInLocation("_2 Jan 15:04:05", strings.TrimSpace(r.FormValue("FechaHoraPub"))+" 00:00:00",Loc)
+		fh = fh.AddDate(2013,0,0).In(Loc)
 	} else {
-		fh = time.Now().Add(time.Duration(model.GMTADJ)*time.Second) // 5 horas menos
+		fh = time.Now().In(Loc)
 	}
 	el, _ := strconv.ParseBool(strings.TrimSpace(r.FormValue("Enlinea")))
 	st, _ := strconv.ParseBool(strings.TrimSpace(r.FormValue("StatusPub")))
@@ -370,7 +385,7 @@ func fill(r *http.Request) model.Oferta {
 		Meses:		    strings.TrimSpace(r.FormValue("Meses")),
 		FechaHoraPub:	fh,
 		StatusPub:		st,
-		FechaHora:	    time.Now().Add(time.Duration(model.GMTADJ)*time.Second),
+		FechaHora:	    time.Now().In(Loc),
 		//BlobKey:		strings.TrimSpace(r.FormValue("IdCat")),
     }
     return o
