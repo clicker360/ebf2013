@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>pruebas api</title>
+    <script type="text/javascript" src="library/js/libs/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $.post("/r/wsr/put", { 
+                Nombre: "Usuario",
+                Apellidos: "De Prueba",
+                Puesto: "De Confianza",
+                Email: "a.huezo@gmail.com",
+                EmailAlt: "a.huezo@clicker360.com",
+                Pass: "yyy",
+                Pass2: "yyy",
+                Tel: "5555555555",
+                Cel: "0445555555",
+                TermCond: "1",
+            },
+            function(data) {
+                console.log(data.folio);
+                console.log(data.nombre);
+                console.log(data.apellidos);
+                console.log(data.puesto);
+                console.log(data.email);
+                console.log(data.emailalt);
+                console.log(data.pass);
+                console.log(data.pass2);
+                console.log(data.tel);
+                console.log(data.cel);
+                console.log(data.fechahora);
+                console.log(data.status);
+                console.log(data.ackn);
+                console.log(data.errors);
+            }, "json");
+            console.log("TERMINA PUT");
+
+
+            console.log("COMIENZA POST");
+            $.post("/r/wsr/post", { 
+                Nombre: "Juán",
+                Apellidos: "Pérez Hernández",
+                Puesto: "Inventario",
+                Email: "a.huezo@gmail.com",
+                EmailAlt: "juan@example.com",
+                Pass: "xxx",
+                Pass2: "xxx",
+                Tel: "5566666666",
+                Cel: "0446666666",
+                TermCond: "1",
+            },
+            function(data) {
+                console.log(data.folio);
+                console.log(data.nombre);
+                console.log(data.apellidos);
+                console.log(data.puesto);
+                console.log(data.email);
+                console.log(data.emailalt);
+                console.log(data.pass);
+                console.log(data.pass2);
+                console.log(data.tel);
+                console.log(data.cel);
+                console.log(data.fechahora);
+                console.log(data.status);
+                console.log(data.ackn);
+                console.log(data.errors);
+            }, "json");
+
+    </script>
+    
+    <body>
+        <div id="result">...</div>
+    </body>
+</html>
+ 

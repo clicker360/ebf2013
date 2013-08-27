@@ -113,25 +113,28 @@
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<label for="rfc" class="control-label">R.F.C. *</label>
-												<div class="controls"><input name="rfc" type="text"></div>
+												<div class="controls"><input name="IdEmp" type="hidden"></div>
 											</div>
 											<div class="control-group">
-												<label for="nombre" class="control-label">Nombre comercial *</label>
+												<label for="RFC" class="control-label">R.F.C. *</label>
+												<div class="controls"><input name="RFC" type="text"></div>
+											</div>
+											<div class="control-group">
+												<label for="Nombre" class="control-label">Nombre comercial *</label>
 												<div class="controls">
-													<input type="text" name="nombre">
+													<input type="text" name="Nombre">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="razonsocial" class="control-label">Razón Social *</label>
+												<label for="RazonSoc" class="control-label">Razón Social *</label>
 												<div class="controls">
-													<input type="text" name="razonsocial">
+													<input type="text" name="RazonSoc">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="entidad" class="control-label">Entidad Federativa *</label>
+												<label for="DirEnt" class="control-label">Entidad Federativa *</label>
 												<div class="controls">
-													<select name="entidad">
+													<select name="DirEnt">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -141,9 +144,9 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="municipio" class="control-label">Delegación o municipio *</label>
+												<label for="DirMun" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
-													<select name="municipio">
+													<select name="DirMun">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -153,35 +156,35 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="calle" class="control-label">Calle y numero</label>
+												<label for="DirCalle" class="control-label">Calle y numero</label>
 												<div class="controls">
-													<input type="text" name="calle">
+													<input type="text" name="DirCalle">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="colonia" class="control-label">Colonia y/o localidad * </label>
+												<label for="DirCol" class="control-label">Colonia y/o localidad * </label>
 												<div class="controls">
-													<input type="text" name="colonia">
+													<input type="text" name="DirCol">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="cp" class="control-label">Código Postal * </label>
+												<label for="DirCp" class="control-label">Código Postal * </label>
 												<div class="controls">
-													<input type="text" name="cp">
+													<input type="text" name="DirCp">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="numsuc" class="control-label">Número de sucursales</label>
+												<label for="NumSuc" class="control-label">Número de sucursales</label>
 												<div class="controls">
-													<input type="text" name="numsuc">
+													<input type="text" name="NumSuc">
 												</div>
 											</div>											
 										</div>
 										<div class="span6">
 											<div class="control-group">
-												<label for="organismo" class="control-label">Organismo empresarial</label>
+												<label for="OrgEmp" class="control-label">Organismo empresarial</label>
 												<div class="controls">
-													<select name="organismo">
+													<select name="OrgEmp">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -192,38 +195,38 @@
 											</div>
 
 											<div class="control-group">
-												<label for="otro_organismo" class="control-label">Otro (Especificar)</label>
+												<label for="OrgEmpOtro" class="control-label">Otro (Especificar)</label>
 												<div class="controls">
-													<input type="text" name="otro_organismo">
+													<input type="text" name="OrgEmpOtro">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="registro_empresarial" class="control-label">Número de registro o afiliación a tu organismo empresarial</label>
+												<label for="OrgEmpReg" class="control-label">Número de registro o afiliación a tu organismo empresarial</label>
 												<div class="controls">
-													<input type="text" name="registro_empresarial">
+													<input type="text" name="OrgEmpReg">
 												</div>
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox" name="partlinea"> ¿Desea participar en El Buen Fin en línea?
+													<input type="checkbox" name="PartLinea"> ¿Desea participar en El Buen Fin en línea?
 												</label>
 											</div>
 
 											<div class="control-group">
-												<label for="url" class="control-label"> Sitio de internet (con prefijo http://)</label>
+												<label for="Url" class="control-label"> Sitio de internet (con prefijo http://)</label>
 												<div class="controls">
-													<input type="text" name="url">
+													<input type="text" name="Url">
 												</div>
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox" name="expcomer"> ¿Tu empresa ya tiene experiencia en el comercio electrónico?
+													<input type="checkbox" name="ExpComer"> ¿Tu empresa ya tiene experiencia en el comercio electrónico?
 												</label>
 											</div>
 											<div class="control-group">
-												<label for="descripcion" class="control-label"> ¿Qué retos o dificultades identificas para implementar o mejorar el comercio electrónico de tu empresa?</label>
+												<label for="Desc" class="control-label"> ¿Qué retos o dificultades identificas para implementar o mejorar el comercio electrónico de tu empresa?</label>
 												<div class="controls">
-													<textarea name="descripcion" id="" cols="30" rows="">
+													<textarea name="Desc" id="" cols="30" rows="">
 													</textarea>
 												</div>
 											</div>
