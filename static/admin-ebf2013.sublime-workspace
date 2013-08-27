@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"id",
+				"IdSuc"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"funcion",
+				"funcion1"
+			],
+			[
+				"init",
+				"initSucursales"
+			],
+			[
+				"funcio",
+				"funcion2"
+			],
+			[
+				"fun",
+				"funcionA"
+			],
+			[
+				"fu",
+				"funcion1"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
 				"s",
 				"script	Tag"
 			],
@@ -100,11 +132,59 @@
 	"buffers":
 	[
 		{
+			"file": "test_empresa.html",
+			"settings":
+			{
+				"buffer_size": 2107,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "admin/empresas.html",
 			"settings":
 			{
-				"buffer_size": 9680,
+				"buffer_size": 9493,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "admin/sucursal-detalle.html",
+			"settings":
+			{
+				"buffer_size": 9110,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "admin/empresa-micrositio.html",
+			"settings":
+			{
+				"buffer_size": 13984,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/alonso/ebf2013/library/js/scripts.js",
+			"settings":
+			{
+				"buffer_size": 3184,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/alonso/Descargas/formparams-master/js/demo.js",
+			"settings":
+			{
+				"buffer_size": 1118,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/alonso/ebf2013/library/js/s.old",
+			"settings":
+			{
+				"buffer_size": 3456,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -116,35 +196,28 @@
 			}
 		},
 		{
-			"file": "/home/alonso/Descargas/home.php",
+			"file": "admin/jsons.txt",
 			"settings":
 			{
-				"buffer_size": 7173,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/home/alonso/ebf2013/library/js/scripts.js",
-			"settings":
-			{
-				"buffer_size": 2114,
-				"line_ending": "Unix"
+				"buffer_size": 1812,
+				"line_ending": "Unix",
+				"name": "[{"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 52.0,
+		"height": 172.0,
 		"selected_items":
 		[
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
 				"htm",
 				"Set Syntax: HTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
 			],
 			[
 				"html",
@@ -196,16 +269,21 @@
 	},
 	"file_history":
 	[
+		"/home/alonso/Descargas/formparams-master/index.html",
+		"/home/alonso/ebf2013/layout/sucursal-detalle.html",
+		"/home/alonso/ebf2013/static/admin/empresa-micrositio.html",
+		"/home/alonso/ebf2013/static/admin/sucursales.html",
+		"/home/alonso/ebf2013/static/admin/empresas.html",
+		"/home/alonso/Descargas/home.php",
+		"/home/alonso/Descargas/scripts.js",
+		"/home/alonso/Descargas/contenido-1.csv",
 		"/home/alonso/ebf2013/static/index.html",
 		"/home/alonso/ebf2013/static/emp_api.html",
-		"/home/alonso/ebf2013/static/admin/empresa-micrositio.html",
-		"/home/alonso/ebf2013/static/admin/empresas.html",
 		"/home/alonso/ebf2013/static/admin/index.html",
 		"/home/alonso/ebf2013/static/admin/oferta-detalle.html",
 		"/home/alonso/ebf2013/static/admin/ofertas(2).html",
 		"/home/alonso/ebf2013/static/admin/ofertas.html",
 		"/home/alonso/ebf2013/static/admin/sucursal-detalle.html",
-		"/home/alonso/ebf2013/static/admin/sucursales.html",
 		"/home/alonso/ebf2013/static/admin/usuario.html",
 		"/home/alonso/ebf2013/library/less/style.less",
 		"/home/alonso/ebf2013/layout/admHeaderTpl.html",
@@ -318,12 +396,7 @@
 		"/L/Server/root/FINAL/wp-content/themes/clicker360/home.php",
 		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single.php",
 		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/plugins/new-royalslider/lib/royalslider/templates-css/rs-gallery-with-text-thumbs.css",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive-custom_type.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/plugins-faltantes",
-		"/C/Users/Chematrix/Documents/Avila/Proyectos/Valores/OldSite/valores/page-registro.php",
-		"/C/Users/Chematrix/Documents/Avila/Proyectos/Valores/OldSite/valores/page-registro_old.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/style.css",
-		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/miseleccion/wp-content/themes/miseleccionwp/functions.php"
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive-custom_type.php"
 	],
 	"find":
 	{
@@ -351,6 +424,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\",\"",
+			"  ",
+			"funcion1",
+			"\",\"",
+			"empresas",
+			"/wp-content/",
+			"/wp-content/\n\n",
+			"\n\n\n",
+			"\n\n",
 			"	  ",
 			"profileBlock",
 			"profileTemplate",
@@ -452,6 +534,12 @@
 		"regex": false,
 		"replace_history":
 		[
+			",\n\"",
+			"\",\n\"",
+			"sucursales",
+			"http://alcaldesdemexico.mx/portal3/wp-content/",
+			"http://alcaldesdemexico.mx/portal3/wp-content/\n",
+			"\n",
 			"	",
 			"empresasBlock",
 			"empresaTemplate",
@@ -491,7 +579,7 @@
 			"jQuery",
 			"valores-verde"
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -500,23 +588,105 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "admin/empresas.html",
+					"file": "test_empresa.html",
 					"settings":
 					{
-						"buffer_size": 9680,
+						"buffer_size": 2107,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4855,
-								4855
+								914,
+								914
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 65.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "admin/empresas.html",
+					"settings":
+					{
+						"buffer_size": 9493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9207,
+								9207
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5522.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "admin/sucursal-detalle.html",
+					"settings":
+					{
+						"buffer_size": 9110,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9038,
+								9038
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4345.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "admin/empresa-micrositio.html",
+					"settings":
+					{
+						"buffer_size": 13984,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12226,
+								12226
 							]
 						],
 						"settings":
@@ -526,13 +696,102 @@
 							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1962.0,
+						"translation.y": 1884.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "/home/alonso/ebf2013/library/js/scripts.js",
+					"settings":
+					{
+						"buffer_size": 3184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								658,
+								657
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 56.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 5,
+					"file": "/home/alonso/Descargas/formparams-master/js/demo.js",
+					"settings":
+					{
+						"buffer_size": 1118,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								82,
+								82
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/alonso/ebf2013/library/js/s.old",
+					"settings":
+					{
+						"buffer_size": 3456,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								265,
+								265
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 2.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "/home/alonso/Descargas/scripts.js",
 					"settings":
 					{
@@ -543,8 +802,8 @@
 						"selection":
 						[
 							[
-								4798,
-								4798
+								0,
+								0
 							]
 						],
 						"settings":
@@ -553,61 +812,34 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2670.0,
+						"translation.y": 2227.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/home/alonso/Descargas/home.php",
+					"buffer": 8,
+					"file": "admin/jsons.txt",
 					"settings":
 					{
-						"buffer_size": 7173,
+						"buffer_size": 1812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2627,
-								2627
+								1253,
+								1253
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 15.0,
-						"translation.y": 813.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/alonso/ebf2013/library/js/scripts.js",
-					"settings":
-					{
-						"buffer_size": 2114,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								922,
-								922
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"auto_name": "[{",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 195.0,
+						"translation.y": 485.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -632,11 +864,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.547838583178,
 			1.0
 		],
 		"rows":
@@ -656,6 +895,18 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"empresas",
+				"static/admin/empresa-micrositio.html"
+			],
+			[
+				"",
+				"static/admin/empresas.html"
+			],
+			[
+				"sucurs",
+				"layout/sucursal-detalle.html"
+			],
 			[
 				"empresa",
 				"static/admin/empresas.html"
@@ -691,10 +942,6 @@
 			[
 				"_4",
 				"library/less/_481up.less"
-			],
-			[
-				"",
-				"404.php"
 			],
 			[
 				"mixin",
@@ -750,7 +997,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
-	"side_bar_width": 111.0,
+	"side_bar_visible": true,
+	"side_bar_width": 284.0,
 	"status_bar_visible": true
 }

@@ -103,68 +103,6 @@
 	</div>
 
 	<div id="container" class="row-fluid">
-		<!-- <div id="sidebar" class="nav-collapse collapse">
-			<ul>
-				<li>
-					<a href="index.html">
-					<i class="icon-home"></i> 
-					<span class="title">Inicio</span>
-					</a>
-				</li>
-				<li class="has-sub active">
-					<a href="javascript:;">
-					<i class="icon-building"></i> 
-					<span class="title">empresa patito de hule morados</span>
-					<span class="arrow"></span>
-					</a>
-					<ul class="sub" >
-						<li><a href="">submenu</a></li>
-						<li><a href="">submenu</a></li>
-						<li><a href="">submenu</a></li>
-						<li><a href="">submenu</a></li>
-						<li><a href="">submenu</a></li>
-					</ul>
-				</li>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-sitemap"></i> 
-					<span class="title">Sucursales</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-tags"></i> 
-					<span class="title">Ofertas</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-globe"></i> 
-					<span class="title">Micrositios</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-info"></i> 
-					<span class="title">Avisos</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-download-alt"></i> 
-					<span class="title">Descargas</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-shopping-cart"></i> 
-					<span class="title">Buen fin en linea</span>
-					</a>
-				</li>
-			</ul>
-		</div> -->
-		<!-- <div id="body"> -->
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
@@ -178,34 +116,30 @@
 									<thead>
 										<tr>
 											<th>Sucursal</th>
-											<th>Empresa</th>
-											<th>RFC</th>
-											<th>Estado</th>
+											<th>Colonia</th>
 											<th>Municipio</th>
+											<th>Entidad</th>
 											<th>Editar</th>
 											<th>Ver empresa</th>
 										</tr>
 									</thead>
 									
-									<tbody>
-										<tr>
-											<td>Sucursal Guanajuato</td>
-											<td>empresa patito de hule morado 3</td>
-											<td>HUCA681202QP8</td>
-											<td>Distrito Federal</td>
-											<td>Benito Juarez</td>											
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-building"></i> Ver empresa</a></th>
-										</tr>
-										<tr>
-											<td>Sucursal Guanajuato</td>
-											<td>empresa patito de hule morado 3</td>
-											<td>HUCA681202QP8</td>
-											<td>Distrito Federal</td>
-											<td>Benito Juarez</td>											
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-building"></i> Ver empresa</a></th>
-										</tr>
+									<tbody id="sucursalesBlock">
+										<script id="sucursalesTemplate" type="text/template">
+												<% for (var i in sucursalesArray){ %>
+												<% var sucursal = sucursalesArray[i]; %>
+													<tr>
+														<td><%= sucursal.sucursal %></td>
+														<td><%= sucursal.colonia %></td>
+														<td><%= sucursal.entidad %></td>
+														<td><%= sucursal.municipio %></td>
+
+														<th><a class="btn btn-mini" rel="<%= sucursal.idsuc %>"><i class="icon-edit"></i> Editar</a></th>
+														<th><a class="btn btn-mini btn-primary" rel="<%= sucursal.idsuc %>"><i class="icon-building"></i> Ver empresa</a></th>
+
+													</tr>
+												<% } %>
+											</script>
 									</tbody>
 								</table>
 								<div class="pagination">
@@ -224,7 +158,6 @@
 					</div>
 				</div>
 			</div>
-		<!-- </div> -->
 	</div> <!-- /container -->
 
 	<div class="footer">

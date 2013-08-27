@@ -105,35 +105,13 @@
 	</div>
 
 	<div id="container" class="row-fluid">
-
-		<script type="text/javascript">
-			window.onload = initPage;
-			function initPage() {
-				var empresasArray = {},
-				imprimeTemplate = "",
-				underTemplateID = $('#empresaTemplate').html(),
-				underTemplate = _.template(underTemplateID);	      
-				$.ajax({
-					url: "/r/wse/gets",
-					async: false,
-					dataType: "json",
-					success: function(json) {
-						empresasArray = json;
-					}
-				});
-				imprimeTemplate = underTemplate({ empresasArray:empresasArray });
-
-				$("#empresasBlock").html(imprimeTemplate);
-
-			}
-		</script>
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
-								<div class="span3"><a class="span12 btn btn-success" href="javascript:void(0)" onclick="dayli.jalalasmalditasrecetas()"><i class="icon-plus"></i> Añadir nueva</a></div>
+								<div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
@@ -150,9 +128,8 @@
 									</thead>
 									
 									<tbody id="empresasBlock">
-										
 											<script id="empresaTemplate" type="text/template">
-												<% for (var i = 0; i < empresasArray.length; i++){ %>
+												<% for (var i in empresasArray){ %>
 												<% var empresa = empresasArray[i]; %>
 													<tr>
 														<td><%= empresa.nombre %></td>
@@ -161,7 +138,7 @@
 														<td><a href="<%= empresa.url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
 														<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
 														<th>
-															<a class="btn btn-mini btn-primary"><i class="icon-sitemap"></i> Sucursales</a>
+															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.idemp %>"><i class="icon-sitemap"></i> Sucursales</a>
 															<a href="" class="btn btn-mini btn-primary"><i class="icon-plus"></i> Añadir</a>
 														</th>+
 														<th>
@@ -171,9 +148,6 @@
 													</tr>
 												<% } %>
 											</script>
-
-
-										
 									</tbody>
 								</table>
 								<div class="pagination">
@@ -188,6 +162,50 @@
 									</ul>
 								</div>
 							</div>
+							<div class="well well-small">
+								<table class="table-condensed table-hover table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Sucursal</th>
+											<th>Colonia</th>
+											<th>Municipio</th>
+											<th>Entidad</th>
+											<th>Editar</th>
+											<th>Ver empresa</th>
+										</tr>
+									</thead>
+									
+									<tbody id="sucursalesBlock">
+										<script id="sucursalesTemplate" type="text/template">
+												<% for (var i in sucursalesArray){ %>
+												<% var sucursal = sucursalesArray[i]; %>
+													<tr>
+														<td><%= sucursal.sucursal %> / <%= sucursal.idsuc %></td>
+														<td><%= sucursal.colonia %> / <%= sucursal.idemp %></td>
+														<td><%= sucursal.entidad %></td>
+														<td><%= sucursal.municipio %></td>
+
+														<th><a class="btn btn-mini" rel="<%= sucursal.idsuc %>"><i class="icon-edit"></i> Editar</a></th>
+														<th><a class="btn btn-mini btn-primary" rel="<%= sucursal.idsuc %>"><i class="icon-building"></i> Ver empresa</a></th>
+
+													</tr>
+												<% } %>
+											</script>
+									</tbody>
+								</table>
+								<div class="pagination">
+									<ul>
+										<li class="disabled"><a href="#">Prev</a></li>
+										<li class="active" ><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">Next</a></li>
+									</ul>
+								</div>
+							</div>r
+						</div>
 						</div>
 					</div>
 				</div>
@@ -225,6 +243,10 @@
 		<script src="../library/js/libs/bootstrap-collapse.js"></script>
 		<script src="../library/js/libs/bootstrap-carousel.js"></script>
 		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
+		<script src="../library/js/libs/jquery.formparams.js"></script>
+		<script type="text/javascript" src="/library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+		<script src="../library/js/scripts.js"></script>
 
 </body>
 </html>

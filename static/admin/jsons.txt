@@ -1,0 +1,57 @@
+[{
+"idsuc":"fbpchxospboklwmfiult",
+"idemp":"ghjkhxiwknbpvftwdrsm",
+"sucursal":"Sucursal A",
+"tel":"",
+"calle":"José Gálvez Moya 40",
+"colonia":"Ponciano Arriaga",
+"entidad":"09",
+"municipio":"010",
+"cp":"",
+"geo1":"19.3604565",
+"geo2":"-99.22686829999998",
+"timestamp":"2013-08-11T19:47:43.471037Z",
+"latitud":19.3604565,
+"longitud":-99.22686829999998,
+"status":""},
+
+{"idsuc":"oiwiuzvcbkwqpwihwxls",
+"idemp":"ghjkhxiwknbpvftwdrsm",
+"sucursal":"Sucursal B",
+"tel":"",
+"calle":"Paraná 10",
+"colonia":"Las Américas",
+"entidad":"15",
+"municipio":"057",
+"cp":"",
+"geo1":"19.4779908",
+"geo2":"-99.23963370000001",
+"timestamp":"2013-08-11T19:54:11.524593Z",
+"latitud":19.4779908,"longitud":-99.23963370000001,"status":""}
+]
+
+
+<%= sucursales.idsuc %>
+<%= sucursales.idemp %>
+<%= sucursales.sucursal %>
+<%= sucursales.tel %>
+<%= sucursales.calle %>
+<%= sucursales.colonia %>
+<%= sucursales.entidad %>
+<%= sucursales.municipio %>
+<%= sucursales.cp %>
+<%= sucursales.geo1 %>
+<%= sucursales.geo2 %>
+<%= sucursales.timestamp %>
+<%= sucursales.latitud %>
+<%= sucursales.longitud %>
+<%= sucursales.status %>
+
+
+
+
+{"idsuc":"fbpchxospboklwmfiult","idemp":"ghjkhxiwknbpvftwdrsm","sucursal":"Sucursal A","tel":"","calle":"José Gálvez Moya 40","colonia":"Ponciano Arriaga","entidad":"09","municipio":"010","cp":"","geo1":"19.3604565","geo2":"-99.22686829999998","timestamp":"2013-08-11T19:47:43.471037Z","latitud":19.3604565,"longitud":-99.22686829999998,"status":"ok"}
+
+
+
+{"idemp":"ecusboweznoeuqemhrna","rfc":"HOCO581010QP9","nombre":"COPO","razonsocial":"CoPo S.A.","calle":"calle 123","colonia":"colonia X","entidad":"10","municipio":"009","cp":"44455","numsuc":"1","organismo":"AMIS","otro_organismo":"sdfg","registro_empresarial":"3456","url":"http://ejemplo.com","partlinea":1,"expcomer":1,"descripcion":"asdf","status":"ok"}

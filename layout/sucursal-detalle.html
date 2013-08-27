@@ -171,19 +171,20 @@
 						<div class="block">
 							<h3><i class="icon-sitemap"></i> Detalle de sucursal</h3>
 							<div class="well well-small">
-								<form class="form-horizontal">
+								<form id="sucursal-form" class="form-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
+
 											<div class="control-group">
-												<label for="nombre" class="control-label">Nombre de sucursal * </label>
-												<div class="controls"><input name="nombre" type="text"></div>
+												<label for="sucursal" class="control-label">Nombre de sucursal * </label>
+												<div class="controls"><input name="sucursal" type="text"></div>
 											</div>
 										</div>
 										<div class="span6">
 											<div class="control-group">
-												<label for="" class="control-label">Teléfono fijo con lada</label>
+												<label for="tel" class="control-label">Teléfono fijo con lada</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="tel">
 												</div>
 											</div>
 										</div>
@@ -202,9 +203,9 @@
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<label for="" class="control-label">Entidad Federativa *</label>
+												<label for="entidad" class="control-label">Entidad Federativa *</label>
 												<div class="controls">
-													<select>
+													<select name="entidad">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -214,9 +215,9 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Delegación o municipio *</label>
+												<label for="municipio" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
-													<select>
+													<select name="municipio">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -226,15 +227,21 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Calle y numero</label>
+												<label for="calle" class="control-label">Calle y numero</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="calle">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Colonia y/o localidad * </label>
+												<label for="colonia" class="control-label">Colonia y/o localidad * </label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="colonia">
+												</div>
+											</div>
+											<div class="control-group">
+												<label for="cp" class="control-label">Codigo Postal * </label>
+												<div class="controls">
+													<input type="text" name="cp">
 												</div>
 											</div>
 										</div>
@@ -270,19 +277,19 @@
 		<!-- Le javascript
 		================================================== -->
 		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-		<script src="library/js/libs/jquery-1.10.2.min.js"></script>
-		<script src="library/js/libs/bootstrap-transition.js"></script>
-		<script src="library/js/libs/bootstrap-alert.js"></script>
-		<script src="library/js/libs/bootstrap-modal.js"></script>
-		<script src="library/js/libs/bootstrap-dropdown.js"></script>
-		<script src="library/js/libs/bootstrap-scrollspy.js"></script>
-		<script src="library/js/libs/bootstrap-tab.js"></script>
-		<script src="library/js/libs/bootstrap-tooltip.js"></script>
-		<script src="library/js/libs/bootstrap-popover.js"></script>
-		<script src="library/js/libs/bootstrap-button.js"></script>
-		<script src="library/js/libs/bootstrap-collapse.js"></script>
-		<script src="library/js/libs/bootstrap-carousel.js"></script>
-		<script src="library/js/libs/bootstrap-typeahead.js"></script>
+		<script src="../library/js/libs/bootstrap-transition.js"></script>
+		<script src="../library/js/libs/bootstrap-alert.js"></script>
+		<script src="../library/js/libs/bootstrap-modal.js"></script>
+		<script src="../library/js/libs/bootstrap-dropdown.js"></script>
+		<script src="../library/js/libs/bootstrap-scrollspy.js"></script>
+		<script src="../library/js/libs/bootstrap-tab.js"></script>
+		<script src="../library/js/libs/bootstrap-tooltip.js"></script>
+		<script src="../library/js/libs/bootstrap-popover.js"></script>
+		<script src="../library/js/libs/bootstrap-button.js"></script>
+		<script src="../library/js/libs/bootstrap-collapse.js"></script>
+		<script src="../library/js/libs/bootstrap-carousel.js"></script>
+		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
+		<script src="../library/js/scripts.js"></script>
 
 </body>
 </html>

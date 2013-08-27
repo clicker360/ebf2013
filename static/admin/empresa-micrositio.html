@@ -103,97 +103,35 @@
 	</div>
 
 	<div id="container" class="row-fluid">
-		<!-- <div id="sidebar" class="nav-collapse collapse">
-			<ul>
-				<li>
-					<a href="index.html">
-					<i class="icon-home"></i> 
-					<span class="title">Inicio</span>
-					</a>
-				</li>
-				<li class="has-sub active">
-					<a href="javascript:;">
-					<i class="icon-building"></i> 
-					<span class="title">empresa patito de hule morados</span>
-					<span class="arrow"></span>
-					</a>
-					<ul class="sub" >
-						<li><a href="">submenu</a></li>
-						<li><a href="">submenu</a></li>
-						<li><a href="">submenu</a></li>
-						<li><a href="">submenu</a></li>
-						<li><a href="">submenu</a></li>
-					</ul>
-				</li>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-sitemap"></i> 
-					<span class="title">Sucursales</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-tags"></i> 
-					<span class="title">Ofertas</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-globe"></i> 
-					<span class="title">Micrositios</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-info"></i> 
-					<span class="title">Avisos</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-download-alt"></i> 
-					<span class="title">Descargas</span>
-					</a>
-				</li>
-				<li class="">
-					<a href="">
-					<i class="icon-shopping-cart"></i> 
-					<span class="title">Buen fin en linea</span>
-					</a>
-				</li>
-			</ul>
-		</div> -->
-		<!-- <div id="body"> -->
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
 							<h3><i class="icon-building"></i> Detalle de empresa</h3>
 							<div class="well well-small">
-								<form class="form-horizontal">
+								<form id="empresa-form" class="form-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<label for="nombre" class="control-label">R.F.C. *</label>
-												<div class="controls"><input name="nombre" type="text"></div>
+												<label for="rfc" class="control-label">R.F.C. *</label>
+												<div class="controls"><input name="rfc" type="text"></div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Nombre comercial *</label>
+												<label for="nombre" class="control-label">Nombre comercial *</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="nombre">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Razón Social *</label>
+												<label for="razonsocial" class="control-label">Razón Social *</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="razonsocial">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Entidad Federativa *</label>
+												<label for="entidad" class="control-label">Entidad Federativa *</label>
 												<div class="controls">
-													<select>
+													<select name="entidad">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -203,9 +141,9 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Delegación o municipio *</label>
+												<label for="municipio" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
-													<select>
+													<select name="municipio">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -215,35 +153,35 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Calle y numero</label>
+												<label for="calle" class="control-label">Calle y numero</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="calle">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Colonia y/o localidad * </label>
+												<label for="colonia" class="control-label">Colonia y/o localidad * </label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="colonia">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Código Postal * </label>
+												<label for="cp" class="control-label">Código Postal * </label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="cp">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Número de sucursales</label>
+												<label for="numsuc" class="control-label">Número de sucursales</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="numsuc">
 												</div>
 											</div>											
 										</div>
 										<div class="span6">
 											<div class="control-group">
-												<label for="" class="control-label">Organismo empresarial</label>
+												<label for="organismo" class="control-label">Organismo empresarial</label>
 												<div class="controls">
-													<select>
+													<select name="organismo">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -254,38 +192,38 @@
 											</div>
 
 											<div class="control-group">
-												<label for="" class="control-label">Otro (Especificar)</label>
+												<label for="otro_organismo" class="control-label">Otro (Especificar)</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="otro_organismo">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Número de registro o afiliación a tu organismo empresarial</label>
+												<label for="registro_empresarial" class="control-label">Número de registro o afiliación a tu organismo empresarial</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="registro_empresarial">
 												</div>
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox"> ¿Desea participar en El Buen Fin en línea?
+													<input type="checkbox" name="partlinea"> ¿Desea participar en El Buen Fin en línea?
 												</label>
 											</div>
 
 											<div class="control-group">
-												<label for="" class="control-label"> Sitio de internet (con prefijo http://)</label>
+												<label for="url" class="control-label"> Sitio de internet (con prefijo http://)</label>
 												<div class="controls">
-													<input type="text">
+													<input type="text" name="url">
 												</div>
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox"> ¿Tu empresa ya tiene experiencia en el comercio electrónico?
+													<input type="checkbox" name="expcomer"> ¿Tu empresa ya tiene experiencia en el comercio electrónico?
 												</label>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label"> ¿Qué retos o dificultades identificas para implementar o mejorar el comercio electrónico de tu empresa?</label>
+												<label for="descripcion" class="control-label"> ¿Qué retos o dificultades identificas para implementar o mejorar el comercio electrónico de tu empresa?</label>
 												<div class="controls">
-													<textarea name="" id="" cols="30" rows="">
+													<textarea name="descripcion" id="" cols="30" rows="">
 													</textarea>
 												</div>
 											</div>
@@ -414,6 +352,11 @@
 		<script src="../library/js/libs/bootstrap-collapse.js"></script>
 		<script src="../library/js/libs/bootstrap-carousel.js"></script>
 		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
+		<script src="../library/js/libs/jquery.formparams.js"></script>
+		<script type="text/javascript" src="/library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+		<script src="../library/js/scripts.js"></script>
+		
 
 </body>
 </html>
