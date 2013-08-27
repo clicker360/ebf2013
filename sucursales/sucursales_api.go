@@ -14,23 +14,23 @@ import (
 )
 
 type WsSucursal struct{
-	IdSuc           string `json:"idsuc"`
-	IdEmp           string `json:"idemp"`
-	Sucursal        string `json:"sucursal"`
-    Tel				string `json:"tel"`
-	DirCalle		string `json:"calle"`
-	DirCol			string `json:"colonia"`
-	DirEnt			string `json:"entidad"`
-	DirMun			string `json:"municipio"`
-	DirCp			string `json:"cp"`
-	GeoUrl			string `json:"geourl,omitempty"`
-	Geo1			string `json:"geo1,omitempty"`
-	Geo2			string `json:"geo2,omitempty"`
+	IdSuc           string `json:"IdSuc"`
+	IdEmp           string `json:"IdEmp"`
+	Sucursal        string `json:"Sucursal"`
+    Tel				string `json:"Tel"`
+	DirCalle		string `json:"DirCalle"`
+	DirCol			string `json:"DirCol"`
+	DirEnt			string `json:"DirEnt"`
+	DirMun			string `json:"DirMun"`
+	DirCp			string `json:"DirCp"`
+	GeoUrl			string `json:"GeoUrl,omitempty"`
+	Geo1			string `json:"Geo1,omitempty"`
+	Geo2			string `json:"Geo2,omitempty"`
 	Geo3			string `json:"-"`
 	Geo4			string `json:"-"`
-	FechaHora       time.Time `json:"timestamp"`
-	Latitud		    float64 `json:"latitud"`
-	Longitud	    float64 `json:"longitud"`
+	FechaHora       time.Time `json:"FechaHora"`
+	Latitud		    float64 `json:"Latitud"`
+	Longitud	    float64 `json:"Longitud"`
 	Status		    string `json:"status"`
 	Ackn		    string `json:"ackn,omitempty"`
 	Errors		    map[string]bool `json:"errors,omitempty"`
