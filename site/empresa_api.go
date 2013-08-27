@@ -15,23 +15,23 @@ import (
 )
 
 type WsEmpresa struct {
-	IdEmp			string `json:"idemp"`
-	RFC				string `json:"rfc"`
-	Nombre			string `json:"nombre"`
-	RazonSoc		string `json:"razonsocial"`
-	DirCalle		string `json:"calle"`
-	DirCol			string `json:"colonia"`
-	DirEnt			string `json:"entidad"`
-	DirMun			string `json:"municipio"`
-	DirCp			string `json:"cp"`
-	NumSuc			string `json:"numsuc"`
-	OrgEmp			string `json:"organismo"`
-	OrgEmpOtro		string `json:"otro_organismo,omitempty"`
-	OrgEmpReg		string `json:"registro_empresarial,omitempty"`
-	Url				string `json:"url,omitempty"`
-	PartLinea		int `json:"partlinea"`
-	ExpComer		int `json:"expcomer"`
-	Desc			string `json:"descripcion"`
+	IdEmp			string `json:"IdEmp"`
+	RFC				string `json:"RFC"`
+	Nombre			string `json:"Nombre"`
+	RazonSoc		string `json:"RazonSoc"`
+	DirCalle		string `json:"DirCalle"`
+	DirCol			string `json:"DirCol"`
+	DirEnt			string `json:"DirEnt"`
+	DirMun			string `json:"DirMun"`
+	DirCp			string `json:"DirCp"`
+	NumSuc			string `json:"NumSuc"`
+	OrgEmp			string `json:"OrgEmp"`
+	OrgEmpOtro		string `json:"OrgEmpOtro,omitempty"`
+	OrgEmpReg		string `json:"OrgEmpReg,omitempty"`
+	Url				string `json:"Url,omitempty"`
+	PartLinea		int `json:"PartLinea"`
+	ExpComer		int `json:"ExpComer"`
+	Desc			string `json:"Desc"`
 	Status		    string `json:"status"`
 	Ackn		    string `json:"ackn,omitempty"`
 	Errors		    map[string]bool `json:"errors,omitempty"`
