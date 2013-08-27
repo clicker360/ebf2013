@@ -50,23 +50,26 @@
 
         <!--vista preliminar de la oferta en la búsqueda-->
         <div id="urlimg"><img src="" alt="Imagen de la oferta" width="258" id="pic" /> </div>
-        <form action="UploadURL" method="post" id="enviar" enctype="multipart/form-data">
-            <input type="hidden" name="IdOft" value="IdOft"/>
-            <div class="typ-Sc" id="status"></div>
-            <input id="imgfile" type="text" class="style3 marg-R25pix" readonly="readonly" />
-            <input id="infile" type="file" class="validate[required]" name="image" onchange="$('#imgfile').val($('#infile').val()); $('#enviar').submit();"/>
-            <img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
-            <div class="progress">
-                <div class="bar"></div>
-                <div class="percent"> 0% </div>
-            </div>
-        </form>
+        <div id="imgform">
+            <form method="post" id="enviar" enctype="multipart/form-data">
+                <input type="hidden" name="IdOft" id="uploadimg_id"/>
+                <div class="typ-Sc" id="status"></div>
+                <input id="imgfile" type="text" class="style3 marg-R25pix" readonly="readonly" />
+                <input id="infile" type="file" class="validate[required]" name="image" onchange="$('#imgfile').val($('#infile').val()); $('#enviar').submit();"/>
+                <img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
+                <div class="progress">
+                    <div class="bar"></div>
+                    <div class="percent"> 0% </div>
+                </div>
+            </form>
+        </div>
 
         <!-- Inicia estructura de campos Oferta -->    
         <form action="/r/wso/post" method="post" id="enviardata">
             <input type="hidden" value="a" name="s"/>
-            <input type="hidden" name="IdOft" value="IdOft" id="IdOft"/>
-            <input type="hidden" name="IdEmp" value="IdEmp" id="IdEmp"/>
+            <input type="hidden" name="IdOft" id="IdOft"/>
+            <input type="hidden" name="IdEmp" id="IdEmp"/>
+            <input type="hidden" name="BlobKey" id="BlobKey"/>
             <input type="hidden" name="pchain" id="pchain"/>
             <input type="hidden" name="schain" id="schain"/>
             <div class="col-11 marg-L5pix">

@@ -163,6 +163,7 @@ func PutOferta(w http.ResponseWriter, r *http.Request) {
     }
     if empresa := model.GetEmpresa(c, out.IdEmp); empresa != nil {
         oTmp.IdEmp = empresa.IdEmp
+        oTmp.Empresa = strings.ToUpper(empresa.Nombre)
         oTmp.BlobKey = "none"
         o, err := empresa.PutOferta(c, &oTmp)
         if err != nil {
@@ -335,7 +336,12 @@ func setUploadUrl(r *http.Request) (string, error) {
     if uploadURL, err := blobstore.UploadURL(c, "/r/ofimgup", &blobOpts); err != nil {
         return "", err
     } else {
-        return strings.Replace(uploadURL.String(), "http", "https", 1), nil
+        c.Infof("TLS: %v", r.TLS)
+        if(r.TLS != nil) {
+            return strings.Replace(uploadURL.String(), "http", "https", 1), nil
+        } else {
+            return uploadURL.String(), nil
+        }
     }
 }
 
@@ -356,6 +362,7 @@ func setWsOferta(out *WsOferta, oferta model.Oferta) {
 	    out.FechaHoraPub = oferta.FechaHoraPub
 	    out.StatusPub = oferta.StatusPub
 	    out.FechaHora = time.Now().In(Loc)
+        out.BlobKey = oferta.BlobKey
 }
 
 func fill(r *http.Request) model.Oferta {
@@ -373,20 +380,20 @@ func fill(r *http.Request) model.Oferta {
 		IdEmp:		    strings.TrimSpace(r.FormValue("IdEmp")),
 		IdOft:		    strings.TrimSpace(r.FormValue("IdOft")),
 		IdCat:		    ic,
-		Empresa:			strings.ToUpper(strings.TrimSpace(r.FormValue("Empresa"))),
+		Empresa:		strings.ToUpper(strings.TrimSpace(r.FormValue("Empresa"))),
 		Oferta:		    strings.TrimSpace(r.FormValue("Oferta")),
-		Descripcion:		strings.TrimSpace(r.FormValue("Descripcion")),
+		Descripcion:	strings.TrimSpace(r.FormValue("Descripcion")),
 		Codigo:		    strings.TrimSpace(r.FormValue("Codigo")),
 		Precio:		    strings.TrimSpace(r.FormValue("Precio")),
 		Descuento:		strings.TrimSpace(r.FormValue("Descuento")),
 		Promocion:		strings.TrimSpace(r.FormValue("Promocion")),
-		Enlinea:			el,
-		Url:				strings.TrimSpace(r.FormValue("Url")),
+		Enlinea:		el,
+		Url:			strings.TrimSpace(r.FormValue("Url")),
 		Meses:		    strings.TrimSpace(r.FormValue("Meses")),
 		FechaHoraPub:	fh,
 		StatusPub:		st,
 		FechaHora:	    time.Now().In(Loc),
-		//BlobKey:		strings.TrimSpace(r.FormValue("IdCat")),
+		BlobKey:		appengine.BlobKey(strings.TrimSpace(r.FormValue("BlobKey"))),
     }
     return o
 }

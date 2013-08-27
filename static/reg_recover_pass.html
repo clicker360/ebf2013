@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
+        <script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-26907178-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $("#enviar").validationEngine({promptPosition : "topRight", scroll: true});
+            $("#acceso").validationEngine({promptPosition : "topRight", scroll: true});
+        });
+        </script>
+        <title>Rrecuperación de contraseña</title>
+    </head>
+    <body>
+        <form id="enviar" action="/r/recover" method="post">
+            <div class="line">
+                <label for="cmail">Correo electrónico <span class="typ-Sc">*</span></label>
+                <input type="text" id="cmail" name="Email" class="validate[required,custom[email]] small" value="" />
+            </div>
+            <!--div>
+                <label for="rfc">RFC de empresa registrada <span class="typ-Sc">*</span></label>
+                <input type="text" id="cpass" name="RFC" class="validate[required] small" value=""/>
+            </div-->
+            <button type="submit" class="medium red marg-5pix last"><span>Enviar</span></button></div>
+        </form>
+    </body>
+</html>

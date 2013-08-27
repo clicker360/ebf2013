@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    var idoft = "vhxigcmlzkbnlbxzfayk";
-    var idblob;
+    var idoft = "ahwdnfobhgcomfchijgx";
+    var blobkey;
     var idemp;
     var uploadurl;
 	/* Este código comentado debe ir en el template html de lo contrario el 
@@ -11,10 +11,11 @@ $(document).ready(function() {
         if(typeof(resp) != 'object') { resp = JSON.parse(resp); }
         if(resp.status=="ok") {
             idemp = resp.idemp;
-            idblob = resp.idblob;
+            blobkey = resp.blobkey;
             var d = new Date(Date.parse(resp.fechapub));
             uploadurl = resp.uploadurl;
-            $("#urlimg").attr('href', uploadurl);
+            $("#enviar").attr('action', uploadurl);
+            $("#uploadimg_id").attr('value', idoft);
             $("#oferta").val(resp.oferta);
             $("#descripcion").val(resp.descripcion);
             $("#date1").val(d.getUTCDate()+ " Nov");
@@ -32,6 +33,7 @@ $(document).ready(function() {
             $('#newbtn').show();
             $('#statuspub').attr("checked", true);
         } else {
+console.log(idemp);
             /* solo se actualizan estos datos si hay id de oferta */
             fillpcve(idoft, idemp);
             fillsucursales(idoft, idemp);
@@ -40,8 +42,8 @@ $(document).ready(function() {
             $('#newbtn').hide();	
         }
 
-        if(idblob != "") {
-            updateimg(idblob);
+        if(blobkey != "none") {
+            updateimg(blobkey);
         } else {
             putDefault();
         }
@@ -92,6 +94,7 @@ $(document).ready(function() {
 		 */
         $("#IdOft").attr("value", idoft);
         $("#IdEmp").attr("value", idemp);
+        $("#BlobKey").attr("value", blobkey);
 		var sucs = $("#listasuc").find("input");
 		var pcves = $("#unpickpcve").find("a");
 		var chain = ""; var sep = "";
@@ -147,7 +150,7 @@ $(document).ready(function() {
 	$("#enviar").validationEngine({promptPosition : "topRight", scroll: false});
 	$("#enviardata").validationEngine({promptPosition : "topRight", scroll: false});
 	var $pic = $("#pic");
-	var $urlimg = $("#urimg");
+	//var $urlimg = $("#urlimg");
 	var max_size=400;
 	
 
@@ -173,6 +176,7 @@ $(document).ready(function() {
 			percent.html(percentVal);
 		},
 		success: function(data) {
+            console.log(data);
 			var resp = "";
 			switch (data.errstatus) {
 				case "invalidUpload": resp = "<p>Intente nuevamente, su imagen no puede ser integrada.</p>";
@@ -182,7 +186,7 @@ $(document).ready(function() {
 							var uploadurl;
 							(data.uploadurl.substr(0,5) != "https") ? uploadurl == data.uploadurl.replace("http","https") : uploadurl = data.uploadurl;
 							$("#enviar").attr("action", uploadurl);
-							setTimeout(function(){ updateimg(data.idblob); }, 1000); 	
+							setTimeout(function(){ updateimg(data.blobkey); }, 1000); 	
 							break;
 				default:  resp = "<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>";
 			}
@@ -333,10 +337,12 @@ function putDefault() {
 	$('#urlimg').append(img);
 }
 
-function updateimg(idblob) {
-	if(idblob) {
+function updateimg(blob) {
+    blobkey = blob; // set blobkey global
+    $("#BlobKey").attr("value", blobkey);
+	if(blob) {
 		$('#pic').remove();
-		var query = "id="+idblob + "&Avc=" + avoidCache();
+		var query = "id="+blob + "&Avc=" + avoidCache();
 		img = "<img  src = '/ofimg?"+ query +"' id='pic' width='256px' />" 
 		$('#urlimg').append(img);
 	} else {

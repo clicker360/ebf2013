@@ -237,10 +237,36 @@ func (e *Empresa) PutOferta(c appengine.Context, o *Oferta) (*Oferta, error) {
 	} else {
 		_ = PutChangeControl(c, o.IdOft, "Oferta", "M")
 	}
-	parentKey := e.Key(c)
-    _, err := datastore.Put(c, datastore.NewKey(c, "Oferta", o.IdOft, 0, parentKey), o)
+    _, err := datastore.Put(c, datastore.NewKey(c, "Oferta", o.IdOft, 0, e.Key(c)), o)
 	if err != nil {
 		return nil, err
+	}
+    /* 
+		Recorre las relaciones oferta sucursal para copiar los datos y tenerlos listos
+        para lecturas posteriores
+	*/
+	ofsucs, _ := GetOfertaSucursales(c, o.IdOft)
+	for _,os:= range *ofsucs {
+		var ofsuc OfertaSucursal
+		ofsuc.IdOft = os.IdOft
+		ofsuc.IdSuc = os.IdSuc
+		ofsuc.IdEmp = os.IdEmp
+		ofsuc.Sucursal = os.Sucursal
+		ofsuc.Lat = os.Lat
+		ofsuc.Lng = os.Lng
+		ofsuc.Empresa = o.Empresa
+		ofsuc.Oferta = o.Oferta
+		ofsuc.Descripcion = o.Descripcion
+		ofsuc.Promocion = o.Promocion
+		ofsuc.Precio = o.Precio
+		ofsuc.Descuento = o.Descuento
+		ofsuc.Enlinea = o.Enlinea
+		ofsuc.Url = o.Url
+		ofsuc.StatusPub = o.StatusPub
+		ofsuc.FechaHora = time.Now().Add(time.Duration(GMTADJ)*time.Second)
+
+		o.PutOfertaSucursal(c, &ofsuc)
+		TouchSuc(c, os.IdSuc)
 	}
 	return o, nil
 }

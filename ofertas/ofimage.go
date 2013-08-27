@@ -20,7 +20,7 @@ import (
 
 type OfImg struct{
 	IdOft		string `json:"idoft"`
-	IdBlob		string `json:"idblob"`
+	IdBlob		string `json:"blobkey"`
 	Status		string `json:"errstatus"`
 	UploadURL	string `json:"uploadurl"`
 }
@@ -110,7 +110,7 @@ func handleServeImgByIdOrBlob(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 			} else {
-				//c.Infof("memcache retrieve d_idoft : %v", r.FormValue("id"))
+				c.Infof("memcache retrieve d_idoft : %v", r.FormValue("id"))
 				if err := json.Unmarshal(item.Value, &d); err != nil {
 					c.Errorf("Unmarshaling ShortLogo item: %v", err)
 					http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -119,26 +119,10 @@ func handleServeImgByIdOrBlob(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 			blobstore.Send(w, d.BlobKey)
-			/*
-			if url, err := image.ServingURL(c, d.BlobKey, &imgprops); err != nil {
-				c.Errorf("Cannot construct ServingURL : %v", r.FormValue("id"))
-				blobstore.Send(w, d.BlobKey)
-			} else {
-				http.Redirect(w, r, url.String(), http.StatusFound)
-			}
-			*/
 		} else {
 			/* Cuando es un BlobKey */
-			//c.Infof("Blob : %v", r.FormValue("id"))
+			c.Infof("Blob : %v", r.FormValue("id"))
 			blobstore.Send(w, appengine.BlobKey(r.FormValue("id")))
-			/*
-			if url, err := image.ServingURL(c, appengine.BlobKey(r.FormValue("id")), &imgprops); err != nil {
-				c.Infof("Cannot construct ServingURL : %v", r.FormValue("id"))
-				blobstore.Send(w, appengine.BlobKey(r.FormValue("id")))
-			} else {
-				http.Redirect(w, r, url.String(), http.StatusFound)
-			}
-			*/
 		}
 	}
 }
@@ -161,8 +145,6 @@ func handleServeImgById(w http.ResponseWriter, r *http.Request) {
 			}
 		} else {
 			w.WriteHeader(http.StatusNotFound)
-			//w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-			//io.WriteString(w, "404 - Not Found")
 		}
 	}
 	return
@@ -202,19 +184,19 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 		out.IdBlob = string(file[0].BlobKey)
 		out.IdOft = form.Get("IdOft")
 		if err != nil {
-			out.Status = "invalidUpload"
+			out.Status = "invalidParseUpload"
 			berr := blobstore.Delete(c, file[0].BlobKey)
 			model.Check(berr)
 		} else {
 			oferta,_ := model.GetOferta(c, out.IdOft)
 			if oferta.IdEmp == "none" {
-				out.Status = "invalidUpload"
+				out.Status = "invalidIdOft"
 				berr := blobstore.Delete(c, file[0].BlobKey)
 				model.Check(berr)
 			} else {
 				out.Status = "ok"
 				if len(file) == 0 {
-					out.Status = "invalidUpload"
+					out.Status = "invalidFileSize0"
 					berr := blobstore.Delete(c, file[0].BlobKey)
 					model.Check(berr)
 				} else {
@@ -236,7 +218,7 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 
 					err = model.PutOferta(c, oferta)
 					if err != nil {
-						out.Status = "invalidUpload"
+						out.Status = "invalidUploadWriteErr"
 						berr := blobstore.Delete(c, file[0].BlobKey)
 						model.Check(berr)
 					}

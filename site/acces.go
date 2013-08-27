@@ -17,58 +17,61 @@ import (
 )
 
 func init() {
-    http.HandleFunc("/r/acceso", Acceso)
-    http.HandleFunc("/r/recupera", Recover)
-    http.HandleFunc("/r/salir", Salir)
+    http.HandleFunc("/r/login", Acceso)
+    http.HandleFunc("/r/recover", Recover)
+    http.HandleFunc("/r/logout", Salir)
 }
 
 func Acceso(w http.ResponseWriter, r *http.Request) {
     c := appengine.NewContext(r)
+	tc := make(map[string]interface{})
 	var st sess.Sess
 	if _, ok := sess.IsSess(w, r, c); !ok {
-		//fmt.Fprintf(w, "u:%s, p:%s", r.FormValue("u"), r.FormValue("p"))
-		if(r.FormValue("u") != "" && r.FormValue("p") != "") {
-			user := strings.TrimSpace(r.FormValue("u"))
-			pass := strings.TrimSpace(r.FormValue("p"))
-			/* validar usuario y pass */
-			if(model.ValidEmail.MatchString(user) && model.ValidPass.MatchString(pass)) {
-				q := datastore.NewQuery("Cta").Filter("Email =", user).Filter("Pass =", pass).Filter("Status =", true)
-				if count, _ := q.Count(c); count != 0 {
-					for t := q.Run(c); ; {
-						var g model.Cta
-						key, err := t.Next(&g)
-						if err == datastore.Done {
-							break
-						}
-						// Coincide contraseña, se activa una sesión
-						_, _, err = sess.SetSess(w, c, key, g.Email, g.Nombre)
-						if err != nil {
-							http.Error(w, err.Error(), http.StatusInternalServerError)
-							return
-						}
+        // revisamos si es un POST o GET para saber si mandamos el template o iniciamos el login
+        if r.Method == "POST" {
+            // Se inicia el login
+            if(r.FormValue("u") != "" && r.FormValue("p") != "") {
+                user := strings.TrimSpace(r.FormValue("u"))
+                pass := strings.TrimSpace(r.FormValue("p"))
+                /* validar usuario y pass */
+                if(model.ValidEmail.MatchString(user) && model.ValidPass.MatchString(pass)) {
+                    q := datastore.NewQuery("Cta").Filter("Email =", user).Filter("Pass =", pass).Filter("Status =", true)
+                    if count, _ := q.Count(c); count != 0 {
+                        for t := q.Run(c); ; {
+                            var g model.Cta
+                            key, err := t.Next(&g)
+                            if err == datastore.Done {
+                                break
+                            }
+                            // Coincide contraseña, se activa una sesión
+                            _, _, err = sess.SetSess(w, c, key, g.Email, g.Nombre)
+                            if err != nil {
+                                http.Error(w, err.Error(), http.StatusInternalServerError)
+                                return
+                            }
 
-						// Redireccion
-						http.Redirect(w, r, "/r/dash", http.StatusFound)
-						return
-					}
-				}
-			}
-			st.User = r.FormValue("u")
-			st.ErrMsg = "Usuario o contraseña incorrectos"
-			st.ErrClass = "show"
-		} else {
-			st.User = r.FormValue("u")
-			st.ErrMsg = "Proporcione usuario y contraseña"
-			st.ErrClass = "show"
-		}
+                            // Redireccion
+                            http.Redirect(w, r, "/admin/index.html", http.StatusFound)
+                            return
+                        }
+                    }
+                }
+                st.User = r.FormValue("u")
+                st.ErrMsg = "Usuario o contraseña incorrectos"
+                st.ErrClass = "show"
+            } else {
+                st.User = r.FormValue("u")
+                st.ErrMsg = "Proporcione usuario y contraseña"
+                st.ErrClass = "show"
+            }
+        }
 	} else {
 		// hay sesión
-		http.Redirect(w, r, "/r/dash", http.StatusFound)
+		http.Redirect(w, r, "/admin/index.html", http.StatusFound)
 		return
 	}
-	tc := make(map[string]interface{})
 	tc["Sess"] = st
-    accesoErrorTpl.Execute(w, tc)
+    loginTpl.Execute(w, tc)
 }
 
 func Salir(w http.ResponseWriter, r *http.Request) {
@@ -83,7 +86,7 @@ func Salir(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Add("Set-Cookie", fmt.Sprintf("ebfmex-pub-sesscontrol-ua=%s; expires=%s; path=/;", "", "Thu, 18 Oct 2012 01:01:23 GMT;"))
 	w.Header().Add("Set-Cookie", fmt.Sprintf("ebfmex-pub-sessid-ua=%s; expires=%s; path=/;", "", "Thu, 18 Oct 2012 01:01:23 GMT;"))
-	http.Redirect(w, r, "/r/registro", http.StatusFound)
+	http.Redirect(w, r, "/r/login", http.StatusFound)
 }
 
 func Recover(w http.ResponseWriter, r *http.Request) {
@@ -116,7 +119,7 @@ func Recover(w http.ResponseWriter, r *http.Request) {
 						if err := mail.Send(c, msg); err != nil {
 							http.Error(w, err.Error(), http.StatusInternalServerError)
 						} else {
-							http.Redirect(w, r, "/recoverok.html", http.StatusFound)
+							http.Redirect(w, r, "/reg_recover_ok.html", http.StatusFound)
 							return
 						}
 						//fmt.Fprintf(w, mailRecover, cta.Email, cta.Pass)
@@ -138,21 +141,21 @@ func Recover(w http.ResponseWriter, r *http.Request) {
 							http.Error(w, "Error de Transporte de Mail", http.StatusInternalServerError)
 						}
 						defer r1.Body.Close()
-						http.Redirect(w, r, "/recoverok.html", http.StatusFound)
+						http.Redirect(w, r, "/reg_recover_ok.html", http.StatusFound)
 						return
 					}
 				} else {
-					http.Redirect(w, r, "/nocta.html", http.StatusFound)
+					http.Redirect(w, r, "/reg_no_account.html", http.StatusFound)
 					return
 				}
 			}
 		}
-		http.Redirect(w, r, "/nocta.html", http.StatusFound)
+		http.Redirect(w, r, "/reg_no_account.html", http.StatusFound)
 		return
 	} else {
-		http.Redirect(w, r, "/r/dash", http.StatusFound)
+		http.Redirect(w, r, "/admin/index.html", http.StatusFound)
 	}
 }
 
-var accesoErrorTpl = template.Must(template.ParseFiles("templates/acceso_error.html"))
-var mailRecoverTpl = template.Must(template.ParseFiles("templates/mail_recover.html"))
+var loginTpl = template.Must(template.ParseFiles("layout/reg_login.html"))
+var mailRecoverTpl = template.Must(template.ParseFiles("layout/mail_recover.html"))

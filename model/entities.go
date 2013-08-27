@@ -410,8 +410,7 @@ func (e *Empresa) PutSuc(c appengine.Context, s *Sucursal) (*Sucursal, error) {
 	} else {
 		_ = PutChangeControl(c, s.IdSuc, "Sucursal", "M")
 	}
-	parentKey := e.Key(c)
-    _, err := datastore.Put(c, datastore.NewKey(c, "Sucursal", s.IdSuc, 0, parentKey), s)
+    _, err := datastore.Put(c, datastore.NewKey(c, "Sucursal", s.IdSuc, 0, e.Key(c)), s)
 	if err != nil {
 		return nil, err
 	}
