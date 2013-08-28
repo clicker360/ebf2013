@@ -17,6 +17,7 @@ import (
 )
 
 func init() {
+    http.HandleFunc("/r/index", Index)
     http.HandleFunc("/r/login", Acceso)
     http.HandleFunc("/r/recover", Recover)
     http.HandleFunc("/r/logout", Salir)
@@ -52,7 +53,7 @@ func Acceso(w http.ResponseWriter, r *http.Request) {
                             }
 
                             // Redireccion
-                            http.Redirect(w, r, "/admin/index.html", http.StatusFound)
+                            http.Redirect(w, r, "/r/index", http.StatusFound)
                             return
                         }
                     }
@@ -68,7 +69,7 @@ func Acceso(w http.ResponseWriter, r *http.Request) {
         }
 	} else {
 		// hay sesión
-		http.Redirect(w, r, "/admin/index.html", http.StatusFound)
+		http.Redirect(w, r, "/r/index", http.StatusFound)
 		return
 	}
 	tc["Sess"] = st
@@ -154,7 +155,7 @@ func Recover(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/reg_no_account.html", http.StatusFound)
 		return
 	} else {
-		http.Redirect(w, r, "/admin/index.html", http.StatusFound)
+		http.Redirect(w, r, "/r/index", http.StatusFound)
 	}
 }
 
@@ -170,6 +171,20 @@ func Registro(w http.ResponseWriter, r *http.Request) {
     }
 }
 
+func Index(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+	tc := make(map[string]interface{})
+	var st sess.Sess
+	if _, ok := sess.IsSess(w, r, c); ok {
+	    tc["Sess"] = st
+        indexTpl.Execute(w, tc)
+    } else {
+        http.Redirect(w, r, "/r/login", http.StatusFound)
+    }
+}
+
+
 var loginTpl = template.Must(template.ParseFiles("layout/reg_login.html"))
+var indexTpl = template.Must(template.ParseFiles("layout/index.html"))
 var mailRecoverTpl = template.Must(template.ParseFiles("layout/mail_recover.html"))
 var registraTpl = template.Must(template.ParseFiles("layout/registro.html"))
