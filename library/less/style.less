@@ -6,7 +6,89 @@ Stylesheet: Tema.
 ******************************************************************/
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
 @import "mixins.less";
+.frontpages {
+	background: url("../images/pattern.jpg") repeat scroll 0% 0% rgb(247, 247, 247) !important;
+	.footer {
+		padding: 0;
+		.footer-a {
+			padding: 10px  0 0;
+			color: @black;
+			background: @white;
+			span {
+				display: block;
+						width: 96px;
+						height: 42px;
+						float: left;
+						margin: 0 10px;
+						padding: 20px 0;
+			}
+			ul {
+				list-style: none;
+				li {
+					float: left;
+					a {
+						display: block;
+						width: 96px;
+						height: 64px;
+						background: url('../images/patrocinadores.png') no-repeat;
+					}
+					#patr-1 { background-position: 0 0px;}
+					#patr-2 { background-position: 0 -64px;}
+					#patr-3 { background-position: 0 -128px;}
+					#patr-4 { background-position: 0 -192px;}
+					#patr-5 { background-position: 0 -256px;}
+					#patr-6 { background-position: 0 -320px;}
+					#patr-7 { background-position: 0 -384px;}
+					#patr-8 { background-position: 0 -448px;}
+					#patr-9 { background-position: 0 -512px;}
+					#patr-10 { background-position: 0 -576px;}
+				}
+			}
+		}
+		.footer-b {
+			padding: 10px  0 0;
+			background: @black;	
+			color: @white !important;
 
+		}
+		
+	}
+
+}
+#reg-container {
+margin-top: 40px;
+	margin-bottom: 40px;
+}
+#registro-intro {
+	#gradient > .vertical(@grayDark, @black);
+	padding: 5px 10px;
+	border: 1px solid transparent;
+	color: @white;
+      h1 {
+      	font-size: 20px;
+      	text-transform: uppercase;
+      	text-align: center;
+      }
+}
+ul#iconos-footer  {
+	list-style: none;
+	li {
+		float: left;
+		a {
+			display: block;
+			width: 40px;
+			height: 40px;
+			color: @white;
+			margin: 0 5px;
+		}
+		#f-face {
+			background: @red;
+		}
+		#f-twit {
+			background: @red;
+		}
+	}
+}
 .active {
 	display: block !important;
 }
@@ -100,6 +182,16 @@ Stylesheet: Tema.
       &:hover {
 		border:1px solid lighten(@blue, 40%);
       }
+      h3 {
+      	text-transform: uppercase;
+      }
+}
+.block-black {
+	margin:5px;
+	padding: 5px 10px;
+	background: @black;
+	border: 1px solid transparent;
+	color: @white;
       h3 {
       	text-transform: uppercase;
       }

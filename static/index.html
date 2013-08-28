@@ -1,281 +1,141 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>El Buen Fin</title>
-  <meta name="Title" content="El Buen Fin" /> 
-  <meta name="keywords" content="descuentos, tiendas departamentales, electrodomesticos, comercio en line, compra en line, buen fin, el buen fin" /> 
-  <meta name="Author" content="Clicker360" />
-  <meta name="Copyright" content="El Buen Fin" />
-  <meta name="Revisit" content="1 days" />
-  <meta name="UI Designer" content="Carlos Zavala czavala@clicker360.com" />
-  <meta name="ROBOTS" content="INDEX, All"/>
-  <meta name="ROBOTS" content="INDEX, FOLLOW">
-  <meta name="description" content="El Buen Fin" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>El buen fin // Panel de administración</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-  <link href="../css/OrigamiRev.css" rel="stylesheet" type="text/css" />
-  <link href="../css/HomelbuenfinSkin.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript">
+	<link href="../library/css/libs/bootstrap.css" rel="stylesheet">
+	<link href="../library/css/style.css" rel="stylesheet">
+	<style>
+	body {
+		padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	}
+	</style>
+	<link href="../library/css/libs/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../library/css/font-awesome/css/font-awesome.min.css">
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-26907178-1']);
-    _gaq.push(['_trackPageview']);
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="../library/js/libs/html5shiv.js"></script>
+	<![endif]-->
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+	<!--[if IE 7]>
+		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+	<![endif]-->
 
-  </script>
-  <script type="text/javascript">
-  $(document).ready(function(){
-  	getcarrousel();
-  	scrolea();
-  });
-  function scrolea(){
-  	$('#logos').animate({
-  		top: -825,
-  	}, 45000, 'linear', function() {
-  		$('#logos').append($('#logos').children("div:first").clone());
-  		$('#logos').children("div:first").remove();
-  		$('#logos').css('top',20);
-  		scrolea();
-  	});
-  }
-  function getcarrousel() {
-  	$.get("/carr", "", function(response){
-  		$('#logo1').html(response);
-  	});
-  }
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../library/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../library/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
+	<script src="../library/js/libs/underscore-min.js"></script>
+	<script src="../library/js/libs/jquery-1.10.2.min.js"></script>
+</head>
 
-  </script>
-  <script>
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=144868285538931";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-  function MM_jumpMenu(targ,selObj,restore){ //v3.0
-    eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
-    if (restore) selObj.selectedIndex=0;
-  }
-  </script>
-  </head>
+<body class="frontpages">
+	<!-- menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">
+					<img src="../library/images/logo_header.png">
+				</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active">
+							<a href="index.html">Inicio</a>
+						</li>
+						<li>
+							<a href="elbuenfin-que-es.html">
+							    ¿Qué es
+							    El Buen Fin?
+							</a>
+						</li>
+						<li><a href="elbuenfin-organizadores.html">Organizadores</a></li>
+						<li><a href="">Contacto</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
 
-  <body class="bg-main">
-    <div id="fb-root"></div>
-    <div class="logosPat">
-      <img src="imgs/logos/ABM.jpg" width="65" height="65" alt="abm" /> <img src="imgs/logos/antad.jpg" width="65" height="65"  alt="Antad"/><img src="imgs/logos/Amicsi.jpg" width="65" height="65" alt="Amicii" /><img src="imgs/logos/CCC.jpg" width="65" height="65" alt="CCE" /> <img src="imgs/logos/coparmex.jpg" width="65" height="65" alt="coparmex" /> <img src="imgs/logos/concamin.jpg" width="65" height="65" alt="coparmex" /><img src="imgs/logos/concanaco.jpg" width="65" height="65" /><img src="imgs/logos/gobierno-Federal.jpg" width="65" height="65" alt="gob federal" /> <img src="imgs/logos/Imx.jpg" width="65" height="65" alt="Iniciativa mexico" />
-    </div>
 
-    <div class="col-cent">
-      <div class="col-24 Bg-Wh padd-10px padd-B40px">
-      
-        <!--Comienza Contenido-->
-        <div class="col-24">
+	<div class="container">
+		<div class="row">
+			<div id="reg-container" class="offset3 span6">
+				<div id="registro-intro">
+					<h1>Regístrate y muy pronto te enviaremos<br>información del registro de comercios:</h1>
+				</div>
+				<a href="/admin/registro.html" class="btn btn-large btn-block btn-primary">Regístrate ahora</a>
+			</div>
+		</div>
+	</div> <!-- /container -->
 
-          <!--Comienza header-->
-          <div class="M-menu">
-            <img src="gfx/front/el-buen-fin.png" width="145" height="142"  class="logo"/>
-            <ul>
-				<li><a href="elbuenfin-que-es.html">¿Qué es <br /> El Buen Fin?</a></li>
-              <li> <a href="elbuenfin-organizadores.html">Organizadores</a></li>
-              <li> <a href="directorio.html">Empresas participantes</a></li>
-        	     <li><a href="elbuenfin-comercio-en-linea.html">El Buen Fin en Línea</a></li>
-            </ul>
-          </div>
-          <!--termina header-->
-
-          <div class="col-24">
-            <!--Columna Izquierda-->
-
-            <!--busqueda-->
-            <div class="col-18  Bg-Drk marg-L5px padd-R10px">
-              <div class="col-18  padd-T10px padd-B30px padd-L10px">
-                <h3 class="typ-Wh">Encuentra las ofertas del fin de semana más barato del año</h3>
-                <form name="buscar" id="buscar" method="get" action="/busqueda-de-ofertas.html" onsubmit="if($('#word').val() == '¿Qué buscas?'){ $('#word').val('') }">
-                  <input name="word" type="text" class="searchform" value="¿Qué buscas?" style="margin-top:0px; width:130px;" id="word" onfocus="if($(this).val() == '¿Qué buscas?'){ $(this).val('') }" onblur="if($(this).val() == ''){ $(this).val('¿Qué buscas?') }"/>
-                  <div class="selectCont marg-L10px" style="width:130px;">
-                    <select name="catMenu" id="catMenu"  class="searchform">
-                      <option selected="selected">Categoría</option>
-                      <option value="1" >Abarrotes</option>
-                      <option value="2" >Automóviles y transportes</option>
-                      <option value="3" >Bancos y seguros</option>
-                      <option value="4" >Blancos</option>
-                      <option value="5" >Calzado</option>
-                      <option value="6" >Cuidado e higiene personal</option>
-                      <option value="7" >Deportes</option>
-                      <option value="8" >Electrónica y video</option>
-                      <option value="9" >Electrodomésticos</option>
-                      <option value="10" >Farmacias</option>
-                      <option value="11" >Ferretería</option>
-                      <option value="12" >Fotografía y cómputo</option>
-                      <option value="13" >Hogar y decoración</option>
-                      <option value="14" >Jardinería</option>
-                      <option value="15" >Joyería</option>
-                      <option value="16" >Jugetería</option>
-                      <option value="17" >Línea blanca</option>
-                      <option value="18" >Muebles</option>
-                      <option value="19" >Oficina y papelería</option>
-                      <option value="20" >Oportunidades</option>
-                      <option value="21" >Óptica</option>
-                      <option value="22" >Perecederos</option>
-                      <option value="23" >Regalos</option>
-                      <option value="24" >Restaurantes</option>
-                      <option value="25" >Ropa</option>
-                      <option value="26" >Servicios</option>
-                      <option value="27" >Varios</option>
-                      <option value="28" >Viajes</option>
-                    </select>
-                  </div>
-                  <div class="selectCont marg-L10px" style="width:130px;">
-                    <select name="estadoMenu" id="estadoMenu"  class="searchform">
-                      <option selected="selected">Estado</option>
-                      <option value="01" >Aguascalientes</option>
-                      <option value="02" >Baja California</option>
-                      <option value="03" >Baja California Sur</option>
-                      <option value="04" >Campeche</option>
-                      <option value="05" >Coahuila de Zaragoza</option>
-                      <option value="06" >Colima</option>
-                      <option value="07" >Chiapas</option>
-                      <option value="08" >Chihuahua</option>
-                      <option value="09" >Distrito Federal</option>
-                      <option value="10" >Durango</option>
-                      <option value="11" >Guanajuato</option>
-                      <option value="12" >Guerrero</option>
-                      <option value="13" >Hidalgo</option>
-                      <option value="14" >Jalisco</option>
-                      <option value="15" >México</option>
-                      <option value="16" >Michoacán de Ocampo</option>
-                      <option value="17" >Morelos</option>
-                      <option value="18" >Nayarit</option>
-                      <option value="19" >Nuevo León</option>
-                      <option value="20" >Oaxaca</option>
-                      <option value="21" >Puebla</option>
-                      <option value="22" >Querétaro</option>
-                      <option value="23" >Quintana Roo</option>
-                      <option value="24" >San Luis Potosí</option>
-                      <option value="25" >Sinaloa</option>
-                      <option value="26" >Sonora</option>
-                      <option value="27" >Tabasco</option>
-                      <option value="28" >Tamaulipas</option>
-                      <option value="29" >Tlaxcala</option>
-                      <option value="30" >Veracruz de Ignacio de la Llave</option>
-                      <option value="31" >Yucatán</option>
-                      <option value="32" >Zacatecas</option>
-                    </select>
-                  </div>
-                  <div class="selectCont marg-L10px" style="width:130px;">
-                    <select name="tipoMenu" id="tipoMenu" class="searchform">
-                      <option value="3" selected="selected">Tipo de oferta</option>
-                      <option value="1">compra en línea</option>
-                      <option value="2">compra en piso</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="button last" style="margin-top:0px;margin-right:8px;height:30px;width:125px;">BUSCAR &raquo;</button>
-                </form>
-              </div>
-            </div>
-            <div class="col-6 last Bg-ky padd-B15px">
-              <div class="col-6 last Bg-Drk">
-                <p class="alineCenter typ-Wh">PARTICIPA COMO EMPRESA</p>
-              </div>
-              <a href="/r/registro?login=1" class="button-2 marg-T5px marg-L30px"><span class="col-4 Dsblock alineCenter">Entra</span></a>
-              <a href="/r/registro" class="button-2 marg-T10px marg-L30px"><span class="col-4 Dsblock alineCenter">¡Regístrate!</span></a>
-            </div>
-            <div class="col-15">  
-              <div class="Bg-ky box1"><!-- video-->
-               <iframe width="576" height="341" src="http://www.youtube.com/embed/_qyrUBtq5Sk" frameborder="0" allowfullscreen></iframe>
-              </div>
-              <div class="col-50PR first">
-                <div class="box1 Bg-bluFb">
-                  <h4 class="typ-Wh alineCenter lightText">Facebook</h4>
-                </div>
-                <div class="box1">
-                  <div class="fb-like-box Bg-Wh" data-href="http://www.facebook.com/ElBuenFin" data-width="280" data-height="260" data-show-faces="true" data-stream="false" data-header="false">
-                  </div>
-                </div>
-              </div>
-              <div class="box2 last Bg-bluTw marg-T5px">
-                <h4 class="alineCenter typ-Wh  lightText">Twitter</h4>
-              </div>
-              <div class="twitter box2 last">
-        	       <script src="http://widgets.twimg.com/j/2/widget.js"></script>						<script>
-        						new TWTR.Widget({
-        						  version: 2,
-        						  type: 'profile',
-        						  rpp: 2,
-        						  interval: 2000,
-        						  width: 280,
-        						  height: 240,
-        						  theme: {
-        							shell: {
-        							  background: '#ffffff',
-        							  color: '#111'
-        							},
-        							tweets: {
-        							  background: '#ffffff',
-        							  color: '#000000',
-        							  links: '#111'
-        							}
-        						  },
-        						  features: {
-        							scrollbar: true,
-        							loop: true,
-        							live: false,
-        							hashtags: true,
-        							timestamp: true,
-        							avatars: true,
-        							behavior: 'default'
-        						  }
-        						}).render().setUser('ElBuenFin').start();
-        				</script>
-              </div>
-            </div>
-
-            <!--Columna derecha-->
-            <div class=" col-9 marg-T10px last" >
-                <div class="col-9 Bg-Drk ">
-                <p class="alineCenter typ-Wh">APP MÓVIL</p>
-              </div>
-                <div class="col-9 Bg-ky">
-                <div class="box4 alineCenter"><img src="../imgs/cell.jpg" width="58" height="116" alt="cel phone" /></div>
-                <div class="box3 lineLeft">
-                <p class="alineCenter">Conoce las ofertas desde tu celular</p>
-                <p class="typ-Pr alineCenter">Descarga la aplicación móvil</p>
-                      <a href="https://itunes.apple.com/mx/app/el-buen-fin/id572121959?mt=8&ls=1" class="button-2 marg-T10px marg-L30px" target="_blank"><span>iOS</span></a>
-                           <a href="https://play.google.com/store/apps/details?id=com.cmovil.buenfin" class="button-2 marg-T10px marg-L30px" target="_blank"><span>ANDROID</span></a>
-                </div>
-              </div>
-                </div>
-              <div class="col-9 Bg-Drk last marg-T10px ">
-                <h3 class="alineCenter typ-Wh">Empresas participantes</h3>
-              </div>
-              <div class="col-9 last imgpad3px" style="overflow:hidden; height:450px; position:relative;" id="scrolllog">
-                <div id="logos">
-                  <div id="logo1" class="first"></div> 
-                  <div id="logo2" class="first"></div> 
-                </div>
-              </div>
-              <div class="last marg-R20px">
-               <a href="directorio.html" class="button">
-               <span class="Dsblock col-7 alineCenter">ver otras empresas</span>
-               </a>
-               </div>
-            </div>
-          </div>
-          <!--Termina Contenido-->
-      
-        </div>
-      </div>
-    </div>
-
-    <!--Footer-->
-    <div class="col-100PR first Bg-Prm fixedbottom alineCenter"><p class="typeMin typ-Wh">El Buen Fin 2012 © Todos los derechos reservados   |   <a href="http://www.elbuenfin.org/r/terminosCondiciones.html">Avisos de privacidad</a> |   Políticas</p>
-    </div>
-  </body>
+	<div class="footer">
+		<div class="footer-a">
+			<div class="container">
+				<span>Patrocinadores</span>
+				<ul>
+					<li><a id="patr-1" href=""></a></li>
+					<li><a id="patr-2" href=""></a></li>
+					<li><a id="patr-3" href=""></a></li>
+					<li><a id="patr-4" href=""></a></li>
+					<li><a id="patr-5" href=""></a></li>
+					<li><a id="patr-6" href=""></a></li>
+					<li><a id="patr-7" href=""></a></li>
+					<li><a id="patr-8" href=""></a></li>
+					<li><a id="patr-9" href=""></a></li>
+					<li><a id="patr-10" href=""></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-b">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span6">
+						<p>El Buen Fin 2012 © Todos los derechos reservados<br>
+							Av. Chapultepec #18, Col. Doctores, Deleg. Cuauhtémoc, México D.F. 06724 
+						</p>
+					</div>
+					<div class="span3">
+						<p>Políticas de privacidad de datos<br>
+							<a href="">contacto@elbuenfin.org</a>
+						</p>
+						
+					</div>
+					<div class="span3">
+						<ul id="iconos-footer" class="pull-right">
+							<li><a id="f-face" href=""><i class="icon-facebook"></i></a></li>
+							<li><a id="f-twit" href=""><i class="icon-twitter"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		<!-- Le javascript
+		================================================== -->
+		<script src="../library/js/libs/bootstrap-transition.js"></script>
+		<script src="../library/js/libs/bootstrap-alert.js"></script>
+		<script src="../library/js/libs/bootstrap-modal.js"></script>
+		<script src="../library/js/libs/bootstrap-dropdown.js"></script>
+		<script src="../library/js/libs/bootstrap-scrollspy.js"></script>
+		<script src="../library/js/libs/bootstrap-tab.js"></script>
+		<script src="../library/js/libs/bootstrap-tooltip.js"></script>
+		<script src="../library/js/libs/bootstrap-popover.js"></script>
+		<script src="../library/js/libs/bootstrap-button.js"></script>
+		<script src="../library/js/libs/bootstrap-collapse.js"></script>
+		<script src="../library/js/libs/bootstrap-carousel.js"></script>
+		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
+</body>
 </html>
