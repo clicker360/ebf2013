@@ -44,7 +44,36 @@
 	</script>
 </head>
 
-<body>
+<body class="frontpages">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">
+					<img src="../library/images/logo_header.png">
+				</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li>
+							<a href="/index.html">Inicio</a>
+						</li>
+						<li>
+							<a href="/elbuenfin-que-es.html">
+							    ¿Qué es
+							    El Buen Fin?
+							</a>
+						</li>
+						<li><a href="/elbuenfin-organizadores.html">Organizadores</a></li>
+						<li><a href="">Contacto</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
 	<!-- menu -->
 	<div id="container" class="row-fluid">
 			<div class="container-fluid">
@@ -52,7 +81,7 @@
 					<div class="span12">
 						<div class="block">
 							<h3><i class="icon-building"></i> Registrate</h3>
-							<div class="well well-small">
+							<div id="registro-block" class="active well well-small">
 								<form id="registroform" class="form-horizontal" name="registroform" action="" method="post">
 									<div class="row-fluid">
 										<div class="span6">
@@ -107,24 +136,22 @@
 											
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox" name="TermCond" class="validate[required]" value="1"> Terminos y condiciones
+													<input type="checkbox" name="TermCond" class="validate[required]" value="1">Acepto los 	<a href="/terminosCondiciones.html">terminos y condiciones</a>
 												</label>
 											</div>
 											<div class="control-group">
-												<input type="submit" value="enviar" class="btn">
+												<input type="submit" value="Registrar" class="btn btn-primary">
 											</div>
 										</div>
 									</div>
 								</form>
 								
 							</div>
-							<div class="inactive well well-small">
-								<h1>Gracias por registrarte en "El buen Fin"</h1>
-								<dl id="tusdatos">
-									<dt>Usuario</dt>
-									<dd></dd>
-									(dt+dd)*
-								</dl>
+							<div id="registro-enviado-block" class="inactive well well-small">
+								<div id="tusdatos">
+
+								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -134,26 +161,69 @@
 	</div> <!-- /container -->
 	
 
-	{"nombre":"Alonso","apellidos":"Avila","puesto":"diseñadpr","email":"avila@clicker360.com","emailalt":"ahuezo@gmail.com","pass":"123","tel":"55555555555","cel":"1234567890","fechahora":"2013-08-28T00:56:12.21781506-05:00","status":"ok"}
+	
 
 	<div class="footer">
-		<p>
-	    El Buen Fin © Todos los derechos reservados, México 2011
-	    Toda la información aquí publicada relativa a las características
-	    de los productos y servicios que participan en El Buen Fin © es 
-	    responsabilidad exclusiva de las tiendas que ofrecen los servicios 
-	    y/o la venta de los productos. 
-	    <br />
-	    Del mismo modo, los precios, los porcentajes de descuento, 
-	    las promociones y todas las ofertas financieras y/o económicas 
-	    aquí publicadas son responsabilidad de las tiendas que lo ofrecen.
-	    </p>
+		<div class="footer-a">
+			<div class="container">
+				<span>Patrocinadores</span>
+				<ul>
+					<li><a id="patr-1" href=""></a></li>
+					<li><a id="patr-2" href=""></a></li>
+					<li><a id="patr-3" href=""></a></li>
+					<li><a id="patr-4" href=""></a></li>
+					<li><a id="patr-5" href=""></a></li>
+					<li><a id="patr-6" href=""></a></li>
+					<li><a id="patr-7" href=""></a></li>
+					<li><a id="patr-8" href=""></a></li>
+					<li><a id="patr-9" href=""></a></li>
+					<li><a id="patr-10" href=""></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-b">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span6">
+						<p>El Buen Fin 2012 © Todos los derechos reservados<br>
+							Av. Chapultepec #18, Col. Doctores, Deleg. Cuauhtémoc, México D.F. 06724 
+						</p>
+					</div>
+					<div class="span3">
+						<p>Políticas de privacidad de datos<br>
+							<a href="">contacto@elbuenfin.org</a>
+						</p>
+						
+					</div>
+					<div class="span3">
+						<ul id="iconos-footer" class="pull-right">
+							<li><a id="f-face" href=""><i class="icon-facebook"></i></a></li>
+							<li><a id="f-twit" href=""><i class="icon-twitter"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 		<!-- Le javascript
 		================================================== -->
+		<script src="../library/js/libs/bootstrap-transition.js"></script>
+		<script src="../library/js/libs/bootstrap-alert.js"></script>
+		<script src="../library/js/libs/bootstrap-modal.js"></script>
+		<script src="../library/js/libs/bootstrap-dropdown.js"></script>
+		<script src="../library/js/libs/bootstrap-scrollspy.js"></script>
+		<script src="../library/js/libs/bootstrap-tab.js"></script>
+		<script src="../library/js/libs/bootstrap-tooltip.js"></script>
+		<script src="../library/js/libs/bootstrap-popover.js"></script>
+		<script src="../library/js/libs/bootstrap-button.js"></script>
+		<script src="../library/js/libs/bootstrap-collapse.js"></script>
+		<script src="../library/js/libs/bootstrap-carousel.js"></script>
+		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
 		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 		
 		 <!--<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>-->
+		 <script src="../library/js/libs/jquery.formparams.js"></script>
 		<script src="../library/js/script-registro.js"></script>
 </body>
 </html>
