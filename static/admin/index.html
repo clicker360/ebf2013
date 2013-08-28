@@ -36,7 +36,7 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
     <script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
-	<script type="text/javascript">
+
 	$(document).ready(function(){
 		$('#empresa-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
 	});
@@ -391,6 +391,8 @@
 					</div>
 				</div>
 			</div>
+
+            <!-- formato de empresa -->
 			<div id="empresas-detalle" class="inactive container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
@@ -401,7 +403,7 @@
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<div class="controls"><input id="IdEmp-empresas" name="IdEmp" type="hidden"></div>
+												<div class="controls"><input id="idemp-empresas" name="IdEmp" type="hidden"></div>
 											</div>
 											<div class="control-group">
 												<label for="RFC" class="control-label">R.F.C. *</label>
@@ -422,7 +424,7 @@
 											<div class="control-group">
 												<label for="DirEnt" class="control-label">Entidad Federativa *</label>
 												<div class="controls">
-													<select name="DirEnt">
+													<select id="DirEnt" name="DirEnt">
 														<option value="01">Aguascalientes</option>
 														<option value="02">Baja California</option>
 														<option value="03">Baja California Sur</option>
@@ -461,14 +463,14 @@
 											<div class="control-group">
 												<label for="DirMun" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
-													<select name="DirMun">
-														<script id="empresaTemplate" type="text/template">
-															<% for (var i in MunicipiosArray){ %>
-															<% var municipio = MunicipiosArray[i]; %>
-																<option value="<%= municipio.cvenum %>"><%= municipio.municipio %></option>
-															<% } %>
-														</script>
+													<select id="DirMunId" name="DirMun">
 													</select>
+                                                    <script id="muniTemplate" type="text/template">
+                                                        <% for (var i in MunicipiosArray){ %>
+                                                        <% var municipio = MunicipiosArray[i]; %>
+                                                            <option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
+                                                        <% } %>
+                                                    </script>
 												</div>
 											</div>
 											<div class="control-group">
@@ -500,13 +502,14 @@
 											<div class="control-group">
 												<label for="OrgEmp" class="control-label">Organismo empresarial</label>
 												<div class="controls">
-													<select name="OrgEmp">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
+													<select id="OrgEmpId" name="OrgEmp">
 													</select>
+                                                    <script id="orgTemplate" type="text/template">
+                                                        <% for (var i in OrganismosArray){ %>
+                                                        <% var org = OrganismosArray[i]; %>
+                                                            <option value="<%= org.Siglas %>"><%= org.Nombre %></option>
+                                                        <% } %>
+                                                    </script>
 												</div>
 											</div>
 
@@ -553,7 +556,7 @@
 												</label>
 											</div>
 											<div class="control-group">
-												<button type="submit" id="modifica-empresa" class="btn">Modificar</button>
+												<button type="submit" id="btn-empresa" class="btn">Crear</button>
     										    <button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
 
 											</div>
@@ -1002,6 +1005,8 @@
 		<script src="../library/js/libs/jquery.formparams.js"></script>
 		 <!--<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>-->
 		<script src="../library/js/scripts.js"></script>
+		<script src="../library/js/llenamuni.js"></script>
+		<script src="../library/js/llenaorg.js"></script>
 
 </body>
 </html>

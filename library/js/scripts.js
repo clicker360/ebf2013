@@ -13,6 +13,7 @@
            sucursales.initSucursales(rel);
        });
    };
+   // llena formulario de detalle de empresa
    var llenaformempresas = function() {
        $(document).on('click','a.editar-empresa', function(event) {
            event.preventDefault();
@@ -20,19 +21,16 @@
            empresas.empresaformdesdejson(rel);
        });
    };
+   // abre formulario de nueva empresa
    var nuevaempresa = function() {
        $(document).on('click','a.nuevaempresa', function(event) {
            event.preventDefault();
-           var rel = 'put';
-           empresas.nuevaempresa_envia(rel);
+           empresas.empresaformdesdejson();
        });
    };
+   // Submit de datos de empresa ya sea PUt o POST
    var modificaempresa = function() {
-       $(document).on('click','a.editar-empresa', function(event) {
-           event.preventDefault();
-           var rel = $(this).attr('rel');
-           empresas.modificaempresa_envia(rel);
-       });
+       empresas.empresa_envia();
    };
    var llenaformsucursal = function() {
        $(document).on('click','a.editar-sucursal', function(event) {
@@ -43,7 +41,6 @@
    };
     var initEmpresas = function() {
         empresas.initEmpresas(); //lista de empresas
-        empresas.nuevaempresa_envia();
     };
     var registrarse = function () {
         registros.registrarse();
@@ -142,38 +139,42 @@ var empresas = (function() {
         });
     };
     var empresaformdesdejson = function(codeRel) {
-        Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
-            $('#empresa-form').formParams(response, true);
+        if(codeRel) {
+            $('#btn-empresa').html("Modificar");
+            Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
+                $('#empresa-form').formParams(response, true);
+                llenamuni(response.DirEnt, response.DirMun);
+                llenaorganismos(response.OrgEmp);
+                Ajax.hidePreload($('#empresas-detalle'));
+            });
+        } else {
+            $('#btn-empresa').html("Crear");
             Ajax.hidePreload($('#empresas-detalle'));
-        });
+        }
     };
-    var nuevaempresa_envia = function () {
-        $('form#empresa-form').on('submit', function(event){
+    var empresa_envia = function () {
+        $(document).on('submit','form#empresa-form', function(event){
             event.preventDefault();
             var post = $(this).serialize();
-            Ajax.post('/r/wse/put', post, function(response){
-                   if(response.success){
-                           alert('registrado correctamente');
-                   }
-           });
-        })
-    };
-    var modificaempresa_envia = function (codRel) {
-        $('form#empresa-form').on('submit', function(event){
-            event.preventDefault();
-            var post = $(this).serialize();
-            Ajax.post('/r/wse/post?IdEmp='+codRel, post, function(response){
-                   if(response.success){
-                           alert('registrado correctamente');
-                   }
-           });
+            if($('#btn-empresa').html() == 'Crear') {
+                Ajax.post('/r/wse/put', post, function(response){
+                       if(response.status=="ok"){
+                               alert('registrado correctamente');
+                       }
+               });
+            } else {
+                Ajax.post('/r/wse/post', post, function(response){
+                       if(response.status=="ok"){
+                               alert('registrado correctamente');
+                       }
+               });
+            }
         })
     };
     return {
         initEmpresas: initEmpresas,
         empresaformdesdejson: empresaformdesdejson,
-        nuevaempresa_envia: nuevaempresa_envia,
-        modificaempresa_envia: modificaempresa_envia,
+        empresa_envia: empresa_envia
     };
 })();
 

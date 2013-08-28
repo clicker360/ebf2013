@@ -131,8 +131,8 @@ type Municipio struct {
 }
 
 type Organismo struct {
-	Siglas		string `json:"siglas"`
-	Nombre		string `json:"organismo"`
+	Siglas		string `json:"Siglas"`
+	Nombre		string `json:"Nombre"`
 	Selected	string `json:"-"`
 }
 
