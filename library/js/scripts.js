@@ -20,6 +20,20 @@
            empresas.empresaformdesdejson(rel);
        });
    };
+   var nuevaempresa = function() {
+       $(document).on('click','a.nuevaempresa', function(event) {
+           event.preventDefault();
+           var rel = 'put';
+           empresas.nuevaempresa_envia(rel);
+       });
+   };
+   var modificaempresa = function() {
+       $(document).on('click','a.editar-empresa', function(event) {
+           event.preventDefault();
+           var rel = $(this).attr('rel');
+           empresas.modificaempresa_envia(rel);
+       });
+   };
    var llenaformsucursal = function() {
        $(document).on('click','a.editar-sucursal', function(event) {
            event.preventDefault();
@@ -29,7 +43,7 @@
    };
     var initEmpresas = function() {
         empresas.initEmpresas(); //lista de empresas
-        empresas.empresanueva();
+        empresas.nuevaempresa_envia();
     };
     var registrarse = function () {
         registros.registrarse();
@@ -42,7 +56,8 @@
             llenaformsucursal();
             initEmpresas();
             initSucursales();
-
+            nuevaempresa();
+            modificaempresa();
         });
     };
     return execute();
@@ -132,7 +147,7 @@ var empresas = (function() {
             Ajax.hidePreload($('#empresas-detalle'));
         });
     };
-    var empresanueva = function () {
+    var nuevaempresa_envia = function () {
         $('form#empresa-form').on('submit', function(event){
             event.preventDefault();
             var post = $(this).serialize();
@@ -143,10 +158,22 @@ var empresas = (function() {
            });
         })
     };
+    var modificaempresa_envia = function (codRel) {
+        $('form#empresa-form').on('submit', function(event){
+            event.preventDefault();
+            var post = $(this).serialize();
+            Ajax.post('/r/wse/post?IdEmp='+codRel, post, function(response){
+                   if(response.success){
+                           alert('registrado correctamente');
+                   }
+           });
+        })
+    };
     return {
         initEmpresas: initEmpresas,
         empresaformdesdejson: empresaformdesdejson,
-        empresanueva: empresanueva
+        nuevaempresa_envia: nuevaempresa_envia,
+        modificaempresa_envia: modificaempresa_envia,
     };
 })();
 

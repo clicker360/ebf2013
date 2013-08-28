@@ -32,6 +32,7 @@ type WsEmpresa struct {
 	PartLinea		int `json:"PartLinea"`
 	ExpComer		int `json:"ExpComer"`
 	Desc			string `json:"Desc"`
+	TermCond	    string	`json:"TermCond,omitempty"`
 	Status		    string `json:"status"`
 	Ackn		    string `json:"ackn,omitempty"`
 	Errors		    map[string]bool `json:"errors,omitempty"`
@@ -71,6 +72,16 @@ func PutEmpresa(w http.ResponseWriter, r *http.Request) {
 
         out.Errors, out.Status = validate(eTmp)
         if out.Status != "ok" {
+            return
+        }
+
+        // En el caso particular de crear cuenta se verifica que acepten términos y 
+        // condiciones
+        if r.FormValue("TermCond") != "1" {
+            err := make(map[string]bool)
+            err["TermCond"] = false
+            out.Errors = err
+            out.Status = "invalidInput"
             return
         }
 
@@ -114,6 +125,16 @@ func PostEmpresa(w http.ResponseWriter, r *http.Request) {
 
         out.Errors, out.Status = validate(eTmp)
         if out.Status != "ok" {
+            return
+        }
+
+        // En el caso particular de crear cuenta se verifica que acepten términos y 
+        // condiciones
+        if r.FormValue("TermCond") != "1" {
+            err := make(map[string]bool)
+            err["TermCond"] = false
+            out.Errors = err
+            out.Status = "invalidInput"
             return
         }
 

@@ -34,6 +34,13 @@
 	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
 	<script src="../library/js/libs/underscore-min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#empresa-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
+	});
+	</script>
 </head>
 
 <body>
@@ -58,7 +65,7 @@
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="empresa-micrositio.html">Añadir Nueva</a></li>
+								<li><a class="nuevaempresa" href="empresa-micrositio.html">Añadir Nueva</a></li>
 								<li><a href="empresas.html">Lista Empresas</a></li>
 							</ul>
 						</li>
@@ -541,11 +548,12 @@
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox">Para aceptar y realizar cambios a esta empresa haga clic en el recuadro * 
+                                                    <input type="checkbox" class="validate[required]" name="TermCond" value="1" id="accept"/>
+													Para aceptar y realizar cambios a esta empresa haga clic en el recuadro * 
 												</label>
 											</div>
 											<div class="control-group">
-												<button type="submit" class="btn">Modificar</button>
+												<button type="submit" id="modifica-empresa" class="btn">Modificar</button>
     										    <button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
 
 											</div>
@@ -992,8 +1000,6 @@
 		<script src="../library/js/libs/bootstrap-carousel.js"></script>
 		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
 		<script src="../library/js/libs/jquery.formparams.js"></script>
-		<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
 		 <!--<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>-->
 		<script src="../library/js/scripts.js"></script>
 

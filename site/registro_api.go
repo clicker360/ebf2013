@@ -86,7 +86,7 @@ func PutCta(w http.ResponseWriter, r *http.Request) {
 
 	// Se obtienen y validan los campos del cgi
 	wsCtaTmp := regFill(r)
-	if out.Errors, out.StatusMsg = regValidate(wsCtaTmp); out.StatusMsg != "ok" {
+	if out.Errors, out.StatusMsg = regValidate(wsCtaTmp, r.FormValue("t")); out.StatusMsg != "ok" {
 		return
 	}
     // En el caso particular de crear una nueva cta se verifica que ambos campos
@@ -330,7 +330,7 @@ func PostCta(w http.ResponseWriter, r *http.Request) {
         return
     }
 	wsCtaTmp := regFill(r)
-    out.Errors, out.StatusMsg = regValidate(wsCtaTmp)
+    out.Errors, out.StatusMsg = regValidate(wsCtaTmp, r.FormValue("t"))
     if out.StatusMsg != "ok" {
         return
     }
@@ -456,7 +456,7 @@ func regFill(r *http.Request) WsCta {
     return e
 }
 
-func regValidate(e WsCta) (map[string]bool, string) {
+func regValidate(e WsCta, tipo string) (map[string]bool, string) {
     errmsg := "ok"
     err := make(map[string]bool)
     if e.Nombre == "" || !model.ValidName.MatchString(e.Nombre) {
@@ -474,9 +474,16 @@ func regValidate(e WsCta) (map[string]bool, string) {
 	if e.EmailAlt != "" && !model.ValidEmail.MatchString(e.EmailAlt) {
 		err["EmailAlt"] = false
 	}
-    if ((e.Pass != e.Pass2 || !model.ValidPass.MatchString(e.Pass)) && (e.Pass != "" || e.Pass2 != "")) {
-        err["Pass"] = false
-        err["Pass2"] = false
+    if tipo != "upd" {
+		if (e.Pass != e.Pass2 || e.Pass == "" || e.Pass2 == "" || !model.ValidPass.MatchString(e.Pass)) {
+            err["Pass"] = false
+            err["Pass2"] = false
+        }
+    } else {
+		if ((e.Pass != e.Pass2 || !model.ValidPass.MatchString(e.Pass)) && (e.Pass != "" || e.Pass2 != "")) {
+            err["Pass"] = false
+            err["Pass2"] = false
+        }
     }
 	if e.Tel == "" || !model.ValidTel.MatchString(e.Tel) {
 		err["Tel"] = false

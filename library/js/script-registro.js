@@ -85,7 +85,7 @@ var registros = (function() {
     };
     var consultaregistro = function() {
         Ajax.get('/r/wsr/get', function(response) {
-            $('#actualizaregistro').formParams(response, true);
+            $('#actualizaregistro').formParams(response);
             Ajax.hidePreload($('#empresas-detalle'));
         });
     };
