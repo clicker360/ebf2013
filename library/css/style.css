@@ -113,11 +113,18 @@ Stylesheet: Tema.
   padding: 5px 10px;
   border: 1px solid transparent;
   color: #ffffff;
+  text-align: center;
 }
 #registro-intro h1 {
   font-size: 20px;
   text-transform: uppercase;
   text-align: center;
+  line-height: 15px;
+}
+#registro-intro h3 {
+  font-size: 15px;
+  text-align: center;
+  text-transform: uppercase;
 }
 ul#iconos-footer {
   list-style: none;
