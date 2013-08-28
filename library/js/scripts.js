@@ -212,11 +212,25 @@ var sucursales = (function() {
     };
 
 
-    var sucursalformdesdejson = function(codeRel) {
+  /*  var sucursalformdesdejson = function(codeRel) {
         Ajax.get('/r/wss/get?IdSuc=' + codeRel, function(response) {
             $('#sucursal-form').formParams(response, true);
               Ajax.hidePreload($('#sucursal-detalle'));
         });
+    };*/
+     var sucursalformdesdejson = function(codeRel) {
+        if(codeRel) {
+            $('#btn-sucursal').html("Modificar");
+            Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
+                $('#empresa-form').formParams(response, true);
+                llenamuni(response.DirEnt, response.DirMun);
+                llenaorganismos(response.OrgEmp);
+                Ajax.hidePreload($('#sucursal-detalle'));
+            });
+        } else {
+            $('#btn-sucursal').html("Crear");
+            Ajax.hidePreload($('#sucursal-detalle'));
+        }
     };
     var sucursalnueva = function (codeEmpresa) {
         $('form#sucursal-form').on('submit', function(event){

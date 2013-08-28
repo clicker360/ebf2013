@@ -40,6 +40,7 @@
 
 	$(document).ready(function(){
 		$('#empresa-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
+		$('#sucursal-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
 	});
 	</script>
 </head>
@@ -784,7 +785,8 @@
 									<div class="row-fluid">
 										<div class="span12">
 											<div class="control-group">
-												<button type="submit" class="btn">Modificar</button>
+												<button type="submit" id="btn-sucursal" class="btn">Crear</button>
+												<button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
 											</div>
 										</div>
 									</div>

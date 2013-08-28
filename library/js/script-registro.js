@@ -85,11 +85,20 @@ var registros = (function() {
                        Ajax.hidePreload($('#registro-enviado-block'));
                            //alert('registrado correctamente');
                    }
-                   else if (response.status = 'alreadyOnSession') {
+                   else if (response.status == 'alreadyOnSession') {
                         $('#tusdatos').html(
                                 '<div class="alert alert-block">'
                                 +'<h4>Alto!</h4>'
                                 +'Ya estas logueado con tu cuenta'
+                                +'</div>'
+                            );
+                        Ajax.hidePreload($('#registro-enviado-block'));
+                   }
+                   else if (response.status == 'alreadyRegistered') {
+                        $('#tusdatos').html(
+                                '<div class="alert alert-block">'
+                                +'<h4>Alto!</h4>'
+                                +'Ya estas registrado'
                                 +'</div>'
                             );
                         Ajax.hidePreload($('#registro-enviado-block'));
