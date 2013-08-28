@@ -21,8 +21,8 @@
 ul#iconos-footer{list-style:none}ul#iconos-footer li{float:left}ul#iconos-footer li a{display:block;width:40px;height:40px;color:#fff;margin:0 5px;font-size:33px;text-align:center;text-decoration:none}
 ul#iconos-footer li #f-face{background:#37589a}
 ul#iconos-footer li #f-twit{background:#38a8e0}
-.active{display:block !important}
-.inactive{display:none}
+.activo{display:block !important}
+.inactivo{display:none}
 #sidebar{position:absolute;width:215px;height:auto !important;overflow:visible !important;border-radius:4px 4px 4px 4px !important}#sidebar ul{margin:0}#sidebar ul li a{border:0 none;border-radius:0 0 0 0 !important;display:block;font-size:14px;font-weight:normal;margin:0;padding:10px 15px;position:relative;text-decoration:none;border-bottom:1px solid #282828 !important;border-top:1px solid #424242 !important;color:#d1d0d0 !important;text-shadow:0 1px 1px #333 !important}#sidebar ul li a i{color:#999 !important}
 #sidebar ul li a:hover{background:-moz-linear-gradient(center bottom, #1e1f21, #232527) repeat scroll 0 0 transparent;border-bottom:1px solid #161718;border-top:1px solid #303234;color:#fff !important;text-shadow:0 1px 0 rgba(0,0,0,0.25)}
 #sidebar ul li ul.sub{margin:0;background:#222}#sidebar ul li ul.sub li a{padding-left:30px;color:#ccc;text-shadow:0 1px 1px #000}

@@ -1,4 +1,5 @@
 (function() {
+  /* ---------------- Generales y utilerias -------------*/
     var municipios = function() {
        $(document).on('click','a.ver-sucursales', function(event) {
            event.preventDefault();
@@ -6,13 +7,14 @@
            sucursales.initSucursales(valmun);
        });
    };
-     var initSucursales = function() {
-       $(document).on('click','a.ver-sucursales', function(event) {
-           event.preventDefault();
-           var rel = $(this).attr('rel');
-           sucursales.initSucursales(rel);
-       });
-   };
+   var registrarse = function () {
+        registros.registrarse();
+    };
+    /* ---------------- Empresas -------------*/
+   //carga automatica de empresas
+   var initEmpresas = function() {
+        empresas.initEmpresas(); //lista de empresas
+    };
    // llena formulario de detalle de empresa
    var llenaformempresas = function() {
        $(document).on('click','a.editar-empresa', function(event) {
@@ -28,10 +30,21 @@
            empresas.empresaformdesdejson();
        });
    };
+  
    // Submit de datos de empresa ya sea PUt o POST
    var modificaempresa = function() {
        empresas.empresa_envia();
    };
+
+   /* ---------------- Sucursales -------------*/
+  var initSucursales = function() {
+       $(document).on('click','a.ver-sucursales', function(event) {
+           event.preventDefault();
+           var rel = $(this).attr('rel');
+           sucursales.initSucursales(rel);
+       });
+   };
+   // llena formulario con datos de json 
    var llenaformsucursal = function() {
        $(document).on('click','a.editar-sucursal', function(event) {
            event.preventDefault();
@@ -39,18 +52,23 @@
            sucursales.sucursalformdesdejson(rel);
        });
    };
-    var initEmpresas = function() {
-        empresas.initEmpresas(); //lista de empresas
-    };
-    var registrarse = function () {
-        registros.registrarse();
-    };
+    // abre formulario de nueva sucursal
+   var nuevasucursal = function() {
+       $(document).on('click','a.nuevasucursal', function(event) {
+           event.preventDefault();
+           sucursales.sucursalformdesdejson();
+       });
+   };
+
+    
+    
     var execute = function() {
         $(document).ready(function() {
             //verSucusales2();
             registrarse();
             llenaformempresas();
             llenaformsucursal();
+            nuevasucursal();
             initEmpresas();
             initSucursales();
             nuevaempresa();
@@ -66,8 +84,8 @@ var Ajax = (function() {
     var hidePreload = function(bloque) {
         $('#preloader').fadeOut('fast');
         if(typeof bloque !== 'undefined'){
-            $('.active').removeClass('active').addClass('inactive');
-            bloque.addClass('active').removeClass('inactive');   
+            $('.activo').removeClass('activo').addClass('inactivo');
+            bloque.addClass('activo').removeClass('inactivo');   
         }
         
 
@@ -200,7 +218,6 @@ var sucursales = (function() {
               Ajax.hidePreload($('#sucursal-detalle'));
         });
     };
-
     var sucursalnueva = function (codeEmpresa) {
         $('form#sucursal-form').on('submit', function(event){
             event.preventDefault();
@@ -214,7 +231,8 @@ var sucursales = (function() {
     };
     return {
         initSucursales: initSucursales,
-        sucursalformdesdejson: sucursalformdesdejson,        
+        sucursalformdesdejson: sucursalformdesdejson,
+        sucursalnueva: sucursalnueva       
     };
 })();
 

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>El buen fin // Registro de usuarios</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link href="../library/css/libs/bootstrap.css" rel="stylesheet">
+	<link href="../library/css/style.css" rel="stylesheet">
+	<style>
+	body {
+		padding-top: 60px; /* 60px to make the go container all the way to the bottom of the topbar */
+	}
+	</style>
+	<link href="../library/css/libs/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="../library/css/font-awesome/css/font-awesome.min.css">
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="../library/js/libs/html5shiv.js"></script>
+	<![endif]-->
+
+	<!--[if IE 7]>
+		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+	<![endif]-->
+
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../library/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../library/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#registroform').validationEngine({promptPosition : 'bottomRight', scroll: true});
+	});
+	</script>
+</head>
+
+<body class="frontpages">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">
+					<img src="../library/images/logo_header.png">
+				</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li>
+							<a href="/index.html">Inicio</a>
+						</li>
+						<li>
+							<a href="/elbuenfin-que-es.html">
+							    ¿Qué es
+							    El Buen Fin?
+							</a>
+						</li>
+						<li><a href="/elbuenfin-organizadores.html">Organizadores</a></li>
+						<li><a href="">Contacto</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a href="/r/login">Accede</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+	<!-- menu -->
+	<div id="container" class="row-fluid">
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="block">
+							<h3><i class="icon-building"></i> Registro de usuario</h3>
+							<div id="registro-block" class="active well well-small">
+								<form id="registroform" class="form-horizontal" name="registroform" action="" method="post">
+									<div class="row-fluid">
+										<div class="span6">
+											<div class="control-group">
+												<label for="Nombre" class="control-label">Nombre</label>
+												<div class="controls"><input name="Nombre"  class="validate[required,custom[onlyLetterSp]]" type="text"></div>
+											</div>
+	
+											<div class="control-group">
+												<label for="Apellidos" class="control-label">Apellidos</label>
+												<div class="controls"><input name="Apellidos"  class="validate[required,custom[onlyLetterSp]]" type="text"></div>
+											</div>
+
+											<div class="control-group">
+												<label for="Puesto" class="control-label">Puesto</label>
+												<div class="controls"><input name="Puesto" class="validate[optional]" type="text"></div>
+											</div>
+
+											<div class="control-group">
+												<label for="Email" class="control-label">Email</label>
+												<div class="controls">
+													
+													  <input type="text" id="cmail" name="Email" class="validate[required,custom[email]]" value="" />
+												</div>
+											</div>
+
+											<div class="control-group">
+												<label for="EmailAlt" class="control-label">Email Alternativo</label>
+												<div class="controls"><input name="EmailAlt" class="validate[optional,funcCall[validateEmail]" type="text"></div>
+											</div>
+										</div>
+										<div class="span6">
+											<div class="control-group">
+												<label for="Pass" class="control-label">Contraseña</label>
+												<div class="controls"><input name="Pass"  id="cpass"  class="validate[required]" type="password"></div>
+											</div>
+
+											<div class="control-group">
+												<label for="Pass2" class="control-label">Confirmar Contraseña</label>
+												<div class="controls"><input name="Pass2" id="cpassconfirm" class="validate[required,equals[cpass]]" type="password"></div>
+											</div>
+
+											<div class="control-group">
+												<label for="Tel" class="control-label">Teléfono</label>
+												<div class="controls"><input name="Tel" class="validate[required,custom[phone]]"  type="text"></div>
+											</div>
+
+											<div class="control-group">
+												<label for="Cel" class="control-label">Teléfono celular</label>
+												<div class="controls"><input name="Cel"  class="validate[optional,custom[cellphone]]" type="text"></div>
+											</div>
+											
+											<div class="control-group">
+												<label class="checkbox">
+													<input type="checkbox" name="TermCond" class="validate[required]" value="1">Acepto los 	<a href="/terminosCondiciones.html">terminos y condiciones</a>
+												</label>
+											</div>
+											<div class="control-group">
+												<input type="submit" value="Registrar" class="btn btn-primary">
+											</div>
+										</div>
+									</div>
+								</form>
+								
+							</div>
+							<div id="registro-enviado-block" class="inactive well well-small">
+								<div id="tusdatos">
+
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- </div> -->
+	</div> <!-- /container -->
+	
+
+	
+
+	<div class="footer">
+		<div class="footer-a">
+			<div class="container">
+				<span>Patrocinadores</span>
+				<ul>
+					<li><a id="patr-1" href=""></a></li>
+					<li><a id="patr-2" href=""></a></li>
+					<li><a id="patr-3" href=""></a></li>
+					<li><a id="patr-4" href=""></a></li>
+					<li><a id="patr-5" href=""></a></li>
+					<li><a id="patr-6" href=""></a></li>
+					<li><a id="patr-7" href=""></a></li>
+					<li><a id="patr-8" href=""></a></li>
+					<li><a id="patr-9" href=""></a></li>
+					<li><a id="patr-10" href=""></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-b">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span6">
+						<p>El Buen Fin 2012 © Todos los derechos reservados<br>
+							Av. Chapultepec #18, Col. Doctores, Deleg. Cuauhtémoc, México D.F. 06724 
+						</p>
+					</div>
+					<div class="span3">
+						<p>Políticas de privacidad de datos<br>
+							<a href="">contacto@elbuenfin.org</a>
+						</p>
+						
+					</div>
+					<div class="span3">
+						<ul id="iconos-footer" class="pull-right">
+							<li><a id="f-face" href=""><i class="icon-facebook"></i></a></li>
+							<li><a id="f-twit" href=""><i class="icon-twitter"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		<!-- Le javascript
+		================================================== -->
+		<script src="../library/js/libs/bootstrap-transition.js"></script>
+		<script src="../library/js/libs/bootstrap-alert.js"></script>
+		<script src="../library/js/libs/bootstrap-modal.js"></script>
+		<script src="../library/js/libs/bootstrap-dropdown.js"></script>
+		<script src="../library/js/libs/bootstrap-scrollspy.js"></script>
+		<script src="../library/js/libs/bootstrap-tab.js"></script>
+		<script src="../library/js/libs/bootstrap-tooltip.js"></script>
+		<script src="../library/js/libs/bootstrap-popover.js"></script>
+		<script src="../library/js/libs/bootstrap-button.js"></script>
+		<script src="../library/js/libs/bootstrap-collapse.js"></script>
+		<script src="../library/js/libs/bootstrap-carousel.js"></script>
+		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
+		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+		
+		 <!--<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>-->
+		 <script src="../library/js/libs/jquery.formparams.js"></script>
+		<script src="../library/js/script-registro.js"></script>
+</body>
+</html>

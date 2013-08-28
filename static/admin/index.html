@@ -65,8 +65,8 @@
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a class="nuevaempresa" href="empresa-micrositio.html">Añadir Nueva</a></li>
-								<li><a href="empresas.html">Lista Empresas</a></li>
+								<li><a class="nuevaempresa" href="#">Añadir Nueva</a></li>
+								<li><a href="#">Lista Empresas</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -75,8 +75,8 @@
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="sucursal-detalle.html">Añadir Nueva</a></li>
-								<li><a href="sucursales.html">Lista Sucursales</a></li>
+								<li><a class="nuevasucursal" href="#">Añadir Nueva</a></li>
+								<li><a href="#">Lista Sucursales</a></li>
 							</ul>
 						</li>
 						<!--li class="dropdown">
@@ -115,20 +115,17 @@
 
 
 	<div id="container" class="row-fluid">
-			<div id="dashboard" class="active container-fluid">
+			<div id="dashboard" class="activo container-fluid">
 				<div class="row-fluid">
 					<div class="span6">
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
-								<div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+								<div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
-
-
-									<tbody id="empresasBlockDash">
-										<script id="empresaTemplateDash" type="text/template">
+									<script id="empresaTemplateDash" type="text/template">
 												<% for (var i in empresasArrayDash){ %>
 												<% var empresa = empresasArrayDash[i]; %>
 													<tr>
@@ -139,11 +136,14 @@
 														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
 														<th>
 															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
-															<a href="" class="btn btn-mini btn-primary"><i class="icon-plus"></i> Añadir</a>
+															<a href="" class="nuevasucursal btn btn-mini btn-success"><i class="icon-plus"></i> Añadir</a>
 														</th>
 													</tr>
 												<% } %>
 											</script>
+
+									<tbody id="empresasBlockDash">
+										
 									</tbody>
 								</table>
 								
@@ -151,7 +151,7 @@
 						</div>
 					</div>
 					<div class="span6">
-						<div class="row-fluid inactive">
+						<div class="row-fluid inactivo">
 							<div class="span12">
 								<div class="block">
 									<div class="row-fluid">
@@ -214,7 +214,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="inactive row-fluid">
+						<div class="inactivo row-fluid">
 							<div class="span12">
 								<div class="block">
 									<div class="row-fluid">
@@ -343,13 +343,13 @@
 						</div>
 				</div-->
 			</div>
-			<div id="empresas-lista" class="inactive container-fluid">
+			<div id="empresas-lista" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
-								<div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+								<div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
@@ -364,9 +364,7 @@
 											<th>Ofertas</th>
 										</tr>
 									</thead>
-									
-									<tbody id="empresasBlock">
-											<script id="empresaTemplate" type="text/template">
+									<script id="empresaTemplate" type="text/template">
 												<% for (var i in empresasArray){ %>
 												<% var empresa = empresasArray[i]; %>
 													<tr>
@@ -377,11 +375,13 @@
 														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
 														<th>
 															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
-															<a href="" class="btn btn-mini btn-primary"><i class="icon-plus"></i> Añadir</a>
+															<a href="" class="nuevasucursal btn btn-mini btn-success"><i class="icon-plus"></i> Añadir</a>
 														</th>
 													</tr>
 												<% } %>
 											</script>
+									<tbody id="empresasBlock">
+											
 									</tbody>
 								</table>
 								
@@ -393,7 +393,7 @@
 			</div>
 
             <!-- formato de empresa -->
-			<div id="empresas-detalle" class="inactive container-fluid">
+			<div id="empresas-detalle" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -565,7 +565,7 @@
 								</form>
 							</div>
 						</div>
-						<div class="block">
+						<div class="inactivo block">
 							<h3><i class="icon-globe"></i> Micrositio de empresa</h3>
 							<div class="well well-small">
 								<form class="form-horizontal">
@@ -645,13 +645,13 @@
 					</div>
 				</div>
 			</div>
-			<div id="sucursales-lista" class="inactive container-fluid">
+			<div id="sucursales-lista" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
-								<div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+								<div class="span3"><a class="nuevasucursal span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
@@ -665,8 +665,6 @@
 											<th>Ver empresa</th>
 										</tr>
 									</thead>
-									
-									<tbody id="sucursalesBlock">
 										<script id="sucursalesTemplate" type="text/template">
 												<% for (var i in sucursalesArray){ %>
 												<% var sucursal = sucursalesArray[i]; %>
@@ -682,6 +680,8 @@
 													</tr>
 												<% } %>
 											</script>
+									<tbody id="sucursalesBlock">
+										
 									</tbody>
 								</table>
 							</div>
@@ -689,7 +689,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="sucursal-detalle" class="inactive container-fluid">
+			<div id="sucursal-detalle" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -793,7 +793,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="ofertas-lista" class="inactive container-fluid">
+			<div id="ofertas-lista" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -842,7 +842,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="oferta-detalle" class="inactive container-fluid">
+			<div id="oferta-detalle" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
