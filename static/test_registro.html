@@ -9,8 +9,8 @@
                 Nombre: "Usuario",
                 Apellidos: "De Prueba",
                 Puesto: "De Confianza",
-                Email: "a.huezo@gmail.com",
-                EmailAlt: "a.huezo@clicker360.com",
+                Email: "a.huezo7@gmail.com",
+                EmailAlt: "a.huezo7@clicker360.com",
                 Pass: "yyy",
                 Pass2: "yyy",
                 Tel: "5555555555",
@@ -32,38 +32,39 @@
                 console.log(data.status);
                 console.log(data.ackn);
                 console.log(data.errors);
-            }, "json");
-            console.log("TERMINA PUT");
+
+                console.log("TERMINA PUT");
 
 
-            console.log("COMIENZA POST");
-            $.post("/r/wsr/post", { 
-                Nombre: "Juán",
-                Apellidos: "Pérez Hernández",
-                Puesto: "Inventario",
-                Email: "a.huezo@gmail.com",
-                EmailAlt: "juan@example.com",
-                Pass: "xxx",
-                Pass2: "xxx",
-                Tel: "5566666666",
-                Cel: "0446666666",
-                TermCond: "1",
-            },
-            function(data) {
-                console.log(data.folio);
-                console.log(data.nombre);
-                console.log(data.apellidos);
-                console.log(data.puesto);
-                console.log(data.email);
-                console.log(data.emailalt);
-                console.log(data.pass);
-                console.log(data.pass2);
-                console.log(data.tel);
-                console.log(data.cel);
-                console.log(data.fechahora);
-                console.log(data.status);
-                console.log(data.ackn);
-                console.log(data.errors);
+                console.log("COMIENZA POST");
+                $.post("/r/wsr/post", { 
+                    Nombre: "Juán",
+                    Apellidos: "SIete Pérez B",
+                    Puesto: "Inventario",
+                    Email: "a.huezo7@gmail.com",
+                    EmailAlt: "juan7@example.com",
+                    Pass: "xxx",
+                    Pass2: "xxx",
+                    Tel: "5566666666",
+                    Cel: "0446666666",
+                    TermCond: "1",
+                },
+                function(data) {
+                    console.log(data.folio);
+                    console.log(data.nombre);
+                    console.log(data.apellidos);
+                    console.log(data.puesto);
+                    console.log(data.email);
+                    console.log(data.emailalt);
+                    console.log(data.pass);
+                    console.log(data.pass2);
+                    console.log(data.tel);
+                    console.log(data.cel);
+                    console.log(data.fechahora);
+                    console.log(data.status);
+                    console.log(data.ackn);
+                    console.log(data.errors);
+                }, "json");
             }, "json");
 
     </script>

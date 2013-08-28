@@ -27,6 +27,7 @@ type UrlCfm struct {
 	FechaHora	time.Time	`json:"fechahora, omitempty"`
 	Llave		string		`json:"llave. omitempty"`
 	AppId		string		`json:"appid, omitempty"`
+    Pass        string      `json:"pass, omitempty"`
 	Status		string		`json:status,omitempty`
 }
 
@@ -56,10 +57,13 @@ const WsMailSender = "ahuezo@clicker360.com"
 const WsMailSubject = "Codigo de Activación de Registro / El Buen Fin en línea"
 const WsMailSubjectConfirmed = "Cuenta Activada / El Buen Fin en línea"
 
-var wsMailActivationCodeTpl = template.Must(template.ParseFiles("templates/activation_code.html"))
-var wsMailAvisoActivacionTpl = template.Must(template.ParseFiles("templates/mail_aviso_activacion.html"))
+var wsMailActivationCodeTpl = template.Must(template.ParseFiles("layout/mail_activation_code.html"))
+var wsMailAvisoActivacionTpl = template.Must(template.ParseFiles("layout/mail_activation_welcome.html"))
+
+var Loc *time.Location
 
 func init() {
+    Loc, _ = time.LoadLocation("America/Mexico_City")
 	http.HandleFunc("/r/wsr/put", PutCta)
 	http.HandleFunc("/r/wsr/post", PostCta)
 	http.HandleFunc("/r/wsr/get", GetCta)
@@ -112,7 +116,7 @@ func PutCta(w http.ResponseWriter, r *http.Request) {
         cta.Status = false
     }
 	// No hay Cuenta registrada
-    cta.FechaHora = time.Now().Add(time.Duration(model.GMTADJ) * time.Second)
+    cta.FechaHora = time.Now().In(Loc)
     cta.Nombre = wsCtaTmp.Nombre
     cta.Apellidos = wsCtaTmp.Apellidos
     cta.Puesto = wsCtaTmp.Puesto
@@ -125,7 +129,7 @@ func PutCta(w http.ResponseWriter, r *http.Request) {
 
     // Generar código de confirmación distindo cada vez. Md5 del email + fecha-hora
     h := md5.New()
-    io.WriteString(h, fmt.Sprintf("%s%s%s%s", time.Now().Add(time.Duration(model.GMTADJ)*time.Second), cta.Email, cta.Pass, model.RandId(12)))
+    io.WriteString(h, fmt.Sprintf("%s%s%s%s", time.Now().In(Loc), cta.Email, cta.Pass, model.RandId(12)))
     cta.CodigoCfm = fmt.Sprintf("%x", h.Sum(nil))
 	//Si hay estatus es que ya existe
 	if cta.Status == false {
@@ -142,7 +146,7 @@ func PutCta(w http.ResponseWriter, r *http.Request) {
 			Md5:       cta.CodigoCfm,
 			Nombre:    cta.Nombre,
 			Email:     cta.Email,
-			FechaHora: time.Now().Add(time.Duration(model.GMTADJ) * time.Second),
+			FechaHora: time.Now().In(Loc),
 			Llave:     cta.Key(c).Encode(),
 			AppId:     appengine.AppID(c),
 		}
@@ -184,7 +188,7 @@ func PutCta(w http.ResponseWriter, r *http.Request) {
 			defer r1.Body.Close()
 		}
 		/*
-		 Si el hay usuario admin se despliega el código de activación
+		 Si hay usuario admin se despliega el código de activación
 		*/
 		if gu := user.Current(c); gu != nil {
 			out.Ackn = cta.CodigoCfm
@@ -230,6 +234,7 @@ func ConfirmCode(w http.ResponseWriter, r *http.Request) {
         out.Nombre = cta.Nombre
         out.Apellidos = cta.Apellidos
         out.Email = cta.Email
+        out.Pass = cta.Pass
         out.FechaHora = cta.FechaHora
 		if gu := user.Current(c); gu != nil {
             out.Llave = cta.Key(c).Encode()
@@ -326,27 +331,32 @@ func PostCta(w http.ResponseWriter, r *http.Request) {
     if out.StatusMsg != "ok" {
         return
     }
-	if cta, err := model.GetCta(c, s.User); err != nil {
+	cta, err := model.GetCta(c, s.User)
+    if err != nil {
 		out.StatusMsg = "notFound"
-	} else {
-        cta.Nombre = wsCtaTmp.Nombre
-        cta.Apellidos = wsCtaTmp.Apellidos
-        cta.EmailAlt = wsCtaTmp.EmailAlt
-        cta.Puesto = wsCtaTmp.Puesto
-        cta.Tel = wsCtaTmp.Tel
-        cta.Cel = wsCtaTmp.Cel
-        if wsCtaTmp.Pass != "" {
-            cta.Pass = wsCtaTmp.Pass
-        }
-        cta.Folio = wsCtaTmp.Folio
-        cta.UsuarioInt = ""
-        setWsCta(&out, *cta)
-		if err := model.PutCta(c, cta); err != nil {
-			out.StatusMsg = "writeError"
-		} else {
-			out.StatusMsg = "ok"
-		}
+        return
 	}
+    if cta.Status {
+        out.StatusMsg = "notConfirmedUser"
+        return
+    }
+    cta.Nombre = wsCtaTmp.Nombre
+    cta.Apellidos = wsCtaTmp.Apellidos
+    cta.EmailAlt = wsCtaTmp.EmailAlt
+    cta.Puesto = wsCtaTmp.Puesto
+    cta.Tel = wsCtaTmp.Tel
+    cta.Cel = wsCtaTmp.Cel
+    if wsCtaTmp.Pass != "" {
+        cta.Pass = wsCtaTmp.Pass
+    }
+    cta.Folio = wsCtaTmp.Folio
+    cta.UsuarioInt = ""
+    setWsCta(&out, *cta)
+    if err := model.PutCta(c, cta); err != nil {
+        out.StatusMsg = "writeError"
+    } else {
+        out.StatusMsg = "ok"
+    }
 }
 
 func DelCta(w http.ResponseWriter, r *http.Request) {
@@ -362,7 +372,7 @@ func DelCta(w http.ResponseWriter, r *http.Request) {
 		out.StatusMsg = "wrongMethod"
         return
     }
-	now := time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
+	now := time.Now().In(Loc)
 	if cta, err := model.GetCta(c, s.User); err != nil {
 		out.StatusMsg = "notFound"
 	} else {
@@ -416,6 +426,7 @@ func setWsCta(out *WsCta, e model.Cta) {
 	out.Puesto =	e.Puesto
 	out.Email =		e.Email
 	out.EmailAlt =	e.EmailAlt
+	out.FechaHora =	e.FechaHora
 	out.Pass =		e.Pass
 	out.Tel =		e.Tel
 	out.Cel =		e.Cel
