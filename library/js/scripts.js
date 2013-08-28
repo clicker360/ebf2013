@@ -40,8 +40,8 @@
             registrarse();
             llenaformempresas();
             llenaformsucursal();
-            //initEmpresas();
-            //initSucursales();
+            initEmpresas();
+            initSucursales();
 
         });
     };
