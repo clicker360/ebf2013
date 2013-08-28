@@ -1,80 +1,157 @@
 {{define "confirm"}}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="css/Origami.css" rel="stylesheet" type="text/css" />
-<link href="css/elbuenfinSkin.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript">
+  <meta charset="utf-8">
+  <title>Registrate para participar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-26907178-1']);
-	_gaq.push(['_trackPageview']);
+  <link href="../library/css/libs/bootstrap.css" rel="stylesheet">
+  <link href="../library/css/style.css" rel="stylesheet">
+  <style>
+  body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+  }
+  </style>
+  <link href="../library/css/libs/responsive.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../library/css/font-awesome/css/font-awesome.min.css">
 
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements   -->
+  <!--[if lt IE 9]>
+    <script src="../library/js/libs/html5shiv.js"></script>
+  <![endif]-->
+
+  <!--[if IE 7]>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../library/images/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../library/images/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="../library/images/ico/favicon.png">
+  <script src="../library/js/libs/underscore-min.js"></script>
+  <script src="../library/js/libs/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26907178-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 </script>
-<script type="text/javascript">
-</script>
-<title>Registrate para participar</title>
 </head>
-<body class="bgt-main">
-<div class="col-100PR  bgt-red-top first">
-  <div class="col-cent">
-     <div class="col-24 first  BR-R-10px">
-      	<div class="col-24">
-			<div class="col-4">
-				<img src="imgs/logo_header.png" width="127" height="127"  alt="el buen fin" class="marg-5px first"/>
-			</div>
-			<div class="col-14 typ-Wh marg-U80pix">
-				<!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
-			</div>
-			<div class="col-4 last marg-U50pix lineUD marg-R10pix">
-			</div>
-    	</div>
-  <div class="col-24 marg-D10pix Bg-Wh marg-D10pix">
-    <div class="col-23 boxback Bg-Drks BR-R-3px marg-L30pix marg-U10pix">
-      <div class="col-22 last">
-        <h1 class="first marg-U30pix">¡Bienvenido {{.Nombre}}!</h1>
-        <img src="imgs/paso3.png" width="69" height="69" alt="paso uno" class="last pullup-30"/> </div>
-      <div class="hr-line"></div>
-      <div class=" col-20 marg-L30pix Bg-Wh BR-R-5px padd-30px marg-U20pix">
-        <div class="col-11">
-          <h2>Tu cuenta ha sido activada</h2>
-          <br/>
-          <br/>
-          <h2>Tu usuario es <span class="typ-Sc">{{.Email}}</span></h2>
-          <h2>Tu contraseña es <span class="typ-Sc">{{.Pass}}</span></h2>
-          <!--
-      <p class="alineCenter typeMx">Sus Folio de Usuario es {{.Folio}}</p>
-	  -->
-          <p class="typeMx">Ahora ya puedes comenzar a agregar empresas y comenzar a prepararte para el buen fin 2012</p>
-        </div>
-        <!--inicia login-->
-        
-        <div class="col-6 last marg-R10pix">
-          <div class="col-3  "><a href="/r/se"><img src="imgs/empresas.png" width="102" height="101" alt="administrador del sitio" class="padd-5px" />
-            <p class="alineCenter typeMx">AGREGAR EMPRESA</p>
-            </a></div>
-        </div>
-        <!--termina login--> 
+
+<body class="frontpages">
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand" href="#">
+          <img src="../library/images/logo_header.png">
+        </a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="active">
+              <a href="index.html">Inicio</a>
+            </li>
+            <li>
+              <a href="elbuenfin-que-es.html">
+                  ¿Qué es
+                  El Buen Fin?
+              </a>
+            </li>
+            <li><a href="elbuenfin-organizadores.html">Organizadores</a></li>
+            <li><a href="">Contacto</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li><a href="/r/login">Accede</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
-    <div class="box1 alineCenter"> <img src="imgs/abmlogo1.jpg" width="80" height="73" alt="abm" /><img src="imgs/amipcilogo80.jpg" width="76" height="80" alt="amici" />
-<img src="imgs/orgn_4.jpg" width="107" height="80" alt="organismo"  class="padd-10px"/><img src="imgs/orgn_5.jpg" width="98" height="68" alt="consejo cordinador empresarial"  class="padd-10px"/><img src="imgs/concamin-75x80.jpg" width="75" height="80" alt="concamin" /><img src="imgs/logo-concanaco-107x76.jpg" width="96" height="62" alt="coparmex"  class="padd-10px" /> <img src="imgs/Logo-COPARMEX-95x80.jpg" width="67" height="49" alt="concanaco"  class="padd-10px"/><img src="imgs/orgn_6.jpg" alt="gobierno federal" width="98" height="73" /><img src="imgs/orgn_7.jpg" width="95" height="65" alt="iniciativa mexico"  class="padd-10px"/> </div>
-    <div class=" box1">
-      <p class="typeMin">El Buen Fin © Todos los derechos reservados, México 2011
-        Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta de los productos. <br />
-        Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen. </p>
+  </div>
+  <div class="container">
+    <div class="row"> 
+      <div class="span12">
+        <div class="well well-small">
+          <h1>¡Bienvenido {{.Nombre}}!</h1> 
+          <div class="row">
+            <div class="span12">
+              <h2>Tu cuenta ha sido activada</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="span6">
+                  <dl class="dl-horizontal">
+                    <dt>Tu usuario es:</dt>
+                    <dd>{{.Email}}</dd>
+                    <dt>Tu contraseña es</dt>
+                    <dd>{{.Pass}}</dd>
+                  </dl>
+                </div>
+            <div class="span6">
+                  <p>Ahora ya puedes comenzar a agregar empresas y comenzar a prepararte para el buen fin 2012</p>
+                  <a class="btn btn-primary btn-block" href="/admin/index.htmml">AGREGAR EMPRESA</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
+  <div class="footer">
+    <div class="footer-a">
+      <div class="container">
+        <span>Patrocinadores</span>
+        <ul>
+          <li><a id="patr-1" href=""></a></li>
+          <li><a id="patr-2" href=""></a></li>
+          <li><a id="patr-3" href=""></a></li>
+          <li><a id="patr-4" href=""></a></li>
+          <li><a id="patr-5" href=""></a></li>
+          <li><a id="patr-6" href=""></a></li>
+          <li><a id="patr-7" href=""></a></li>
+          <li><a id="patr-8" href=""></a></li>
+          <li><a id="patr-9" href=""></a></li>
+          <li><a id="patr-10" href=""></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-b">
+      <div class="container">
+        <div class="row-fluid">
+          <div class="span6">
+            <p>El Buen Fin 2012 © Todos los derechos reservados<br>
+              Av. Chapultepec #18, Col. Doctores, Deleg. Cuauhtémoc, México D.F. 06724 
+            </p>
+          </div>
+          <div class="span3">
+            <p><a href="/terminosCondiciones.html">Políticas de privacidad de datos</a><br>
+              <a href="">contacto@elbuenfin.org</a>
+            </p>
+            
+          </div>
+          <div class="span3">
+            <ul id="iconos-footer" class="pull-right">
+              <li><a id="f-face" href=""><i class="icon-facebook"></i></a></li>
+              <li><a id="f-twit" href=""><i class="icon-twitter"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
 {{end}}
@@ -88,15 +165,15 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
 
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-26907178-1']);
-	_gaq.push(['_trackPageview']);
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26907178-1']);
+  _gaq.push(['_trackPageview']);
 
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 </script>
 <script type="text/javascript">
@@ -107,16 +184,16 @@
 <div class="col-100PR  bgt-red-top first">
   <div class="col-cent">
     <div class="col-100PR first  BR-R-10px">
-      	<div class="col-24">
-			<div class="col-4">
-				<img src="imgs/logo_header.png" width="127" height="127"  alt="el buen fin" class="marg-5px first"/>
-			</div>
-			<div class="col-14 typ-Wh marg-U80pix">
-				<!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
-			</div>
-			<div class="col-4 last marg-U50pix lineUD marg-R10pix">
-			</div>
-    	</div>
+        <div class="col-24">
+      <div class="col-4">
+        <img src="imgs/logo_header.png" width="127" height="127"  alt="el buen fin" class="marg-5px first"/>
+      </div>
+      <div class="col-14 typ-Wh marg-U80pix">
+        <!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
+      </div>
+      <div class="col-4 last marg-U50pix lineUD marg-R10pix">
+      </div>
+      </div>
     </div>
     <div class="col-24 marg-D10pix Bg-Wh marg-D10pix">
       <div class="col-23 boxback Bg-Drks BR-R-3px marg-L30pix marg-U10pix">
@@ -130,7 +207,7 @@
             <h2>Tu contraseña es <span class="typ-Sc">{{.Pass}}</span></h2>
             <!--
       <p class="alineCenter typeMx">Sus Folio de Usuario es {{.Folio}}</p>
-	  --> 
+    --> 
           </div>
           <!--inicia login--> 
           
@@ -160,15 +237,15 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
 
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-26907178-1']);
-	_gaq.push(['_trackPageview']);
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26907178-1']);
+  _gaq.push(['_trackPageview']);
 
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 </script>
 <script type="text/javascript">
@@ -178,15 +255,15 @@
 <body class="bgt-main">
 <div class="col-100PR  bgt-red-top first">
   <div class="col-cent">
-      	<div class="col-24">
-			<div class="col-4">
-				<img src="imgs/logo_header.png" width="127" height="127"  alt="el buen fin" class="marg-5px first"/>
-			</div>
-			<div class="col-14 typ-Wh marg-U80pix">
-				<!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
-			</div>
-			<div class="col-6 last marg-U40pix marg-R15pix"><a href="#null" onclick="activeLghtbx()" class="btnInicio"></a></div>
-    	</div>
+        <div class="col-24">
+      <div class="col-4">
+        <img src="imgs/logo_header.png" width="127" height="127"  alt="el buen fin" class="marg-5px first"/>
+      </div>
+      <div class="col-14 typ-Wh marg-U80pix">
+        <!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
+      </div>
+      <div class="col-6 last marg-U40pix marg-R15pix"><a href="#null" onclick="activeLghtbx()" class="btnInicio"></a></div>
+      </div>
      </div>
     <div class="col-24 marg-D10pix Bg-Wh marg-D10pix">
       <div class="col-23 boxback Bg-Drks BR-R-3px marg-L30pix marg-U10pix">
@@ -203,7 +280,7 @@
             <h2>Tu contraseña es <span class="typ-Sc">{{.Pass}}</span></h2>
             <!--
       <p class="alineCenter typeMx">Sus Folio de Usuario es {{.Folio}}</p>
-	  -->
+    -->
             <p class="typeMx">Ahora ya puedes comenzar a agregar empresas y comenzar a prepararte para el buen fin 2012</p>
           </div>
           <!--inicia login-->
@@ -241,15 +318,15 @@
 <script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
 <script type="text/javascript">
 
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-26907178-1']);
-	_gaq.push(['_trackPageview']);
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26907178-1']);
+  _gaq.push(['_trackPageview']);
 
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 </script>
 <script type="text/javascript">
@@ -268,18 +345,18 @@ function deactiveLghtbx(){ $('#light').addClass("hidden"); $('#box').addClass("h
     <h2>Accede a El Buen Fin</h2>
     <div class="hr-line"></div>
   <form id="acceso" action="/r/acceso" method="post">
-	<div class="col-7">
-	<label class="col-2">Usuario</label>
-	<input type="text" class="validate[required,custom[email]] small first" name="u" value="" />
-	</div>
-	<div class=" col-7">
-	<label class="col-2">Contraseña</label>
-	<input type="password" class="validate[required] small first" name="p" />
-	</div>
-	<div class="col-7 last">
-	<a href="recupera.html" class="Dsblock first">¿Olvidaste tu contraseña?</a>
-	<button type="submit" class="medium red last marg-U3pix "><span>acceder</span></button></div>
-	</form>
+  <div class="col-7">
+  <label class="col-2">Usuario</label>
+  <input type="text" class="validate[required,custom[email]] small first" name="u" value="" />
+  </div>
+  <div class=" col-7">
+  <label class="col-2">Contraseña</label>
+  <input type="password" class="validate[required] small first" name="p" />
+  </div>
+  <div class="col-7 last">
+  <a href="recupera.html" class="Dsblock first">¿Olvidaste tu contraseña?</a>
+  <button type="submit" class="medium red last marg-U3pix "><span>acceder</span></button></div>
+  </form>
   </div>
   </div>
 </div>
@@ -292,10 +369,10 @@ function deactiveLghtbx(){ $('#light').addClass("hidden"); $('#box').addClass("h
            <div class="col-4">
         <img src="imgs/logo_header.png" width="127" height="127"  alt="el buen fin" class="marg-5px first"/>
         </div>
-			<div class="col-14 typ-Wh marg-U80pix">
-				<!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
-			</div>
-			<div class="col-6 last marg-U40pix marg-R15pix"><a href="#null" onclick="activeLghtbx()" class="btnInicio"></a></div>
+      <div class="col-14 typ-Wh marg-U80pix">
+        <!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
+      </div>
+      <div class="col-6 last marg-U40pix marg-R15pix"><a href="#null" onclick="activeLghtbx()" class="btnInicio"></a></div>
     </div>
     <div class="col-24 marg-D10pix Bg-Wh marg-D10pix">
       <div class="box1 boxback Bg-Drks BR-R-3px marg-L10pix marg-U10pix">
@@ -343,15 +420,15 @@ function deactiveLghtbx(){ $('#light').addClass("hidden"); $('#box').addClass("h
 <script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
 <script type="text/javascript">
 
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-26907178-1']);
-	_gaq.push(['_trackPageview']);
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26907178-1']);
+  _gaq.push(['_trackPageview']);
 
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
 </script>
 <script type="text/javascript">
@@ -393,10 +470,10 @@ function deactiveLghtbx(){ $('#light').addClass("hidden"); $('#box').addClass("h
            <div class="col-4">
         <img src="imgs/logo_header.png" width="127" height="127"  alt="el buen fin" class="marg-5px first"/>
         </div>
-			<div class="col-14 typ-Wh marg-U80pix">
-				<!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
-			</div>
-			<div class="col-6 last marg-U40pix marg-R15pix"><a href="#null" onclick="activeLghtbx()" class="btnInicio"></a></div>
+      <div class="col-14 typ-Wh marg-U80pix">
+        <!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->
+      </div>
+      <div class="col-6 last marg-U40pix marg-R15pix"><a href="#null" onclick="activeLghtbx()" class="btnInicio"></a></div>
     </div>
     <div class="col-24 marg-D10pix Bg-Wh marg-D10pix">
       <div class=" box1  boxback Bg-Drks BR-R-3px marg-L10pix marg-U10pix">
