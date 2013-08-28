@@ -41,7 +41,7 @@ type FormDataCta struct {
 
 func init() {
     http.HandleFunc("/registro", redir)
-    http.HandleFunc("/r/registro", registro)
+    //http.HandleFunc("/r/registro", registro)
     //http.HandleFunc("/r/registro", mantenimiento)
     http.HandleFunc("/r/dash", dash)
     http.HandleFunc("/r/cta", CtaShow)

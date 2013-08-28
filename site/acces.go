@@ -20,6 +20,7 @@ func init() {
     http.HandleFunc("/r/login", Acceso)
     http.HandleFunc("/r/recover", Recover)
     http.HandleFunc("/r/logout", Salir)
+    http.HandleFunc("/r/registro", Registro)
 }
 
 func Acceso(w http.ResponseWriter, r *http.Request) {
@@ -157,5 +158,18 @@ func Recover(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func Registro(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+	tc := make(map[string]interface{})
+	var st sess.Sess
+	if _, ok := sess.IsSess(w, r, c); !ok {
+	    tc["Sess"] = st
+        registraTpl.Execute(w, tc)
+    } else {
+        http.Redirect(w, r, "/r/login", http.StatusFound)
+    }
+}
+
 var loginTpl = template.Must(template.ParseFiles("layout/reg_login.html"))
 var mailRecoverTpl = template.Must(template.ParseFiles("layout/mail_recover.html"))
+var registraTpl = template.Must(template.ParseFiles("layout/registro.html"))

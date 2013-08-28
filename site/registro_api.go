@@ -76,7 +76,7 @@ func PutCta(w http.ResponseWriter, r *http.Request) {
 	var out WsCta
 	defer model.JsonDispatch(w, &out)
 	if _, ok := sess.IsSess(w, r, c); ok {
-		out.StatusMsg = "alreadyRegistered"
+		out.StatusMsg = "alreadyOnSession"
 		return
 	}
 	if r.Method != "POST" {
@@ -215,7 +215,7 @@ func ConfirmCode(w http.ResponseWriter, r *http.Request) {
 	key, _ := datastore.DecodeKey(r.FormValue("c"))
 	var cta model.Cta
 	if err := datastore.Get(c, key, &cta); err != nil {
-		out.Status = "noFound"
+		out.Status = "notFound"
 		return
 	}
 
