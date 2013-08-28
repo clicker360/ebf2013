@@ -313,6 +313,7 @@ func ctaToForm(e model.Cta) FormDataCta {
 	return fd
 }
 
+var registroTpl = template.Must(template.ParseFiles("templates/registro.html"))
 var dashTpl = template.Must(template.ParseFiles("templates/dashboard.html"))
 var ctadmTpl = template.Must(template.ParseFiles("templates/ctadm.html"))
 var cancelMessageTpl = template.Must(template.ParseFiles("templates/mail_cancelmsg.html"))

@@ -53,7 +53,7 @@ type WsCta struct {
 }
 
 const WsMailServer = "gmail"
-const WsMailSender = "ahuezo@clicker360.com"
+const WsMailSender = "contacto@elbuenfin.org"
 const WsMailSubject = "Codigo de Activación de Registro / El Buen Fin en línea"
 const WsMailSubjectConfirmed = "Cuenta Activada / El Buen Fin en línea"
 
