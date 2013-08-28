@@ -72,3 +72,14 @@ var registros = (function() {
         registrarse: registrarse
     };
 })();
+
+// Función para validar email alternativo, permite meter varios email separados por coma
+function validateEmail(field, rules, i, options) {
+	var err=0;
+	$.each( field.val().split(","), function(i,candidate) { 
+		if($.trim(candidate) != "") {
+			if(!$.trim(candidate).match(options.allrules.email.regex)) err++;
+		}
+	});
+	if(err) return options.allrules.email.alertText+". Puede introducir varios correos separados por coma";
+}
