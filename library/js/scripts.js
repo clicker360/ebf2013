@@ -1,4 +1,11 @@
 (function() {
+    var municipios = function() {
+       $(document).on('click','a.ver-sucursales', function(event) {
+           event.preventDefault();
+           var valmun = $(this).attr('value');
+           sucursales.initSucursales(valmun);
+       });
+   };
      var initSucursales = function() {
        $(document).on('click','a.ver-sucursales', function(event) {
            event.preventDefault();
@@ -84,6 +91,19 @@ var Ajax = (function() {
     };
 })();
 
+var general = ( function() {
+  var municipios = function (valmun) {
+        var imprimeMunicipios = '',
+                underMunicipiosID = $('#empresaTemplate').html(),
+                underMunicipios = _.template(underMunicipiosID);
+        Ajax.get('/r/wse/gets' + valmun, function(response) {
+            imprimeMunicipios = underMunicipios({
+                MunicipiosArray: response
+            });
+            $("#empresasBlock").html(imprimeMunicipios);
+        });
+  };
+})();
 var empresas = (function() {
     var initEmpresas = function() {
         var imprimeTemplateDash = '',
@@ -115,6 +135,7 @@ var empresas = (function() {
     };
 })();
 
+
 var sucursales = (function() {
     var initSucursales = function(codeRel) {
         //var imprimeTemplate = '',
@@ -137,11 +158,11 @@ var sucursales = (function() {
         });
     };
 
-    var registro = function () {
-        $('form#registroform').on('submit', function(event){
+    var sucursalnueva = function (codeEmpresa) {
+        $('form#sucursal-form').on('submit', function(event){
             event.preventDefault();
             var post = $(this).serialize();
-            Ajax.post('/r/wsr/put', post, function(response){
+            Ajax.post('/r/wss/put?IdEmp=', post, function(response){
                    if(response.success){
                            alert('registrado correctamente');
                    }
