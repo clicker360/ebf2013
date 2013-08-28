@@ -310,6 +310,9 @@ func GetCta(w http.ResponseWriter, r *http.Request) {
 	} else {
 		setWsCta(&out, *cta)
 		out.StatusMsg = "ok"
+        // no queremos pasar el pass
+        out.Pass = ""
+        out.Pass2 = ""
 	}
 }
 
@@ -336,7 +339,7 @@ func PostCta(w http.ResponseWriter, r *http.Request) {
 		out.StatusMsg = "notFound"
         return
 	}
-    if cta.Status {
+    if !cta.Status {
         out.StatusMsg = "notConfirmedUser"
         return
     }
@@ -442,15 +445,13 @@ func regFill(r *http.Request) WsCta {
         EmailAlt:	strings.TrimSpace(r.FormValue("EmailAlt")),
         Tel:		strings.TrimSpace(r.FormValue("Tel")),
         Cel:		strings.TrimSpace(r.FormValue("Cel")),
+        TermCond: strings.TrimSpace(r.FormValue("TermCond")),
     }
     if r.FormValue("Pass") != "" {
         e.Pass = strings.TrimSpace(r.FormValue("Pass"))
     }
     if r.FormValue("Pass") != "" {
         e.Pass2 = strings.TrimSpace(r.FormValue("Pass2"))
-    }
-    if r.FormValue("TermCond") != "" {
-        e.TermCond = strings.TrimSpace(r.FormValue("TermCond"))
     }
     return e
 }
@@ -483,6 +484,9 @@ func regValidate(e WsCta) (map[string]bool, string) {
 	if e.Cel != "" && !model.ValidTel.MatchString(e.Cel) {
 		err["Cel"] = false
 	}
+	if e.TermCond != "1" {
+		err["TermCond"] = false
+    }
     for _, v := range err {
         if v == false {
             errmsg = "invalidInput"
