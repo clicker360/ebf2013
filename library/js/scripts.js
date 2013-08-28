@@ -222,7 +222,7 @@ var sucursales = (function() {
         if(codeRel) {
             $('#btn-sucursal').html("Modificar");
             Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
-                $('#empresa-form').formParams(response, true);
+                $('#sucursal-form').formParams(response, true);
                 llenamuni(response.DirEnt, response.DirMun);
                 llenaorganismos(response.OrgEmp);
                 Ajax.hidePreload($('#sucursal-detalle'));
@@ -232,6 +232,26 @@ var sucursales = (function() {
             Ajax.hidePreload($('#sucursal-detalle'));
         }
     };
+    var sucursal_envia = function () {
+        $(document).on('submit','form#sucursal-form', function(event){
+            event.preventDefault();
+            var post = $(this).serialize();
+            if($('#btn-sucursal').html() == 'Crear') {
+                Ajax.post('/r/wss/put?IdEmp=', post, function(response){
+                       if(response.status=="ok"){
+                               alert('registrado correctamente');
+                       }
+               });
+            } else {
+                Ajax.post('/r/wss/post?IdEmp=', post, function(response){
+                       if(response.status=="ok"){
+                               alert('registrado correctamente');
+                       }
+               });
+            }
+        })
+    };
+    /*
     var sucursalnueva = function (codeEmpresa) {
         $('form#sucursal-form').on('submit', function(event){
             event.preventDefault();
@@ -242,7 +262,8 @@ var sucursales = (function() {
                    }
            });
         })
-    };
+    };*/
+
     return {
         initSucursales: initSucursales,
         sucursalformdesdejson: sucursalformdesdejson,
