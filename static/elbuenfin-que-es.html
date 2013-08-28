@@ -1,132 +1,165 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>El buen fin</title>
-<meta name="Title" content="El Buen Fin" /> 
-<meta name="keywords" content="descuentos, tiendas departamentales, electrodomesticos, comercio en linea, que es el buen fin, buen fin, el buen fin" /> 
-<meta name="Author" content="Clicker360" />
-<meta name="Copyright" content="El Buen Fin" />
-<meta name="Revisit" content="1 days" />
-<meta name="UI Designer" content="Carlos Zavala czavala@clicker360.com" />
-<meta name="ROBOTS" content="INDEX, All"/>
-<meta name="ROBOTS" content="INDEX, FOLLOW">
-<meta name="description" content="El Buen Fin" />
+	<meta charset="utf-8">
+	<title>El buen fin // Panel de administración</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-<link href="css/OrigamiRev.css" rel="stylesheet" type="text/css" />
-<link href="css/HomelbuenfinSkin.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="scripts/jquery-scrollTo.js"></script>
-<script type="text/javascript">
+	<link href="../library/css/libs/bootstrap.css" rel="stylesheet">
+	<link href="../library/css/style.css" rel="stylesheet">
+	<style>
+	body {
+		padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	}
+	</style>
+	<link href="../library/css/libs/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../library/css/font-awesome/css/font-awesome.min.css">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-26907178-1']);
-  _gaq.push(['_trackPageview']);
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="../library/js/libs/html5shiv.js"></script>
+	<![endif]-->
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+	<!--[if IE 7]>
+		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+	<![endif]-->
 
-</script>
-<script type="text/javascript">
-$(document).ready(function(){
-	getcarrousel();
-	scrolea();
-});
-function scrolea(){
-	$('#logos').animate({
-		top: -825,
-	}, 45000, 'linear', function() {
-		$('#logos').append($('#logos').children("div:first").clone());
-		$('#logos').children("div:first").remove();
-		$('#logos').css('top',20);
-		scrolea();
-	});
-}
-function getcarrousel() {
-	$.get("/carr", "", function(response){
-		$('#logo1').html(response);
-	});
-}
-</script>
+	<!-- Fav and touch icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../library/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../library/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
+	<script src="../library/js/libs/underscore-min.js"></script>
+	<script src="../library/js/libs/jquery-1.10.2.min.js"></script>
 </head>
 
-<body class="bg-main">
-<div class="logosPat">
-<img src="imgs/logos/ABM.jpg" width="65" height="65" alt="abm" /> <img src="imgs/logos/Amicsi.jpg" width="65" height="65" alt="Amicii" /> <img src="imgs/logos/antad.jpg" width="65" height="65"  alt="Antad"/> <img src="imgs/logos/CCC.jpg" width="65" height="65" alt="CCE" /> <img src="imgs/logos/coparmex.jpg" width="65" height="65" alt="coparmex" /> <img src="imgs/logos/concamin.jpg" width="65" height="65" alt="coparmex" /><img src="imgs/logos/concanaco.jpg" width="65" height="65" /><img src="imgs/logos/gobierno-Federal.jpg" width="65" height="65" alt="gob federal" /> <img src="imgs/logos/Imx.jpg" width="65" height="65" alt="Iniciativa mexico" />  </div>
-<div class="col-cent">
-  <div class="col-24 Bg-Wh padd-10px">
-  <!--Comienza Contenido-->
-  <div class="col-24">
-  <!--Comienza header-->
- 
-  <div class="M-menu"> <a href="/"><img src="gfx/front/el-buen-fin.png" width="145" height="142"  class="logo"/></a>
-    <ul>
-      <li><a href="#">¿Qué es <br /> El Buen Fin?</a></li>
-      <li> <a href="elbuenfin-organizadores.html"><span class="Dsblock marg-T10px">Organizadores</span></a></li>
-      <li> <a href="directorio.html">Empresas participantes</a></li>
-      <li> <a href="elbuenfin-comercio-en-linea.html">El Buen Fin en Línea</a></li>
-    </ul>
-    </div>
-  <!--termina header-->
-  <div class="col-24">
-  <!--Columna Izquierda-->
-  <div class="col-15 Bg-ky">
-    <div class="box1">
-      <p class="alineCenter typeTle"><span class="typ-Pr typ-Bold">¿Qué es El Buen Fin?</span></p>
-      <p>El Buen Fin busca reactivar la economía fomentando el consumo, pero sobre todo mejorar la calidad de vida de todas las familias mexicanas.<br />
-        
-        Le llamamos el Buen Fin, no sólo por ser un fin de semana de descuentos espectaculares, sino también porque al hacerlo perseguimos un buen fin: queremos usar el poder del consumo para reactivar nuestra economía al mismo tiempo que tú, como consumidor te beneficias comprando todo lo que siempre estás postergando con los mejores precios del año.<br />
-        <br />
-        
-        Esta vez la iniciativa privada, el gobierno federal y los medios de comunicación se solidarizan contigo. ¡Aprovecha el Buen Fin!<br />
-        <br />
-        
-        Puedes compartir este fin de semana largo con la gente que quieres y aprovechar todas las posibilidades de este nuevo concepto: un fin de semana entero de descuentos extraordinarios en las tiendas de todo el país.<br />
-        <br />
-        
-        Estos cuatro días pasará de todo… Podrás comprar bienes y servicios tan diversos como comidas, zapatos, ropa, autos y mucho más. Además, si vas a comprar regalos de fin de año busca las ofertas del Buen Fin, y ¡ahorra en tus compras navideñas!<br />
-        
-        El Buen Fin está lleno de sorpresas y ¡Las mejores ofertas se darán a conocer este fin de semana!<br />
-        <br />
-        
-        El Buen Fin es comprar de manera informada. Por eso te damos algunos tips para ese fin de semana…<br />
-        <br />
-        
-        - Compara productos parecidos de distintos establecimientos para hacer la mejor compra.<br />
-        - Identifica tus necesidades y compra lo que te hace falta.<br />
-        - El Buen Fin tendrá mejores ofertas que en un día normal.</p>
+<body class="frontpages">
+	<!-- menu -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">
+					<img src="../library/images/logo_header.png">
+				</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li>
+							<a href="index.html">Inicio</a>
+						</li>
+						<li  class="active">
+							<a href="elbuenfin-que-es.html">
+							    ¿Qué es
+							    El Buen Fin?
+							</a>
+						</li>
+						<li><a href="elbuenfin-organizadores.html">Organizadores</a></li>
+						<li><a href="">Contacto</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
 
-    </div>
-    <!-- video-->
-    <div class="box1">
-    <iframe src="http://player.vimeo.com/video/32678356?color=008FCC&amp;autoplay=0" width="576" height="341" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    </div>
-  </div>
-  <!--Columna derecha-->
-  <div class="col-9 last">
-    <div class="col-9 Bg-Drk ">
-      
-      <h3 class="alineCenter typ-Wh">Empresas participantes</h3>
-    </div>
-   <div class="col-9" style="overflow:hidden; height:820px;" id="scrolllog">
-      <div id="logos">
-      <div id="logo1" class="first">
-        </div> 
-        <div id="logo2" class="first">
-        </div> 
-      </div>
-       </div>
-  </div>
-  </div>
-  <!--Termina Contenido-->
-  </div>
-</div>
-</div>
-  <!--Footer-->
-  <div class="col-100PR first Bg-Prm fixedbottom alineCenter"><p class="typeMin typ-Wh">El Buen Fin 2012 © Todos los derechos reservados   |   <a href="http://www.elbuenfin.org/r/terminosCondiciones.html">Avisos de privacidad</a> |   Políticas</p>
-  </div>
+
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<div class="well well-small">
+				<h1>¿Qué es El Buen Fin?</h1>
+			      <p>El Buen Fin busca reactivar la economía fomentando el consumo, pero sobre todo mejorar la calidad de vida de todas las familias mexicanas.<br />
+			        
+			        Le llamamos el Buen Fin, no sólo por ser un fin de semana de descuentos espectaculares, sino también porque al hacerlo perseguimos un buen fin: queremos usar el poder del consumo para reactivar nuestra economía al mismo tiempo que tú, como consumidor te beneficias comprando todo lo que siempre estás postergando con los mejores precios del año.<br />
+			        <br />
+			        
+			        Esta vez la iniciativa privada, el gobierno federal y los medios de comunicación se solidarizan contigo. ¡Aprovecha el Buen Fin!<br />
+			        <br />
+			        
+			        Puedes compartir este fin de semana largo con la gente que quieres y aprovechar todas las posibilidades de este nuevo concepto: un fin de semana entero de descuentos extraordinarios en las tiendas de todo el país.<br />
+			        <br />
+			        
+			        Estos cuatro días pasará de todo… Podrás comprar bienes y servicios tan diversos como comidas, zapatos, ropa, autos y mucho más. Además, si vas a comprar regalos de fin de año busca las ofertas del Buen Fin, y ¡ahorra en tus compras navideñas!<br />
+			        
+			        El Buen Fin está lleno de sorpresas y ¡Las mejores ofertas se darán a conocer este fin de semana!<br />
+			        <br />
+			        
+			        El Buen Fin es comprar de manera informada. Por eso te damos algunos tips para ese fin de semana…<br />
+			        <br />
+			        
+			        - Compara productos parecidos de distintos establecimientos para hacer la mejor compra.<br />
+			        - Identifica tus necesidades y compra lo que te hace falta.<br />
+			        - El Buen Fin tendrá mejores ofertas que en un día normal.</p>
+			        <div class="embed-container">
+			        	<iframe src="http://player.vimeo.com/video/32678356?color=008FCC&amp;autoplay=0" width="576" height="341" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- /container -->
+
+	<div class="footer">
+		<div class="footer-a">
+			<div class="container">
+				<span>Patrocinadores</span>
+				<ul>
+					<li><a id="patr-1" href=""></a></li>
+					<li><a id="patr-2" href=""></a></li>
+					<li><a id="patr-3" href=""></a></li>
+					<li><a id="patr-4" href=""></a></li>
+					<li><a id="patr-5" href=""></a></li>
+					<li><a id="patr-6" href=""></a></li>
+					<li><a id="patr-7" href=""></a></li>
+					<li><a id="patr-8" href=""></a></li>
+					<li><a id="patr-9" href=""></a></li>
+					<li><a id="patr-10" href=""></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-b">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span6">
+						<p>El Buen Fin 2012 © Todos los derechos reservados<br>
+							Av. Chapultepec #18, Col. Doctores, Deleg. Cuauhtémoc, México D.F. 06724 
+						</p>
+					</div>
+					<div class="span3">
+						<p>Políticas de privacidad de datos<br>
+							<a href="">contacto@elbuenfin.org</a>
+						</p>
+						
+					</div>
+					<div class="span3">
+						<ul id="iconos-footer" class="pull-right">
+							<li><a id="f-face" href=""><i class="icon-facebook"></i></a></li>
+							<li><a id="f-twit" href=""><i class="icon-twitter"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		<!-- Le javascript
+		================================================== -->
+		<script src="../library/js/libs/bootstrap-transition.js"></script>
+		<script src="../library/js/libs/bootstrap-alert.js"></script>
+		<script src="../library/js/libs/bootstrap-modal.js"></script>
+		<script src="../library/js/libs/bootstrap-dropdown.js"></script>
+		<script src="../library/js/libs/bootstrap-scrollspy.js"></script>
+		<script src="../library/js/libs/bootstrap-tab.js"></script>
+		<script src="../library/js/libs/bootstrap-tooltip.js"></script>
+		<script src="../library/js/libs/bootstrap-popover.js"></script>
+		<script src="../library/js/libs/bootstrap-button.js"></script>
+		<script src="../library/js/libs/bootstrap-collapse.js"></script>
+		<script src="../library/js/libs/bootstrap-carousel.js"></script>
+		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
 </body>
 </html>
