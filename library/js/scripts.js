@@ -251,7 +251,7 @@ var sucursales = (function() {
             }
         })
     };
-    /*
+    
     var sucursalnueva = function (codeEmpresa) {
         $('form#sucursal-form').on('submit', function(event){
             event.preventDefault();
@@ -262,7 +262,7 @@ var sucursales = (function() {
                    }
            });
         })
-    };*/
+    };
 
     return {
         initSucursales: initSucursales,
