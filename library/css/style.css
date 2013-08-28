@@ -31,6 +31,12 @@ Stylesheet: Tema.
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.active {
+  display: block !important;
+}
+.inactive {
+  display: none;
+}
 #sidebar {
   position: absolute;
   width: 215px;

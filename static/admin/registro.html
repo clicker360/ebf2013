@@ -11,7 +11,7 @@
 	<link href="../library/css/style.css" rel="stylesheet">
 	<style>
 	body {
-		padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+		padding-top: 60px; /* 60px to make the go container all the way to the bottom of the topbar */
 	}
 	</style>
 	<link href="../library/css/libs/responsive.css" rel="stylesheet">
@@ -32,6 +32,8 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
+	<script src="../library/js/libs/underscore-min.js"></script>
+	<script src="../library/js/libs/jquery-1.10.2.min.js"></script>
 </head>
 
 <body>
@@ -41,9 +43,9 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
-							<h3><i class="icon-building"></i> Detalle de empresa</h3>
+							<h3><i class="icon-building"></i> Registrate</h3>
 							<div class="well well-small">
-								<form action="" id="registroform" class="form-horizontal">
+								<form id="registroform" class="form-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
@@ -94,12 +96,16 @@
 											
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox" name="TermCond"> Terminos y condiciones
+													<input type="checkbox" name="TermCond" value="1"> Terminos y condiciones
 												</label>
+											</div>
+											<div class="control-group">
+												<input type="submit" value="enviar" class="btn">
 											</div>
 										</div>
 									</div>
 								</form>
+								
 							</div>
 						</div>
 					</div>
@@ -137,6 +143,10 @@
 		<script src="../library/js/libs/bootstrap-collapse.js"></script>
 		<script src="../library/js/libs/bootstrap-carousel.js"></script>
 		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
-
+		<script src="../library/js/libs/jquery.formparams.js"></script>
+		<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+		 <!--<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>-->
+		<script src="../library/js/scripts.js"></script>
 </body>
 </html>

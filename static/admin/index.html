@@ -96,6 +96,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="usuario.html">Editar</a></li>
+								<li><a href="/r/logout">Salir</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -107,7 +108,7 @@
 
 
 	<div id="container" class="row-fluid">
-			<div id="dashboard" class="container-fluid">
+			<div id="dashboard" class="active container-fluid">
 				<div class="row-fluid">
 					<div class="span6">
 						<div class="block">
@@ -119,37 +120,23 @@
 								<table class="table-condensed table-hover table-bordered table-striped">
 
 
-									<tbody>
-										<tr>
-											<td>empresa patito de hule morado 3</td>
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-eye-open"></i> Ver Sucursales y Ofertas</a></th>
-										</tr>
-										<tr>
-											<th>empresa patito de hule morado 1</th>
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-eye-open"></i> Ver Sucursales y Ofertas</a></th>
-										</tr>
-										<tr>
-											<td>empresa patito de hule morado 3</td>
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-eye-open"></i> Ver Sucursales y Ofertas</a></th>
-										</tr>
-										<tr>
-											<th>empresa patito de hule morado 1</th>
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-eye-open"></i> Ver Sucursales y Ofertas</a></th>
-										</tr>
-										<tr>
-											<td>empresa patito de hule morado 3</td>
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-eye-open"></i> Ver Sucursales y Ofertas</a></th>
-										</tr>
-										<tr>
-											<th>empresa patito de hule morado 1</th>
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-eye-open"></i> Ver Sucursales y Ofertas</a></th>
-										</tr>
+									<tbody id="empresasBlockDash">
+										<script id="empresaTemplateDash" type="text/template">
+												<% for (var i in empresasArrayDash){ %>
+												<% var empresa = empresasArrayDash[i]; %>
+													<tr>
+														<td><%= empresa.Nombre %></td>
+														<td><%= empresa.RFC %></td>
+														<td><%= empresa.DirEnt %></td>
+														<td><a href="<%= empresa.Url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
+														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
+														<th>
+															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
+															<a href="" class="btn btn-mini btn-primary"><i class="icon-plus"></i> Añadir</a>
+														</th>
+													</tr>
+												<% } %>
+											</script>
 									</tbody>
 								</table>
 								
@@ -214,23 +201,13 @@
 											</tr>
 										</tbody>
 									</table>
-									<div class="pagination">
-											<ul>
-												<li class="disabled"><a href="#">Prev</a></li>
-												<li class="active" ><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#">4</a></li>
-												<li><a href="#">5</a></li>
-												<li><a href="#">Next</a></li>
-											</ul>
-										</div>
+
 									</div>
 
 								</div>
 							</div>
 						</div>
-						<div class="row-fluid">
+						<div class="inactive row-fluid">
 							<div class="span12">
 								<div class="block">
 									<div class="row-fluid">
@@ -286,17 +263,6 @@
 												</tr>
 											</tbody>
 										</table>
-									<div class="pagination">
-											<ul>
-												<li class="disabled"><a href="#">Prev</a></li>
-												<li class="active" ><a href="#">1</a></li>
-												<li><a href="#">2</a></li>
-												<li><a href="#">3</a></li>
-												<li><a href="#">4</a></li>
-												<li><a href="#">5</a></li>
-												<li><a href="#">Next</a></li>
-											</ul>
-									</div>
 									</div>
 								</div>
 							</div>
@@ -369,7 +335,7 @@
 						</div>
 				</div>
 			</div>
-			<div id="empresas-lista" class="container-fluid">
+			<div id="empresas-lista" class="inactive container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -400,7 +366,7 @@
 														<td><%= empresa.RFC %></td>
 														<td><%= empresa.DirEnt %></td>
 														<td><a href="<%= empresa.Url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
-														<th><a class="btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
+														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
 														<th>
 															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
 															<a href="" class="btn btn-mini btn-primary"><i class="icon-plus"></i> Añadir</a>
@@ -417,7 +383,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="empresas-detalle" class="container-fluid">
+			<div id="empresas-detalle" class="inactive container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -637,7 +603,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="sucursales-lista" class="container-fluid">
+			<div id="sucursales-lista" class="inactive container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -663,13 +629,13 @@
 												<% for (var i in sucursalesArray){ %>
 												<% var sucursal = sucursalesArray[i]; %>
 													<tr>
-														<td><%= sucursal.sucursal %> / <%= sucursal.idsuc %></td>
-														<td><%= sucursal.colonia %> / <%= sucursal.idemp %></td>
-														<td><%= sucursal.entidad %></td>
-														<td><%= sucursal.municipio %></td>
+														<td><%= sucursal.Sucursal %> / <%= sucursal.IdSuc %></td>
+														<td><%= sucursal.DirCol %> / <%= sucursal.IdEmp %></td>
+														<td><%= sucursal.DirEnt %></td>
+														<td><%= sucursal.DirMun %></td>
 
-														<th><a class="btn btn-mini" rel="<%= sucursal.idsuc %>"><i class="icon-edit"></i> Editar</a></th>
-														<th><a class="btn btn-mini btn-primary" rel="<%= sucursal.idsuc %>"><i class="icon-building"></i> Ver empresa</a></th>
+														<th><a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a></th>
+														<th><a class="btn btn-mini btn-primary" rel="<%= sucursal.IdSuc %>"><i class="icon-building"></i> Ver empresa</a></th>
 
 													</tr>
 												<% } %>
@@ -681,7 +647,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="sucursal-detalle" class="container-fluid">
+			<div id="sucursal-detalle" class="inactive container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -693,19 +659,19 @@
 											<div class="control-group">
 												<div class="controls"><input name="IdEmp" type="hidden"></div>
 												<div class="controls"><input name="IdSuc" type="hidden"></div>
-												<div class="controls"><input id="lat" name="Geo1" type="hidden"></div>
-												<div class="controls"><input id="lng" name="Geo2" type="hidden"></div>											
+												<div class="controls"><input id="Geo1" name="Geo1" type="hidden"></div>
+												<div class="controls"><input id="Geo2" name="Geo2" type="hidden"></div>											
 											</div>
 											<div class="control-group">
 												<label for="Nombre" class="control-label">Nombre de sucursal * </label>
-												<div class="controls"><input name="Nombre" type="text"></div>
+												<div class="controls"><input name="Sucursal" id="Sucursal" type="text"></div>
 											</div>
 										</div>
 										<div class="span6">
 											<div class="control-group">
 												<label for="Tel" class="control-label">Teléfono fijo con lada</label>
 												<div class="controls">
-													<input  id="cphone" type="text" name="Tel">
+													<input  id="Tel" type="text" name="Tel">
 												</div>
 											</div>
 										</div>
@@ -785,7 +751,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="ofertas-lista" class="container-fluid">
+			<div id="ofertas-lista" class="inactive container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -834,7 +800,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="oferta-detalle" class="container-fluid">
+			<div id="oferta-detalle" class="inactive container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
@@ -963,6 +929,8 @@
 					</div>
 				</div>
 			</div>
+
+
 	</div> <!-- /container -->
 
 	<div class="footer">
@@ -997,7 +965,7 @@
 		<script src="../library/js/libs/jquery.formparams.js"></script>
 		<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
 		<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
-		 <script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>
+		 <!--<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>-->
 		<script src="../library/js/scripts.js"></script>
 
 </body>
