@@ -1,6 +1,8 @@
 (function() {
     var registrarse = function () {
         registros.registrarse();
+        registros.actualizaregistro();
+        registros.consultaregistro();
     };
     var execute = function() {
         $(document).ready(function() {
@@ -63,15 +65,34 @@ var registros = (function() {
             var post = $(this).serialize();
             Ajax.post('/r/wsr/put', post, function(response){
                    if(response.status == 'ok'){
-                        $('tusdatos').append('')
-
+                        $('tusdatos').append('');
                            alert('registrado correctamente');
                    }
            });
         })
-    }
-;    return {
-        registrarse: registrarse
+    };    
+    var actualizaregistro = function () {
+        $('form#actualizaregistro').on('submit', function(event){
+            event.preventDefault();
+            var post = $(this).serialize();
+            Ajax.post('/r/wsr/post', post, function(response){
+                   if(response.status == 'ok'){
+                        $('tusdatos').append('');
+                           alert('registrado correctamente');
+                   }
+           });
+        })
+    };
+    var consultaregistro = function() {
+        Ajax.get('/r/wsr/get', function(response) {
+            $('#actualizaregistro').formParams(response, true);
+            Ajax.hidePreload($('#empresas-detalle'));
+        });
+    };
+    return {
+        registrarse: registrarse,
+        actualizaregistro: actualizaregistro,
+        consultaregistro: consultaregistro
     };
 })();
 

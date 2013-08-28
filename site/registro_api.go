@@ -32,20 +32,20 @@ type UrlCfm struct {
 }
 
 type WsCta struct {
-	Folio		int32		`json:"folio,omitempty"`
-	Nombre		string		`json:"nombre"`
-	Apellidos	string		`json:"apellidos"`
-	Puesto		string		`json:"puesto"`
-	Email		string		`json:"email"`
-	EmailAlt	string		`json:"emailalt"`
-	Pass		string		`json:"pass,omitempty"`
-	Tel			string		`json:"tel"`
-	Cel			string		`json:"cel,omitempty"`
-	FechaHora	time.Time	`json:"fechahora"`
-	UsuarioInt	string		`json:"usuarioint,omitempty"`
+	Folio		int32		`json:"Folio,omitempty"`
+	Nombre		string		`json:"Nombre"`
+	Apellidos	string		`json:"Apellidos"`
+	Puesto		string		`json:"Puesto"`
+	Email		string		`json:"Email"`
+	EmailAlt	string		`json:"EmailAlt"`
+	Pass		string		`json:"Pass,omitempty"`
+	Tel			string		`json:"Tel"`
+	Cel			string		`json:"Cel,omitempty"`
+	FechaHora	time.Time	`json:"FechaHora"`
+	UsuarioInt	string		`json:"UsuarioInt,omitempty"`
 	CodigoCfm	string		`json:"-"`
-	Pass2		string		`json:"pass2,omitempty"`
-	TermCond	string		`json:"termcond,omitempty"`
+	Pass2		string		`json:"Pass2,omitempty"`
+	TermCond	string		`json:"TermCond,omitempty"`
 	Status	    bool		`json:"-"`
 	StatusMsg	string		`json:"status,omitempty"`
 	Ackn	    string		`json:"ackn,omitempty"`

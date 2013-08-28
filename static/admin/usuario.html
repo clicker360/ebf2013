@@ -32,6 +32,14 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#actualizaregistro').validationEngine({promptPosition : 'topRight', scroll: true});
+	});
+	</script>
 </head>
 
 <body>
@@ -171,35 +179,35 @@
 						<div class="block">
 							<h3><i class="icon-user"></i> Usuario</h3>
 							<div class="well well-small">
-								<form class="form-horizontal">
+								<form id="actualizaregistro" class="registro-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
 												<label for="nombre" class="control-label">Nombre</label>
-												<div class="controls"><input name="nombre" type="text"></div>
+												<div class="controls"><input name="Nombre"  class="validate[required,custom[onlyLetterSp]]" type="text"></div>
 											</div>
 											<div class="control-group">
 												<label for="" class="control-label">Apellidos</label>
 												<div class="controls">
-													<input type="text">
+                                                    <input name="Apellidos"  class="validate[required,custom[onlyLetterSp]]" type="text">
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="" class="control-label">Perfil de puesto</label>
 												<div class="controls">
-													<input type="text">
+                                                    <input name="Puesto" class="validate[optional]" type="text">
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="" class="control-label">Teléfono fijo (Con Lada)</label>
 												<div class="controls">
-													<input type="text">
+                                                    <input name="Tel" class="validate[required,custom[phone]]"  type="text">
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="" class="control-label">Teléfono celular</label>
 												<div class="controls">
-													<input type="text">
+                                                    <input name="Cel"  class="validate[optional,custom[cellphone]]" type="text">
 												</div>
 											</div>
 										</div>
@@ -208,13 +216,13 @@
 											<div class="control-group">
 												<label for="" class="control-label">Correo electronico principal</label>
 												<div class="controls">
-													<input type="text">
+                                                    <input type="text" id="cmail" name="Email" class="validate[required,custom[email]]" value="" />
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="" class="control-label">Correo electronico secundario</label>
 												<div class="controls">
-													<input type="text">
+                                                    <input name="EmailAlt" class="validate[optional,funcCall[validateEmail]" type="text">
 												</div>
 											</div>
 											<div class="accordion" id="accordion2">
@@ -229,13 +237,13 @@
 															<div class="control-group">
 																<label for="" class="control-label">Contraseña (capture sólo para cambiar)</label>
 																<div class="controls">
-																	<input type="text">
+                                                                    <input name="Pass"  id="cpass"  class="validate[required]" type="password">
 																</div>
 															</div>
 															<div class="control-group">
 																<label for="" class="control-label">Confirma contraseña (capture sólo para cambiar)</label>
 																<div class="controls">
-																	<input type="text">
+                                                                    <input name="Pass2" id="cpassconfirm" class="validate[required,equals[cpass]]" type="password">
 																</div>
 															</div>
 														</div>
@@ -276,20 +284,8 @@
 	</div>
 		<!-- Le javascript
 		================================================== -->
-		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-		<script src="../library/js/libs/jquery-1.10.2.min.js"></script>
-		<script src="../library/js/libs/bootstrap-transition.js"></script>
-		<script src="../library/js/libs/bootstrap-alert.js"></script>
-		<script src="../library/js/libs/bootstrap-modal.js"></script>
-		<script src="../library/js/libs/bootstrap-dropdown.js"></script>
-		<script src="../library/js/libs/bootstrap-scrollspy.js"></script>
-		<script src="../library/js/libs/bootstrap-tab.js"></script>
-		<script src="../library/js/libs/bootstrap-tooltip.js"></script>
-		<script src="../library/js/libs/bootstrap-popover.js"></script>
-		<script src="../library/js/libs/bootstrap-button.js"></script>
-		<script src="../library/js/libs/bootstrap-collapse.js"></script>
-		<script src="../library/js/libs/bootstrap-carousel.js"></script>
-		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
+		<script src="../library/js/libs/jquery.formparams.js"></script>
+		<script src="../library/js/script-registro.js"></script>
 
 </body>
 </html>
