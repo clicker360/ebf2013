@@ -33,7 +33,7 @@
 	<link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
 	<script src="../library/js/libs/underscore-min.js"></script>
-	<script src="../library/js/libs/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -393,7 +393,7 @@
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<div class="controls"><input name="IdEmp" type="hidden"></div>
+												<div class="controls"><input id="IdEmp-empresas" name="IdEmp" type="hidden"></div>
 											</div>
 											<div class="control-group">
 												<label for="RFC" class="control-label">R.F.C. *</label>
@@ -690,7 +690,7 @@
 												<div class="controls"><input name="IdEmp" type="hidden"></div>
 												<div class="controls"><input name="IdSuc" type="hidden"></div>
 												<div class="controls"><input id="Geo1" name="Geo1" type="hidden"></div>
-												<div class="controls"><input id="Geo2" name="Geo2" type="hidden"></div>											
+												<div class="controls"><input id="Geo2" name="Geo2" type="hidden"></div>
 											</div>
 											<div class="control-group">
 												<label for="Nombre" class="control-label">Nombre de sucursal * </label>
@@ -978,8 +978,6 @@
 	</div>
 		<!-- Le javascript
 		================================================== -->
-		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-		<script src="../library/js/libs/jquery-1.10.2.min.js"></script>
 		<script src="../library/js/libs/bootstrap-transition.js"></script>
 		<script src="../library/js/libs/bootstrap-alert.js"></script>
 		<script src="../library/js/libs/bootstrap-modal.js"></script>

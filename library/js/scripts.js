@@ -10,7 +10,6 @@
        $(document).on('click','a.ver-sucursales', function(event) {
            event.preventDefault();
            var rel = $(this).attr('rel');
-
            sucursales.initSucursales(rel);
        });
    };
@@ -30,6 +29,7 @@
    };
     var initEmpresas = function() {
         empresas.initEmpresas(); //lista de empresas
+        empresas.empresanueva();
     };
     var registrarse = function () {
         registros.registrarse();
@@ -132,9 +132,21 @@ var empresas = (function() {
             Ajax.hidePreload($('#empresas-detalle'));
         });
     };
+    var empresanueva = function () {
+        $('form#empresa-form').on('submit', function(event){
+            event.preventDefault();
+            var post = $(this).serialize();
+            Ajax.post('/r/wse/put', post, function(response){
+                   if(response.success){
+                           alert('registrado correctamente');
+                   }
+           });
+        })
+    };
     return {
         initEmpresas: initEmpresas,
-        empresaformdesdejson: empresaformdesdejson
+        empresaformdesdejson: empresaformdesdejson,
+        empresanueva: empresanueva
     };
 })();
 
