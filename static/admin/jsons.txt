@@ -55,3 +55,4 @@
 
 
 {"idemp":"ecusboweznoeuqemhrna","rfc":"HOCO581010QP9","nombre":"COPO","razonsocial":"CoPo S.A.","calle":"calle 123","colonia":"colonia X","entidad":"10","municipio":"009","cp":"44455","numsuc":"1","organismo":"AMIS","otro_organismo":"sdfg","registro_empresarial":"3456","url":"http://ejemplo.com","partlinea":1,"expcomer":1,"descripcion":"asdf","status":"ok"}
+

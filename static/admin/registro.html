@@ -34,6 +34,13 @@
 	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
 	<script src="../library/js/libs/underscore-min.js"></script>
 	<script src="../library/js/libs/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#registroform').validationEngine('attach',{promptPosition : 'topRight', scroll: true});
+	});
+	</script>
 </head>
 
 <body>
@@ -45,7 +52,7 @@
 						<div class="block">
 							<h3><i class="icon-building"></i> Registrate</h3>
 							<div class="well well-small">
-								<form id="registroform" class="form-horizontal">
+								<form id="registroform" class="form-horizontal" name="registroform" action="" method="post">
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
@@ -113,6 +120,7 @@
 			</div>
 		<!-- </div> -->
 	</div> <!-- /container -->
+	
 
 	<div class="footer">
 		<p>
@@ -144,8 +152,7 @@
 		<script src="../library/js/libs/bootstrap-carousel.js"></script>
 		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
 		<script src="../library/js/libs/jquery.formparams.js"></script>
-		<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+		
 		 <!--<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>-->
 		<script src="../library/js/scripts.js"></script>
 </body>

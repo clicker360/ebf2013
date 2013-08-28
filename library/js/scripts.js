@@ -40,8 +40,9 @@
             registrarse();
             llenaformempresas();
             llenaformsucursal();
-            initEmpresas();
-            initSucursales();
+            //initEmpresas();
+            //initSucursales();
+
         });
     };
     return execute();
@@ -74,6 +75,7 @@ var Ajax = (function() {
     var post = function(url, data, callback) {
         _showPreload();
         $.ajax({
+            type: 'POST',
             url: url,
             dataType: 'json',
             data: data,
@@ -127,6 +129,7 @@ var empresas = (function() {
     var empresaformdesdejson = function(codeRel) {
         Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
             $('#empresa-form').formParams(response, true);
+            Ajax.hidePreload($('#empresas-detalle'));
         });
     };
     return {
