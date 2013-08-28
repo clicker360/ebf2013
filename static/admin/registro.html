@@ -50,53 +50,53 @@
 										<div class="span6">
 											<div class="control-group">
 												<label for="Nombre" class="control-label">Nombre</label>
-												<div class="controls"><input name="Nombre" type="text"></div>
+												<div class="controls"><input name="Nombre"  class="validate[required,custom[onlyLetterSp]]" type="text"></div>
 											</div>
 
 											<div class="control-group">
 												<label for="Apellidos" class="control-label">Apellidos</label>
-												<div class="controls"><input name="Apellidos" type="text"></div>
+												<div class="controls"><input name="Apellidos"  class="validate[required,custom[onlyLetterSp]]" type="text"></div>
 											</div>
 
 											<div class="control-group">
 												<label for="Puesto" class="control-label">Puesto</label>
-												<div class="controls"><input name="Puesto" type="text"></div>
+												<div class="controls"><input name="Puesto" class="validate[optional]" type="text"></div>
 											</div>
 
 											<div class="control-group">
 												<label for="Email" class="control-label">Email</label>
-												<div class="controls"><input name="Email" type="text"></div>
+												<div class="controls"><input name="Email" class="validate[required,custom[email]]" type="text"></div>
 											</div>
 
 											<div class="control-group">
 												<label for="EmailAlt" class="control-label">Email Alternativo</label>
-												<div class="controls"><input name="EmailAlt" type="text"></div>
+												<div class="controls"><input name="EmailAlt" class="validate[optional,funcCall[validateEmail]" type="text"></div>
 											</div>
 										</div>
 										<div class="span6">
 											<div class="control-group">
 												<label for="Pass" class="control-label">Contraseña</label>
-												<div class="controls"><input name="Pass" type="text"></div>
+												<div class="controls"><input name="Pass"  id="cpass"  class="validate[required]" type="password"></div>
 											</div>
 
 											<div class="control-group">
 												<label for="Pass2" class="control-label">Confirmar Contraseña</label>
-												<div class="controls"><input name="Pass2" type="text"></div>
+												<div class="controls"><input name="Pass2" id="cpassconfirm" class="validate[required,equals[cpass]]" type="password"></div>
 											</div>
 
 											<div class="control-group">
 												<label for="Tel" class="control-label">Teléfono</label>
-												<div class="controls"><input name="Tel" type="text"></div>
+												<div class="controls"><input name="Tel" class="validate[required,custom[phone]]"  type="text"></div>
 											</div>
 
 											<div class="control-group">
 												<label for="Cel" class="control-label">Teléfono celular</label>
-												<div class="controls"><input name="Cel" type="text"></div>
+												<div class="controls"><input name="Cel"  class="validate[optional,custom[cellphone]]" type="text"></div>
 											</div>
 											
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox" name="TermCond" value="1"> Terminos y condiciones
+													<input type="checkbox" name="TermCond" class="validate[required]" value="1"> Terminos y condiciones
 												</label>
 											</div>
 											<div class="control-group">
