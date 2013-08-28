@@ -62,13 +62,15 @@ var registros = (function() {
             event.preventDefault();
             var post = $(this).serialize();
             Ajax.post('/r/wsr/put', post, function(response){
-                   if(response.success){
+                   if(response.status == 'ok'){
+                        $('tusdatos').append('')
+
                            alert('registrado correctamente');
                    }
            });
         })
-    };
-    return {
+    }
+;    return {
         registrarse: registrarse
     };
 })();
