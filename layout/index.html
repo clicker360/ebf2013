@@ -123,11 +123,11 @@
 	<div id="container" class="row-fluid">
 			<div id="dashboard" class="activo container-fluid">
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="span12">
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
-								<div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+								<div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i>Añadir nueva empresa</a></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
@@ -141,8 +141,8 @@
 														<td><a href="<%= empresa.Url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
 														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
 														<th>
-															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
-															<a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i> Añadir</a>
+															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i>Ver Sucursales</a>
+															<a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Sucursales</a>
 														</th>
 													</tr>
 												<% } %>
@@ -656,7 +656,7 @@
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
-								<div class="span3"></div>
+								<div class="span3"><a id="nueva_sucursal_desde_empresa" rel="<%= sucursal.IdSuc %>" class="btn btn-primary">Añadir sucursal</a></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
@@ -667,7 +667,6 @@
 											<th>Municipio</th>
 											<th>Entidad</th>
 											<th>Editar</th>
-											<th>Ver empresa</th>
 										</tr>
 									</thead>
 										<script id="sucursalesTemplate" type="text/template">
@@ -680,7 +679,6 @@
 														<td><%= sucursal.DirMun %></td>
 
 														<th><a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a></th>
-														<th><a class="btn btn-mini btn-primary" rel="<%= sucursal.IdSuc %>"><i class="icon-building"></i> Ver empresa</a></th>
 
 													</tr>
 												<% } %>
