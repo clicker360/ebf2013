@@ -111,10 +111,10 @@ var registros = (function() {
             event.preventDefault();
             var post = $(this).serialize();
             Ajax.post('/r/wsr/post', post, function(response){
-                  // if(response.status == 'ok'){
-
-                           //alert('registrado correctamente');
-                 //  }
+                  if(response.status == 'ok'){
+                       alert('registrado correctamente');
+                       location.href = "/r/index";
+                  }
            });
         })
     };
