@@ -66,9 +66,9 @@ var registros = (function() {
             Ajax.post('/r/wsr/put', post, function(response){
                    if(response.status == 'ok'){
                         $('#tusdatos').html(
-                            '<h2>Gracias por registrarte en "El buen Fin"</h2>'
+                            '<h2>Gracias por registrarte en "El Buen Fin"</h2>'
                             + '<p><strong>Estás a un paso de activar tu cuenta y comenzar con el registro de tu empresa</strong></p>'
-                            + '<p><strong>En un momento recibiras un correo electrónico con tus datos de acceso</strong></p>'
+                            + '<p><strong>En un momento recibirás un correo electrónico con tus datos de acceso</strong></p>'
                             + '<div class="row"><div class="span6">'
                             + '<dl class="dl-horizontal">'
                             + '<dt>Usuario:</dt><dd>' + response.Nombre + '</dd>'
@@ -78,8 +78,8 @@ var registros = (function() {
                             + '</dl>'
                             + '</div>'
                             + '<div class="span6">'
-                            + '<ul><li>Ingresa a tu cuenta de correo</li><li>Abre el correo que te enviamos</li><li>Haz click en la liga que aparece en él</li><li>Cpmienza el registro de tu(s) empresa(s)</li></ul>'
-                            + '<p><strong>Es importante que actives antes de 15 días ya que la activación expira. Si expira tu código o no es válido puedes realizar tu registro nuevamente</strong></p>'
+                            + '<ul><li>Ingresa a tu cuenta de correo</li><li>Abre el correo que te enviamos</li><li>Haz clic en la liga que aparece en él</li><li>Comienza el registro de tu(s) empresa(s)</li></ul>'
+                            + '<p><strong>Es importante que actives la cuenta antes de 15 días, posterior a esa fecha expirará la liga. </strong></p>'
                             + '</div></div>'
                             );
                        Ajax.hidePreload($('#registro-enviado-block'));
