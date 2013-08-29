@@ -2,7 +2,8 @@
 .clearfix:after{clear:both}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}
 .input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
-.frontpages{background:url("../images/pattern.jpg") repeat scroll 0 0 #f7f7f7 !important}.frontpages .footer{padding:0}.frontpages .footer .footer-a{padding:10px 0 0;color:#000;background:#fff}.frontpages .footer .footer-a span{display:block;width:96px;height:42px;float:left;margin:0 10px;padding:20px 0}
+.frontpages{background:url("../images/pattern.jpg") repeat scroll 0 0 #f7f7f7 !important}.frontpages h1{text-align:center}
+.frontpages .footer{padding:0}.frontpages .footer .footer-a{padding:10px 0 0;color:#000;background:#fff}.frontpages .footer .footer-a span{display:block;width:96px;height:24px;float:left;margin:0 10px;padding:20px 0;font-weight:bold}
 .frontpages .footer .footer-a ul{list-style:none}.frontpages .footer .footer-a ul li{float:left}.frontpages .footer .footer-a ul li a{display:block;width:96px;height:64px;background:url('../images/patrocinadores.png') no-repeat}
 .frontpages .footer .footer-a ul li #patr-1{background-position:0 0}
 .frontpages .footer .footer-a ul li #patr-2{background-position:0 -64px}
@@ -16,9 +17,10 @@
 .frontpages .footer .footer-a ul li #patr-10{background-position:0 -576px}
 .frontpages .footer .footer-b{padding:10px 0 0;background:#000;color:#fff !important}
 #reg-container{margin-top:40px;margin-bottom:40px}
-#registro-intro{background-color:#1f1f1f;background-image:-moz-linear-gradient(top, #333, #000);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#333), to(#000));background-image:-webkit-linear-gradient(top, #333, #000);background-image:-o-linear-gradient(top, #333, #000);background-image:linear-gradient(to bottom, #333, #000);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff000000', GradientType=0);padding:5px 10px;border:1px solid transparent;color:#fff;text-align:center}#registro-intro h1{font-size:20px;text-transform:uppercase;text-align:center;line-height:15px}
+#registro-intro{background-color:#1f1f1f;background-image:-moz-linear-gradient(top, #333, #000);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#333), to(#000));background-image:-webkit-linear-gradient(top, #333, #000);background-image:-o-linear-gradient(top, #333, #000);background-image:linear-gradient(to bottom, #333, #000);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333', endColorstr='#ff000000', GradientType=0);padding:5px 10px;border:1px solid transparent;color:#fff;text-align:center}#registro-intro img{width:80%;height:auto;margin-top:15px}
+#registro-intro h1{font-size:20px;text-transform:uppercase;text-align:center}
 #registro-intro h3{font-size:15px;text-align:center;text-transform:uppercase}
-ul#iconos-footer{list-style:none}ul#iconos-footer li{float:left}ul#iconos-footer li a{display:block;width:40px;height:40px;color:#fff;margin:0 5px;font-size:33px;text-align:center;text-decoration:none}
+ul#iconos-footer{list-style:none}ul#iconos-footer li{float:left}ul#iconos-footer li a{color:#fff;display:block;font-size:20px;height:33px;margin:0 5px;padding:9px 4px 0;text-align:center;text-decoration:none;width:40px}
 ul#iconos-footer li #f-face{background:#37589a}
 ul#iconos-footer li #f-twit{background:#38a8e0}
 .activo{display:block !important}
@@ -36,7 +38,8 @@ ul#iconos-footer li #f-twit{background:#38a8e0}
 .footer{color:#fff;padding:10px}
 .embed-container{position:relative;padding-bottom:56.25%;padding-top:30px;height:0;overflow:hidden;width:100%}
 .embed-container iframe,.embed-container object,.embed-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
-.formError{z-index:990}
+a.brand-alt{display:none}
+@media only screen and (min-width:960px){a.brand{margin-right:130px}a.brand img{display:none} a.brand-alt{display:block;position:absolute} .frontpages .footer{}}.formError{z-index:990}
 .formError .formErrorContent{z-index:991}
 .formError .formErrorArrow{z-index:996}
 .formErrorInsideDialog.formError{z-index:5000}

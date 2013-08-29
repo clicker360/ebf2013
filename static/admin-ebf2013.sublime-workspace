@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"paddi",
+				"padding"
+			],
+			[
+				"bt",
+				"btn-success"
+			],
+			[
+				"nuev",
+				"nuevasucursal"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"impr",
+				"imprimeTemplateDash"
+			],
+			[
+				"under",
+				"underTemplateIDash"
+			],
+			[
+				"unde",
+				"underTemplateID"
+			],
+			[
+				"regis",
+				"registros"
+			],
+			[
+				"in",
+				"input	Tag"
+			],
+			[
 				"id",
 				"IdSuc"
 			],
@@ -72,16 +112,8 @@
 				"text-decoration"
 			],
 			[
-				"font",
-				"font-weight"
-			],
-			[
 				"padd",
 				"padding"
-			],
-			[
-				"paddi",
-				"padding-right"
 			],
 			[
 				"list",
@@ -131,79 +163,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "test_empresa.html",
-			"settings":
-			{
-				"buffer_size": 2107,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "admin/empresas.html",
-			"settings":
-			{
-				"buffer_size": 9493,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "admin/sucursal-detalle.html",
-			"settings":
-			{
-				"buffer_size": 9110,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "admin/empresa-micrositio.html",
-			"settings":
-			{
-				"buffer_size": 13984,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/home/alonso/ebf2013/library/js/scripts.js",
-			"settings":
-			{
-				"buffer_size": 3184,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/alonso/Descargas/formparams-master/js/demo.js",
-			"settings":
-			{
-				"buffer_size": 1118,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/alonso/ebf2013/library/js/s.old",
-			"settings":
-			{
-				"buffer_size": 3456,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/alonso/Descargas/scripts.js",
-			"settings":
-			{
-				"buffer_size": 6094,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "admin/jsons.txt",
-			"settings":
-			{
-				"buffer_size": 1812,
-				"line_ending": "Unix",
-				"name": "[{"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -269,29 +228,50 @@
 	},
 	"file_history":
 	[
+		"/home/alonso/ebf2013/library/less/style.less",
+		"/home/alonso/ebf2013/library/js/scripts.js",
+		"/home/alonso/ebf2013/library/less/variables.less",
+		"/home/alonso/ebf2013/library/css/style.css",
+		"/home/alonso/ebf2013/library/js/script-registro.js",
+		"/home/alonso/ebf2013/static/admin/index.html",
+		"/home/alonso/ebf2013/static/index.html",
+		"/home/alonso/ebf2013/static/admin/registro.html",
+		"/home/alonso/ebf2013/static/elbuenfin-organizadores.html",
+		"/home/alonso/ebf2013/static/terminosCondiciones.html",
+		"/home/alonso/ebf2013/static/elbuenfin-que-es.html",
+		"/home/alonso/ebf2013/library/less/mixins.less",
+		"/home/alonso/ebf2013/static/admin/usuario.html",
+		"/home/alonso/ebf2013/library/less/valengine.less",
+		"/home/alonso/ebf2013/scripts/home.js",
+		"/home/alonso/ebf2013/layout/reg_login.html",
+		"/home/alonso/ebf2013/templates/registro.html",
+		"/home/alonso/Descargas/formparams-master/js/demo.js",
+		"/home/alonso/ebf2013/library/js/s.old",
+		"/home/alonso/ebf2013/static/admin/jsons.txt",
+		"/home/alonso/ebf2013/library/js/ajaxLibrary.js",
+		"/home/alonso/ebf2013/static/test_registro.html",
+		"/home/alonso/ebf2013/static/test_sucursal.html",
+		"/home/alonso/ebf2013/static/admin/empresa-micrositio.html",
+		"/home/alonso/ebf2013/static/admin/empresas.html",
+		"/home/alonso/ebf2013/static/test_empresa.html",
+		"/home/alonso/ebf2013/templates/login.html",
+		"/home/alonso/Descargas/scripts.js",
+		"/home/alonso/ebf2013/library/js/scripts (copia).js",
+		"/home/alonso/ebf2013/static/admin/sucursal-detalle.html",
 		"/home/alonso/Descargas/formparams-master/index.html",
 		"/home/alonso/ebf2013/layout/sucursal-detalle.html",
-		"/home/alonso/ebf2013/static/admin/empresa-micrositio.html",
 		"/home/alonso/ebf2013/static/admin/sucursales.html",
-		"/home/alonso/ebf2013/static/admin/empresas.html",
 		"/home/alonso/Descargas/home.php",
-		"/home/alonso/Descargas/scripts.js",
 		"/home/alonso/Descargas/contenido-1.csv",
-		"/home/alonso/ebf2013/static/index.html",
 		"/home/alonso/ebf2013/static/emp_api.html",
-		"/home/alonso/ebf2013/static/admin/index.html",
 		"/home/alonso/ebf2013/static/admin/oferta-detalle.html",
 		"/home/alonso/ebf2013/static/admin/ofertas(2).html",
 		"/home/alonso/ebf2013/static/admin/ofertas.html",
-		"/home/alonso/ebf2013/static/admin/sucursal-detalle.html",
-		"/home/alonso/ebf2013/static/admin/usuario.html",
-		"/home/alonso/ebf2013/library/less/style.less",
 		"/home/alonso/ebf2013/layout/admHeaderTpl.html",
 		"/home/alonso/ebf2013/static/admin/library/css/font-awesome/css/font-awesome.css",
 		"/home/alonso/ebf2013/static/empresas.html",
 		"/home/alonso/ebf2013/layout/empresasTpl.html",
 		"/home/alonso/ebf2013/library/css/font-awesome/css/font-awesome.css",
-		"/home/alonso/ebf2013/library/css/style.css",
 		"/home/alonso/ebf2013/static/admin.html",
 		"/home/alonso/ebf2013/templates/emp_empresaContentTpl.html",
 		"/home/alonso/prueba/prueba.html",
@@ -375,28 +355,7 @@
 		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single-profesores.php",
 		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive.php",
 		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/footer.php",
-		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/amba_2013/index.php",
-		"/C/Users/Chematrix/Documents/Avila/Proyectos/contacto/index.php",
-		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-1/style.css",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single - Copy.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive - copia.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-maestros.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-valores.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single-calendarios.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/sliders-markup.html",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/category-videos.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/_768up.less",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/less/_960min.less",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-padres.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/library/images/bg_azul_75.png",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-en-tu-escuela.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-participa-escuela.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-participa.php",
-		"/C/Users/Chematrix/Downloads/jquery-state-select-master/jquery-state-select-master/example.html",
-		"/L/Server/root/FINAL/wp-content/themes/clicker360/home.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/plugins/new-royalslider/lib/royalslider/templates-css/rs-gallery-with-text-thumbs.css",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive-custom_type.php"
+		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/amba_2013/index.php"
 	],
 	"find":
 	{
@@ -404,9 +363,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
+			"/home/alonso/ebf2013/library",
 			"",
 			"/home/alonso/ebf2013/library",
 			"",
@@ -424,6 +384,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sucursal-form",
+			"btn-empresa",
+			"<form",
+			"form",
+			"añadir",
+			"active",
+			"activo",
+			"active",
+			"sucursal",
+			" type=\"text/template\">",
+			"script",
+			"rel",
+			"-empresa",
+			"sucursal-form",
+			"-detalle",
+			"detalle",
+			".form-signin",
+			"sucursales",
+			"pagination",
+			"codeRel",
+			"initSucursales",
+			"ver-sucursales",
 			"\",\"",
 			"  ",
 			"funcion1",
@@ -588,262 +570,13 @@
 	"groups":
 	[
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "test_empresa.html",
-					"settings":
-					{
-						"buffer_size": 2107,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								914,
-								914
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 65.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "admin/empresas.html",
-					"settings":
-					{
-						"buffer_size": 9493,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9207,
-								9207
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5522.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "admin/sucursal-detalle.html",
-					"settings":
-					{
-						"buffer_size": 9110,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9038,
-								9038
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4345.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "admin/empresa-micrositio.html",
-					"settings":
-					{
-						"buffer_size": 13984,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								12226,
-								12226
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1884.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 4,
 			"sheets":
 			[
-				{
-					"buffer": 4,
-					"file": "/home/alonso/ebf2013/library/js/scripts.js",
-					"settings":
-					{
-						"buffer_size": 3184,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								658,
-								657
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 56.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/home/alonso/Descargas/formparams-master/js/demo.js",
-					"settings":
-					{
-						"buffer_size": 1118,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								82,
-								82
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/home/alonso/ebf2013/library/js/s.old",
-					"settings":
-					{
-						"buffer_size": 3456,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								265,
-								265
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 2.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/home/alonso/Descargas/scripts.js",
-					"settings":
-					{
-						"buffer_size": 6094,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2227.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "admin/jsons.txt",
-					"settings":
-					{
-						"buffer_size": 1812,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1253,
-								1253
-							]
-						],
-						"settings":
-						{
-							"auto_name": "[{",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 485.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -875,7 +608,7 @@
 		"cols":
 		[
 			0.0,
-			0.547838583178,
+			0.681849277846,
 			1.0
 		],
 		"rows":
@@ -896,6 +629,94 @@
 		"selected_items":
 		[
 			[
+				"style",
+				"library/less/style.less"
+			],
+			[
+				"scr",
+				"library/js/scripts.js"
+			],
+			[
+				"sty",
+				"library/css/style.css"
+			],
+			[
+				"inde",
+				"static/admin/index.html"
+			],
+			[
+				"registro",
+				"library/js/script-registro.js"
+			],
+			[
+				"index",
+				"static/index.html"
+			],
+			[
+				"scri",
+				"library/js/scripts.js"
+			],
+			[
+				"quees",
+				"static/elbuenfin-que-es.html"
+			],
+			[
+				"termi",
+				"static/terminosCondiciones.html"
+			],
+			[
+				"orga",
+				"static/elbuenfin-organizadores.html"
+			],
+			[
+				"varie",
+				"library/less/variables.less"
+			],
+			[
+				"mxin",
+				"library/less/mixins.less"
+			],
+			[
+				"script",
+				"library/js/script-registro.js"
+			],
+			[
+				"regis",
+				"static/admin/registro.html"
+			],
+			[
+				"home",
+				"scripts/home.js"
+			],
+			[
+				"style.less",
+				"library/less/style.less"
+			],
+			[
+				"test",
+				"static/test_registro.html"
+			],
+			[
+				"reg",
+				"static/admin/registro.html"
+			],
+			[
+				"empre",
+				"static/admin/empresas.html"
+			],
+			[
+				"empres",
+				"static/admin/empresa-micrositio.html"
+			],
+			[
+				"empresa",
+				"static/admin/empresa-micrositio.html"
+			],
+			[
+				"ajax",
+				"library/js/ajaxLibrary.js"
+			],
+			[
 				"empresas",
 				"static/admin/empresa-micrositio.html"
 			],
@@ -908,24 +729,12 @@
 				"layout/sucursal-detalle.html"
 			],
 			[
-				"empresa",
-				"static/admin/empresas.html"
-			],
-			[
 				"fon",
 				"library/css/font-awesome/css/font-awesome.css"
 			],
 			[
-				"empres",
-				"static/admin/empresas.html"
-			],
-			[
 				"style.les",
 				"library/less/style.less"
-			],
-			[
-				"sty",
-				"library/css/style.css"
 			],
 			[
 				"mixi",
@@ -964,14 +773,6 @@
 				"valores/page-maestros.php"
 			],
 			[
-				"scr",
-				"Valores/wp-content/themes/valores/library/js/scripts.js"
-			],
-			[
-				"home",
-				"valores/home.php"
-			],
-			[
 				"fun",
 				"Valores/wp-content/themes/valores/functions.php"
 			],
@@ -997,7 +798,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 284.0,
+	"side_bar_visible": false,
+	"side_bar_width": 221.0,
 	"status_bar_visible": true
 }
