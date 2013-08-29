@@ -49,30 +49,35 @@
        $(document).on('click','a.editar-sucursal', function(event) {
            event.preventDefault();
            var rel = $(this).attr('rel');
-           sucursales.sucursalformdesdejson(rel);
+           sucursales.sucursalformdesdejsonModifica(rel);
        });
    };
     // abre formulario de nueva sucursal
    var nuevasucursal = function() {
        $(document).on('click','a.nuevasucursal', function(event) {
            event.preventDefault();
-           sucursales.sucursalformdesdejson();
+           var rel = $(this).attr('rel');
+           sucursales.sucursalformdesdejsonNueva(rel);
        });
    };
 
-    
-    
+   // Submit de datos de empresa ya sea PUt o POST
+   var modificasucursal = function() {
+       sucursales.sucursal_envia();
+   };
+
     var execute = function() {
         $(document).ready(function() {
             //verSucusales2();
             registrarse();
-            llenaformempresas();
-            llenaformsucursal();
-            nuevasucursal();
             initEmpresas();
             initSucursales();
+            llenaformempresas();
+            llenaformsucursal();
             nuevaempresa();
+            nuevasucursal();
             modificaempresa();
+            modificasucursal();
         });
     };
     return execute();
@@ -161,7 +166,7 @@ var empresas = (function() {
             $('#btn-empresa').html("Modificar");
             Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
                 $('#empresa-form').formParams(response, true);
-                llenamuni(response.DirEnt, response.DirMun);
+                llenamuniEmpresa(response.DirEnt, response.DirMun);
                 llenaorganismos(response.OrgEmp);
                 Ajax.hidePreload($('#empresas-detalle'));
             });
@@ -212,38 +217,35 @@ var sucursales = (function() {
     };
 
 
-  /*  var sucursalformdesdejson = function(codeRel) {
-        Ajax.get('/r/wss/get?IdSuc=' + codeRel, function(response) {
-            $('#sucursal-form').formParams(response, true);
-              Ajax.hidePreload($('#sucursal-detalle'));
-        });
-    };*/
-     var sucursalformdesdejson = function(codeRel) {
-        if(codeRel) {
+    // codeRel trae sucursal
+     var sucursalformdesdejsonModifica = function(codeRel) {
             $('#btn-sucursal').html("Modificar");
-            Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
+            Ajax.get('/r/wss/get?IdSuc=' + codeRel, function(response) {
                 $('#sucursal-form').formParams(response, true);
-                llenamuni(response.DirEnt, response.DirMun);
-                llenaorganismos(response.OrgEmp);
+                llenamuniSucursal(response.DirEnt, response.DirMun);
                 Ajax.hidePreload($('#sucursal-detalle'));
             });
-        } else {
+    };
+
+    // codeRel trae ID Empresa
+     var sucursalformdesdejsonNueva = function(codeRel) {
+            $('#IdEmpSuc').val(codeRel);
             $('#btn-sucursal').html("Crear");
             Ajax.hidePreload($('#sucursal-detalle'));
-        }
     };
+
     var sucursal_envia = function () {
         $(document).on('submit','form#sucursal-form', function(event){
             event.preventDefault();
             var post = $(this).serialize();
             if($('#btn-sucursal').html() == 'Crear') {
-                Ajax.post('/r/wss/put?IdEmp=', post, function(response){
+                Ajax.post('/r/wss/put', post, function(response){
                        if(response.status=="ok"){
                                alert('registrado correctamente');
                        }
                });
             } else {
-                Ajax.post('/r/wss/post?IdEmp=', post, function(response){
+                Ajax.post('/r/wss/post', post, function(response){
                        if(response.status=="ok"){
                                alert('registrado correctamente');
                        }
@@ -252,22 +254,11 @@ var sucursales = (function() {
         })
     };
     
-    var sucursalnueva = function (codeEmpresa) {
-        $('form#sucursal-form').on('submit', function(event){
-            event.preventDefault();
-            var post = $(this).serialize();
-            Ajax.post('/r/wss/put?IdEmp=', post, function(response){
-                   if(response.success){
-                           alert('registrado correctamente');
-                   }
-           });
-        })
-    };
-
     return {
         initSucursales: initSucursales,
-        sucursalformdesdejson: sucursalformdesdejson,
-        sucursalnueva: sucursalnueva       
+        sucursalformdesdejsonModifica: sucursalformdesdejsonModifica,
+        sucursalformdesdejsonNueva: sucursalformdesdejsonNueva,
+        sucursal_envia: sucursal_envia,
     };
 })();
 

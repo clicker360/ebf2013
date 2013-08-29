@@ -16,7 +16,7 @@ import (
 type WsSucursal struct{
 	IdSuc           string `json:"IdSuc"`
 	IdEmp           string `json:"IdEmp"`
-	Sucursal        string `json:"Sucursal"`
+	Nombre          string `json:"Nombre"`
     Tel				string `json:"Tel"`
 	DirCalle		string `json:"DirCalle"`
 	DirCol			string `json:"DirCol"`
@@ -189,7 +189,7 @@ func DelSucursal(w http.ResponseWriter, r *http.Request) {
 func setWsSucursal(out *WsSucursal, s model.Sucursal) {
     out.IdSuc = s.IdSuc
     out.IdEmp = s.IdEmp
-    out.Sucursal = s.Nombre
+    out.Nombre = s.Nombre
     out.Tel = s.Tel
     out.DirCalle = s.DirCalle
     out.DirCol = s.DirCol

@@ -1,18 +1,33 @@
 $(document).ready(function() {
-    $('#DirEnt').on('change', function() {
-        llenamuni($(this).val());
+    $('#DirEntEmp').on('change', function() {
+        llenamuniEmpresa($(this).val());
+    });
+    $('#DirEntSuc').on('change', function() {
+        llenamuniSucursal($(this).val());
     });
 });
-function llenamuni(cvent, mun) {
+function llenamuniEmpresa(cvent, mun) {
     var imprimeTemplateMuni = '',
-        underTemplateIMuni = $('#muniTemplate').html(),
+        underTemplateIMuni = $('#muniTemplateEmp').html(),
         underTemplateMuni = _.template(underTemplateIMuni);
     $.get('/r/wsu/municipios', { CveEnt: cvent }, function(response) {
         imprimeTemplateMuni = underTemplateMuni({
             MunicipiosArray: response.municipios
         });
-        $('#DirMunId').html(imprimeTemplateMuni);
-        $($('#DirMunId option[value='+mun+']')).attr('selected','selected');
+        $('#DirMunEmp').html(imprimeTemplateMuni);
+        $($('#DirMunEmp option[value='+mun+']')).attr('selected','selected');
+    });
+}
+function llenamuniSucursal(cvent, mun) {
+    var imprimeTemplateMuni = '',
+        underTemplateIMuni = $('#muniTemplateSuc').html(),
+        underTemplateMuni = _.template(underTemplateIMuni);
+    $.get('/r/wsu/municipios', { CveEnt: cvent }, function(response) {
+        imprimeTemplateMuni = underTemplateMuni({
+            MunicipiosArray: response.municipios
+        });
+        $('#DirMunSuc').html(imprimeTemplateMuni);
+        $($('#DirMunSuc option[value='+mun+']')).attr('selected','selected');
     });
 }
 

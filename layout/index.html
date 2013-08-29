@@ -43,6 +43,8 @@
 		$('#sucursal-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
 	});
 	</script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -114,8 +116,6 @@
 		</div>
 	</div>
 
-
-
 	<div id="container" class="row-fluid">
 			<div id="dashboard" class="activo container-fluid">
 				<div class="row-fluid">
@@ -138,7 +138,7 @@
 														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
 														<th>
 															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
-															<a href="" class="nuevasucursal btn btn-mini btn-success"><i class="icon-plus"></i> Añadir</a>
+															<a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i> Añadir</a>
 														</th>
 													</tr>
 												<% } %>
@@ -424,9 +424,9 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="DirEnt" class="control-label">Entidad Federativa *</label>
+												<label for="DirEntEmp" class="control-label">Entidad Federativa *</label>
 												<div class="controls">
-													<select id="DirEnt" name="DirEnt">
+													<select id="DirEntEmp" name="DirEnt">
 														<option value="01">Aguascalientes</option>
 														<option value="02">Baja California</option>
 														<option value="03">Baja California Sur</option>
@@ -463,11 +463,10 @@
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="DirMun" class="control-label">Delegación o municipio *</label>
+												<label for="DirMunEmp" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
-													<select id="DirMunId" name="DirMun">
-													</select>
-                                                    <script id="muniTemplate" type="text/template">
+													<select id="DirMunEmp" name="DirMun"> </select>
+                                                    <script id="muniTemplateEmp" type="text/template">
                                                         <% for (var i in MunicipiosArray){ %>
                                                         <% var municipio = MunicipiosArray[i]; %>
                                                             <option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
@@ -691,6 +690,8 @@
 					</div>
 				</div>
 			</div>
+
+            <!--SUCURSAL-->
 			<div id="sucursal-detalle" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
@@ -701,14 +702,14 @@
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<div class="controls"><input name="IdEmp" type="hidden"></div>
-												<div class="controls"><input name="IdSuc" type="hidden"></div>
-												<div class="controls"><input id="Geo1" name="Geo1" type="hidden"></div>
-												<div class="controls"><input id="Geo2" name="Geo2" type="hidden"></div>
+												<div class="controls"><input id="IdEmpSuc" name="IdEmp" type="hidden"></div>
+												<div class="controls"><input id="IdSuc" name="IdSuc" type="hidden"></div>
+												<div class="controls"><input id="lat" name="Geo1" value="" type="hidden"></div>
+												<div class="controls"><input id="lng" name="Geo2" value="" type="hidden"></div>
 											</div>
 											<div class="control-group">
 												<label for="Nombre" class="control-label">Nombre de sucursal * </label>
-												<div class="controls"><input name="Sucursal" id="Sucursal" class="validate[required]" type="text"></div>
+												<div class="controls"><input name="Nombre" id="Nombre" class="validate[required]" type="text"></div>
 											</div>
 										</div>
 										<div class="span6">
@@ -734,28 +735,55 @@
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<label for="DirEnt" class="control-label">Entidad Federativa *</label>
+												<label for="DirEntSuc" class="control-label">Entidad Federativa *</label>
 												<div class="controls">
-													<select id="estado" name="DirEnt">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option> 
-														<option>5</option>
+													<select id="DirEntSuc" name="DirEnt">
+                                                        <option value="01">Aguascalientes</option>
+														<option value="02">Baja California</option>
+														<option value="03">Baja California Sur</option>
+														<option value="04">Campeche</option>
+														<option value="05">Coahuila de Zaragoza</option>
+														<option value="06">Colima</option>
+														<option value="07">Chiapas</option>
+														<option value="08">Chihuahua</option>
+														<option value="09">Distrito Federal</option>
+														<option value="10">Durango</option>
+														<option value="11">Guanajuato</option>
+														<option value="12">Guerrero</option>
+														<option value="13">Hidalgo</option>
+														<option value="14">Jalisco</option>
+														<option value="15">México</option>
+														<option value="16">Michoacán de Ocampo</option>
+														<option value="17">Morelos</option>
+														<option value="18">Nayarit</option>
+														<option value="19">Nuevo León</option>
+														<option value="20">Oaxaca</option>
+														<option value="21">Puebla</option>
+														<option value="22">Querétaro Arteaga</option>
+														<option value="23">Quintana Roo</option>
+														<option value="24">San Luis Potosí</option>
+														<option value="25">Sinaloa</option>
+														<option value="26">Sonora</option>
+														<option value="27">Tabasco</option>
+														<option value="28">Tamaulipas</option>
+														<option value="29">Tlaxcala</option>
+														<option value="30">Veracruz de Ignacio de la Llave</option>
+														<option value="31">Yucatán</option>
+														<option value="32">Zacatecas</option>
 													</select>
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="DirMun" class="control-label">Delegación o municipio *</label>
+												<label for="DirMunSuc" class="control-label">Delegación o municipio *</label>
 												<input type="hidden" name="DirMunSel"  id="municipio"/>
-												<div class="controls"  id="show_mun">
-													<select name="DirMun">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
-													</select>
+												<div class="controls">
+													<select id="DirMunSuc" name="DirMun"></select>
+                                                    <script id="muniTemplateSuc" type="text/template">
+                                                        <% for (var i in MunicipiosArray){ %>
+                                                        <% var municipio = MunicipiosArray[i]; %>
+                                                            <option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
+                                                        <% } %>
+                                                    </script>
 												</div>
 											</div>
 											<div class="control-group">
@@ -1006,7 +1034,6 @@
 		<script src="../library/js/libs/bootstrap-carousel.js"></script>
 		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
 		<script src="../library/js/libs/jquery.formparams.js"></script>
-		 <!--<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>-->
 		<script src="../library/js/scripts.js"></script>
 		<script src="../library/js/llenamuni.js"></script>
 		<script src="../library/js/llenaorg.js"></script>

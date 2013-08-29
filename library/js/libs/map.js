@@ -5,10 +5,11 @@ $(document).ready(function() {
 	var zoom = 17;
 	var lat = $('#lat').val();
 	var lng = $('#lng').val();
-	if(lat == '') { 
-		lat = 22.770856;
-		lng = -102.583243; 
+	if(!lat) { 
+		lat = 19.434341;
+		lng = -99.141483; 
 		zoom = 4;
+        console.log(lat+" : "+lng);
 	}
 	var center = new google.maps.LatLng(lat,lng);
 	var options = {
@@ -27,7 +28,7 @@ $(document).ready(function() {
 		marker.setPosition(center);
 	}
 	// Getting a reference to the HTML form
-	$('#estado').bind('change',function(e){
+	$('#DirEntSuc').bind('change',function(e){
 		locateAddress();
 	});
 	$('#calle').bind('change',function(e){
@@ -54,8 +55,8 @@ $(document).ready(function() {
 function locateAddress() {
 	// Getting the address from the text input
 	var dir = [];
-	dir.push($('#MunSelector option:selected').text());
-	dir.push($('#estado option:selected').text());
+	dir.push($('#DirMunSuc option:selected').text());
+	dir.push($('#DirEntSuc option:selected').text());
 	dir.push($('#calle').val());
 	dir.push($('#colonia').val());
 	//dir.push($('#cp').val());
