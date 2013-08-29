@@ -44,9 +44,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="brand" href="#">
-					<img src="library/images/logo_header.png">
-					Administración
+				<a class="brand-alt" href="/r/index">
+					<img src="../library/images/logo_med.png">
+				</a>
+				<a class="brand" href="/r/index">
+					<img src="../library/images/logo_header.png">
 				</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
@@ -56,18 +58,19 @@
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="empresa-micrositio.html">Añadir Nueva</a></li>
-								<li><a href="empresas.html">Lista Empresas</a></li>
+								<li><a class="nuevaempresa" href="#">Añadir Nueva</a></li>
+								<li><a href="/r/index">Lista Empresas</a></li>
 							</ul>
 						</li>
+						<!--
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								Sucursales
 								<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="sucursal-detalle.html">Añadir Nueva</a></li>
-								<li><a href="sucursales.html">Lista Sucursales</a></li>
+								<li><a class="nuevasucursal" href="#">Añadir Nueva</a></li>
+								<li><a href="#">Lista Sucursales</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -79,12 +82,13 @@
 								<li><a href="oferta-detalle.html">Añadir Nueva</a></li>
 								<li><a href="ofertas.html">Lista Ofertas</a></li>
 							</ul>
-						</li>
+						</li
 						<li>
 							<a href="#">
 								El Buen Fin en linea
 							</a>
 						</li>
+						-->
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown">
@@ -93,7 +97,8 @@
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="usuario.html">Editar</a></li>
+								<li><a href="/admin/usuario.html">Editar</a></li>
+								<li><a href="/r/logout">Salir</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -206,13 +211,13 @@
 										<div class="span6">
 											
 											<div class="control-group">
-												<label for="" class="control-label">Correo electronico principal</label>
+												<label for="" class="control-label">Correo electrónico principal</label>
 												<div class="controls">
 													<input type="text">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="" class="control-label">Correo electronico secundario</label>
+												<label for="" class="control-label">Correo electrónico secundario</label>
 												<div class="controls">
 													<input type="text">
 												</div>

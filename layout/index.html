@@ -62,7 +62,6 @@
 				</a>
 				<a class="brand" href="/r/index">
 					<img src="../library/images/logo_header.png">
-					Administración
 				</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
@@ -76,6 +75,7 @@
 								<li><a href="/r/index">Lista Empresas</a></li>
 							</ul>
 						</li>
+						<!--
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								Sucursales
@@ -86,7 +86,7 @@
 								<li><a href="#">Lista Sucursales</a></li>
 							</ul>
 						</li>
-						<!--li class="dropdown">
+						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								Ofertas
 								<b class="caret"></b>
@@ -95,12 +95,13 @@
 								<li><a href="oferta-detalle.html">Añadir Nueva</a></li>
 								<li><a href="ofertas.html">Lista Ofertas</a></li>
 							</ul>
-						</li-->
+						</li
 						<li>
 							<a href="#">
 								El Buen Fin en linea
 							</a>
 						</li>
+						-->
 					</ul>
 					<ul class="nav pull-right">
 						<li class="dropdown">
@@ -302,7 +303,7 @@
 										</div>
 									</div>
 							</div>
-						</div-->
+						</div
 						<div class="span8">
 							<div class="block">
 								<h3><i class="icon-shopping-cart"></i> El buen fin en linea</h3>
@@ -326,7 +327,7 @@
 							</div>
 						</div>
 				</div>
-                <!-- Alertas Se deshabilita hasta que se utilize -->
+                 Alertas Se deshabilita hasta que se utilize -->
 				<!--div class="row-fluid">
 						<div class="span12">
 							<div class="block">
@@ -655,7 +656,7 @@
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
-								<div class="span3"><a class="nuevasucursal span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+								<div class="span3"></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
@@ -673,8 +674,8 @@
 												<% for (var i in sucursalesArray){ %>
 												<% var sucursal = sucursalesArray[i]; %>
 													<tr>
-														<td><%= sucursal.Sucursal %> / <%= sucursal.IdSuc %></td>
-														<td><%= sucursal.DirCol %> / <%= sucursal.IdEmp %></td>
+														<td><%= sucursal.Nombre %></td>
+														<td><%= sucursal.DirCol %></td>
 														<td><%= sucursal.DirEnt %></td>
 														<td><%= sucursal.DirMun %></td>
 
@@ -933,11 +934,11 @@
 												<div class="accordion" id="accordion2">
 													<div class="accordion-group">
 														<div class="accordion-heading">
-															<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#CoElectronico">
+															<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#Coelectrónico">
 																El Buen Fin en línea (Comercio electrónico) 
 															</a>
 														</div>
-														<div id="CoElectronico" class="accordion-body collapse">
+														<div id="Coelectrónico" class="accordion-body collapse">
 															<div class="accordion-inner">
 																<div class="control-group">
 																	<label for="" class="control-label"> Sitio de internet de la oferta</label>
@@ -1011,7 +1012,7 @@
 
 	<div class="footer">
 		<p>
-	    El Buen Fin © Todos los derechos reservados, México 2011
+	    El Buen Fin © Todos los derechos reservados, México 2013
 	    Toda la información aquí publicada relativa a las características
 	    de los productos y servicios que participan en El Buen Fin © es 
 	    responsabilidad exclusiva de las tiendas que ofrecen los servicios 

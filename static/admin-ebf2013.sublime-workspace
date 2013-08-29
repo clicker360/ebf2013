@@ -237,7 +237,7 @@
 		"/home/alonso/ebf2013/static/index.html",
 		"/home/alonso/ebf2013/static/admin/registro.html",
 		"/home/alonso/ebf2013/static/elbuenfin-organizadores.html",
-		"/home/alonso/ebf2013/static/terminosCondiciones.html",
+		"/home/alonso/ebf2013/static/TérminosCondiciones.html",
 		"/home/alonso/ebf2013/static/elbuenfin-que-es.html",
 		"/home/alonso/ebf2013/library/less/mixins.less",
 		"/home/alonso/ebf2013/static/admin/usuario.html",
@@ -662,7 +662,7 @@
 			],
 			[
 				"termi",
-				"static/terminosCondiciones.html"
+				"static/TérminosCondiciones.html"
 			],
 			[
 				"orga",
