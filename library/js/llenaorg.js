@@ -12,7 +12,9 @@ function llenaorganismos(siglas) {
             OrganismosArray: response.organismos
         });
         $('#OrgEmpId').html(imprimeTemplateOrg);
-        $($('#OrgEmpId option[value='+siglas+']')).attr('selected','selected');
+        if(siglas){
+            $($('#OrgEmpId option[value='+siglas+']')).attr('selected','selected');
+        }
     });
 }
 

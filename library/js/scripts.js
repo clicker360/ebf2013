@@ -172,6 +172,8 @@ var empresas = (function() {
             });
         } else {
             $('#btn-empresa').html("Crear");
+            llenamuniEmpresa("01");
+            llenaorganismos();
             Ajax.hidePreload($('#empresas-detalle'));
         }
     };
@@ -182,13 +184,15 @@ var empresas = (function() {
             if($('#btn-empresa').html() == 'Crear') {
                 Ajax.post('/r/wse/put', post, function(response){
                        if(response.status=="ok"){
-                               alert('registrado correctamente');
+                           alert('registrado correctamente');
+                           location.href = "/r/index";
                        }
                });
             } else {
                 Ajax.post('/r/wse/post', post, function(response){
                        if(response.status=="ok"){
-                               alert('registrado correctamente');
+                          alert('registrado correctamente');
+                           location.href = "/r/index";
                        }
                });
             }
@@ -231,6 +235,7 @@ var sucursales = (function() {
      var sucursalformdesdejsonNueva = function(codeRel) {
             $('#IdEmpSuc').val(codeRel);
             $('#btn-sucursal').html("Crear");
+            llenamuniSucursal("01");
             Ajax.hidePreload($('#sucursal-detalle'));
     };
 
@@ -241,13 +246,15 @@ var sucursales = (function() {
             if($('#btn-sucursal').html() == 'Crear') {
                 Ajax.post('/r/wss/put', post, function(response){
                        if(response.status=="ok"){
-                               alert('registrado correctamente');
+                           alert('registrado correctamente');
+                           location.href = "/r/index";
                        }
                });
             } else {
                 Ajax.post('/r/wss/post', post, function(response){
                        if(response.status=="ok"){
-                               alert('registrado correctamente');
+                           alert('registrado correctamente');
+                           location.href = "/r/index";
                        }
                });
             }

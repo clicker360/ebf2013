@@ -15,7 +15,9 @@ function llenamuniEmpresa(cvent, mun) {
             MunicipiosArray: response.municipios
         });
         $('#DirMunEmp').html(imprimeTemplateMuni);
-        $($('#DirMunEmp option[value='+mun+']')).attr('selected','selected');
+        if(mun) {
+            $($('#DirMunEmp option[value='+mun+']')).attr('selected','selected');
+        }
     });
 }
 function llenamuniSucursal(cvent, mun) {
@@ -27,7 +29,9 @@ function llenamuniSucursal(cvent, mun) {
             MunicipiosArray: response.municipios
         });
         $('#DirMunSuc').html(imprimeTemplateMuni);
-        $($('#DirMunSuc option[value='+mun+']')).attr('selected','selected');
+        if(mun) {
+            $($('#DirMunSuc option[value='+mun+']')).attr('selected','selected');
+        }
     });
 }
 
