@@ -1,11 +1,70 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
-        <script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
-        <script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>El Buen Fin // Recuperación de contraseña</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="../library/css/libs/bootstrap.css" rel="stylesheet">
+  <link href="../library/css/style.css" rel="stylesheet">
+      <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+  <link href="../library/css/libs/responsive.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../library/css/font-awesome/css/font-awesome.min.css">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="../library/js/libs/html5shiv.js"></script>
+  <![endif]-->
+
+  <!--[if IE 7]>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../library/images/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../library/images/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="../library/images/ico/favicon.png">
+  <script src="../library/js/libs/underscore-min.js"></script>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+   <script type="text/javascript">
 
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-26907178-1']);
@@ -24,19 +83,30 @@
             $("#acceso").validationEngine({promptPosition : "topRight", scroll: true});
         });
         </script>
-        <title>Rrecuperación de contraseña</title>
-    </head>
-    <body>
-        <form id="enviar" action="/r/recover" method="post">
-            <div class="line">
-                <label for="cmail">Correo electrónico <span class="typ-Sc">*</span></label>
-                <input type="text" id="cmail" name="Email" class="validate[required,custom[email]] small" value="" />
-            </div>
-            <!--div>
+</head>
+
+  <body>
+
+    <div class="container">
+      <form id="enviar" class="form-signin"  action="/r/recover" method="post">
+        <h2 class="form-signin-heading">Recuperación de contraseña</h2>
+
+        <label for="cmail">Correo electrónico <span class="typ-Sc">*</span></label>
+         <input type="text" id="cmail" name="Email" class="validate[required,custom[email]] small" value="" />
+
+        <button type="submit" class="btn btn-lg btn-primary btn-block">Enviar</button>
+        <!--div>
                 <label for="rfc">RFC de empresa registrada <span class="typ-Sc">*</span></label>
                 <input type="text" id="cpass" name="RFC" class="validate[required] small" value=""/>
             </div-->
-            <button type="submit" class="medium red marg-5pix last"><span>Enviar</span></button></div>
-        </form>
-    </body>
+      </form>
+      
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
 </html>
