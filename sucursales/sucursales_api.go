@@ -160,7 +160,7 @@ func GetSucursales(w http.ResponseWriter, r *http.Request) {
 	for i,v:= range *s {
         setWsSucursal(&ws[i], v)
     }
-	sortutil.AscByField(ws, "Sucursal")
+	sortutil.AscByField(ws, "Nombre")
     w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	b, _ := json.Marshal(ws)
 	w.Write(b)
