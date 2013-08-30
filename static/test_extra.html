@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">
+			#size {
+			width: 300px;
+			margin: 10px 10px;
+			}
+			.progress {
+			float: right;
+			position: relative;
+			width: 310px;
+			border: 1px solid #ddd;
+			padding: 1px;
+			border-radius: 3px;
+			}
+			.bar {
+			background-color: grey;
+			width: 0%;
+			height: 20px;
+			border-radius: 3px;
+			}
+			.percent {
+			position: absolute;
+			display: inline-block;
+			top: 3px;
+			left: 48%;
+			}
+		</style>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/jquery.validationEngine-es.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/jquery.validationEngine.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/jquery.form.js" charset="utf-8"></script>
+		<script type="text/javascript" src="scripts/extradata.js" charset="utf-8"></script>
+		<title>test extra data empresa</title>
+	</head>
+	<body class="bgt-main">
+		
+        <!--vista preliminar de los datos extra de la empresa -->
+        <div id="urlimg"><img src="" alt="Logo de Empresa" width="258" id="pic" /> </div>
+        <div id="imgform">
+            <form method="post" id="enviar" enctype="multipart/form-data">
+                <input type="hidden" name="IdEmp" id="uploadimg_id"/>
+                <div id="status"></div>
+                <input id="imgfile" type="text" class="style3 marg-R25pix" readonly="readonly" />
+                <input id="infile" type="file" class="validate[required]" name="image" onchange="$('#imgfile').val($('#infile').val()); $('#enviar').submit();"/>
+                <img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
+                <div class="progress">
+                    <div class="bar"></div>
+                    <div class="percent"> 0% </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Inicia estructura de campos Datos Extra -->    
+        <h1 id="empresa"></h1>
+        <form action="/r/wsed/post" method="post" id="enviardata">
+            <input type="hidden" value="a" name="s"/>
+            <input type="hidden" name="IdEmp" id="IdEmp"/>
+            <input type="hidden" name="BlobKey" id="BlobKey"/>
+            <div>
+
+                <div>
+                    <label><span>*</span> Facebook</label>
+                    <input type="text" class="validate[required, maxSize[255]]" name="Facebook" id="facebook" maxlength="255"/>
+                </div>
+        
+                <div>
+                    <label><span>*</span> Twitter</label>
+                    <input type="text" class="validate[required, maxSize[30]]" name="Twitter" id="twitter" maxlength="30"/>
+                </div>
+        
+                <div>
+                    <label><span>*</span>Descripción de empresa para micrositio</label>
+                    <textarea class="validate[required, maxSize[350]]" name="Desc" cols="6" rows="6" id="descripcion" maxlength="350"></textarea>
+                    <div>
+                            <p>Máximo 350 caracteres</p>
+                            <p>Esta es la información que quieres compartirle al público sobre tu empresa.</p>
+                    </div>
+                </div>
+                
+            <div><span>*</span> Todos los campos marcados son obligatorios </div>
+            <div id="modbtn">
+                <button type="submit">Guardar</button>
+                <button type="reset" id="cancelbtn">Limpiar Campos</button>
+                
+            </div>
+        </form>
+	</body>
+</html>

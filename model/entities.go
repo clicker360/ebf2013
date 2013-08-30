@@ -136,6 +136,21 @@ type Organismo struct {
 	Selected	string `json:"-"`
 }
 
+type ExtraData struct {
+	IdEmp			string `json:"IdEmp"`
+	Empresa			string `json:"Empresa"`
+	Desc            string `json:"Desc"`
+	Facebook        string `json:"Facebook,omitempty"`
+	Twitter         string `json:"Twitter,omitempty"`
+    BlobKey         appengine.BlobKey `json:"BlobKey,omitempty"`
+	ImageUrl		string `json:"ImageUrl,omitempty"`
+	FechaHora   time.Time `json:"TimeStamp,omitempty"`
+    Sp1		        string `json:"Sp1,omitempty"`
+	Sp2		        string `json:"Sp2,omitempty"`
+	Sp3		        string `json:"Sp3,omitempty"`
+	Sp4		        string `json:"Sp4,omitempty"`
+}
+
 type Image struct {
 	Data	[]byte
 	IdEmp	string
@@ -241,6 +256,15 @@ func (r *Cta) GetEmpresa(c appengine.Context, id string) (*Empresa, error) {
 	return e, nil
 }
 
+func (r *Cta) GetExtraData(c appengine.Context, id string) (*ExtraData, error) {
+	e := &ExtraData{ IdEmp: id }
+	err := datastore.Get(c, datastore.NewKey(c, "ExtraData", e.IdEmp, 0, r.Key(c)), e)
+	if err == datastore.ErrNoSuchEntity {
+		return nil, err
+	}
+	return e, nil
+}
+
 func (r *Cta) PutEmpresa(c appengine.Context, e *Empresa) (*Empresa, error) {
 	//if e.Folio == 0 {
 	//	if err := sharded_counter.Increment(c, "empresa"); err == nil {
@@ -286,41 +310,35 @@ func (r *Cta) PutEmpresa(c appengine.Context, e *Empresa) (*Empresa, error) {
 	return e, nil
 }
 
-func (r *Cta) NewEmpresa(c appengine.Context, e *Empresa) (*Empresa, error) {
-	/*
-		OJO:
-		Agregar consulta del random antes de crear entity
-	*/
-	//if err := sharded_counter.Increment(c, "empresa"); err == nil {
-	//	if folio, err := sharded_counter.Count(c, "empresa"); err == nil {
-			e.IdEmp = RandId(20)
-			//e.Folio = folio
-			_, err := datastore.Put(c, datastore.NewKey(c, "Empresa", e.IdEmp, 0, r.Key(c)), e)
-			if err != nil {
-				return nil, err
-			}
-			_ = PutChangeControl(c, e.IdEmp, "Empresa", "A")
-			c.Infof("Empresa creada Folio: %d, RandID: %v", e.Folio, e.IdEmp)
+func (r *Cta) PutExtraData(c appengine.Context, e *ExtraData) error {
+	_, err := datastore.Put(c, datastore.NewKey(c, "ExtraData", e.IdEmp, 0, r.Key(c)), e)
+	if err != nil {
+		return err
+	}
+	return nil
+}
 
-			var en EmpresaNm
-			en.IdEmp = e.IdEmp
-			en.Folio = e.Folio
-			en.RFC = strings.ToUpper(e.RFC)
-			en.Nombre = strings.ToLower(e.Nombre)
-			en.RazonSoc = strings.ToLower(e.RazonSoc)
-			_, err = datastore.Put(c, datastore.NewKey(c, "EmpresaNm", en.IdEmp, 0, r.Key(c)), &en)
-			if err != nil {
-				c.Errorf("Error al intentar crear EmpresaNm : %v", e.IdEmp)
-				return nil, err
-			}
-	//	} else {
-	//		c.Errorf("Folio inseguro al intentar crear Empresa : %v", e.IdEmp)
-	//		return e, err
-	//	}
-	//} else {
-//		c.Errorf("Folio inseguro al intentar crear Empresa : %v", e.IdEmp)
-//		return e, err
-//	}
+func (r *Cta) NewEmpresa(c appengine.Context, e *Empresa) (*Empresa, error) {
+    e.IdEmp = RandId(20)
+    //e.Folio = folio
+    _, err := datastore.Put(c, datastore.NewKey(c, "Empresa", e.IdEmp, 0, r.Key(c)), e)
+    if err != nil {
+        return nil, err
+    }
+    _ = PutChangeControl(c, e.IdEmp, "Empresa", "A")
+    c.Infof("Empresa creada Folio: %d, RandID: %v", e.Folio, e.IdEmp)
+
+    var en EmpresaNm
+    en.IdEmp = e.IdEmp
+    en.Folio = e.Folio
+    en.RFC = strings.ToUpper(e.RFC)
+    en.Nombre = strings.ToLower(e.Nombre)
+    en.RazonSoc = strings.ToLower(e.RazonSoc)
+    _, err = datastore.Put(c, datastore.NewKey(c, "EmpresaNm", en.IdEmp, 0, r.Key(c)), &en)
+    if err != nil {
+        c.Errorf("Error al intentar crear EmpresaNm : %v", e.IdEmp)
+        return nil, err
+    }
 	return e, nil
 }
 
@@ -335,6 +353,9 @@ func (r *Cta) DelEmpresa(c appengine.Context, id string) error {
 		return err
 	}
     if err := datastore.Delete(c, datastore.NewKey(c, "Empresa", id, 0, r.Key(c))); err != nil {
+		return err
+	}
+    if err := datastore.Delete(c, datastore.NewKey(c, "ExtraData", id, 0, r.Key(c))); err != nil {
 		return err
 	}
     if err := datastore.Delete(c, datastore.NewKey(c, "EmpresaNm", id, 0, r.Key(c))); err != nil {
