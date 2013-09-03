@@ -41,7 +41,10 @@
        $(document).on('click','a.ver-sucursales', function(event) {
            event.preventDefault();
            var rel = $(this).attr('rel');
-           sucursales.initSucursales(rel);
+           sucursales.initSucursales(rel);  // este
+            $('#añadir-suc-empresa').html('<a class="nuevasucursal span12 btn btn-success" rel="'+rel+'" ><i class="icon-plus"></i> Añadir nueva sucursal</a>' );
+
+
        });
    };
    // llena formulario con datos de json 

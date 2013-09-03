@@ -163,6 +163,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/alonso/ebf2013/layout/index.html",
+			"settings":
+			{
+				"buffer_size": 42407,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/alonso/ebf2013/library/js/script-registro.js",
+			"settings":
+			{
+				"buffer_size": 5578,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -228,17 +244,17 @@
 	},
 	"file_history":
 	[
-		"/home/alonso/ebf2013/library/less/style.less",
 		"/home/alonso/ebf2013/library/js/scripts.js",
+		"/home/alonso/ebf2013/static/elbuenfin-que-es.html",
+		"/home/alonso/ebf2013/static/index.html",
+		"/home/alonso/ebf2013/library/less/style.less",
 		"/home/alonso/ebf2013/library/less/variables.less",
 		"/home/alonso/ebf2013/library/css/style.css",
 		"/home/alonso/ebf2013/library/js/script-registro.js",
 		"/home/alonso/ebf2013/static/admin/index.html",
-		"/home/alonso/ebf2013/static/index.html",
 		"/home/alonso/ebf2013/static/admin/registro.html",
 		"/home/alonso/ebf2013/static/elbuenfin-organizadores.html",
-		"/home/alonso/ebf2013/static/TérminosCondiciones.html",
-		"/home/alonso/ebf2013/static/elbuenfin-que-es.html",
+		"/home/alonso/ebf2013/static/terminosCondiciones.html",
 		"/home/alonso/ebf2013/library/less/mixins.less",
 		"/home/alonso/ebf2013/static/admin/usuario.html",
 		"/home/alonso/ebf2013/library/less/valengine.less",
@@ -363,7 +379,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 90.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"/home/alonso/ebf2013/library",
@@ -384,6 +400,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"nueva_sucursal_desde_empresa",
+			"-lista",
+			"active",
+			"maps",
 			"sucursal-form",
 			"btn-empresa",
 			"<form",
@@ -507,8 +527,7 @@
 			"#container",
 			"head_televisa",
 			"rsContenidoBox",
-			".rsContenidoBox",
-			"%;\n"
+			".rsContenidoBox"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -570,8 +589,65 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/alonso/ebf2013/layout/index.html",
+					"settings":
+					{
+						"buffer_size": 42407,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13275,
+								13275
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 552.0,
+						"translation.y": 4324.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/alonso/ebf2013/library/js/script-registro.js",
+					"settings":
+					{
+						"buffer_size": 5578,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								648,
+								648
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 18.0,
+						"translation.y": 156.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		},
 		{
@@ -608,7 +684,7 @@
 		"cols":
 		[
 			0.0,
-			0.681849277846,
+			0.474675046514,
 			1.0
 		],
 		"rows":
@@ -629,6 +705,22 @@
 		"selected_items":
 		[
 			[
+				"script",
+				"library/js/scripts.js"
+			],
+			[
+				"s",
+				"library/js/scripts.js"
+			],
+			[
+				"que",
+				"static/elbuenfin-que-es.html"
+			],
+			[
+				"inde",
+				"layout/index.html"
+			],
+			[
 				"style",
 				"library/less/style.less"
 			],
@@ -639,10 +731,6 @@
 			[
 				"sty",
 				"library/css/style.css"
-			],
-			[
-				"inde",
-				"static/admin/index.html"
 			],
 			[
 				"registro",
@@ -662,7 +750,7 @@
 			],
 			[
 				"termi",
-				"static/TérminosCondiciones.html"
+				"static/terminosCondiciones.html"
 			],
 			[
 				"orga",
@@ -675,10 +763,6 @@
 			[
 				"mxin",
 				"library/less/mixins.less"
-			],
-			[
-				"script",
-				"library/js/script-registro.js"
 			],
 			[
 				"regis",

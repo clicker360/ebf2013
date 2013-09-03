@@ -18,8 +18,8 @@ var Ajax = (function() {
     var hidePreload = function(bloque) {
         $('#preloader').fadeOut('fast');
         if(typeof bloque !== 'undefined'){
-            $('.active').removeClass('active').addClass('inactive');
-            bloque.addClass('active').removeClass('inactive');   
+            $('.activo').removeClass('activo').addClass('inactivo');
+            bloque.addClass('activo').removeClass('inactivo');   
         }
         
 
