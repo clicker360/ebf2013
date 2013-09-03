@@ -34,16 +34,18 @@
 	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
 	<script src="../library/js/libs/underscore-min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
-    <script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
-    <script type="text/javascript">
+	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../scripts/jquery.form.js" charset="utf-8"></script>
+		<
+	<script type="text/javascript">
 
 	$(document).ready(function(){
 		$('#empresa-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
 		$('#sucursal-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
 	});
 	</script>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript" src="../library/js/libs/map.js" charset="utf-8"></script>
 </head>
 
@@ -65,9 +67,9 @@
 				</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-                        <li>
-                            <a href="/r/index">Panel principal</a>
-                        </li>
+						<li>
+							<a href="/r/index">Panel principal</a>
+						</li>
 						<li class="dropdown active">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								Empresa
@@ -330,7 +332,7 @@
 							</div>
 						</div>
 				</div>
-                 Alertas Se deshabilita hasta que se utilize -->
+				 Alertas Se deshabilita hasta que se utilize -->
 				<!--div class="row-fluid">
 						<div class="span12">
 							<div class="block">
@@ -401,7 +403,7 @@
 				</div>
 			</div>
 
-            <!-- formato de empresa -->
+			<!-- formato de empresa -->
 			<div id="empresas-detalle" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
@@ -473,12 +475,12 @@
 												<label for="DirMunEmp" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
 													<select id="DirMunEmp" name="DirMun"> </select>
-                                                    <script id="muniTemplateEmp" type="text/template">
-                                                        <% for (var i in MunicipiosArray){ %>
-                                                        <% var municipio = MunicipiosArray[i]; %>
-                                                            <option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
-                                                        <% } %>
-                                                    </script>
+													<script id="muniTemplateEmp" type="text/template">
+														<% for (var i in MunicipiosArray){ %>
+														<% var municipio = MunicipiosArray[i]; %>
+															<option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
+														<% } %>
+													</script>
 												</div>
 											</div>
 											<div class="control-group">
@@ -512,12 +514,12 @@
 												<div class="controls">
 													<select id="OrgEmpId" name="OrgEmp">
 													</select>
-                                                    <script id="orgTemplate" type="text/template">
-                                                        <% for (var i in OrganismosArray){ %>
-                                                        <% var org = OrganismosArray[i]; %>
-                                                            <option value="<%= org.Siglas %>"><%= org.Nombre %></option>
-                                                        <% } %>
-                                                    </script>
+													<script id="orgTemplate" type="text/template">
+														<% for (var i in OrganismosArray){ %>
+														<% var org = OrganismosArray[i]; %>
+															<option value="<%= org.Siglas %>"><%= org.Nombre %></option>
+														<% } %>
+													</script>
 												</div>
 											</div>
 
@@ -559,13 +561,13 @@
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
-                                                    <input type="checkbox" class="validate[required]" name="TermCond" value="1" id="accept"/>
+													<input type="checkbox" class="validate[required]" name="TermCond" value="1" id="accept"/>
 													Para aceptar y realizar cambios a esta empresa haga clic en el recuadro * 
 												</label>
 											</div>
 											<div class="control-group">
 												<button type="submit" id="btn-empresa" class="btn">Crear</button>
-    										    <button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
+												<button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
 
 											</div>
 										</div>
@@ -573,31 +575,78 @@
 								</form>
 							</div>
 						</div>
-						<div class="inactivo block">
+						<div class="block">
 							<h3><i class="icon-globe"></i> Micrositio de empresa</h3>
 							<div class="well well-small">
-								<form class="form-horizontal">
-									<div class="row-fluid">
-										<div class="span6">
+								<div class="row-fluid">
+									<div class="span6">
+										<form action="/r/wsed/post" method="post" id="enviardata" class="form-horizontal">
+												<div class="control-group">
+													<input type="hidden" value="a" name="s"/>
+													<input type="hidden" name="IdEmp" id="IdEmp"/>
+													<input type="hidden" name="BlobKey" id="BlobKey"/>
+												</div>
+												<h4>Redes sociales</h4>
+												<div class="control-group">
+													<label for="" class="control-label">Sitio de Facebook:</label>
+													<div class="controls">
+														<input type="text" class="validate[required, maxSize[255]]" name="Facebook" id="facebook" maxlength="255"/>
+													</div>
+												</div>
+												<div class="control-group">
+													<label for="" class="control-label"> Twitter:</label>
+													<div class="controls">
+														<input type="text" class="validate[required, maxSize[30]]" name="Twitter" id="twitter" maxlength="30"/>
+													</div>
+												</div>
+												<h4>Datos adicionales</h4>
+												<div class="control-group">
+													<label for="" class="control-label"> Descripción de la empresa visible al público:</label>
+													<div class="controls">
+														 <textarea class="validate[required, maxSize[350]]" name="Desc" cols="6" rows="6" id="descripcion" maxlength="350"></textarea>
+													</div>
+												</div>
+												<div class="control-group">
+
+													<button class="btn btn-success" type="submit">Guardar</button>
+													<button class="btn btn-danger" id="cancelbtn">Limpiar Campos</button>
+												</div>
+										</form>
+									</div>
+									<div class="span6">
+										<div id="urlimg"><img src="" alt="Logo de Empresa" width="258" id="pic" /> </div>
+										<form class="form-horizontal"  method="post" id="enviar" enctype="multipart/form-data">
+											<div class="control-group">
+												<input type="hidden" name="IdEmp" id="uploadimg_id"/>
+												<div id="status"></div>
+
+											</div>
 											<h4>Subir tu logotipo</h4>
 											<div class="control-group">
 												<label for="" class="control-label">Selecciona archivo</label>
 												<div class="controls">
-													<div class="input-append">
-														<input class="span12" id="appendedInputButton" type="text">
-														<button class="btn" type="button">Buscar</button>
-													</div>
+													<input id="imgfile" type="text" class="" readonly="readonly" />
+													<input id="infile" type="file" class="validate[required]" name="image" onchange="$('#imgfile').val($('#infile').val()); $('#enviar').submit();"/>		
+													<img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="" class="control-label">Progreso de subida</label>
 												<div class="controls">
-														<div class="progress progress-striped active">
-															<div class="bar" style="width: 40%;"></div>
-														</div>
+													<div class="progress progress-striped active">
+														<div class="bar" style="width: 40%;"></div>
+													</div>
 												</div>
 											</div>
+
+											
+											
+											<div class="progress">
+												<div class="bar"></div>
+												<div class="percent"> 0% </div>
+											</div>
 											<div class="well well-small">
+									
 												<ul>
 													<li>Sólo imágenes formato jpeg o png.</li>
 													<li>Tamaño máximo 800x600 pixeles.</li>
@@ -606,47 +655,9 @@
 													<li>No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
 												</ul>
 											</div>
-											<div class="control-group">
-												<label for="" class="control-label">Título de logotipo:</label>
-												<div class="controls">
-													<input type="text">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="" class="control-label"> Sitio de internet al que debe apuntar el logotipo (opcional, con prefijo http://)</label>
-												<div class="controls">
-													<input type="text">
-												</div>
-											</div>
-										</div>
-										<div class="span6">
-											<h4>Datos adicionales</h4>
-											<div class="control-group">
-												<label for="" class="control-label"> Descripción de la empresa visible al público:</label>
-												<div class="controls">
-													<textarea name="" id="" cols="30" rows="">
-													</textarea>
-												</div>
-											</div>
-											<h4>Redes sociales</h4>
-											<div class="control-group">
-												<label for="" class="control-label">Sitio de Facebook:</label>
-												<div class="controls">
-													<input type="text">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="" class="control-label"> Twitter:</label>
-												<div class="controls">
-													<input type="text">
-												</div>
-											</div>
-											<div class="control-group">
-												<button type="submit" class="btn">Modificar</button>
-											</div>
-										</div>
+										</form>	
 									</div>
-								</form>
+								</div>
 							</div>
 							
 						</div>
@@ -696,7 +707,7 @@
 				</div>
 			</div>
 
-            <!--SUCURSAL-->
+			<!--SUCURSAL-->
 			<div id="sucursal-detalle" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
@@ -743,7 +754,7 @@
 												<label for="DirEntSuc" class="control-label">Entidad Federativa *</label>
 												<div class="controls">
 													<select id="DirEntSuc" name="DirEnt">
-                                                        <option value="01">Aguascalientes</option>
+														<option value="01">Aguascalientes</option>
 														<option value="02">Baja California</option>
 														<option value="03">Baja California Sur</option>
 														<option value="04">Campeche</option>
@@ -783,12 +794,12 @@
 												<input type="hidden" name="DirMunSel"  id="municipio"/>
 												<div class="controls">
 													<select id="DirMunSuc" name="DirMun"></select>
-                                                    <script id="muniTemplateSuc" type="text/template">
-                                                        <% for (var i in MunicipiosArray){ %>
-                                                        <% var municipio = MunicipiosArray[i]; %>
-                                                            <option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
-                                                        <% } %>
-                                                    </script>
+													<script id="muniTemplateSuc" type="text/template">
+														<% for (var i in MunicipiosArray){ %>
+														<% var municipio = MunicipiosArray[i]; %>
+															<option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
+														<% } %>
+													</script>
 												</div>
 											</div>
 											<div class="control-group">
@@ -813,7 +824,7 @@
 										<div class="span6">
 											<div class="embed-container">
 												 <div id="map">
-												 	
+													
 												 </div> 
 											</div>
 										</div>
@@ -1016,16 +1027,16 @@
 
 	<div class="footer">
 		<p>
-	    El Buen Fin © Todos los derechos reservados, México 2013
-	    Toda la información aquí publicada relativa a las características
-	    de los productos y servicios que participan en El Buen Fin © es 
-	    responsabilidad exclusiva de las tiendas que ofrecen los servicios 
-	    y/o la venta de los productos. 
-	    <br />
-	    Del mismo modo, los precios, los porcentajes de descuento, 
-	    las promociones y todas las ofertas financieras y/o económicas 
-	    aquí publicadas son responsabilidad de las tiendas que lo ofrecen.
-	    </p>
+		El Buen Fin © Todos los derechos reservados, México 2013
+		Toda la información aquí publicada relativa a las características
+		de los productos y servicios que participan en El Buen Fin © es 
+		responsabilidad exclusiva de las tiendas que ofrecen los servicios 
+		y/o la venta de los productos. 
+		<br />
+		Del mismo modo, los precios, los porcentajes de descuento, 
+		las promociones y todas las ofertas financieras y/o económicas 
+		aquí publicadas son responsabilidad de las tiendas que lo ofrecen.
+		</p>
 	</div>
 		<!-- Le javascript
 		================================================== -->
