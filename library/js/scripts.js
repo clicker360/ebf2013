@@ -96,10 +96,10 @@
 })();
 var Ajax = (function() {
     var _showPreload = function() {
-        $('#preloader').fadeIn('fast');
+        $('.preloader').fadeIn('fast');
     };
     var hidePreload = function(bloque) {
-        $('#preloader').fadeOut('fast');
+        $('.preloader').fadeOut('fast');
         if(typeof bloque !== 'undefined'){
             $('.activo').removeClass('activo').addClass('inactivo');
             bloque.addClass('activo').removeClass('inactivo');   
@@ -231,7 +231,6 @@ var sucursales = (function() {
             Ajax.hidePreload($('#sucursales-lista'));
         });
     };
-
 
     // codeRel trae sucursal
      var sucursalformdesdejsonModifica = function(codeRel) {

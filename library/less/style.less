@@ -6,6 +6,14 @@ Stylesheet: Tema.
 ******************************************************************/
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
 @import "mixins.less";
+#preloader {
+	display: block;
+	background: url('../images/loader.gif') no-repeat;
+	width: 24px;
+	height: 24px;
+}
+
+
 .frontpages {
 	background: url("../images/pattern.jpg") repeat scroll 0% 0% rgb(247, 247, 247) !important;
 	h1 {text-align: center;}
@@ -247,16 +255,20 @@ a.brand-alt {
 		display: block;
 		position: absolute;
 	}
-	.frontpages {
-	.footer {
-		/*padding: 0px;
-		position: absolute;
-		bottom: 0;
-		width: 100%;*/
-		 }
-	}
+	
 }
 
+@media screen and (min-height:700px) {
+	.frontpages {
+	.footer{
+	padding: 0px;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		 }
+	}
+
+}
 @import "valengine.less";
 
 

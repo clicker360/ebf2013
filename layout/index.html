@@ -138,6 +138,7 @@
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
+									<div class="preloader"></div>
 									<script id="empresaTemplateDash" type="text/template">
 												<% for (var i in empresasArrayDash){ %>
 												<% var empresa = empresasArrayDash[i]; %>
@@ -377,6 +378,7 @@
 											<th>Ofertas</th>
 										</tr>
 									</thead>
+									<div class="preloader"></div>
 									<script id="empresaTemplate" type="text/template">
 												<% for (var i in empresasArray){ %>
 												<% var empresa = empresasArray[i]; %>
@@ -412,6 +414,7 @@
 						<div class="block">
 							<h3><i class="icon-building"></i> Detalle de empresa</h3>
 							<div class="well well-small">
+								<div class="preloader"></div>
 								<form id="empresa-form" class="form-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
@@ -476,6 +479,7 @@
 											<div class="control-group">
 												<label for="DirMunEmp" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
+													<div class="preloader"></div>
 													<select id="DirMunEmp" name="DirMun"> </select>
 													<script id="muniTemplateEmp" type="text/template">
 														<% for (var i in MunicipiosArray){ %>
@@ -514,6 +518,7 @@
 											<div class="control-group">
 												<label for="OrgEmp" class="control-label">Organismo empresarial</label>
 												<div class="controls">
+													<div class="preloader"></div>
 													<select id="OrgEmpId" name="OrgEmp">
 													</select>
 													<script id="orgTemplate" type="text/template">
@@ -676,6 +681,7 @@
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
+
 									<thead>
 										<tr>
 											<th>Sucursal</th>
@@ -685,6 +691,7 @@
 											<th>Editar</th>
 										</tr>
 									</thead>
+									<div class="preloader"></div>
 										<script id="sucursalesTemplate" type="text/template">
 												<% for (var i in sucursalesArray){ %>
 												<% var sucursal = sucursalesArray[i]; %>
@@ -716,6 +723,7 @@
 						<div class="block">
 							<h3><i class="icon-sitemap"></i> Detalle de sucursal</h3>
 							<div class="well well-small">
+								<div class="preloader"></div>
 								<form id="sucursal-form" class="form-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
@@ -795,6 +803,7 @@
 												<label for="DirMunSuc" class="control-label">Delegación o municipio *</label>
 												<input type="hidden" name="DirMunSel"  id="municipio"/>
 												<div class="controls">
+													<div class="preloader"></div>
 													<select id="DirMunSuc" name="DirMun"></select>
 													<script id="muniTemplateSuc" type="text/template">
 														<% for (var i in MunicipiosArray){ %>
@@ -898,12 +907,11 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
-							<h3><i class="icon-sitemap"></i> Detalle de Oferta</h3>
+							<h3><i class="icon-sitemap"></i> Detalle de Oferta <div class="preloader"></div></h3>
 							<div class="well well-small">
+								<div class="preloader"></div>
 								<form class="form-horizontal">
 									<div class="row-fluid">
-
-
 										<div class="span6">
 											<div class="control-group">
 												<label for="nombre" class="control-label"> Título de la oferta *</label>

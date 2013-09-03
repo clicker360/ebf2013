@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"text",
+				"text-align"
+			],
+			[
 				"paddi",
 				"padding"
 			],
@@ -108,10 +112,6 @@
 				"right"
 			],
 			[
-				"text",
-				"text-decoration"
-			],
-			[
 				"padd",
 				"padding"
 			],
@@ -167,15 +167,71 @@
 			"file": "/home/alonso/ebf2013/layout/index.html",
 			"settings":
 			{
-				"buffer_size": 42407,
+				"buffer_size": 42504,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/alonso/ebf2013/library/js/script-registro.js",
+			"file": "/home/alonso/ebf2013/layout/reg_login.html",
 			"settings":
 			{
-				"buffer_size": 5578,
+				"buffer_size": 4201,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/alonso/ebf2013/library/less/style.less",
+			"settings":
+			{
+				"buffer_size": 5678,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "reg_no_account.html",
+			"settings":
+			{
+				"buffer_size": 4792,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/alonso/ebf2013/library/js/scripts.js",
+			"settings":
+			{
+				"buffer_size": 14337,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>\n<script type=\"text/javascript\" src=\"scripts/jquery.validationEngine-es.js\" charset=\"utf-8\"></script>\n<script type=\"text/javascript\" src=\"scripts/jquery.validationEngine.js\" charset=\"utf-8\"></script>\n	<script type=\"text/javascript\">\n\n		var _gaq = _gaq || [];\n		_gaq.push(['_setAccount', 'UA-26907178-1']);\n		_gaq.push(['_trackPageview']);\n\n		(function() {\n			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;\n			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';\n			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);\n		})();\n\n	</script>\n<script type=\"text/javascript\">\n$(document).ready(function(){\n	$(\"#acceso\").validationEngine({promptPosition : \"topRight\", scroll: true});\n	tgle1();\n});\n function tgle1(){\n	$( \"#toggler1\" ).delay(800).animate({\n	   height: 284, opacity: 1\n	}, 1000, \"linear\", function() {\n		 tgle2();\n	});\n }\n function tgle2(){\n	 $( \"#toggler2\" ).animate({\n 		  height: 284, opacity: 1\n	}, 800, \"linear\", function() {\n tgle3();\n	});\n	 }\n function tgle3(){\n	 $( \"#toggler3\" ).animate({\n 		  height: 284, opacity: 1\n	}, 600, \"linear\", function() {\n tgle3();\n	});\n	/*funcion crea la alerta*/\n	 }\n	 function addAlrt(elm,par){\n		 $(elm).addClass(\"invalid\")\n	$(\"<div class='Alrt'>\"+ par +\"<span></span></div>\").prependTo($(elm).parent());\n	}\n	  function rmvAlrt(este){\n		 elemnto = $(este)\n		 if ($(elemnto).children(\".Alrt\").length !== 0) {\n		$(elemnto).children(\".Alrt\").remove();\n		 }\n	}\n\nfunction activeLghtbx(){\n	$('#light').removeClass(\"hidden\")\n	$('#box').removeClass(\"hidden\")\n	}\nfunction deactiveLghtbx(){\n	$('#light').addClass(\"hidden\")\n	$('#box').addClass(\"hidden\")\n	}\n</script>\n<title>Rrecuperación de contraseña</title>\n<link href=\"css/Origami.css\" rel=\"stylesheet\" type=\"text/css\" />\n<link href=\"css/elbuenfinSkin.css\" rel=\"stylesheet\" type=\"text/css\" />\n</head>\n<body class=\" bgt-main\">\n<!--inicia login-->\n<div class=\"lghtbox hidden\" id=\"light\"></div>\n<div class=\"lightcenterdiv hidden\" id=\"box\">\n<div class=\"last pullRight-20 pullup-20\"><a href=\"#null\" onclick=\"deactiveLghtbx()\"><img src=\"gfx/closeBTN.png\" width=\"30\" height=\"29\" alt=\"cerrar\" /></a></div>\n  <div class=\"col-7 pullup-10\">\n  <h2>Accede a El Buen Fin</h2>\n  <div class=\"hr-line\"></div>\n  <form id=\"acceso\" action=\"/r/acceso\" method=\"post\">\n	<div class=\"col-7\">\n	<label class=\"col-2\">Usuario</label>\n	<input type=\"text\" class=\"validate[required,custom[email]] small first\" name=\"u\" value=\"\" />\n	</div>\n	<div class=\" col-7\">\n	<label class=\"col-2\">Contraseña</label>\n	<input type=\"password\" class=\"validate[required] small first\" name=\"p\" />\n	</div>\n	<div class=\"col-7 last\">\n	<a href=\"recupera.html\" class=\"Dsblock first\">¿Olvidaste tu contraseña?</a>\n	<button type=\"submit\" class=\"medium red last marg-U3pix \"><span>acceder</span></button></div>\n	</form>\n  </div>\n  </div>\n</div>\n<!--termina login-->\n\n	<div class=\"col-100PR  bgt-red-top first\">\n		<div class=\"col-cent\">\n			<div class=\"col-100PR first  BR-R-10px\">\n				      <div class=\"col-24\">\n           	<div class=\"col-4\">\n        		<img src=\"imgs/logo_header.png\" width=\"127\" height=\"127\"  alt=\"el buen fin\" class=\"marg-5px first\"/>\n        	</div>\n			<div class=\"col-14 typ-Wh marg-U80pix\">\n				<!--h4>El compromiso es ofrecer un 10% de descuento superior a la mayor oferta del año o simplemente la mejor oferta que tengas en el año.</h4-->\n			</div>\n<div class=\"col-6 last marg-U50pix lineUD marg-R10pix\">\n          <div class=\"col-6 last marg-U40pix marg-R15pix\">\n               <a href=\"#null\" onclick=\"activeLghtbx()\" class=\"btnInicio\">\n               </a> \n          </div>\n    </div>\n			</div>\n<div class=\"col-24 marg-D10pix Bg-Wh marg-D10pix\">\n  <div class=\" box1  boxback Bg-Drks BR-R-3px marg-L10pix marg-U10pix\">\n  <div class=\"col-11\">\n    <h1 class=\"alineCenter\">Los datos proporcionados no existen en el sistema</h1>\n  </div>\n  <div class=\"col-12 last\">\n	  <p class=\"typeMx\">Proporciona tu usuario (correo electrónico) y contraseña con las que registraste la cuenta.</p>\n	  <p class=\"typeMx\">Si no recuerdas tu contraseña puedes solicitar una reposición <a href=\"recupera.html\">Aquí</a></p>\n	  <p class=\"typeMx\">Para activar una cuenta diferente llena nuevamente el formato de <a href=\"/r/registro\">Registro</a></p>\n  </div>\n  </div>\n      <div class=\"box1 alineCenter\"> <img src=\"imgs/abmlogo1.jpg\" width=\"80\" height=\"73\" alt=\"abm\" /><img src=\"imgs/amipcilogo80.jpg\" width=\"76\" height=\"80\" alt=\"amici\" /><img src=\"imgs/orgn_4.jpg\" width=\"107\" height=\"80\" alt=\"organismo\"  class=\"padd-10px\"/><img src=\"imgs/orgn_5.jpg\" width=\"98\" height=\"68\" alt=\"consejo cordinador empresarial\"  class=\"padd-10px\"/><img src=\"imgs/concamin-75x80.jpg\" width=\"75\" height=\"80\" alt=\"concamin\" /><img src=\"imgs/logo-concanaco-107x76.jpg\" width=\"96\" height=\"62\" alt=\"coparmex\"  class=\"padd-10px\" /> <img src=\"imgs/Logo-COPARMEX-95x80.jpg\" width=\"67\" height=\"49\" alt=\"concanaco\"  class=\"padd-10px\"/><img src=\"imgs/orgn_6.jpg\" alt=\"gobierno federal\" width=\"98\" height=\"73\" /><img src=\"imgs/orgn_7.jpg\" width=\"95\" height=\"65\" alt=\"iniciativa mexico\"  class=\"padd-10px\"/> </div>\n    <div class=\" box1\">\n      <p class=\"typeMin\">El Buen Fin © Todos los derechos reservados, México 2011\n        Toda la información aquí publicada relativa a las características de los productos y servicios que participan en El Buen Fin © es responsabilidad exclusiva de las tiendas que ofrecen los servicios y/o la venta de los productos. <br />\n        Del mismo modo, los precios, los porcentajes de descuento, las promociones y todas las ofertas financieras y/o económicas aquí publicadas son responsabilidad de las tiendas que lo ofrecen. </p>\n    </div>\n  </div>\n    </div>\n</div>\n</body>\n</html>\n",
+			"settings":
+			{
+				"buffer_size": 6112,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "reg_recover_pass.html",
+			"settings":
+			{
+				"buffer_size": 4850,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "admin/usuario.html",
+			"settings":
+			{
+				"buffer_size": 9565,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/alonso/ebf2013/scripts/extradata.js",
+			"settings":
+			{
+				"buffer_size": 3981,
 				"line_ending": "Unix"
 			}
 		}
@@ -183,7 +239,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 172.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -244,13 +300,20 @@
 	},
 	"file_history":
 	[
+		"/home/alonso/ebf2013/templates/login.html",
 		"/home/alonso/ebf2013/library/js/scripts.js",
+		"/home/alonso/ebf2013/static/test_extra.html",
+		"/home/alonso/ebf2013/library/js/script-registro.js",
+		"/home/alonso/ebf2013/layout/registro.html",
+		"/home/alonso/ebf2013/templates/registro.html",
+		"/home/alonso/ebf2013/static/test_empresa.html",
+		"/home/alonso/ebf2013/static/admin/empresa-micrositio.html",
+		"/home/alonso/ebf2013/static/micrositio.html",
 		"/home/alonso/ebf2013/static/elbuenfin-que-es.html",
 		"/home/alonso/ebf2013/static/index.html",
 		"/home/alonso/ebf2013/library/less/style.less",
 		"/home/alonso/ebf2013/library/less/variables.less",
 		"/home/alonso/ebf2013/library/css/style.css",
-		"/home/alonso/ebf2013/library/js/script-registro.js",
 		"/home/alonso/ebf2013/static/admin/index.html",
 		"/home/alonso/ebf2013/static/admin/registro.html",
 		"/home/alonso/ebf2013/static/elbuenfin-organizadores.html",
@@ -260,17 +323,13 @@
 		"/home/alonso/ebf2013/library/less/valengine.less",
 		"/home/alonso/ebf2013/scripts/home.js",
 		"/home/alonso/ebf2013/layout/reg_login.html",
-		"/home/alonso/ebf2013/templates/registro.html",
 		"/home/alonso/Descargas/formparams-master/js/demo.js",
 		"/home/alonso/ebf2013/library/js/s.old",
 		"/home/alonso/ebf2013/static/admin/jsons.txt",
 		"/home/alonso/ebf2013/library/js/ajaxLibrary.js",
 		"/home/alonso/ebf2013/static/test_registro.html",
 		"/home/alonso/ebf2013/static/test_sucursal.html",
-		"/home/alonso/ebf2013/static/admin/empresa-micrositio.html",
 		"/home/alonso/ebf2013/static/admin/empresas.html",
-		"/home/alonso/ebf2013/static/test_empresa.html",
-		"/home/alonso/ebf2013/templates/login.html",
 		"/home/alonso/Descargas/scripts.js",
 		"/home/alonso/ebf2013/library/js/scripts (copia).js",
 		"/home/alonso/ebf2013/static/admin/sucursal-detalle.html",
@@ -368,10 +427,7 @@
 		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-2/home.php",
 		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/page-ajax.php",
 		"/C/Users/Chematrix/AppData/Local/Temp/fz3temp-2/csc-style.css",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single-profesores.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/archive.php",
-		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/footer.php",
-		"/C/Users/Chematrix/Documents/Avila/Proyectos/Git/amba_2013/index.php"
+		"/C/Users/Chematrix/Documents/My Web Sites/Valores/wp-content/themes/valores/single-profesores.php"
 	],
 	"find":
 	{
@@ -400,6 +456,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"uploadurl",
+			"pic",
+			"llenaorganismos",
+			"initempres",
+			"pic",
+			"$pic",
+			"map",
+			"active",
 			"nueva_sucursal_desde_empresa",
 			"-lista",
 			"active",
@@ -519,15 +583,7 @@
 			"type",
 			"$name",
 			"enviar",
-			"$para = 'noricumbo@gmail.com';",
-			"$para2 = 'mdominguezf@televisa.com.mx';",
-			"$",
-			"$myQuery",
-			"valores-rojo",
-			"#container",
-			"head_televisa",
-			"rsContenidoBox",
-			".rsContenidoBox"
+			"$para = 'noricumbo@gmail.com';"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -589,7 +645,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -597,15 +653,15 @@
 					"file": "/home/alonso/ebf2013/layout/index.html",
 					"settings":
 					{
-						"buffer_size": 42407,
+						"buffer_size": 42504,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13275,
-								13275
+								2639,
+								2639
 							]
 						],
 						"settings":
@@ -614,36 +670,91 @@
 							"translate_tabs_to_spaces": false,
 							"word_wrap": false
 						},
-						"translation.x": 552.0,
-						"translation.y": 4324.0,
+						"translation.x": 0.0,
+						"translation.y": 408.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/home/alonso/ebf2013/library/js/script-registro.js",
+					"file": "/home/alonso/ebf2013/layout/reg_login.html",
 					"settings":
 					{
-						"buffer_size": 5578,
+						"buffer_size": 4201,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								648,
-								648
+								2980,
+								2980
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 18.0,
-						"translation.y": 156.0,
+						"translation.x": 0.0,
+						"translation.y": 1014.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/alonso/ebf2013/library/less/style.less",
+					"settings":
+					{
+						"buffer_size": 5678,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								314,
+								314
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "reg_no_account.html",
+					"settings":
+					{
+						"buffer_size": 4792,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3606,
+								3606
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1252.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -651,8 +762,143 @@
 			]
 		},
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 4,
+					"file": "/home/alonso/ebf2013/library/js/scripts.js",
+					"settings":
+					{
+						"buffer_size": 14337,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3134,
+								3134
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1172.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"settings":
+					{
+						"buffer_size": 6112,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4349,
+								4349
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1685.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "reg_recover_pass.html",
+					"settings":
+					{
+						"buffer_size": 4850,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3652,
+								3652
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1222.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "admin/usuario.html",
+					"settings":
+					{
+						"buffer_size": 9565,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2465,
+								2465
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 634.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/home/alonso/ebf2013/scripts/extradata.js",
+					"settings":
+					{
+						"buffer_size": 3981,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1940,
+								1940
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 697.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -684,7 +930,7 @@
 		"cols":
 		[
 			0.0,
-			0.474675046514,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -705,6 +951,58 @@
 		"selected_items":
 		[
 			[
+				"scr",
+				"library/js/scripts.js"
+			],
+			[
+				"reg",
+				"static/reg_no_account.html"
+			],
+			[
+				"reg_rec",
+				"static/reg_recover_pass.html"
+			],
+			[
+				"style",
+				"library/less/style.less"
+			],
+			[
+				"logi",
+				"layout/reg_login.html"
+			],
+			[
+				"lo",
+				"templates/login.html"
+			],
+			[
+				"usuar",
+				"static/admin/usuario.html"
+			],
+			[
+				"scri",
+				"library/js/scripts.js"
+			],
+			[
+				"registro",
+				"layout/registro.html"
+			],
+			[
+				"extra",
+				"scripts/extradata.js"
+			],
+			[
+				"test",
+				"static/test_empresa.html"
+			],
+			[
+				"microsti",
+				"static/admin/empresa-micrositio.html"
+			],
+			[
+				"micros",
+				"static/micrositio.html"
+			],
+			[
 				"script",
 				"library/js/scripts.js"
 			],
@@ -721,28 +1019,12 @@
 				"layout/index.html"
 			],
 			[
-				"style",
-				"library/less/style.less"
-			],
-			[
-				"scr",
-				"library/js/scripts.js"
-			],
-			[
 				"sty",
 				"library/css/style.css"
 			],
 			[
-				"registro",
-				"library/js/script-registro.js"
-			],
-			[
 				"index",
 				"static/index.html"
-			],
-			[
-				"scri",
-				"library/js/scripts.js"
 			],
 			[
 				"quees",
@@ -775,14 +1057,6 @@
 			[
 				"style.less",
 				"library/less/style.less"
-			],
-			[
-				"test",
-				"static/test_registro.html"
-			],
-			[
-				"reg",
-				"static/admin/registro.html"
 			],
 			[
 				"empre",
