@@ -18,7 +18,7 @@ $(document).ready(function() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		streetViewControl: false
 	};
-	map = new google.maps.Map(document.getElementById('map'), options);
+	map = new google.maps.Map(document.getElementById('mapas'), options);
 	if (!marker) {
 		// Creating a new marker and adding it to the map
 		marker = new google.maps.Marker({
