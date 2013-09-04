@@ -248,32 +248,24 @@ func PutCta(c appengine.Context, u *Cta) error {
 }
 
 func (r *Cta) GetEmpresa(c appengine.Context, id string) (*Empresa, error) {
-	e := &Empresa{ IdEmp: id }
-	err := datastore.Get(c, datastore.NewKey(c, "Empresa", e.IdEmp, 0, r.Key(c)), e)
+	var e Empresa
+	err := datastore.Get(c, datastore.NewKey(c, "Empresa", id, 0, r.Key(c)), &e)
 	if err == datastore.ErrNoSuchEntity {
 		return nil, err
 	}
-	return e, nil
+	return &e, nil
 }
 
 func (r *Cta) GetExtraData(c appengine.Context, id string) (*ExtraData, error) {
-	e := &ExtraData{ IdEmp: id }
-	err := datastore.Get(c, datastore.NewKey(c, "ExtraData", e.IdEmp, 0, r.Key(c)), e)
+	var e ExtraData
+	err := datastore.Get(c, datastore.NewKey(c, "ExtraData", id, 0, r.Key(c)), &e)
 	if err == datastore.ErrNoSuchEntity {
 		return nil, err
 	}
-	return e, nil
+	return &e, nil
 }
 
 func (r *Cta) PutEmpresa(c appengine.Context, e *Empresa) (*Empresa, error) {
-	//if e.Folio == 0 {
-	//	if err := sharded_counter.Increment(c, "empresa"); err == nil {
-	//		if olio, err := sharded_counter.Count(c, "empresa"); err == nil {
-	//			e.Folio = folio
-	//		}
-	//	}
-	//}
-
 	_, err := datastore.Put(c, datastore.NewKey(c, "Empresa", e.IdEmp, 0, r.Key(c)), e)
 	if err != nil {
 		return nil, err
@@ -320,13 +312,12 @@ func (r *Cta) PutExtraData(c appengine.Context, e *ExtraData) error {
 
 func (r *Cta) NewEmpresa(c appengine.Context, e *Empresa) (*Empresa, error) {
     e.IdEmp = RandId(20)
-    //e.Folio = folio
     _, err := datastore.Put(c, datastore.NewKey(c, "Empresa", e.IdEmp, 0, r.Key(c)), e)
     if err != nil {
         return nil, err
     }
     _ = PutChangeControl(c, e.IdEmp, "Empresa", "A")
-    c.Infof("Empresa creada Folio: %d, RandID: %v", e.Folio, e.IdEmp)
+    c.Infof("Empresa creada RandID: %v", e.IdEmp)
 
     var en EmpresaNm
     en.IdEmp = e.IdEmp
@@ -394,7 +385,6 @@ func GetEmpSucursales(c appengine.Context, IdEmp string) *[]Sucursal {
 }
 
 func (e *Empresa) Key(c appengine.Context) *datastore.Key {
-	//return datastore.NewKey(c, "Empresa", e.IdEmp, 0, nil)
 	q := datastore.NewQuery("Empresa").Filter("IdEmp =", e.IdEmp)
 	for i := q.Run(c); ; {
 		var e Empresa

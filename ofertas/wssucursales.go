@@ -7,6 +7,7 @@ import (
     "net/http"
 	"strconv"
 	"model"
+    "sess"
 	"time"
 )
 
@@ -28,42 +29,48 @@ func init() {
 func AddOfSuc(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out WsSucursal
-	out.IdSuc = r.FormValue("idsuc")
-	out.IdOft = r.FormValue("idoft")
-	out.IdEmp = r.FormValue("idemp")
-	oferta,_ := model.GetOferta(c, out.IdOft)
-	suc := model.GetSuc(c, out.IdSuc)
-	if oferta.IdEmp != "none" && suc.IdEmp != "none" {
-		lat, _ := strconv.ParseFloat(suc.Geo1, 64)
-		lng, _ := strconv.ParseFloat(suc.Geo2, 64)
-		var ofsuc model.OfertaSucursal
-		out.Sucursal = suc.Nombre
-		ofsuc.IdOft = out.IdOft
-		ofsuc.IdSuc = out.IdSuc
-		ofsuc.IdEmp = out.IdEmp
-		ofsuc.Sucursal = suc.Nombre
-		ofsuc.Lat = lat
-		ofsuc.Lng = lng
-		ofsuc.Empresa = oferta.Empresa
-		ofsuc.Oferta = oferta.Oferta
-		ofsuc.Descripcion = oferta.Descripcion
-		ofsuc.Promocion = oferta.Promocion
-		ofsuc.Precio = oferta.Precio
-		ofsuc.Descuento = oferta.Descuento
-		ofsuc.Url = oferta.Url
-		ofsuc.StatusPub = oferta.StatusPub
-		ofsuc.FechaHora = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
-		out.FechaHora = ofsuc.FechaHora
+	if s, ok := sess.IsSess(w, r, c); !ok {
+		out.Status = "noSession"
+    } else {
+        u, _ := model.GetCta(c, s.User)
+        out.IdSuc = r.FormValue("idsuc")
+        out.IdOft = r.FormValue("idoft")
+        out.IdEmp = r.FormValue("idemp")
+        empresa, _ := u.GetEmpresa(c, out.IdEmp)
+        oferta := model.GetOferta(c, out.IdOft)
+        suc := model.GetSuc(c, out.IdSuc)
+        if oferta.IdEmp != "none" && suc.IdEmp != "none" {
+            lat, _ := strconv.ParseFloat(suc.Geo1, 64)
+            lng, _ := strconv.ParseFloat(suc.Geo2, 64)
+            var ofsuc model.OfertaSucursal
+            out.Sucursal = suc.Nombre
+            ofsuc.IdOft = out.IdOft
+            ofsuc.IdSuc = out.IdSuc
+            ofsuc.IdEmp = out.IdEmp
+            ofsuc.Sucursal = suc.Nombre
+            ofsuc.Lat = lat
+            ofsuc.Lng = lng
+            ofsuc.Empresa = oferta.Empresa
+            ofsuc.Oferta = oferta.Oferta
+            ofsuc.Descripcion = oferta.Descripcion
+            ofsuc.Promocion = oferta.Promocion
+            ofsuc.Precio = oferta.Precio
+            ofsuc.Descuento = oferta.Descuento
+            ofsuc.Url = oferta.Url
+            ofsuc.StatusPub = oferta.StatusPub
+            ofsuc.FechaHora = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
+            out.FechaHora = ofsuc.FechaHora
 
-		err := oferta.PutOfertaSucursal(c, &ofsuc)
-		if err != nil {
-			out.Status = "writeErr"
-		} else {
-			out.Status = "ok"
-		}
-	} else {
-		out.Status = "notFound"
-	}
+            err := empresa.PutOfertaSucursal(c, &ofsuc)
+            if err != nil {
+                out.Status = "writeErr"
+            } else {
+                out.Status = "ok"
+            }
+        } else {
+            out.Status = "notFound"
+        }
+    }
 
 	w.Header().Set("Content-Type", "application/json")
 	b, _ := json.Marshal(out)

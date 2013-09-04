@@ -21,8 +21,8 @@ import (
 type OfImg struct{
 	IdOft		string `json:"idoft"`
 	IdBlob		string `json:"blobkey"`
-	Status		string `json:"errstatus"`
-	UploadURL	string `json:"uploadurl"`
+	Status		string `json:"status"`
+	UploadURL	string `json:"UploadUrl"`
 }
 
 type detalle struct {
@@ -82,7 +82,7 @@ func handleServeImgByIdOrBlob(w http.ResponseWriter, r *http.Request) {
 			var b []byte
 			var d detalle
 			if item, err := memcache.Get(c, "d_"+r.FormValue("id")); err == memcache.ErrCacheMiss {
-				oferta, _ := model.GetOferta(c, r.FormValue("id"))
+				oferta := model.GetOferta(c, r.FormValue("id"))
 				if(oferta.BlobKey != "none") {
 					//if now.After(oferta.FechaHoraPub) {
 						d.IdEmp = oferta.IdEmp
@@ -130,7 +130,7 @@ func handleServeImgByIdOrBlob(w http.ResponseWriter, r *http.Request) {
 func handleServeImgById(w http.ResponseWriter, r *http.Request) {
 	if r.FormValue("id") != "none" {
 		c := appengine.NewContext(r)
-		oft, _ := model.GetOferta(c, r.FormValue("id"))
+		oft := model.GetOferta(c, r.FormValue("id"))
 		if(oft.BlobKey != "none") {
 			var imgprops image.ServingURLOptions
 			imgprops.Secure = true
@@ -178,7 +178,8 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 	}
 	out.Status = "invalidId"
 	out.IdBlob = ""
-	if _, ok := sess.IsSess(w, r, c); ok {
+	if s, ok := sess.IsSess(w, r, c); ok {
+        u, _ := model.GetCta(c, s.User)
 		blobs, form, err := blobstore.ParseUpload(r)
 		file := blobs["image"]
 		out.IdBlob = string(file[0].BlobKey)
@@ -188,7 +189,8 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 			berr := blobstore.Delete(c, file[0].BlobKey)
 			model.Check(berr)
 		} else {
-			oferta,_ := model.GetOferta(c, out.IdOft)
+			oferta := model.GetOferta(c, out.IdOft)
+            empresa, _ := u.GetEmpresa(c, oferta.IdEmp)
 			if oferta.IdEmp == "none" {
 				out.Status = "invalidIdOft"
 				berr := blobstore.Delete(c, file[0].BlobKey)
@@ -211,12 +213,12 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 					imgprops.Crop = false
 					if url, err := image.ServingURL(c, oferta.BlobKey, &imgprops); err != nil {
 						c.Errorf("Cannot construct ServingURL : %v", oferta.IdOft)
-						oferta.Codigo = ""
+						oferta.ImageBig = ""
 					} else {
-						oferta.Codigo = url.String()
+						oferta.ImageBig = url.String()
 					}
 
-					err = model.PutOferta(c, oferta)
+					_,err = empresa.PutOferta(c, oferta)
 					if err != nil {
 						out.Status = "invalidUploadWriteErr"
 						berr := blobstore.Delete(c, file[0].BlobKey)

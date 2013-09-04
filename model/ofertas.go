@@ -81,92 +81,45 @@ type OfertaEstado struct {
 	IdEnt      string `json:"ident"`
 }
 
-func (r *Oferta) Key(c appengine.Context) *datastore.Key {
-	return datastore.NewKey(c, "Oferta", r.IdOft, 0, nil)
+func (e *Empresa) OfertaKey(c appengine.Context, id string) *datastore.Key {
+	return datastore.NewKey(c, "Oferta", id, 0, e.Key(c))
 }
 
-func (r *Oferta) DelOferta(c appengine.Context) error {
-	if err := blobstore.Delete(c, r.BlobKey); err != nil {
-		return err
+func (e *Empresa) GetOferta(c appengine.Context, id string) (*Oferta, error) {
+	var o Oferta
+	if err := datastore.Get(c, e.OfertaKey(c, id), &o); err != nil {
+		return nil, err
 	}
-    if err := datastore.Delete(c, r.Key(c)); err != nil {
-		return err
-	}
-	return nil
+	return &o, nil
 }
 
-func GetOferta(c appengine.Context, id string) (*Oferta, *datastore.Key) {
-	q := datastore.NewQuery("Oferta").Filter("IdOft =", id)
+func GetOferta(c appengine.Context, id string) *Oferta {
+	q := datastore.NewQuery("Oferta").Filter("IdOft =", id).Limit(1)
 	for i := q.Run(c); ; {
-		var e Oferta
-		key, err := i.Next(&e)
+		var o Oferta
+		_, err := i.Next(&o)
 		if err == datastore.Done {
 			break
 		}
-		// Regresa la oferta
-		return &e, key
+		return &o
 	}
-	// Regresa un cascarón
-	var e Oferta
-	e.IdEmp = "none";
-	e.IdOft = "none";
-	e.IdCat = 0;
-	e.BlobKey = "none";
-	return &e, nil
-}
-
-func PutOferta(c appengine.Context, oferta *Oferta) error {
-	if oferta.BlobKey == "" {
-		oferta.BlobKey = "none"
-	}
-	_ = PutChangeControl(c, oferta.IdOft, "Oferta", "M")
-	_, err := datastore.Put(c, oferta.Key(c), oferta)
-	if err != nil {
-		return err
-	}
-	/* 
-		Recorre las relaciones oferta sucursal para copiar los datos y tenerlos listos
-        para lecturas posteriores
-	*/
-	ofsucs, _ := GetOfertaSucursales(c, oferta.IdOft)
-	for _,os:= range *ofsucs {
-		var ofsuc OfertaSucursal
-		ofsuc.IdOft = os.IdOft
-		ofsuc.IdSuc = os.IdSuc
-		ofsuc.IdEmp = os.IdEmp
-		ofsuc.Sucursal = os.Sucursal
-		ofsuc.Lat = os.Lat
-		ofsuc.Lng = os.Lng
-		ofsuc.Empresa = oferta.Empresa
-		ofsuc.Oferta = oferta.Oferta
-		ofsuc.Descripcion = oferta.Descripcion
-		ofsuc.Promocion = oferta.Promocion
-		ofsuc.Precio = oferta.Precio
-		ofsuc.Descuento = oferta.Descuento
-		ofsuc.Enlinea = oferta.Enlinea
-		ofsuc.Url = oferta.Url
-		ofsuc.StatusPub = oferta.StatusPub
-		ofsuc.FechaHora = time.Now().Add(time.Duration(GMTADJ)*time.Second)
-
-		oferta.PutOfertaSucursal(c, &ofsuc)
-		TouchSuc(c, os.IdSuc)
-	}
-
 	return nil
 }
 
-func NewOferta(c appengine.Context, oferta *Oferta) (*Oferta, error) {
-	oferta.IdOft = RandId(20)
-    _, err := datastore.Put(c, datastore.NewKey(c, "Oferta", oferta.IdOft, 0, nil), oferta)
-	if err != nil {
-		return nil, err
+func (e *Empresa) GetOfertaSucursales(c appengine.Context, id string) (*[]OfertaSucursal, error) {
+	q := datastore.NewQuery("OfertaSucursal").Ancestor(e.OfertaKey(c, id))
+	n, _ := q.Count(c)
+	ofersuc := make([]OfertaSucursal, 0, n)
+	if _, err := q.GetAll(c, &ofersuc); err != nil {
+		if err == datastore.ErrNoSuchEntity {
+			return nil, err
+		}
 	}
-	_ = PutChangeControl(c, oferta.IdOft, "Oferta", "A")
-	return oferta, nil
+	return &ofersuc, nil
 }
 
-func GetOfertaSucursales(c appengine.Context, idoft string) (*[]OfertaSucursal, error) {
-	q := datastore.NewQuery("OfertaSucursal").Filter("IdOft =", idoft)
+func GetOfertaSucursales(c appengine.Context, id string) (*[]OfertaSucursal, error) {
+	q := datastore.NewQuery("OfertaSucursal").Filter("IdOft =", id)
 	n, _ := q.Count(c)
 	ofersuc := make([]OfertaSucursal, 0, n)
 	if _, err := q.GetAll(c, &ofersuc); err != nil {
@@ -194,26 +147,6 @@ func GetOfertaPalabras(c appengine.Context, idoft string, idemp string) *[]Ofert
 	return &op
 }
 
-func GetOfertaSucursalesGeo(c appengine.Context, lat string, lng string, rad string) (*Sucursal, error) {
-	/*
-	q := datastore.NewQuery("Sucursal")
-	for i := q.Run(c); ; {
-		var s Sucursal
-        _, err := i.Next(&s)
-		if err == datastore.Done {
-			break
-        }
-		geo1, _ := strconv.ParseFloat(s.Geo1, 64)
-		geo2, _ := strconv.ParseFloat(s.Geo2, 64)
-		sqdist := (lat - geo1) * (lat - geo1)  + (long - geo2) * (long - geo2);
-		if ( sqdist <= rad * rad) {
-			fmt.Fprintf(w, "lat, long: %s, %s\n", s.Geo1, s.Geo2);
-		}
-	}
-	*/
-	return nil,nil
-}
-
 func GetCategoria(c appengine.Context, id int) *Categoria {
 	q := datastore.NewQuery("Categoria").Filter("IdCat =", id).Limit(1)
 	for i := q.Run(c); ; {
@@ -227,17 +160,14 @@ func GetCategoria(c appengine.Context, id int) *Categoria {
 	return nil
 }
 
-/*
-	Llenar primero struct de OfertaSucursal y luego guardar
-*/
-func (e *Empresa) PutOferta(c appengine.Context, o *Oferta) (*Oferta, error) {
+func (e *Empresa) PutOferta(c appengine.Context, o *Oferta) (*datastore.Key, error) {
     if(o.IdOft == "") {
 		o.IdOft = RandId(20)
 		_ = PutChangeControl(c, o.IdOft, "Oferta", "A")
 	} else {
 		_ = PutChangeControl(c, o.IdOft, "Oferta", "M")
 	}
-    _, err := datastore.Put(c, datastore.NewKey(c, "Oferta", o.IdOft, 0, e.Key(c)), o)
+    key, err := datastore.Put(c, e.OfertaKey(c, o.IdOft), o)
 	if err != nil {
 		return nil, err
 	}
@@ -245,37 +175,41 @@ func (e *Empresa) PutOferta(c appengine.Context, o *Oferta) (*Oferta, error) {
 		Recorre las relaciones oferta sucursal para copiar los datos y tenerlos listos
         para lecturas posteriores
 	*/
-	ofsucs, _ := GetOfertaSucursales(c, o.IdOft)
-	for _,os:= range *ofsucs {
-		var ofsuc OfertaSucursal
-		ofsuc.IdOft = os.IdOft
-		ofsuc.IdSuc = os.IdSuc
-		ofsuc.IdEmp = os.IdEmp
-		ofsuc.Sucursal = os.Sucursal
-		ofsuc.Lat = os.Lat
-		ofsuc.Lng = os.Lng
-		ofsuc.Empresa = o.Empresa
-		ofsuc.Oferta = o.Oferta
-		ofsuc.Descripcion = o.Descripcion
-		ofsuc.Promocion = o.Promocion
-		ofsuc.Precio = o.Precio
-		ofsuc.Descuento = o.Descuento
-		ofsuc.Enlinea = o.Enlinea
-		ofsuc.Url = o.Url
-		ofsuc.StatusPub = o.StatusPub
-		ofsuc.FechaHora = time.Now().Add(time.Duration(GMTADJ)*time.Second)
+	if ofsucs, err := e.GetOfertaSucursales(c, o.IdOft); err != nil {
+		c.Infof("GetOfertaSucursales warning IdOft: %v", o.IdOft)
+        return key, err
+    } else {
+        for _,os:= range *ofsucs {
+            var ofsuc OfertaSucursal
+            ofsuc.IdOft = os.IdOft
+            ofsuc.IdSuc = os.IdSuc
+            ofsuc.IdEmp = os.IdEmp
+            ofsuc.Sucursal = os.Sucursal
+            ofsuc.Lat = os.Lat
+            ofsuc.Lng = os.Lng
+            ofsuc.Empresa = o.Empresa
+            ofsuc.Oferta = o.Oferta
+            ofsuc.Descripcion = o.Descripcion
+            ofsuc.Promocion = o.Promocion
+            ofsuc.Precio = o.Precio
+            ofsuc.Descuento = o.Descuento
+            ofsuc.Enlinea = o.Enlinea
+            ofsuc.Url = o.Url
+            ofsuc.StatusPub = o.StatusPub
+            ofsuc.FechaHora = time.Now().Add(time.Duration(GMTADJ)*time.Second)
 
-		o.PutOfertaSucursal(c, &ofsuc)
-		TouchSuc(c, os.IdSuc)
+            e.PutOfertaSucursal(c, &ofsuc)
+            TouchSuc(c, os.IdSuc)
+        }
 	}
-	return o, nil
+	return key, nil
 }
 
 /*
 	Llenar primero struct de OfertaSucursal y luego guardar
 */
-func (r *Oferta) PutOfertaSucursal(c appengine.Context, ofsuc *OfertaSucursal) error {
-	_, err := datastore.Put(c, datastore.NewKey(c, "OfertaSucursal", r.IdOft+ofsuc.IdSuc, 0, r.Key(c)), ofsuc)
+func (e *Empresa) PutOfertaSucursal(c appengine.Context, ofsuc *OfertaSucursal) error {
+	_, err := datastore.Put(c, datastore.NewKey(c, "OfertaSucursal", ofsuc.IdOft+ofsuc.IdSuc, 0, e.OfertaKey(c, ofsuc.IdOft)), ofsuc)
 	if err != nil {
 		return err
 	}
@@ -286,39 +220,35 @@ func (r *Oferta) PutOfertaSucursal(c appengine.Context, ofsuc *OfertaSucursal) e
 /*
 	Llenar primero struct de OfertaPalabra y luego guardar
 */
-func (r *Oferta) PutOfertaPalabra(c appengine.Context, op *OfertaPalabra) error {
-	_, err := datastore.Put(c, datastore.NewKey(c, "OfertaPalabra", r.IdEmp+op.Palabra, 0, r.Key(c)), op)
+func (e *Empresa) PutOfertaPalabra(c appengine.Context, idoft string, op *OfertaPalabra) error {
+	_, err := datastore.Put(c, datastore.NewKey(c, "OfertaPalabra", e.IdEmp+op.Palabra, 0, e.OfertaKey(c, idoft)), op)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func DelOferta(c appengine.Context, id string) error {
-	q := datastore.NewQuery("Oferta").Filter("IdOft =", id)
-	for i := q.Run(c); ; {
-		var e Oferta
-		key, err := i.Next(&e)
-		if err == datastore.Done {
-			break
-		}
-		if err := blobstore.Delete(c, e.BlobKey); err != nil {
-			return err
-		}
-		if err:= DelOfertaSucursales(c, id); err != nil {
-			return err
-		}
-		if err := DelOfertaPalabras(c, id); err != nil {
-			return err
-		}
-		if err := DelOfertaSearchData(c, key); err != nil {
-			return err
-		}
-		if err := datastore.Delete(c, key); err != nil {
-			return err
-		}
-		_ = PutChangeControl(c, e.IdOft, "Oferta", "B")
-	}
+func (e *Empresa) DelOferta(c appengine.Context, id string) error {
+    o, err := e.GetOferta(c, id)
+    if err != nil {
+       return err
+    }
+    if err := blobstore.Delete(c, o.BlobKey); err != nil {
+        return err
+    }
+    if err:= DelOfertaSucursales(c, id); err != nil {
+        return err
+    }
+    if err := DelOfertaPalabras(c, id); err != nil {
+        return err
+    }
+    if err := DelOfertaSearchData(c, e.OfertaKey(c, id)); err != nil {
+        return err
+    }
+    if err := datastore.Delete(c, e.OfertaKey(c, id)); err != nil {
+        return err
+    }
+    _ = PutChangeControl(c, o.IdOft, "Oferta", "B")
 	return nil
 }
 
@@ -480,12 +410,12 @@ func DelOfertaPalabra(c appengine.Context, id string, palabra string) error {
 /*
  Métodos de OfertaEstado
 */
-func (r *Oferta) PutOfertaEstado(c appengine.Context, edomap map[string]string) error {
+func (e *Empresa) PutOfertaEstado(c appengine.Context, idoft string, edomap map[string]string) error {
 	for k, v := range edomap {
-		var e OfertaEstado
-		e.IdOft = v
-		e.IdEnt = k
-		_, err := datastore.Put(c, datastore.NewKey(c, "OfertaEstado", v+k, 0, r.Key(c)), &e)
+		var oe OfertaEstado
+		oe.IdOft = v
+		oe.IdEnt = k
+		_, err := datastore.Put(c, datastore.NewKey(c, "OfertaEstado", v+k, 0, e.OfertaKey(c, idoft)), &oe)
 		if err != nil {
 			return err
 		}
@@ -508,8 +438,19 @@ func (r *Oferta) DelOfertaEstado(c appengine.Context) error {
 	return nil
 }
 
-func ListOf(c appengine.Context, IdEmp string) *[]Oferta {
-	q := datastore.NewQuery("Oferta").Filter("IdEmp =", IdEmp).Limit(500)
+func (e *Empresa) ListOf(c appengine.Context) *[]Oferta {
+	q := datastore.NewQuery("Oferta").Ancestor(e.Key(c)).Limit(500)
+	n, _ := q.Count(c)
+	ofertas := make([]Oferta, 0, n)
+	if _, err := q.GetAll(c, &ofertas); err != nil {
+		return nil
+	}
+	sortutil.AscByField(ofertas, "Oferta")
+	return &ofertas
+}
+
+func ListOf(c appengine.Context, id string) *[]Oferta {
+	q := datastore.NewQuery("Oferta").Filter("IdEmp =", id).Limit(500)
 	n, _ := q.Count(c)
 	ofertas := make([]Oferta, 0, n)
 	if _, err := q.GetAll(c, &ofertas); err != nil {

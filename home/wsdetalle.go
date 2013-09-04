@@ -35,7 +35,7 @@ func ShowOfDetalle(w http.ResponseWriter, r *http.Request) {
 	var b []byte
 	var d detalle
 	if item, err := memcache.Get(c, "d_"+r.FormValue("id")); err == memcache.ErrCacheMiss {
-		oferta, _ := model.GetOferta(c, r.FormValue("id"))
+		oferta := model.GetOferta(c, r.FormValue("id"))
 		if now.After(oferta.FechaHoraPub) {
 			d.IdEmp = oferta.IdEmp
 			d.IdOft = oferta.IdOft

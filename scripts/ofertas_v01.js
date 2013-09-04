@@ -1,25 +1,25 @@
 $(document).ready(function() {
-    var idoft = "ahwdnfobhgcomfchijgx";
+    var idoft = "yskvwdovvrsshfnkiuvk";
     var blobkey;
     var idemp;
     var uploadurl;
 	/* Este código comentado debe ir en el template html de lo contrario el 
-	 * programa no puede planchar las variables de entorno
+	 * prografkiptyogtmxpajzkbsuhma no puede planchar las variables de entorno
 	 */
     $.get("/r/wso/get", { IdOft: ""+idoft+""}, function(resp) {
         console.log(resp);
         if(typeof(resp) != 'object') { resp = JSON.parse(resp); }
         if(resp.status=="ok") {
-            idemp = resp.idemp;
-            blobkey = resp.blobkey;
-            var d = new Date(Date.parse(resp.fechapub));
-            uploadurl = resp.uploadurl;
+            idemp = resp.IdEmp;
+            blobkey = resp.BlobKey;
+            var d = new Date(Date.parse(resp.FechaPub));
+            uploadurl = resp.UploadUrl;
             $("#enviar").attr('action', uploadurl);
             $("#uploadimg_id").attr('value', idoft);
-            $("#oferta").val(resp.oferta);
-            $("#descripcion").val(resp.descripcion);
+            $("#oferta").val(resp.Oferta);
+            $("#descripcion").val(resp.Descripcion);
             $("#date1").val(d.getUTCDate()+ " Nov");
-            $("#url").val(resp.url);
+            $("#url").val(resp.Url);
             $(resp.categorias).each(function() {
                 $("#categoria").append($("<option>").attr('value',this.idcat).attr("selected",this.selected).text(this.categoria));
             });
@@ -33,7 +33,6 @@ $(document).ready(function() {
             $('#newbtn').show();
             $('#statuspub').attr("checked", true);
         } else {
-console.log(idemp);
             /* solo se actualizan estos datos si hay id de oferta */
             fillpcve(idoft, idemp);
             fillsucursales(idoft, idemp);
@@ -93,7 +92,11 @@ console.log(idemp);
 		 * Manejo de sucursales
 		 */
         $("#IdOft").attr("value", idoft);
+        console.log($("#IdOft").attr("value"));
+
         $("#IdEmp").attr("value", idemp);
+        console.log($("#IdEmp").attr("value"));
+
         $("#BlobKey").attr("value", blobkey);
 		var sucs = $("#listasuc").find("input");
 		var pcves = $("#unpickpcve").find("a");
@@ -178,15 +181,18 @@ console.log(idemp);
 		success: function(data) {
             console.log(data);
 			var resp = "";
-			switch (data.errstatus) {
-				case "invalidUpload": resp = "<p>Intente nuevamente, su imagen no puede ser integrada.</p>";
+			switch (data.status) {
+				case "invalidParseUpload": resp = "<p>Intente nuevamente, su imagen no puede ser integrada.</p>";
 				case "uploadSessionError": resp = "<p>Favor de refrescar la página para continuar.</p>";
 				case "invalidId": resp = "<p>La oferta no existe.</p>";
+				case "invalidIdOft": resp = "<p>La oferta no existe.</p>";
+				case "invalidFileSize0": resp = "<p>Archvo en cero</p>";
+				case "invalidUploadWriteErr": resp = "<p>Error al actualizar la oferta</p>";
 				case "ok": 	resp = "<p>La imagen se integró exitosamente</p>";
 							var uploadurl;
-							(data.uploadurl.substr(0,5) != "https") ? uploadurl == data.uploadurl.replace("http","https") : uploadurl = data.uploadurl;
+							(data.UploadUrl.substr(0,5) != "https") ? uploadurl == data.UploadUrl.replace("http","https") : uploadurl = data.UploadUrl;
 							$("#enviar").attr("action", uploadurl);
-							setTimeout(function(){ updateimg(data.blobkey); }, 1000); 	
+							setTimeout(function(){ updateimg(data.BlobKey); }, 1000); 	
 							break;
 				default:  resp = "<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>";
 			}
@@ -422,19 +428,3 @@ function fillsucursales(idoft, idemp) {
 
 function activateCancel(){ $("#cancelbtn").addClass("show") }
 function deactivateCancel(){ $("#cancelbtn").removeClass("show") }
-
-/*
-$("#"+item.idsuc).change(function() { 
-	if($(this).is(':checked')) {
-		$.get("/r/addofsuc", { idoft: "" + idoft + "", idemp: "" + idemp + "", idsuc: "" + item.idsuc + ""}, function(data) { })
-		if(typeof(data) != 'object') { data = JSON.parse(data); }
-		.success(function(){})
-		.error(function(){alert('Hay problemas de conexión, espere un momento y refresque la página');})
-	} else {
-		$.get("/r/delofsuc", { idoft: "" + idoft + "", idsuc: "" + item.idsuc + ""}, function(data) { })
-		if(typeof(data) != 'object') { data = JSON.parse(data); }
-		.success(function(){})
-		.error(function(){alert('Hay problemas de conexión, espere un momento y refresque la página');})
-	}
-});
-*/

@@ -6,6 +6,7 @@ import (
     "net/http"
 	"strings"
 	"model"
+    "sess"
 	"time"
 )
 
@@ -26,35 +27,42 @@ func init() {
 func AddWord(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
 	var out Word
-	out.Token = r.FormValue("token")
-	out.Id = r.FormValue("id")
-	if model.ValidSimpleText.MatchString(out.Token) {
-		tokens := strings.Fields(r.FormValue("token"))
-		oferta,_ := model.GetOferta(c, out.Id)
-		if(len(tokens) > 0) {
-			for _,v:= range tokens {
-				if oferta.IdEmp != "none" {
-					var palabra model.OfertaPalabra
-					palabra.IdOft = out.Id
-					palabra.IdEmp = oferta.IdEmp
-					palabra.Palabra = strings.ToLower(v)
-					palabra.FechaHora = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
-					err := oferta.PutOfertaPalabra(c, &palabra)
-					if err != nil {
-						out.Status = "writeErr"
-					} else {
-						out.Status = "ok"
-					}
-				} else {
-					out.Status = "notFound"
-				}
-			}
-		} else {
-			out.Status = "invalidText"
-		}
-	} else {
-		out.Status = "invalidText"
-	}
+	if s, ok := sess.IsSess(w, r, c); !ok {
+		out.Status = "noSession"
+    } else {
+        u, _ := model.GetCta(c, s.User)
+
+        out.Token = r.FormValue("token")
+        out.Id = r.FormValue("id")
+        if model.ValidSimpleText.MatchString(out.Token) {
+            tokens := strings.Fields(r.FormValue("token"))
+            oferta := model.GetOferta(c, out.Id)
+            empresa, _ := u.GetEmpresa(c, oferta.IdEmp)
+            if(len(tokens) > 0) {
+                for _,v:= range tokens {
+                    if oferta.IdEmp != "none" {
+                        var palabra model.OfertaPalabra
+                        palabra.IdOft = out.Id
+                        palabra.IdEmp = oferta.IdEmp
+                        palabra.Palabra = strings.ToLower(v)
+                        palabra.FechaHora = time.Now().Add(time.Duration(model.GMTADJ)*time.Second)
+                        err := empresa.PutOfertaPalabra(c, out.Id, &palabra)
+                        if err != nil {
+                            out.Status = "writeErr"
+                        } else {
+                            out.Status = "ok"
+                        }
+                    } else {
+                        out.Status = "notFound"
+                    }
+                }
+            } else {
+                out.Status = "invalidText"
+            }
+        } else {
+            out.Status = "invalidText"
+        }
+    }
 
 	w.Header().Set("Content-Type", "application/json")
 	b, _ := json.Marshal(out)
@@ -69,7 +77,7 @@ func DelWord(w http.ResponseWriter, r *http.Request) {
 	var out Word
 	out.Token = strings.ToLower(r.FormValue("token"))
 	out.Id = r.FormValue("id")
-	oferta,_ := model.GetOferta(c, out.Id)
+	oferta := model.GetOferta(c, out.Id)
 	if oferta.IdEmp != "none" {
 		err := model.DelOfertaPalabra(c, out.Id, out.Token)
 		if err != nil {
