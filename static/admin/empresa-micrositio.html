@@ -103,80 +103,109 @@
 	</div>
 
 	<div id="container" class="row-fluid">
-			<div id="empresas-detalle" class="container-fluid">
+			<div id="empresas-detalle" class="inactivo container-fluid">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
 							<h3><i class="icon-building"></i> Detalle de empresa</h3>
 							<div class="well well-small">
+								<div class="preloader"></div>
 								<form id="empresa-form" class="form-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="control-group">
-												<div class="controls"><input name="IdEmp" type="hidden"></div>
+												<div class="controls"><input id="idemp-empresas" name="IdEmp" type="hidden"></div>
 											</div>
 											<div class="control-group">
 												<label for="RFC" class="control-label">R.F.C. *</label>
-												<div class="controls"><input name="RFC" type="text"></div>
+												<div class="controls"><input name="RFC" class="validate[required,custom[onlyRFC]]" type="text"></div>
 											</div>
 											<div class="control-group">
 												<label for="Nombre" class="control-label">Nombre comercial *</label>
 												<div class="controls">
-													<input type="text" name="Nombre">
+													<input type="text"  class="validate[required]" name="Nombre">
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="RazonSoc" class="control-label">Razón Social *</label>
 												<div class="controls">
-													<input type="text" name="RazonSoc">
+													<input type="text"  class="validate[required]" name="RazonSoc">
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="DirEnt" class="control-label">Entidad Federativa *</label>
+												<label for="DirEntEmp" class="control-label">Entidad Federativa *</label>
 												<div class="controls">
-													<select name="DirEnt">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
+													<select id="DirEntEmp" name="DirEnt">
+														<option value="01">Aguascalientes</option>
+														<option value="02">Baja California</option>
+														<option value="03">Baja California Sur</option>
+														<option value="04">Campeche</option>
+														<option value="05">Coahuila de Zaragoza</option>
+														<option value="06">Colima</option>
+														<option value="07">Chiapas</option>
+														<option value="08">Chihuahua</option>
+														<option value="09">Distrito Federal</option>
+														<option value="10">Durango</option>
+														<option value="11">Guanajuato</option>
+														<option value="12">Guerrero</option>
+														<option value="13">Hidalgo</option>
+														<option value="14">Jalisco</option>
+														<option value="15">México</option>
+														<option value="16">Michoacán de Ocampo</option>
+														<option value="17">Morelos</option>
+														<option value="18">Nayarit</option>
+														<option value="19">Nuevo León</option>
+														<option value="20">Oaxaca</option>
+														<option value="21">Puebla</option>
+														<option value="22">Querétaro Arteaga</option>
+														<option value="23">Quintana Roo</option>
+														<option value="24">San Luis Potosí</option>
+														<option value="25">Sinaloa</option>
+														<option value="26">Sonora</option>
+														<option value="27">Tabasco</option>
+														<option value="28">Tamaulipas</option>
+														<option value="29">Tlaxcala</option>
+														<option value="30">Veracruz de Ignacio de la Llave</option>
+														<option value="31">Yucatán</option>
+														<option value="32">Zacatecas</option>
 													</select>
 												</div>
 											</div>
 											<div class="control-group">
-												<label for="DirMun" class="control-label">Delegación o municipio *</label>
+												<label for="DirMunEmp" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
-													<select name="DirMun">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
-													</select>
+													<div class="preloader"></div>
+													<select id="DirMunEmp" name="DirMun"> </select>
+													<script id="muniTemplateEmp" type="text/template">
+														<% for (var i in MunicipiosArray){ %>
+														<% var municipio = MunicipiosArray[i]; %>
+															<option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
+														<% } %>
+													</script>
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="DirCalle" class="control-label">Calle y numero</label>
 												<div class="controls">
-													<input type="text" name="DirCalle">
+													<input type="text" class="validate[required]" name="DirCalle">
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="DirCol" class="control-label">Colonia y/o localidad * </label>
 												<div class="controls">
-													<input type="text" name="DirCol">
+													<input type="text" class="validate[required]" name="DirCol">
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="DirCp" class="control-label">Código Postal * </label>
 												<div class="controls">
-													<input type="text" name="DirCp">
+													<input type="text" class="validate[required,minSize[5],maxSize[5],custom[onlyNumberSp]]" name="DirCp">
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="NumSuc" class="control-label">Número de sucursales</label>
 												<div class="controls">
-													<input type="text" name="NumSuc">
+													<input type="text"  class="validate[optional,minSize[1],custom[integer]]" name="NumSuc">
 												</div>
 											</div>											
 										</div>
@@ -184,26 +213,28 @@
 											<div class="control-group">
 												<label for="OrgEmp" class="control-label">Organismo empresarial</label>
 												<div class="controls">
-													<select name="OrgEmp">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
+													<div class="preloader"></div>
+													<select id="OrgEmpId" name="OrgEmp">
 													</select>
+													<script id="orgTemplate" type="text/template">
+														<% for (var i in OrganismosArray){ %>
+														<% var org = OrganismosArray[i]; %>
+															<option value="<%= org.Siglas %>"><%= org.Nombre %></option>
+														<% } %>
+													</script>
 												</div>
 											</div>
 
 											<div class="control-group">
 												<label for="OrgEmpOtro" class="control-label">Otro (Especificar)</label>
 												<div class="controls">
-													<input type="text" name="OrgEmpOtro">
+													<input type="text" class="validate[optional,custom[onlyLetterSp]]" name="OrgEmpOtro">
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="OrgEmpReg" class="control-label">Número de registro o afiliación a tu organismo empresarial</label>
 												<div class="controls">
-													<input type="text" name="OrgEmpReg">
+													<input type="text" class="validate[optional]" name="OrgEmpReg">
 												</div>
 											</div>
 											<div class="control-group">
@@ -215,7 +246,7 @@
 											<div class="control-group">
 												<label for="Url" class="control-label"> Sitio de internet (con prefijo http://)</label>
 												<div class="controls">
-													<input type="text" name="Url">
+													<input type="text"  class="validate[optional,custom[url]]" name="Url">
 												</div>
 											</div>
 											<div class="control-group">
@@ -226,17 +257,20 @@
 											<div class="control-group">
 												<label for="Desc" class="control-label"> ¿Qué retos o dificultades identificas para implementar o mejorar el comercio electrónico de tu empresa?</label>
 												<div class="controls">
-													<textarea name="Desc" id="" cols="30" rows="">
+													<textarea name="Desc" class="validate[optional]" cols="30" rows="">
 													</textarea>
 												</div>
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox">Para aceptar y realizar cambios a esta empresa haga clic en el recuadro * 
+													<input type="checkbox" class="validate[required]" name="TermCond" value="1" id="accept"/>
+													Para aceptar y realizar cambios a esta empresa haga clic en el recuadro * 
 												</label>
 											</div>
 											<div class="control-group">
-												<button type="submit" class="btn">Modificar</button>
+												<button type="submit" id="btn-empresa" class="btn">Crear</button>
+												<button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
+
 											</div>
 										</div>
 									</div>
@@ -246,28 +280,75 @@
 						<div class="block">
 							<h3><i class="icon-globe"></i> Micrositio de empresa</h3>
 							<div class="well well-small">
-								<form class="form-horizontal">
-									<div class="row-fluid">
-										<div class="span6">
+								<div class="row-fluid">
+									<div class="span6">
+										<form action="/r/wsed/post" method="post" id="enviardata" class="form-horizontal">
+												<div class="control-group">
+													<input type="hidden" value="a" name="s"/>
+													<input type="hidden" name="IdEmp" id="IdEmp"/>
+													<input type="hidden" name="BlobKey" id="BlobKey"/>
+												</div>
+												<h4>Redes sociales</h4>
+												<div class="control-group">
+													<label for="" class="control-label">Sitio de Facebook:</label>
+													<div class="controls">
+														<input type="text" class="validate[required, maxSize[255]]" name="Facebook" id="facebook" maxlength="255"/>
+													</div>
+												</div>
+												<div class="control-group">
+													<label for="" class="control-label"> Twitter:</label>
+													<div class="controls">
+														<input type="text" class="validate[required, maxSize[30]]" name="Twitter" id="twitter" maxlength="30"/>
+													</div>
+												</div>
+												<h4>Datos adicionales</h4>
+												<div class="control-group">
+													<label for="" class="control-label"> Descripción de la empresa visible al público:</label>
+													<div class="controls">
+														 <textarea class="validate[required, maxSize[350]]" name="Desc" cols="6" rows="6" id="descripcion" maxlength="350"></textarea>
+													</div>
+												</div>
+												<div class="control-group">
+
+													<button class="btn btn-success" type="submit">Guardar</button>
+													<button class="btn btn-danger" id="cancelbtn">Limpiar Campos</button>
+												</div>
+										</form>
+									</div>
+									<div class="span6">
+										<div id="urlimg"><img src="" alt="Logo de Empresa" width="258" id="pic" /> </div>
+										<form class="form-horizontal"  method="post" id="enviar" enctype="multipart/form-data">
+											<div class="control-group">
+												<input type="hidden" name="IdEmp" id="uploadimg_id"/>
+												<div id="status"></div>
+
+											</div>
 											<h4>Subir tu logotipo</h4>
 											<div class="control-group">
 												<label for="" class="control-label">Selecciona archivo</label>
 												<div class="controls">
-													<div class="input-append">
-														<input class="span12" id="appendedInputButton" type="text">
-														<button class="btn" type="button">Buscar</button>
-													</div>
+													<input id="imgfile" type="text" class="" readonly="readonly" />
+													<input id="infile" type="file" class="validate[required]" name="image" onchange="$('#imgfile').val($('#infile').val()); $('#enviar').submit();"/>		
+													<img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
 												</div>
 											</div>
 											<div class="control-group">
 												<label for="" class="control-label">Progreso de subida</label>
 												<div class="controls">
-														<div class="progress progress-striped active">
-															<div class="bar" style="width: 40%;"></div>
-														</div>
+													<div class="progress progress-striped active">
+														<div class="bar" style="width: 40%;"></div>
+													</div>
 												</div>
 											</div>
+
+											
+											
+											<div class="progress">
+												<div class="bar"></div>
+												<div class="percent"> 0% </div>
+											</div>
 											<div class="well well-small">
+									
 												<ul>
 													<li>Sólo imágenes formato jpeg o png.</li>
 													<li>Tamaño máximo 800x600 pixeles.</li>
@@ -276,47 +357,9 @@
 													<li>No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
 												</ul>
 											</div>
-											<div class="control-group">
-												<label for="" class="control-label">Título de logotipo:</label>
-												<div class="controls">
-													<input type="text">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="" class="control-label"> Sitio de internet al que debe apuntar el logotipo (opcional, con prefijo http://)</label>
-												<div class="controls">
-													<input type="text">
-												</div>
-											</div>
-										</div>
-										<div class="span6">
-											<h4>Datos adicionales</h4>
-											<div class="control-group">
-												<label for="" class="control-label"> Descripción de la empresa visible al público:</label>
-												<div class="controls">
-													<textarea name="" id="" cols="30" rows="">
-													</textarea>
-												</div>
-											</div>
-											<h4>Redes sociales</h4>
-											<div class="control-group">
-												<label for="" class="control-label">Sitio de Facebook:</label>
-												<div class="controls">
-													<input type="text">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="" class="control-label"> Twitter:</label>
-												<div class="controls">
-													<input type="text">
-												</div>
-											</div>
-											<div class="control-group">
-												<button type="submit" class="btn">Modificar</button>
-											</div>
-										</div>
+										</form>	
 									</div>
-								</form>
+								</div>
 							</div>
 							
 						</div>

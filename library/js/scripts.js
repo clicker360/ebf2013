@@ -29,7 +29,7 @@
            var rel = $(this).attr('rel');
            var empresaID = $(this).attr('rel');
            empresas.empresaformdesdejson(rel);
-           micrositio.cargarmicrositio(empresaID);
+          // micrositio.cargarmicrositio(empresaID);
        });
    };
    // abre formulario de nueva empresa
@@ -96,10 +96,10 @@
 })();
 var Ajax = (function() {
     var _showPreload = function() {
-        $('.preloader').fadeIn('fast');
+        $('#preloader').fadeIn('fast');
     };
     var hidePreload = function(bloque) {
-        $('.preloader').fadeOut('fast');
+        $('#preloader').fadeOut('fast');
         if(typeof bloque !== 'undefined'){
             $('.activo').removeClass('activo').addClass('inactivo');
             bloque.addClass('activo').removeClass('inactivo');   
@@ -232,6 +232,7 @@ var sucursales = (function() {
         });
     };
 
+
     // codeRel trae sucursal
      var sucursalformdesdejsonModifica = function(codeRel) {
             $('#btn-sucursal').html("Modificar");
@@ -335,7 +336,7 @@ var micrositio = (function(){
    * Ajax FORM para imagen de oferta
    */
     var bar = $('.bar');
-    var percent = $('.percent');
+    //var percent = $('.percent');
     var status = $('#status');
     var img;
 
@@ -351,7 +352,7 @@ var micrositio = (function(){
         uploadProgress: function(event, position, total, percentComplete) {
           var percentVal = percentComplete + '%';
           bar.width(percentVal)
-          percent.html(percentVal);
+          //percent.html(percentVal);
         },
         success: function(data) {
                 console.log(data);
@@ -374,6 +375,9 @@ var micrositio = (function(){
                         resp = "<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>";
           }
           status.html(resp);
+        },
+        complete: function(xhr) {
+         status.html(xhr.responseText);
         },
         error: function() {
           status.html("<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>");
