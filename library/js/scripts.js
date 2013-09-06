@@ -105,6 +105,7 @@
 		sucursales.sucursal_envia();
 	};
 	
+	
 	/* ---------------- Termina Sucursales ------------- */
 	
 	/* ---------------- Inicia Micrositios ------------- */
@@ -320,6 +321,112 @@ var empresas = (function() {
  * @returns {object} sucursales - Regresa el registro de todos los métodos públicos para ser usados de la forma "sucursales.método".
  */
 var sucursales = (function() {
+	var map, geocoder, marker, infowindow;  // Variables de localización en el mapa.
+	
+	/**
+	 * locateAddress
+	 * Método que localiza en el mapa la dirección indicada por el formulario.
+	 */
+	var _locateAddress = function() {
+		// Getting the address from the text input
+		var dir = [];
+		dir.push($('#DirMunSuc option:selected').text());
+		dir.push($('#DirEntSuc option:selected').text());
+		dir.push($('#calle').val());
+		dir.push($('#colonia').val());
+		//dir.push($('#cp').val());
+		var address = '';
+		var coma = '';
+		$.each(dir, function(key, value) { if(value) { address = address+coma+value; coma = ', '; } });
+		address = address+", MEXICO";
+		
+		// Check to see if we already have a geocoded object. If not we create one
+		if(!geocoder) {
+			geocoder = new google.maps.Geocoder();
+		}
+		// Creating a GeocoderRequest object
+		var geocoderRequest = {
+			address: address
+		}
+		// Making the Geocode request
+		geocoder.geocode(geocoderRequest, function(results, status) {
+			// Check if status is OK before proceeding
+			if (status == google.maps.GeocoderStatus.OK) {
+				// Center the map on the returned location
+				map.setCenter(results[0].geometry.location);
+				map.setZoom(17);
+				// Check to see if we've already got a Marker object
+				if (!marker) {
+					// Creating a new marker and adding it to the map
+					marker = new google.maps.Marker({
+						map: map,
+						draggable: true
+					});
+				}
+				// Setting the position of the marker to the returned location
+				marker.setPosition(results[0].geometry.location);
+
+				document.getElementById('lat').value = results[0].geometry.location.lat();
+				document.getElementById('lng').value = results[0].geometry.location.lng();
+			}
+		});
+	}
+	
+	/**
+	 * mostrarMapa
+	 * Método que pinta el mapa segun se va llenando el formulario.
+	 */
+	var mostrarMapa = function() {
+		var zoom = 17;
+		var lat = $('#lat').val();
+		var lng = $('#lng').val();
+		if(!lat) { 
+			lat = 19.434341;
+			lng = -99.141483; 
+			zoom = 10;
+	        console.log(lat+" : "+lng);
+		}
+		var center = new google.maps.LatLng(lat,lng);
+		var options = {
+			zoom: zoom,
+			center: center,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			streetViewControl: false
+		};
+		map = new google.maps.Map(document.getElementById('mapas'), options);
+		if (!marker) {
+			// Creating a new marker and adding it to the map
+			marker = new google.maps.Marker({
+				map: map,
+				draggable: true
+			});
+			marker.setPosition(center);
+		}
+		// Getting a reference to the HTML form
+		$('#DirEntSuc').bind('change',function(e){
+			_locateAddress();
+		});
+		$('#calle').bind('change',function(e){
+			_locateAddress();
+		});
+		$('#colonia').bind('change',function(e){
+			_locateAddress();
+		});
+		/*$('#cp').bind('change',function(e){
+			locateAddress();
+		});*/
+		$('#buscar').bind('keydown keyup mousedown',function(e){
+			_locateAddress();
+		});
+		google.maps.event.addListener(marker, 'dragend', function() {
+			var tmppos = ''+this.getPosition();
+			var latlng = tmppos.split(',');
+			document.getElementById('lat').value = latlng[0].replace('(','');
+			document.getElementById('lng').value = latlng[1].replace(')','')
+			map.setCenter(this.getPosition());
+		});
+	}
+	
 	/**
 	 * initSucursales
 	 * Método que muestra la lista de sucursales de la empresa indicada.
@@ -349,6 +456,7 @@ var sucursales = (function() {
 			$('#sucursal-form').formParams(response, true);
 			llenamuniSucursal(response.DirEnt, response.DirMun);
 			Ajax.hidePreload($('#sucursal-detalle'));
+			mostrarMapa();
 		});
 	};
 
@@ -362,6 +470,7 @@ var sucursales = (function() {
 		$('#btn-sucursal').html("Crear");
 		llenamuniSucursal("01");
 		Ajax.hidePreload($('#sucursal-detalle'));
+		mostrarMapa();
 	};
 
 	/**
@@ -392,12 +501,14 @@ var sucursales = (function() {
 		})
 	};
 	
+	
 	// Registro de métodos públicos.
 	return {
 		initSucursales : initSucursales,
 		sucursalformdesdejsonModifica : sucursalformdesdejsonModifica,
 		sucursalformdesdejsonNueva : sucursalformdesdejsonNueva,
 		sucursal_envia : sucursal_envia,
+		mostrarMapa: mostrarMapa
 	};
 })();
 
@@ -554,6 +665,10 @@ var micrositio = (function() {
 		});
 	};
 	
+	/**
+	 * enviarDatos
+	 * Método que envia los datos del formulario de micrositios, via Ajax.
+	 */
 	var enviarDatos = function() {
 		$(document).on('submit', '#enviardata', function(event){
 			event.preventDefault();
@@ -567,7 +682,12 @@ var micrositio = (function() {
 			});
 		});
 	}
-
+	
+	/**
+	 * extrasformulario
+	 * ?? Método desconocido
+	 * @todo Averiguar que hace.
+	 */
 	var extrasformulario = function() {
 		$("#pic").error(function() {
 			putDefault()
