@@ -111,7 +111,7 @@
 	/* ---------------- Inicia Micrositios ------------- */
 	
 	var uploadImage = function() {
-		$('#infile').on('change', function(event){
+		$('#submitImage').on('click', function(event){
 			$('#imgfile').val($('#infile').val());
 			micrositio.enviarimagen();
 		});
@@ -384,7 +384,7 @@ var sucursales = (function() {
 			lat = 19.434341;
 			lng = -99.141483; 
 			zoom = 10;
-	        console.log(lat+" : "+lng);
+	        //console.log(lat+" : "+lng);
 		}
 		var center = new google.maps.LatLng(lat,lng);
 		var options = {
@@ -621,6 +621,7 @@ var micrositio = (function() {
 	    var status = $('#status');
 		$('#enviar').ajaxSubmit({
 			dataType : 'json',
+			iframe:true,
 			beforeSend : function() {
 				status.empty();
 				var percentVal = '0%';
@@ -633,7 +634,7 @@ var micrositio = (function() {
 				// percent.html(percentVal);
 			},
 			success : function(data) {
-				console.log(data);
+				//console.log(data);
 				var resp = "";
 				switch (data.status) {
 				case "invalidUpload":
