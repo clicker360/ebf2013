@@ -152,6 +152,10 @@
 															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i>Ver Sucursales</a>
 															<a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Sucursales</a>
 														</th>
+														<th>
+															<a class="ver-ofertas btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i>Ver Ofertas</a>
+															<a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
+														</th>
 													</tr>
 												<% } %>
 											</script>
@@ -847,32 +851,41 @@
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
-								<div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+								<div class="span3" id="añadir-oferta-empresa"></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
 									<thead>
 										<tr>
-											<th>Sucursal</th>
+											<th>Oferta</th>
+											<th>Descripcion</th>
 											<th>Empresa</th>
-											<th>RFC</th>
-											<th>Estado</th>
-											<th>Municipio</th>
-											<th>Editar</th>
-											<th>Ver empresa</th>
+											<th>Fecha Publicación</th>
 										</tr>
 									</thead>
+
+									<script id="ofertasTemplate" type="text/template">
+												<% for (var i in ofertasArray){ %>
+												<% var oferta = ofertasArray[i]; %>
+													<tr>
+														<td><%= oferta.Oferta %></td>
+														<td><%= oferta.Descripcion %></td>
+														<td><%= oferta.Empresa %></td>
+														<td><%= oferta.FechaPub %></td>
+
+														<th><a class="editar-oferta btn btn-mini" rel="<%= oferta.IdOft %>"><i class="icon-edit"></i> Editar</a></th>
+														<th>
+															<a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= oferta.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
+														</th>
+													</tr>
+												<% } %>
+											</script>
+
+									<tbody id="ofertasLista">
+										
+									</tbody>
 									
 									<tbody>
-										<tr>
-											<td>Sucursal Guanajuato</td>
-											<td>empresa patito de hule morado 3</td>
-											<td>HUCA681202QP8</td>
-											<td>Distrito Federal</td>
-											<td>Benito Juarez</td>											
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-building"></i> Ver empresa</a></th>
-										</tr>
 										<tr>
 											<td>Sucursal Guanajuato</td>
 											<td>empresa patito de hule morado 3</td>

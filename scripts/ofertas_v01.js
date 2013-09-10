@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var idoft = "yskvwdovvrsshfnkiuvk";
+    var idoft = "dkyqiijvlczpqjygavtt";
     var blobkey;
     var idemp;
     var uploadurl;
@@ -68,6 +68,10 @@ $(document).ready(function() {
             if($('#enlinea').attr('checked') && $('#url').val()=='') { $('#urlreq').show(); } else {$('#urlreq').hide();}
         });
     }, "json");
+
+
+
+
 
 	$("#oferta").blur(function() {
 		var t = $('#oferta').val().toLowerCase();
