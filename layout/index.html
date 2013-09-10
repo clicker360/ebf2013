@@ -544,27 +544,14 @@
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox" name="PartLinea"> ¿Desea participar en El Buen Fin en línea?
+													<input type="checkbox" name="PartLinea" class="validate[required]"> Me comprometo a ofrecer ofertas y/o promociones superiores al 10% de descuento.
 												</label>
 											</div>
 
 											<div class="control-group">
-												<label for="Url" class="control-label"> Sitio de internet (con prefijo http://)</label>
-												<div class="controls">
-													<input type="text"  class="validate[optional,custom[url]]" name="Url">
-												</div>
-											</div>
-											<div class="control-group">
 												<label class="checkbox">
-													<input type="checkbox" name="ExpComer"> ¿Tu empresa ya tiene experiencia en el comercio electrónico?
+													<input type="checkbox" name="ExpComer" class="validate[required]"> Acepto seguir las normas de buen comportamiento y manejar un lenguaje adecuado.
 												</label>
-											</div>
-											<div class="control-group">
-												<label for="Desc" class="control-label"> ¿Qué retos o dificultades identificas para implementar o mejorar el comercio electrónico de tu empresa?</label>
-												<div class="controls">
-													<textarea name="Desc" class="validate[optional]" cols="30" rows="">
-													</textarea>
-												</div>
 											</div>
 											<div class="control-group">
 												<label class="checkbox">
@@ -633,7 +620,8 @@
 												<label for="" class="control-label">Selecciona archivo</label>
 												<div class="controls">
 													<input id="imgfile" type="text" class="" readonly="readonly" />
-													<input id="infile" type="file" class="" name="image" />		
+													<input id="infile" type="file" class="" name="image" />
+													<input type="submit" class="btn" id="submitImage" value="Subir Imagen" />		
 													<img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
 												</div>
 											</div>
