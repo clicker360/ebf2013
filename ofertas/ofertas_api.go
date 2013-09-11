@@ -347,7 +347,8 @@ func setUploadUrl(r *http.Request) (string, error) {
         if(r.TLS != nil) {
             return strings.Replace(uploadURL.String(), "http", "https", 1), nil
         } else {
-            return uploadURL.String(), nil
+            /* return uploadURL.String(), nil */
+            return strings.Replace(uploadURL.String(), "http", "https", 1), nil
         }
     }
 }
