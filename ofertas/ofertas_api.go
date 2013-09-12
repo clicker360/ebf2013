@@ -76,21 +76,27 @@ func GetOfertas(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
     var out WsEmpresa
     defer model.JsonDispatch(w, &out)
-	if _, ok := sess.IsSess(w, r, c); !ok {
+	if s, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
-    }
-    if r.Method != "GET" {
-		out.Status = "wrongMethod"
-        return
-    }
-	if empresa := model.GetEmpresa(c, r.FormValue("IdEmp")); empresa != nil {
-        out.IdEmp = empresa.IdEmp
-        out.Nombre = empresa.Nombre
-        out.Url = empresa.Url
-        out.Status = "ok"
-        out.Ofertas = empresa.ListOf(c)
-    }
+    } else {
+		// se obtiene el detalle de cta
+		u, _ := model.GetCta(c, s.User)
+
+		if r.Method != "GET" {
+			out.Status = "wrongMethod"
+			return
+		}
+		if empresa := u.GetEmpresa(c, r.FormValue("IdEmp")); empresa != nil {
+			out.IdEmp = empresa.IdEmp
+			out.Nombre = empresa.Nombre
+			out.Url = empresa.Url
+			out.Status = "ok"
+			out.Ofertas = empresa.ListOf(c)
+		} else {
+			out.Status = "notFound"
+		}
+	}
     return
 }
 
@@ -314,24 +320,28 @@ func DelOferta(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
     var out WsSucursal
     defer model.JsonDispatch(w, &out)
-	if _, ok := sess.IsSess(w, r, c); !ok {
+	if s, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
-    }
-    // DELETE
-    if r.Method != "GET" {
-		out.Status = "wrongMethod"
-        return
-    }
-	if empresa := model.GetEmpresa(c, r.FormValue("IdEmp")); empresa != nil {
-        if err := empresa.DelOferta(c, r.FormValue("IdOft")); err != nil {
-            out.Status = "notFound"
-        } else {
-	        out.Status = "ok"
-        }
     } else {
-        out.Status = "notFound"
-    }
+		// se obtiene el detalle de cta
+		u, _ := model.GetCta(c, s.User)
+
+		// DELETE
+		if r.Method != "GET" {
+			out.Status = "wrongMethod"
+			return
+		}
+		if empresa := u.GetEmpresa(c, r.FormValue("IdEmp")); empresa != nil {
+			if err := empresa.DelOferta(c, r.FormValue("IdOft")); err != nil {
+				out.Status = "notFound"
+			} else {
+				out.Status = "ok"
+			}
+		} else {
+			out.Status = "notFound"
+		}
+	}
     return
 }
 
