@@ -457,3 +457,18 @@ body.rtl .formError .formErrorArrow {
   border: none;
   background: #ddd;
 }
+div#datePick {
+	width: 200px;
+	height: 200px;
+	margin: 20px;
+	display: none;
+}
+div#datePick ul {
+	list-style: none;
+}
+div#datePick li {
+	width: 23px;
+	height: 23px;
+	text-align: center;
+	float: left;
+}
