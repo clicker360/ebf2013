@@ -157,15 +157,12 @@
 		});
 	}
 	
+	var registrarOfertaPaso1 = function(){
+		ofertas.enviarDatosBasicos();
+	}
 	var addWords = function() {
-		var tagInput = $('#appendedInputText').tagsManager({
-			tagsContainer: $('#appendedWords'),
-			hiddenTagListName: 'words'
-		});
 		$('#appendedInputButton').on('click', function(event){
-			event.preventDefault();
-			tagInput.tagsManager('pushTag',$('#appendedInputText').val());
-			$('#appendedInputText').val('');
+			
 		});
 	}
 	/* ---------------- Termina Ofertas ------------ */	
@@ -188,7 +185,7 @@
 			registerMicrositio();
 			initOfertas();
 			showOfertaForm();
-			addWords();
+			registrarOfertaPaso1();
 		});
 	};
 	return execute();
@@ -898,6 +895,7 @@ var ofertas = (function() {
 			$('#imgform').hide();
             $('#boton-enviar-oferta').html('Nueva Oferta');
             $('#statuspub').attr("checked", true);
+            $('#OfertaIdEmp').val(rel);
             Ajax.get('/r/wss/gets?IdEmp='+rel, function(response){	
         		$('#ofertas-lista-sucursales tbody').empty();
         		for(var a in response){
@@ -929,6 +927,42 @@ var ofertas = (function() {
 			});
 		}
 		Ajax.hidePreload($('#oferta-detalle'));
+	}
+	
+	var enviarDatosBasicos = function() {
+		$(document).on('submit', '#oferta-paso-1', function(event){
+			event.preventDefault();
+			var data = $(this).serialize();
+			var action = $(this).attr('action');
+			Ajax.post(action, data, function(response){
+				if(response.status == 'ok'){
+					$('#oferta-paso-2').parent().removeClass('inactivo');
+					$('#oferta-paso-3').parent().removeClass('inactivo');
+				}
+			});
+		});
+	}
+	
+	var agregarPalabra = function(idOferta) {
+		var data = {
+			token: $('#appendedInputText').val(),
+			id: idOferta
+		}
+		Ajax.post('/r/addword', data, function(response){
+			var palab = [];
+			for(var a in response){
+				//var palab[] = response[a].Palabra;
+			}
+			$('#appendedInputText').tagsManager({
+				tagsContainer: $('#appendedWords'),
+				hiddenTagListName: 'words',
+				prefilled: palab
+			});
+		});
+	}
+	
+	var eliminarPalabra = function(idOferta) {
+		
 	}
 	
 	/**
@@ -1064,6 +1098,7 @@ var ofertas = (function() {
 	// Registro de métodos públicos.
 	return {
 		initOfertas : initOfertas,
-		showOfertaForm : showOfertaForm
+		showOfertaForm : showOfertaForm,
+		enviarDatosBasicos:enviarDatosBasicos
 	};
 })();

@@ -898,10 +898,12 @@
 						<div class="block">
 							<h3><i class="icon-sitemap"></i> Detalle de Oferta </h3>
 							<div class="well well-small">
-								<form class="form-horizontal">
+								
 									<div class="row-fluid">
 										<div class="span6">
 											<div class="well well-small">
+												<form action="/r/wso/post" class="form-horizontal" id="oferta-paso-1">
+												<input type="hidden" name="IdEmp" id="OfertaIdEmp" value="" />
 												<div class="control-group">
 													<label for="nombre" class="control-label"> Título de la oferta *</label>
 													<div class="controls"><input type="text" class="validate[required, maxSize[55]]" name="Oferta" id="oferta" maxlength="55" /></div>
@@ -1005,63 +1007,62 @@
 												<p>
 													Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.
 												</p>
+												<div class="control-group">
+													<button type="submit" class="btn" id="boton-enviar-oferta">Modificar</button>
+												</div>
+											</form>
 											</div>
 										</div>
 
 
 										<div class="span6">
-											<div class="well well-small">
-												<h4>¿Dónde estará disponible esta oferta? *</h4>
-												<div class="control-group"> 
-						                            <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
-						                            <input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
-						                        </div>
-						                        <div class="control-group">
-						                        	<table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
-														<thead>
-															<tr>
-																<th>Sucursal</th>
-																<th></th>
-															</tr>
-														</thead>
-														
-														<tbody>
-															<tr>
-																<td>Sucursal 1</td>
-																<th><input type="checkbox"></th>
-															</tr>
-															<tr>
-																<td>Sucursal 1</td>
-																<th><input type="checkbox"></th>
-															</tr>
-														</tbody>
-													</table>
-												</div>
+											<div class="inactivo well well-small">
+												<form action="" id="oferta-paso-2">
+													<h4>¿Dónde estará disponible esta oferta? *</h4>
+													<div class="control-group"> 
+							                            <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
+							                            <input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
+							                        </div>
+							                        <div class="control-group">
+							                        	<table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
+															<thead>
+																<tr>
+																	<th>Sucursal</th>
+																	<th></th>
+																</tr>
+															</thead>
+															
+															<tbody>
+																<tr>
+																	<td>Sucursal 1</td>
+																	<th><input type="checkbox"></th>
+																</tr>
+																<tr>
+																	<td>Sucursal 1</td>
+																	<th><input type="checkbox"></th>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</form>
 											</div>
-											<div class="well well-small">
-												<h4>Palabras relacionadas con la oferta</h4>
-												<div class="control-group">
-													<div class="input-append">
-															<input class="span10" id="appendedInputText"  type="text">
-															<button class="btn" id="appendedInputButton" type="button">Añadir Palabra</button>
+											<div class="inactivo well well-small">
+												<form action="" id="oferta-paso-3">
+													<h4>Palabras relacionadas con la oferta</h4>
+													<div class="control-group">
+														<div class="input-append">
+																<input class="span10" id="appendedInputText"  type="text">
+																<button class="btn" id="appendedInputButton" type="button">Añadir Palabra</button>
+														</div>
+														<div id="appendedWords">
+														</div>
 													</div>
-													<div id="appendedWords">
-													</div>
-												</div>
+												</form>
 											</div>
 
 
 										</div>
 									</div>
-
-									<div class="row-fluid">
-										<div class="span12">
-											<div class="control-group">
-												<button type="submit" class="btn" id="boton-enviar-oferta">Modificar</button>
-											</div>
-										</div>
-									</div>
-								</form>
 							</div>
 						</div>
 					</div>
