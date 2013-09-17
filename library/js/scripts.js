@@ -110,18 +110,62 @@
 	
 	/* ---------------- Inicia Micrositios ------------- */
 	
+	/**
+	 * uploadImage
+	 * Método que permite subir la imagen de logotipo del micrositio.
+	 */
 	var uploadImage = function() {
 		$('#submitImage').on('click', function(event){
+			event.preventDefault();
 			$('#imgfile').val($('#infile').val());
 			micrositio.enviarimagen();
 		});
 	}
-	
+	/**
+	 * registerMicrositio
+	 * Método que registra los datos del formulario de micrositios.
+	 */
 	var registerMicrositio = function() {
 		micrositio.enviarDatos();
 	}
 	
 	/* ---------------- Termina Micrositios ------------ */
+
+	/* ---------------- Inicia Ofertas ------------- */
+	/**
+	 * initOfertas 
+	 * Método que llena el listado de ofertas del usuario x empresa.
+	 */
+	var initOfertas = function() {
+		$(document).on('click', 'a.ver-ofertas', function(event) {
+			event.preventDefault();
+			var rel = $(this).attr('rel');
+			ofertas.initOfertas(rel); // este
+			$('#añadir-oferta-empresa').html('<a class="nuevaoferta span12 btn btn-success" rel="'+ rel+ '" ><i class="icon-plus"></i> Añadir nueva oferta</a>');
+
+		});
+	};
+	
+	var showOfertaForm = function() {
+		$(document).on('click', 'a.nuevaoferta, a.editar-oferta', function(event){
+			event.preventDefault();
+			var rel = $(this).attr('rel');
+			var esNueva = false;
+			if($(this).hasClass('nuevaoferta'))
+				esNueva = true;
+			ofertas.showOfertaForm(rel, esNueva);
+		});
+	}
+	
+	var registrarOfertaPaso1 = function(){
+		ofertas.enviarDatosBasicos();
+	}
+	var addWords = function() {
+		$('#appendedInputButton').on('click', function(event){
+			
+		});
+	}
+	/* ---------------- Termina Ofertas ------------ */	
 	/**
 	 * execute
 	 * Registro de métodos que se ejecutarán automáticamente cuando se cargue la página.
@@ -139,6 +183,9 @@
 			modificasucursal();
 			uploadImage();
 			registerMicrositio();
+			initOfertas();
+			showOfertaForm();
+			registrarOfertaPaso1();
 		});
 	};
 	return execute();
@@ -590,6 +637,7 @@ var micrositio = (function() {
 	var cargarmicrositio = function(empresaID) {
 		Ajax.get('/r/wsed/get?IdEmp=' + empresaID, function(response){
 			if(response.status == 'ok'){
+				$('div#micrositio-detalle').removeClass('inactivo');
 				var blobkey = response.BlobKey;
 				var uploadurl = response.UploadUrl;
 				$("#IdEmp").attr("value", response.IdEmp);
@@ -718,4 +766,339 @@ var micrositio = (function() {
 		enviarDatos:enviarDatos
 	};
 
+})();
+
+
+var ofertas = (function() {
+	
+	/**
+	 * _putDefault
+	 * Metodo privado que muestra una imagen por defecto en caso que no haya imagen de logotipo.
+	 */
+	var _putDefault = function() {
+		$('#pic').remove();
+		img = "<img  src = 'imgs/imageDefault.jpg' id='pic' width='258px' />"
+		$('#urlimg').append(img);
+	}
+	
+	/**
+	 * _avoidCache
+	 * Método privado que genera un identificador aleatorio para evitar el caché.
+	 */
+	var _avoidCache = function() {
+		var numRam = Math.floor(Math.random() * 500);
+		return numRam;
+	}
+	
+	/**
+	 * _updateimg
+	 * Método privado que actualiza la imagen que se esta mostrando como logotipo, por la que se acaba de subir.
+	 */
+	var _updateimg = function(blob) {
+		blobkey = blob; // set blobkey global
+		$("#BlobKey").attr("value", blobkey);
+		if (blob) {
+			$('#pic').remove();
+			var query = "id=" + blob + "&Avc=" + _avoidCache();
+			img = "<img  src = '/extraimg?" + query + "' id='pic' width='256px' />"
+			$('#urlimg').append(img);
+		} else {
+			_putDefault();
+		}
+	}
+	
+
+	/**
+	 * initOfertas
+	 * Método que llena y muestra la lista de ofertas.
+	 * @param {string} rel - Identificador de la empresa.
+	 */
+	var initOfertas = function(rel) {
+		var imprimeTemplate = '', 
+		underTemplateID = $('#ofertasTemplate').html(), 
+		underTemplate = _.template(underTemplateID);
+		Ajax.get('/r/wso/gets?IdEmp='+rel, function(response){
+			imprimeTemplate = underTemplate({
+				ofertasArray : response.ofertas
+			});
+			$("#ofertasLista").html(imprimeTemplate);
+			Ajax.hidePreload($('#ofertas-lista'));
+		});
+		
+//		Ajax.get('/r/wso/get?IdOft=' + rel, function(response){
+//			if(response.status == 'ok'){
+//				idemp = resp.IdEmp;
+//	            blobkey = resp.BlobKey;
+//	            var d = new Date(Date.parse(resp.FechaPub));
+//	            uploadurl = resp.UploadUrl;
+//	            $("#enviar").attr('action', uploadurl);
+//	            $("#uploadimg_id").attr('value', rel);
+//	            $("#oferta").val(resp.Oferta);
+//	            $("#descripcion").val(resp.Descripcion);
+//	            $("#date1").val(d.getUTCDate()+ " Nov");
+//	            $("#url").val(resp.Url);
+//	            $(resp.categorias).each(function() {
+//	            	$("#categoria").append($("<option>").attr('value',this.idcat).attr("selected",this.selected).text(this.categoria));
+//	            });
+//			}
+//	        if(typeof rel === 'undefined') {
+//	            // se ocultan los campos que requieren IdOft
+//	            putDefault();
+//	            $('#imgform').hide();
+//	            $('#modbtn').hide();
+//	            $('#newbtn').show();
+//	            $('#statuspub').attr("checked", true);
+//	        } else {
+//	            /* solo se actualizan estos datos si hay id de oferta */
+//	            fillpcve(idoft, idemp);
+//	            fillsucursales(idoft, idemp);
+//	            $('#imgform').show();
+//	            $('#modbtn').show();
+//	            $('#newbtn').hide();	
+//	        }
+//
+//	        if(typeof blobkey === 'undefined' || blobkey != "none") {
+//	            _updateimg(blobkey);
+//	        } else {
+//	            _putDefault();
+//	        }
+//	        $('#loader').hide();
+//	        $('#urlreq').hide();
+//	        $('#placereq').hide();
+//	        $('#tituloreq').hide();
+//	        $('#enlinea').live('change', function() { 
+//	            if($('#enlinea').attr('checked')) {
+//	                $('#muestraur	l').show();
+//	            } else {
+//	                $('#muestraurl').hide();
+//	            }
+//	        });
+//
+//	        if($('#enlinea').attr('checked')) {
+//	            $('#muestraurl').show();
+//	        } else {
+//	            $('#muestraurl').hide();
+//	        }
+//	
+//	        $("#url").blur(function() {
+//	            if($('#enlinea').attr('checked') && $('#url').val()=='') { $('#urlreq').show(); } else {$('#urlreq').hide();}
+//	        });
+//		});
+	};
+	/**
+	 * showOfertaForm
+	 * Método que muestra el formulario de la oferta, y si es para actualizar, lo llena.
+	 * @params {string} rel - Identificador de la oferta.
+	 */
+	var showOfertaForm = function(rel, esNueva) {
+		if(esNueva){
+			$('#imgform').hide();
+            $('#boton-enviar-oferta').html('Nueva Oferta');
+            $('#statuspub').attr("checked", true);
+            $('#OfertaIdEmp').val(rel);
+            Ajax.get('/r/wss/gets?IdEmp='+rel, function(response){	
+        		$('#ofertas-lista-sucursales tbody').empty();
+        		for(var a in response){
+        			$('#ofertas-lista-sucursales tbody').append('<tr><td>'+response[a].Nombre+'</td><td><input type="checkbox" name="sucursales[]" value="'+response[a].IdSuc+'"></td></tr>');
+        		}
+            });
+		}else{
+			fillpcve(idoft, idemp);
+            fillsucursales(idoft, idemp);
+            $('#imgform').show();
+            $('#modbtn').show();
+            $('#newbtn').hide();
+			Ajax.get('/r/wso/get?IdOft=' + rel, function(response){
+				if(response.status == 'ok'){
+					idemp = resp.IdEmp;
+		            blobkey = resp.BlobKey;
+		            var d = new Date(Date.parse(resp.FechaPub));
+		            uploadurl = resp.UploadUrl;
+		            $("#enviar").attr('action', uploadurl);
+		            $("#uploadimg_id").attr('value', rel);
+		            $("#oferta").val(resp.Oferta);
+		            $("#descripcion").val(resp.Descripcion);
+		            $("#date1").val(d.getUTCDate()+ " Nov");
+		            $("#url").val(resp.Url);
+		            $(resp.categorias).each(function() {
+		            	$("#categoria").append($("<option>").attr('value',this.idcat).attr("selected",this.selected).text(this.categoria));
+		            });
+				}
+			});
+		}
+		Ajax.hidePreload($('#oferta-detalle'));
+	}
+	
+	var enviarDatosBasicos = function() {
+		$(document).on('submit', '#oferta-paso-1', function(event){
+			event.preventDefault();
+			var data = $(this).serialize();
+			var action = $(this).attr('action');
+			Ajax.post(action, data, function(response){
+				if(response.status == 'ok'){
+					$('#oferta-paso-2').parent().removeClass('inactivo');
+					$('#oferta-paso-3').parent().removeClass('inactivo');
+				}
+			});
+		});
+	}
+	
+	var agregarPalabra = function(idOferta) {
+		var data = {
+			token: $('#appendedInputText').val(),
+			id: idOferta
+		}
+		Ajax.post('/r/addword', data, function(response){
+			var palab = [];
+			for(var a in response){
+				//var palab[] = response[a].Palabra;
+			}
+			$('#appendedInputText').tagsManager({
+				tagsContainer: $('#appendedWords'),
+				hiddenTagListName: 'words',
+				prefilled: palab
+			});
+		});
+	}
+	
+	var eliminarPalabra = function(idOferta) {
+		
+	}
+	
+	/**
+	 * cargarmicrositio
+	 * Método que llena y muestra el formulario de micrositios.
+	 * @param {string} empresaID - Identificador de la empresa.
+	 */
+//	var cargarmicrositio = function(empresaID) {
+//		Ajax.get('/r/wsed/get?IdEmp=' + empresaID, function(response){
+//			if(response.status == 'ok'){
+//				var blobkey = response.BlobKey;
+//				var uploadurl = response.UploadUrl;
+//				$("#IdEmp").attr("value", response.IdEmp);
+//				$("#enviar").attr('action', uploadurl);
+//				$("#BlobKey").attr("value", blobkey);
+//				$("#uploadimg_id").attr('value', empresaID);
+//				$("#empresa").html(response.Empresa);
+//				$("#descripcion").val(response.Desc);
+//				$("#facebook").val(response.Facebook);
+//				$("#twitter").val(response.Twitter);
+//				if (blobkey) {
+//					_updateimg(blobkey);
+//				} else {
+//					_putDefault();
+//				}
+//			} else {
+//				_putDefault();
+//			}
+//		});
+//	};
+//
+//	/**
+//	 * enviarimagen
+//	 * Método que realiza el upload de la imagen.
+//	 */
+//	var enviarimagen = function() {
+//		var bar = $('.bar');
+//	    var percent = $('.percent');
+//	    var status = $('#status');
+//		$('#enviar').ajaxSubmit({
+//			dataType : 'json',
+//			iframe:true,
+//			beforeSend : function() {
+//				status.empty();
+//				var percentVal = '0%';
+//				bar.width(percentVal);
+//				percent.html(percentVal);
+//			},
+//			uploadProgress : function(event, position, total, percentComplete) {
+//				var percentVal = percentComplete + '%';
+//				bar.width(percentVal);
+//				// percent.html(percentVal);
+//			},
+//			success : function(data) {
+//				//console.log(data);
+//				var resp = "";
+//				switch (data.status) {
+//				case "invalidUpload":
+//					resp = "<p>Intente nuevamente, su imagen no puede ser integrada.</p>";
+//				case "uploadSessionError":
+//					resp = "<p>Favor de refrescar la página para continuar.</p>";
+//				case "notFound":
+//					resp = "<p>La oferta no existe.</p>";
+//				case "ok":
+//					resp = "<p>La imagen se integró exitosamente</p>";
+//					var uploadurl;
+//					uploadurl = data.UploadUrl;
+//					$("#enviar").attr("action", uploadurl);
+//					setTimeout(function() {
+//						_updateimg(data.BlobKey);
+//					}, 1000);
+//					break;
+//				default:
+//					resp = "<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>";
+//				}
+//				status.html(resp);
+//			},
+//			complete : function() {
+//				bar.width('100%');
+//			},
+//			error : function() {
+//				status.html("<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>");
+//			}
+//		});
+//	};
+//	
+//	/**
+//	 * enviarDatos
+//	 * Método que envia los datos del formulario de micrositios, via Ajax.
+//	 */
+//	var enviarDatos = function() {
+//		$(document).on('submit', '#enviardata', function(event){
+//			event.preventDefault();
+//			var data = $(this).serialize();
+//			var action = $(this).attr('action');
+//			Ajax.post(action, data, function(response){
+//				if (response.status == "ok") {
+//					alert('Micrositio registrado correctamente');
+//					location.href = "/r/index";
+//				}
+//			});
+//		});
+//	}
+//	
+//	/**
+//	 * extrasformulario
+//	 * ?? Método desconocido
+//	 * @todo Averiguar que hace.
+//	 */
+//	var extrasformulario = function() {
+//		$("#pic").error(function() {
+//			putDefault();
+//		});
+//
+//		$('textarea[maxlength]').live('keyup blur', function() {
+//			var maxlength = $(this).attr('maxlength');
+//			var val = $(this).val();
+//			if (val.length > maxlength) {
+//				$(this).val(val.slice(0, maxlength));
+//			}
+//		});
+//
+//		$('input[maxlength]').live('keyup blur', function() {
+//			var maxlength = $(this).attr('maxlength');
+//			var val = $(this).val();
+//			if (val.length > maxlength) {
+//				$(this).val(val.slice(0, maxlength));
+//			}
+//		});
+//	};
+
+	
+	// Registro de métodos públicos.
+	return {
+		initOfertas : initOfertas,
+		showOfertaForm : showOfertaForm,
+		enviarDatosBasicos:enviarDatosBasicos
+	};
 })();

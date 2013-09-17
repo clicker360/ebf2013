@@ -21,4 +21,8 @@ _cgo_export.*
 _testmain.go
 .project
 *.exe
+<<<<<<< HEAD
+=======
+*.sublime-project
+>>>>>>> c922be45422bf8a07a3a0c4f0755baea03b5de7b
 *.sublime-workspace

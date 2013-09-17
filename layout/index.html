@@ -9,6 +9,7 @@
 
 	<link href="../library/css/libs/bootstrap.css" rel="stylesheet">
 	<link href="../library/css/style.css" rel="stylesheet">
+	<link href="../library/css/libs/tagmanager.css" rel="stylesheet">
 	<style>
 	body {
 		padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -138,7 +139,7 @@
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
-									<div class="preloader"></div>
+									
 									<script id="empresaTemplateDash" type="text/template">
 												<% for (var i in empresasArrayDash){ %>
 												<% var empresa = empresasArrayDash[i]; %>
@@ -147,10 +148,14 @@
 														<td><%= empresa.RFC %></td>
 														<td><%= empresa.DirEnt %></td>
 														<td><a href="<%= empresa.Url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
-														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
+														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a></th>
 														<th>
 															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i>Ver Sucursales</a>
 															<a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Sucursales</a>
+														</th>
+														<th>
+															<a class="ver-ofertas btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i>Ver Ofertas</a>
+															<a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
 														</th>
 													</tr>
 												<% } %>
@@ -378,7 +383,7 @@
 											<th>Ofertas</th>
 										</tr>
 									</thead>
-									<div class="preloader"></div>
+									
 									<script id="empresaTemplate" type="text/template">
 												<% for (var i in empresasArray){ %>
 												<% var empresa = empresasArray[i]; %>
@@ -387,7 +392,7 @@
 														<td><%= empresa.RFC %></td>
 														<td><%= empresa.DirEnt %></td>
 														<td><a href="<%= empresa.Url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
-														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar</a></th>
+														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a></th>
 														<th>
 															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
 															<a href="" class="nuevasucursal btn btn-mini btn-success"><i class="icon-plus"></i> Añadir</a>
@@ -414,7 +419,7 @@
 						<div class="block">
 							<h3><i class="icon-building"></i> Detalle de empresa</h3>
 							<div class="well well-small">
-								<div class="preloader"></div>
+								
 								<form id="empresa-form" class="form-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
@@ -479,7 +484,7 @@
 											<div class="control-group">
 												<label for="DirMunEmp" class="control-label">Delegación o municipio *</label>
 												<div class="controls">
-													<div class="preloader"></div>
+													
 													<select id="DirMunEmp" name="DirMun"> </select>
 													<script id="muniTemplateEmp" type="text/template">
 														<% for (var i in MunicipiosArray){ %>
@@ -518,7 +523,7 @@
 											<div class="control-group">
 												<label for="OrgEmp" class="control-label">Organismo empresarial</label>
 												<div class="controls">
-													<div class="preloader"></div>
+													
 													<select id="OrgEmpId" name="OrgEmp">
 													</select>
 													<script id="orgTemplate" type="text/template">
@@ -569,7 +574,7 @@
 								</form>
 							</div>
 						</div>
-						<div class="block">
+						<div class="inactivo block" id="micrositio-detalle">
 							<h3><i class="icon-globe"></i> Micrositio de empresa</h3>
 							<div class="well well-small">
 								<div class="row-fluid">
@@ -584,13 +589,13 @@
 												<div class="control-group">
 													<label for="" class="control-label">Sitio de Facebook:</label>
 													<div class="controls">
-														<input type="text" class="validate[required, maxSize[255]]" name="Facebook" id="facebook" maxlength="255"/>
+														<input type="text" class="validate[maxSize[255]]" name="Facebook" id="facebook" maxlength="255"/>
 													</div>
 												</div>
 												<div class="control-group">
 													<label for="" class="control-label"> Twitter:</label>
 													<div class="controls">
-														<input type="text" class="validate[required, maxSize[30]]" name="Twitter" id="twitter" maxlength="30"/>
+														<input type="text" class="validate[maxSize[30]]" name="Twitter" id="twitter" maxlength="30"/>
 													</div>
 												</div>
 												<h4>Datos adicionales</h4>
@@ -672,7 +677,7 @@
 											<th>Editar</th>
 										</tr>
 									</thead>
-									<div class="preloader"></div>
+									
 										<script id="sucursalesTemplate" type="text/template">
 												<% for (var i in sucursalesArray){ %>
 												<% var sucursal = sucursalesArray[i]; %>
@@ -704,7 +709,7 @@
 						<div class="block">
 							<h3><i class="icon-sitemap"></i> Detalle de sucursal</h3>
 							<div class="well well-small">
-								<div class="preloader"></div>
+								
 								<form id="sucursal-form" class="form-horizontal">
 									<div class="row-fluid">
 										<div class="span6">
@@ -794,7 +799,7 @@
 												<label for="DirMunSuc" class="control-label">Delegación o municipio *</label>
 												<input type="hidden" name="DirMunSel"  id="municipio"/>
 												<div class="controls">
-													<div class="preloader"></div>
+													
 													<select id="DirMunSuc" name="DirMun"></select>
 													<script id="muniTemplateSuc" type="text/template">
 														<% for (var i in MunicipiosArray){ %>
@@ -847,41 +852,38 @@
 						<div class="block">
 							<div class="row-fluid">
 								<div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
-								<div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+								<div class="span3" id="añadir-oferta-empresa"></div>
 							</div>
 							<div class="well well-small">
 								<table class="table-condensed table-hover table-bordered table-striped">
 									<thead>
 										<tr>
-											<th>Sucursal</th>
+											<th>Oferta</th>
+											<th>Descripcion</th>
 											<th>Empresa</th>
-											<th>RFC</th>
-											<th>Estado</th>
-											<th>Municipio</th>
-											<th>Editar</th>
-											<th>Ver empresa</th>
+											<th>Fecha Publicación</th>
 										</tr>
 									</thead>
-									
-									<tbody>
-										<tr>
-											<td>Sucursal Guanajuato</td>
-											<td>empresa patito de hule morado 3</td>
-											<td>HUCA681202QP8</td>
-											<td>Distrito Federal</td>
-											<td>Benito Juarez</td>											
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-building"></i> Ver empresa</a></th>
-										</tr>
-										<tr>
-											<td>Sucursal Guanajuato</td>
-											<td>empresa patito de hule morado 3</td>
-											<td>HUCA681202QP8</td>
-											<td>Distrito Federal</td>
-											<td>Benito Juarez</td>											
-											<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											<th><a class="btn btn-mini btn-primary"><i class="icon-building"></i> Ver empresa</a></th>
-										</tr>
+
+									<script id="ofertasTemplate" type="text/template">
+												<% for (var i in ofertasArray){ %>
+												<% var oferta = ofertasArray[i]; %>
+													<tr>
+														<td><%= oferta.Oferta %></td>
+														<td><%= oferta.Descripcion %></td>
+														<td><%= oferta.Empresa %></td>
+														<td><%= oferta.FechaPub %></td>
+
+														<th><a class="editar-oferta btn btn-mini" rel="<%= oferta.IdOft %>"><i class="icon-edit"></i> Editar</a></th>
+														<th>
+															<a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= oferta.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
+														</th>
+													</tr>
+												<% } %>
+											</script>
+
+									<tbody id="ofertasLista">
+										
 									</tbody>
 								</table>
 								
@@ -894,125 +896,173 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="block">
-							<h3><i class="icon-sitemap"></i> Detalle de Oferta <div class="preloader"></div></h3>
+							<h3><i class="icon-sitemap"></i> Detalle de Oferta </h3>
 							<div class="well well-small">
-								<div class="preloader"></div>
-								<form class="form-horizontal">
+								
 									<div class="row-fluid">
 										<div class="span6">
-											<div class="control-group">
-												<label for="nombre" class="control-label"> Título de la oferta *</label>
-												<div class="controls"><input name="nombre" type="text"></div>
-											</div>
 											<div class="well well-small">
+												<form action="/r/wso/post" class="form-horizontal" id="oferta-paso-1">
+												<input type="hidden" name="IdEmp" id="OfertaIdEmp" value="" />
+												<div class="control-group">
+													<label for="nombre" class="control-label"> Título de la oferta *</label>
+													<div class="controls"><input type="text" class="validate[required, maxSize[55]]" name="Oferta" id="oferta" maxlength="55" /></div>
+												</div>
 												<div class="control-group">
 													<label for="" class="control-label"> ¿En qué consiste la oferta? *</label>
 													<div class="controls">
-														<textarea name="" id="" cols="30" rows="">
-														</textarea>
+														<textarea class="validate[required, maxSize[350]]" name="Descripcion" cols="30" rows="" id="descripcion" maxlength="350"></textarea>
 													</div>
 												</div>
 													<strong>Máximo 350 caracteres</strong>
 													<p>Esta es la información que quieres compartirle al público sobre tu oferta. Te recomendamos incluir algunos de los siguientes datos: monto del descuento, tipo de promoción, producto o servicio, departamento, público objetivo.<br>Por ejemplo: “40% de descuento en zapatos para dama en todas las marcas.”</p>
-											</div>
-											<div class="control-group">
+											
+												<div class="control-group">
 													<label for="" class="control-label"> Categoría *</label>
 													<div class="controls">
-														<select>
-															<option>1</option>
-															<option>2</option>
-															<option>3</option>
-															<option>4</option>
-															<option>5</option>
-														</select>
+														<select name="IdCat" size="1" id="categoria" class="validate[required]">
+									                        <option value=""> SELECCIONAR UNA </option>
+									                        <option value="1" >Abarrotes</option>
+												            <option value="2" >Automóviles y transportes</option>
+												            <option value="3" >Bancos y seguros</option>
+												            <option value="4" >Blancos</option>
+												            <option value="5" >Calzado</option>
+												            <option value="6" >Cuidado e higiene personal</option>
+												            <option value="7" >Deportes</option>
+												            <option value="8" >Electrónica y video</option>
+												            <option value="9" >Electrodomésticos</option>
+												            <option value="10" >Farmacias</option>
+												            <option value="11" >Ferretería</option>
+												            <option value="12" >Fotografía y cómputo</option>
+												            <option value="13" >Hogar y decoración</option>
+												            <option value="14" >Jardinería</option>
+												            <option value="15" >Joyería</option>
+												            <option value="16" >Jugetería</option>
+												            <option value="17" >Línea blanca</option>
+												            <option value="18" >Muebles</option>
+												            <option value="19" >Oficina y papelería</option>
+												            <option value="20" >Oportunidades</option>
+												            <option value="21" >Óptica</option>
+												            <option value="22" >Perecederos</option>
+												            <option value="23" >Regalos</option>
+												            <option value="24" >Restaurantes</option>
+												            <option value="25" >Ropa</option>
+												            <option value="26" >Servicios</option>
+												            <option value="27" >Varios</option>
+												            <option value="28" >Viajes</option>
+									                    </select>
 													</div>
-												</div>
-
-											<div class="well well-small">
+												</div>										
 												<div class="control-group">
 													<label for="nombre" class="control-label">La oferta estará publicada a partir de</label>
-													<div class="controls"><input name="nombre" type="text"></div>
+													<div class="controls"><input type="text" class="validate[optional]" name="FechaHoraPub" id="date1" readonly="readonly" onclick="return toggleCalendar(this);"/></div>
+													<div id="datePick">
+								                        <a href="#null" onclick="untogleCalendar();">X</a>
+								                        <p> Noviembre 2012</p>
+								                        <ul class="datepicker">
+								                            <li>L</li>
+								                            <li>M</li>
+								                            <li>M</li>
+								                            <li>J</li>
+								                            <li>V</li>
+								                            <li>S</li>
+								                            <li>D</li>
+								                            <li></li>
+								                            <li></li>
+								                            <li></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="1">1</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="2">2</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="3">3</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="4">4</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="5">5</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="6">6</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="7">7</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="8">8</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="9">9</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="10">10</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="11">11</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="12">12</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="13">13</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="14">14</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="15">15</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="16">16</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="17">17</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="18">18</a></li>
+								                            <li><a href="#null" onClick="getTheDate(this)" id="19">19</a></li>
+								                            <li>20</li>
+								                            <li>21</li>
+								                            <li>22</li>
+								                            <li>23</li>
+								                            <li>24</li>
+								                            <li>25</li>
+								                            <li>26</li>
+								                            <li>27</li>
+								                            <li>28</li>
+								                            <li>29</li>
+								                            <li>30</li>
+								                            <li>31</li>
+								                        </ul>
+								                    </div>
 												</div>
 												<p>
 													Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.
 												</p>
+												<div class="control-group">
+													<button type="submit" class="btn" id="boton-enviar-oferta">Modificar</button>
+												</div>
+											</form>
 											</div>
 										</div>
 
 
 										<div class="span6">
-											<div class="well well-small">
-												<h4>¿Dónde estará disponible esta oferta? *</h4>
-												<div class="accordion" id="accordion2">
-													<div class="accordion-group">
-														<div class="accordion-heading">
-															<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#Coelectrónico">
-																El Buen Fin en línea (Comercio electrónico) 
-															</a>
-														</div>
-														<div id="Coelectrónico" class="accordion-body collapse">
-															<div class="accordion-inner">
-																<div class="control-group">
-																	<label for="" class="control-label"> Sitio de internet de la oferta</label>
-																	<div class="controls">
-																		<input type="text">
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="accordion-heading">
-															<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#Sucursales">
-																En sucursales
-															</a>
-														</div>
-														<div id="Sucursales" class="accordion-body collapse">
-															<div class="accordion-inner">
-																<table class="table-condensed table-hover table-bordered table-striped">
-																	<thead>
-																		<tr>
-																			<th>Sucursal</th>
-																			<th></th>
-																		</tr>
-																	</thead>
-																	
-																	<tbody>
-																		<tr>
-																			<td>Sucursal 1</td>
-																			<th><input type="checkbox"></th>
-																		</tr>
-																		<tr>
-																			<td>Sucursal 1</td>
-																			<th><input type="checkbox"></th>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-														</div>
+											<div class="inactivo well well-small">
+												<form action="" id="oferta-paso-2">
+													<h4>¿Dónde estará disponible esta oferta? *</h4>
+													<div class="control-group"> 
+							                            <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
+							                            <input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
+							                        </div>
+							                        <div class="control-group">
+							                        	<table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
+															<thead>
+																<tr>
+																	<th>Sucursal</th>
+																	<th></th>
+																</tr>
+															</thead>
+															
+															<tbody>
+																<tr>
+																	<td>Sucursal 1</td>
+																	<th><input type="checkbox"></th>
+																</tr>
+																<tr>
+																	<td>Sucursal 1</td>
+																	<th><input type="checkbox"></th>
+																</tr>
+															</tbody>
+														</table>
 													</div>
-												</div>
+												</form>
 											</div>
-											<div class="well well-small">
-												<h4>Palabras relacionadas con la oferta</h4>
-												<div class="control-group">
-													<div class="input-append">
-															<input class="span10" id="appendedInputButton" type="text">
-															<button class="btn" type="button">Añadir Palabra</button>
+											<div class="inactivo well well-small">
+												<form action="" id="oferta-paso-3">
+													<h4>Palabras relacionadas con la oferta</h4>
+													<div class="control-group">
+														<div class="input-append">
+																<input class="span10" id="appendedInputText"  type="text">
+																<button class="btn" id="appendedInputButton" type="button">Añadir Palabra</button>
+														</div>
+														<div id="appendedWords">
+														</div>
 													</div>
-												</div>
+												</form>
 											</div>
 
 
 										</div>
 									</div>
-
-									<div class="row-fluid">
-										<div class="span12">
-											<div class="control-group">
-												<button type="submit" class="btn">Modificar</button>
-											</div>
-										</div>
-									</div>
-								</form>
 							</div>
 						</div>
 					</div>
@@ -1035,6 +1085,7 @@
 		aquí publicadas son responsabilidad de las tiendas que lo ofrecen.
 		</p>
 	</div>
+	<div class="preloader"></div>
 		<!-- Le javascript
 		================================================== -->
 		<script src="../library/js/libs/bootstrap-transition.js"></script>
@@ -1050,6 +1101,8 @@
 		<script src="../library/js/libs/bootstrap-carousel.js"></script>
 		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
 		<script src="../library/js/libs/jquery.formparams.js"></script>
+		<script src="../library/js/libs/datepicker.js"></script>
+		<script src="../library/js/libs/tagmanager.js"></script>
 		<script src="../library/js/scripts.js"></script>
 		<script src="../library/js/llenamuni.js"></script>
 		<script src="../library/js/llenaorg.js"></script>
