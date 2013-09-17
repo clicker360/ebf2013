@@ -851,7 +851,7 @@
 					<div class="span12">
 						<div class="block">
 							<div class="row-fluid">
-								<div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
+								<div class="span9"><h3><i class="icon-sitemap"></i> Ofertas </h3></div>
 								<div class="span3" id="añadir-oferta-empresa"></div>
 							</div>
 							<div class="well well-small">
@@ -869,15 +869,15 @@
 												<% for (var i in ofertasArray){ %>
 												<% var oferta = ofertasArray[i]; %>
 													<tr>
-														<td><%= oferta.Oferta %></td>
-														<td><%= oferta.Descripcion %></td>
-														<td><%= oferta.Empresa %></td>
-														<td><%= oferta.FechaPub %></td>
+														<td><%= oferta.oferta %></td>
+														<td><%= oferta.desc %></td>
+														<td><%= oferta.empresa %></td>
+														<td><%= oferta.fechapub %></td>
 
 														<th><a class="editar-oferta btn btn-mini" rel="<%= oferta.IdOft %>"><i class="icon-edit"></i> Editar</a></th>
-														<th>
-															<a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= oferta.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
-														</th>
+														// <th>
+														// 	<a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= oferta.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
+														// </th>
 													</tr>
 												<% } %>
 											</script>

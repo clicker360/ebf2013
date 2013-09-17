@@ -893,36 +893,40 @@ var ofertas = (function() {
 	var showOfertaForm = function(rel, esNueva) {
 		if(esNueva){
 			$('#imgform').hide();
-            $('#boton-enviar-oferta').html('Nueva Oferta');
-            $('#statuspub').attr("checked", true);
-            $('#OfertaIdEmp').val(rel);
-            Ajax.get('/r/wss/gets?IdEmp='+rel, function(response){	
-        		$('#ofertas-lista-sucursales tbody').empty();
-        		for(var a in response){
-        			$('#ofertas-lista-sucursales tbody').append('<tr><td>'+response[a].Nombre+'</td><td><input type="checkbox" name="sucursales[]" value="'+response[a].IdSuc+'"></td></tr>');
-        		}
-            });
+      $('#boton-enviar-oferta').html('Nueva Oferta');
+      $('#statuspub').attr("checked", true);
+      $('#OfertaIdEmp').val(rel);
+      Ajax.get('/r/wss/gets?IdEmp='+rel, function(response){	
+  			$('#ofertas-lista-sucursales tbody').empty();
+  			for(var a in response){
+  				$('#ofertas-lista-sucursales tbody').append('<tr><td>'+response[a].Nombre+'</td><td><input type="checkbox" name="sucursales[]" value="'+response[a].IdSuc+'"></td></tr>');
+  			}
+    	});
 		}else{
-			fillpcve(idoft, idemp);
-            fillsucursales(idoft, idemp);
-            $('#imgform').show();
-            $('#modbtn').show();
-            $('#newbtn').hide();
+			$('#imgform').hide();
+      $('#boton-enviar-oferta').html('Editar Oferta');
+      $('#statuspub').attr("checked", true);
+			// _fillpcve(idoft, idemp);
+   //    _fillsucursales(idoft, idemp);
+   //    $('#imgform').show();
+   //    $('#modbtn').show();
+   //    $('#newbtn').hide();
 			Ajax.get('/r/wso/get?IdOft=' + rel, function(response){
 				if(response.status == 'ok'){
-					idemp = resp.IdEmp;
-		            blobkey = resp.BlobKey;
-		            var d = new Date(Date.parse(resp.FechaPub));
-		            uploadurl = resp.UploadUrl;
-		            $("#enviar").attr('action', uploadurl);
-		            $("#uploadimg_id").attr('value', rel);
-		            $("#oferta").val(resp.Oferta);
-		            $("#descripcion").val(resp.Descripcion);
-		            $("#date1").val(d.getUTCDate()+ " Nov");
-		            $("#url").val(resp.Url);
-		            $(resp.categorias).each(function() {
-		            	$("#categoria").append($("<option>").attr('value',this.idcat).attr("selected",this.selected).text(this.categoria));
-		            });
+					idemp = response.IdEmp;
+          blobkey = response.BlobKey;
+          var d = new Date(Date.parse(response.FechaPub));
+          uploadurl = resp.UploadUrl;
+          $('#OfertaIdEmp').val();
+          $("#enviar").attr('action', uploadurl);
+          $("#uploadimg_id").attr('value', rel);
+          $("#oferta").val(response.Oferta);
+          $("#descripcion").val(resp.Descripcion);
+          $("#date1").val(d.getUTCDate()+ " Nov");
+          $("#url").val(resp.Url);
+          $(resp.categorias).each(function() {
+          	$("#categoria").append($("<option>").attr('value',this.idcat).attr("selected",this.selected).text(this.categoria));
+          });
 				}
 			});
 		}
@@ -932,12 +936,14 @@ var ofertas = (function() {
 	var enviarDatosBasicos = function() {
 		$(document).on('submit', '#oferta-paso-1', function(event){
 			event.preventDefault();
+			var idEmp = $('#OfertaIdEmp').val();
 			var data = $(this).serialize();
 			var action = $(this).attr('action');
 			Ajax.post(action, data, function(response){
 				if(response.status == 'ok'){
-					$('#oferta-paso-2').parent().removeClass('inactivo');
-					$('#oferta-paso-3').parent().removeClass('inactivo');
+					// $('#oferta-paso-2').parent().removeClass('inactivo');
+					// $('#oferta-paso-3').parent().removeClass('inactivo');
+					initOfertas(idEmp);
 				}
 			});
 		});
