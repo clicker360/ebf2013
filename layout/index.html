@@ -147,8 +147,11 @@
 														<td><%= empresa.Nombre %></td>
 														<td><%= empresa.RFC %></td>
 														<td><%= empresa.DirEnt %></td>
-														<td><a href="<%= empresa.Url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
-														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a></th>
+														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a>
+														</th>
+														<th>
+															<a class="eliminarempresa btn btn-mini btn-warning" rel="<%= empresa.IdEmp %>"><i class="icon-minus"></i> Eliminar Empresa </a>
+														</th>
 														<th>
 															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i>Ver Sucursales</a>
 															<a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Sucursales</a>
@@ -675,6 +678,7 @@
 											<th>Municipio</th>
 											<th>Entidad</th>
 											<th>Editar</th>
+											<th>Eliminar</th>
 										</tr>
 									</thead>
 									
@@ -688,6 +692,7 @@
 														<td><%= sucursal.DirMun %></td>
 
 														<th><a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a></th>
+														<th><a class="eliminarsucursal btn btn-mini btn-warning" data-idsuc="<%= sucursal.IdSuc %>" data-idemp="<%= sucursal.IdEmp %>"><i class="icon-edit"></i> Eliminar</a></th>
 
 													</tr>
 												<% } %>
@@ -874,10 +879,10 @@
 														<td><%= oferta.empresa %></td>
 														<td><%= oferta.fechapub %></td>
 
-														<th><a class="editar-oferta btn btn-mini" rel="<%= oferta.IdOft %>"><i class="icon-edit"></i> Editar</a></th>
-														// <th>
-														// 	<a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= oferta.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
-														// </th>
+														<th><a class="editar-oferta btn btn-mini" rel="<%= oferta.idoft %>"><i class="icon-edit"></i> Editar</a></th>
+														<th>
+															<a class="eliminaroferta btn btn-mini btn-warning" data-idoft="<%= oferta.idoft %>" data-idemp="<%= oferta.idemp %>"><i class="icon-minus"></i> Eliminar </a>
+														</th>
 													</tr>
 												<% } %>
 											</script>
@@ -903,7 +908,7 @@
 										<div class="span6">
 											<div class="well well-small">
 												<form action="/r/wso/post" class="form-horizontal" id="oferta-paso-1">
-												<input type="hidden" name="IdEmp" id="OfertaIdEmp" value="" />
+												<input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
 												<div class="control-group">
 													<label for="nombre" class="control-label"> Título de la oferta *</label>
 													<div class="controls"><input type="text" class="validate[required, maxSize[55]]" name="Oferta" id="oferta" maxlength="55" /></div>
@@ -1007,23 +1012,21 @@
 												<p>
 													Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.
 												</p>
+												<div class="control-group"> 
+						                            <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
+						                            <input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
+						                        </div>
 												<div class="control-group">
 													<button type="submit" class="btn" id="boton-enviar-oferta">Modificar</button>
 												</div>
 											</form>
 											</div>
 										</div>
-
-
 										<div class="span6">
 											<div class="inactivo well well-small">
 												<form action="" id="oferta-paso-2">
-													<h4>¿Dónde estará disponible esta oferta? *</h4>
-													<div class="control-group"> 
-							                            <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
-							                            <input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
-							                        </div>
-							                        <div class="control-group">
+													<input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
+													<div class="control-group">
 							                        	<table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
 															<thead>
 																<tr>
@@ -1051,10 +1054,10 @@
 													<h4>Palabras relacionadas con la oferta</h4>
 													<div class="control-group">
 														<div class="input-append">
-																<input class="span10" id="appendedInputText"  type="text">
-																<button class="btn" id="appendedInputButton" type="button">Añadir Palabra</button>
+															<input class="span10" id="AddWordInput"  type="text">
+															<button class="btn" id="AddWordButton" type="button" rel="">Añadir Palabra</button>
 														</div>
-														<div id="appendedWords">
+														<div id="WordsAdded">
 														</div>
 													</div>
 												</form>

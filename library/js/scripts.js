@@ -161,8 +161,19 @@
 		ofertas.enviarDatosBasicos();
 	}
 	var addWords = function() {
-		$('#appendedInputButton').on('click', function(event){
-			
+		$('#AddWordButton').on('click', function(event){
+			var idOferta = $(this).attr('rel');
+			ofertas.agregarPalabra(idOferta);
+		});
+	}
+
+	var eliminarOferta = function() {
+		$(document).on('click', '.eliminaroferta', function(event){
+			event.preventDefault();
+			var idOferta = $(this).attr('data-idoft');
+			var idEmpresa = $(this).attr('data-idemp');
+			if(confirm('¿Seguro que desea eliminar esta oferta?'))
+				ofertas.eliminarOferta(idOferta, idEmpresa);
 		});
 	}
 	/* ---------------- Termina Ofertas ------------ */	
@@ -186,6 +197,8 @@
 			initOfertas();
 			showOfertaForm();
 			registrarOfertaPaso1();
+			addWords();
+			eliminarOferta();
 		});
 	};
 	return execute();
@@ -893,9 +906,9 @@ var ofertas = (function() {
 	var showOfertaForm = function(rel, esNueva) {
 		if(esNueva){
 			$('#imgform').hide();
-      $('#boton-enviar-oferta').html('Nueva Oferta');
+      $('#boton-enviar-oferta').html('Siguiente Paso');
       $('#statuspub').attr("checked", true);
-      $('#OfertaIdEmp').val(rel);
+      $('.OfertaIdEmp').val(rel);
       Ajax.get('/r/wss/gets?IdEmp='+rel, function(response){	
   			$('#ofertas-lista-sucursales tbody').empty();
   			for(var a in response){
@@ -936,14 +949,14 @@ var ofertas = (function() {
 	var enviarDatosBasicos = function() {
 		$(document).on('submit', '#oferta-paso-1', function(event){
 			event.preventDefault();
-			var idEmp = $('#OfertaIdEmp').val();
 			var data = $(this).serialize();
 			var action = $(this).attr('action');
 			Ajax.post(action, data, function(response){
 				if(response.status == 'ok'){
+					$('#AddWordButton').attr('rel',response.IdOft);
 					// $('#oferta-paso-2').parent().removeClass('inactivo');
-					// $('#oferta-paso-3').parent().removeClass('inactivo');
-					initOfertas(idEmp);
+					$('#oferta-paso-3').parent().removeClass('inactivo');
+					// initOfertas(idEmp);
 				}
 			});
 		});
@@ -951,24 +964,38 @@ var ofertas = (function() {
 	
 	var agregarPalabra = function(idOferta) {
 		var data = {
-			token: $('#appendedInputText').val(),
+			token: $('#AddWordInput').val(),
 			id: idOferta
 		}
 		Ajax.post('/r/addword', data, function(response){
-			var palab = [];
-			for(var a in response){
-				//var palab[] = response[a].Palabra;
+			var dataResp = {
+				id : idOferta
 			}
-			$('#appendedInputText').tagsManager({
-				tagsContainer: $('#appendedWords'),
-				hiddenTagListName: 'words',
-				prefilled: palab
-			});
+			if(response.status == 'ok'){
+				Ajax.post('/r/wordsxo', dataResp, function(resp){
+					$('#WordsAdded').empty();
+					$('#WordsAdded').append(response.token+'<br/>');
+					if(resp.status != 'notFound'){
+						for(var a in resp){
+							$('#WordsAdded').append(resp[a].token+'<br/>');
+						}
+					}
+				});
+			}
+			
 		});
 	}
 	
 	var eliminarPalabra = function(idOferta) {
 		
+	}
+
+	var eliminarOferta = function(idOferta, idEmpresa) {
+		Ajax.get('/r/wso/del?IdEmp='+idEmpresa+'&IdOft='+idOferta, function(response){
+			if(response.status == 'ok'){
+				alert('Oferta elmiminada.');
+			}
+		});
 	}
 	
 	/**
@@ -1105,6 +1132,8 @@ var ofertas = (function() {
 	return {
 		initOfertas : initOfertas,
 		showOfertaForm : showOfertaForm,
-		enviarDatosBasicos:enviarDatosBasicos
+		enviarDatosBasicos:enviarDatosBasicos,
+		agregarPalabra:agregarPalabra,
+		eliminarOferta:eliminarOferta
 	};
 })();
