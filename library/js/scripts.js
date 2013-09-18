@@ -956,7 +956,6 @@ var ofertas = (function() {
 		if(esNueva){
 			$('#imgform').hide();
       $('#boton-enviar-oferta').html('Siguiente Paso');
-      $('#statuspub').attr("checked", true);
       $('.OfertaIdEmp').val(rel);
       Ajax.get('/r/wss/gets?IdEmp='+rel, function(response){	
   			$('#ofertas-lista-sucursales tbody').empty();
@@ -965,30 +964,32 @@ var ofertas = (function() {
   			}
     	});
 		}else{
+			$('#oferta-paso-1').attr('action','/r/wso/post');
+			$('#oferta-paso-1').append('<input type="hidden" name="IdOft" value="'+rel+'" />');
 			$('#imgform').hide();
       $('#boton-enviar-oferta').html('Editar Oferta');
-      $('#statuspub').attr("checked", true);
-			// _fillpcve(idoft, idemp);
-   //    _fillsucursales(idoft, idemp);
-   //    $('#imgform').show();
-   //    $('#modbtn').show();
-   //    $('#newbtn').hide();
-			Ajax.get('/r/wso/get?IdOft=' + rel, function(response){
+      $('#AddWordButton').attr('rel',rel);
+      $('#oferta-paso-3').parent().removeClass('inactivo');
+      var dataResp = {
+				id : rel
+			}
+      Ajax.post('/r/wordsxo', dataResp, function(resp){
+				$('#WordsAdded').empty();
+				if(resp.status != 'notFound'){
+					for(var a in resp){
+						$('#WordsAdded').append('<div class="palabraAgregada" data-idoft="'+rel+'"><span class="label-bf">'+resp[a].token+'</span><a class="close-bf eliminarpalabra" href="">&times;</a></div>');
+					}
+				}
+			});
+      Ajax.get('/r/wso/get?IdOft=' + rel, function(response){
 				if(response.status == 'ok'){
-					idemp = response.IdEmp;
-          blobkey = response.BlobKey;
-          var d = new Date(Date.parse(response.FechaPub));
-          uploadurl = resp.UploadUrl;
-          $('#OfertaIdEmp').val();
-          $("#enviar").attr('action', uploadurl);
-          $("#uploadimg_id").attr('value', rel);
-          $("#oferta").val(response.Oferta);
-          $("#descripcion").val(resp.Descripcion);
-          $("#date1").val(d.getUTCDate()+ " Nov");
-          $("#url").val(resp.Url);
-          $(resp.categorias).each(function() {
-          	$("#categoria").append($("<option>").attr('value',this.idcat).attr("selected",this.selected).text(this.categoria));
-          });
+					var d = new Date(Date.parse(response.FechaPub));
+					$('.OfertaIdEmp').val(response.IdEmp);
+					$('#oferta-paso-1 #oferta').val(response.Oferta);
+					$('#oferta-paso-1 #descripcion').val(response.Descripcion);
+					$('#oferta-paso-1 #categoria').val(response.IdCat);
+					$('#oferta-paso-1 #date1').val(d.getUTCDate()+ " Nov");
+
 				}
 			});
 		}
