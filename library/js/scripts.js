@@ -56,6 +56,16 @@
 	var modificaempresa = function() {
 		empresas.empresa_envia();
 	};
+
+	var eliminarEmpresa = function() {
+		$(document).on('click','.eliminarempresa', function(event){
+			event.preventDefault();
+			var idEmpresa = $(this).attr('rel');
+			if(confirm('¿Seguro que desea eliminar esta empresa?')){
+				empresas.eliminarEmpresa(idEmpresa);
+			}
+		});
+	}
 	/* ---------------- Fin Empresas ------------- */
 
 	/* ---------------- Sucursales ------------- */
@@ -105,7 +115,16 @@
 		sucursales.sucursal_envia();
 	};
 	
-	
+	var eliminarSucursal = function() {
+		$(document).on('click','.eliminarsucursal', function(event){
+			event.preventDefault();
+			var idSucursal = $(this).attr('data-idsuc');
+			var idEmpresa = $(this).attr('data-idemp');
+			if(confirm('¿Seguro que desea eliminar esta sucursal?')){
+				sucursales.eliminarSucursal(idSucursal, idEmpresa);
+			}
+		});
+	}
 	/* ---------------- Termina Sucursales ------------- */
 	
 	/* ---------------- Inicia Micrositios ------------- */
@@ -176,6 +195,15 @@
 				ofertas.eliminarOferta(idOferta, idEmpresa);
 		});
 	}
+
+	var eliminarPalabra = function() {
+		$(document).on('click','.eliminarpalabra', function(event){
+			event.preventDefault();
+			var token = $(this).parent().find('span').html();
+			var idOferta = $(this).parent().attr('data-idoft');
+			ofertas.eliminarPalabra(idOferta, token);
+		});
+	}
 	/* ---------------- Termina Ofertas ------------ */	
 	/**
 	 * execute
@@ -199,6 +227,9 @@
 			registrarOfertaPaso1();
 			addWords();
 			eliminarOferta();
+			eliminarEmpresa();
+			eliminarSucursal();
+			eliminarPalabra();
 		});
 	};
 	return execute();
@@ -366,12 +397,22 @@ var empresas = (function() {
 			}
 		})
 	};
+
+	var eliminarEmpresa = function(idEmpresa) {
+		Ajax.get('/r/wse/del?IdEmp='+idEmpresa, function(response){
+			if(response.status == 'ok'){
+				alert('Empresa eliminada.');
+				location.reload();
+			}
+		});
+	}
 	
 	// Registro de métodos públicos.
 	return {
 		initEmpresas : initEmpresas,
 		empresaformdesdejson : empresaformdesdejson,
-		empresa_envia : empresa_envia
+		empresa_envia : empresa_envia,
+		eliminarEmpresa:eliminarEmpresa
 	};
 })();
 
@@ -560,7 +601,14 @@ var sucursales = (function() {
 			}
 		})
 	};
-	
+	var eliminarSucursal = function(idSucursal, idEmpresa) {
+		Ajax.get('/r/wss/del?IdEmp='+idEmpresa+'&IdSuc='+idSucursal, function(response){
+			if(response.status == 'ok'){
+				alert('Sucursal elmiminada.');
+				initSucursales(idEmpresa);
+			}
+		});
+	}
 	
 	// Registro de métodos públicos.
 	return {
@@ -568,7 +616,8 @@ var sucursales = (function() {
 		sucursalformdesdejsonModifica : sucursalformdesdejsonModifica,
 		sucursalformdesdejsonNueva : sucursalformdesdejsonNueva,
 		sucursal_envia : sucursal_envia,
-		mostrarMapa: mostrarMapa
+		mostrarMapa: mostrarMapa,
+		eliminarSucursal:eliminarSucursal
 	};
 })();
 
@@ -974,10 +1023,10 @@ var ofertas = (function() {
 			if(response.status == 'ok'){
 				Ajax.post('/r/wordsxo', dataResp, function(resp){
 					$('#WordsAdded').empty();
-					$('#WordsAdded').append(response.token+'<br/>');
+					$('#WordsAdded').append('<div class="palabraAgregada" data-idoft="'+idOferta+'"><span class="label-bf">'+response.token+'</span><a class="close-bf eliminarpalabra" href="">&times;</a></div>');
 					if(resp.status != 'notFound'){
 						for(var a in resp){
-							$('#WordsAdded').append(resp[a].token+'<br/>');
+							$('#WordsAdded').append('<div class="palabraAgregada" data-idoft="'+idOferta+'"><span class="label-bf">'+resp[a].token+'</span><a class="close-bf eliminarpalabra" href="">&times;</a></div>');
 						}
 					}
 				});
@@ -986,14 +1035,33 @@ var ofertas = (function() {
 		});
 	}
 	
-	var eliminarPalabra = function(idOferta) {
-		
+	var eliminarPalabra = function(idOferta, palabra) {
+		data = {
+			token: palabra,
+			id: idOferta
+		}
+		Ajax.post('/r/delword', data, function(response){
+			if(response.status == 'ok'){
+				var dataResp = {
+					id : idOferta
+				}
+				Ajax.post('/r/wordsxo', dataResp, function(resp){
+					$('#WordsAdded').empty();
+					if(resp.status != 'notFound'){
+						for(var a in resp){
+							$('#WordsAdded').append('<div class="palabraAgregada" data-idoft="'+idOferta+'"><span class="label-bf">'+resp[a].token+'</span><a class="close-bf eliminarpalabra" href="">&times;</a></div>');
+						}
+					}
+				});	
+			}
+		});
 	}
 
 	var eliminarOferta = function(idOferta, idEmpresa) {
 		Ajax.get('/r/wso/del?IdEmp='+idEmpresa+'&IdOft='+idOferta, function(response){
 			if(response.status == 'ok'){
 				alert('Oferta elmiminada.');
+				initOfertas(idEmpresa);
 			}
 		});
 	}
@@ -1134,6 +1202,7 @@ var ofertas = (function() {
 		showOfertaForm : showOfertaForm,
 		enviarDatosBasicos:enviarDatosBasicos,
 		agregarPalabra:agregarPalabra,
-		eliminarOferta:eliminarOferta
+		eliminarOferta:eliminarOferta,
+		eliminarPalabra:eliminarPalabra
 	};
 })();
