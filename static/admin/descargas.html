@@ -37,7 +37,7 @@
 	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$('#actualizaregistro').validationEngine({promptPosition : 'bottomRight', scroll: true});
+		$('#enviar').validationEngine({promptPosition : 'bottomRight', scroll: true});
 	});
 	</script>
 </head>
@@ -121,7 +121,7 @@
 							<div class="row-fluid">
 								<div class="span12">
 									<div class="block">
-										<h1>Descargas</h1>	
+										<h1><i class="icon-download-alt"></i>  Descargas</h1>	
 									</div>
 									
 								</div>
@@ -129,9 +129,17 @@
 							<div class="row-fluid">
 								<div class="span12">
 									<div class="block">
+									<form id="enviar" class="frmE" name="enviar" method="post" action="/r/dmg">
 										<h3>Manual corporativo y logotipo</h3>
 										<p>En esta sección podrás descargar el logotipo oficial de El Buen Fin para que elabores la publicidad de tu empresa.</p>
 										<p>El uso de la obra de arte aplicado El BUEN FIN (el “Logotipo”) deberá limitarse única y exclusivamente a aquellas cuestiones inherentes a la promoción o difusión del proyecto y/o campaña de Iniciativa México, A.C. conocida como “EL BUEN FIN, EL FIN DE SEMANA MÁS BARATO DEL AÑO”, misma que se llevará a cabo del próximo 16 al 19 de noviembre. </p>
+										<div class="control-group">
+												<label class="checkbox">
+													<input type="checkbox" name="TermCond" class="validate[required]" value="1">Acepto los 	<a href="/terminosCondiciones.html">Términos y condiciones</a>
+												</label>
+										</div>
+										<button name="enviar" type="submit" value="enviar" class="big red last"><span>Descargar</span></button>
+									</form>
 									</div>
 								</div>								
 							</div>
