@@ -473,6 +473,18 @@ func GetSuc(c appengine.Context, id string) (*Sucursal) {
 	return &e
 }
 
+func (e *Empresa) SucursalKey(c appengine.Context, id string) *datastore.Key {
+	return datastore.NewKey(c, "Sucursal", id, 0, e.Key(c))
+}
+
+func (e *Empresa) GetSuc(c appengine.Context, id string) (*Sucursal, error) {
+	var o Sucursal
+	if err := datastore.Get(c, e.SucursalKey(c, id), &o); err != nil {
+		return nil, err
+	}
+	return &o, nil
+}
+
 func DelSuc(c appengine.Context, id string) error {
 	q := datastore.NewQuery("Sucursal").Filter("IdSuc =", id)
 	for i := q.Run(c); ; {
@@ -489,6 +501,21 @@ func DelSuc(c appengine.Context, id string) error {
 		}
 		_ = PutChangeControl(c, e.IdSuc, "Sucursal", "B")
 	}
+	return nil
+}
+
+func (e *Empresa) DelSuc(c appengine.Context, id string) error {
+    o, err := e.GetSuc(c, id)
+    if err != nil {
+       return err
+    }
+	if err:= DelSucursalesOferta(c, o.IdSuc); err != nil {
+		return err
+	}
+	if err := datastore.Delete(c, e.SucursalKey(c, id)); err != nil {
+		return err
+	}
+	_ = PutChangeControl(c, o.IdSuc, "Sucursal", "B")
 	return nil
 }
 

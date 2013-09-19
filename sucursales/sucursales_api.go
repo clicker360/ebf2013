@@ -170,20 +170,28 @@ func DelSucursal(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
     var out WsSucursal
     defer model.JsonDispatch(w, &out)
-	if _, ok := sess.IsSess(w, r, c); !ok {
+	if s, ok := sess.IsSess(w, r, c); !ok {
 		out.Status = "noSession"
         return
-    }
-    // DELETE
-    if r.Method != "GET" {
-		out.Status = "wrongMethod"
-        return
-    }
-    if err := model.DelSuc(c, r.FormValue("idsuc")); err != nil {
-		out.Status = "notFound"
-    }
-	out.Status = "ok"
-    return
+    } else {
+		// se obtiene el detalle de cta
+		u, _ := model.GetCta(c, s.User)
+
+		// DELETE
+		if r.Method != "GET" {
+			out.Status = "wrongMethod"
+			return
+		}
+		if empresa, err := u.GetEmpresa(c, r.FormValue("IdEmp")); err != nil {
+			out.Status = "notFound"
+		} else {
+			if err := empresa.DelSuc(c, r.FormValue("IdSuc")); err != nil {
+				out.Status = "notFound"
+			} else {
+				out.Status = "ok"
+			}
+		}
+	}
 }
 
 func setWsSucursal(out *WsSucursal, s model.Sucursal) {
