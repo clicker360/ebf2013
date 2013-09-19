@@ -204,6 +204,14 @@
 			ofertas.eliminarPalabra(idOferta, token);
 		});
 	}
+
+	var uploadImageOferta = function() {
+		$('#submitImageOferta').on('click', function(event){
+			event.preventDefault();
+			$('#imgfileoferta').val($('#infileoferta').val());
+			ofertas.enviarimagen();
+		});
+	}
 	/* ---------------- Termina Ofertas ------------ */	
 	/**
 	 * execute
@@ -230,6 +238,7 @@
 			eliminarEmpresa();
 			eliminarSucursal();
 			eliminarPalabra();
+			uploadImageOferta();
 		});
 	};
 	return execute();
@@ -838,9 +847,9 @@ var ofertas = (function() {
 	 * Metodo privado que muestra una imagen por defecto en caso que no haya imagen de logotipo.
 	 */
 	var _putDefault = function() {
-		$('#pic').remove();
+		$('#OfertaPic').remove();
 		img = "<img  src = 'imgs/imageDefault.jpg' id='pic' width='258px' />"
-		$('#urlimg').append(img);
+		$('#ofertaurlimg').append(img);
 	}
 	
 	/**
@@ -858,12 +867,12 @@ var ofertas = (function() {
 	 */
 	var _updateimg = function(blob) {
 		blobkey = blob; // set blobkey global
-		$("#BlobKey").attr("value", blobkey);
+		$("#OfertaBlobKey").attr("value", blobkey);
 		if (blob) {
-			$('#pic').remove();
+			$('#OfertaPic').remove();
 			var query = "id=" + blob + "&Avc=" + _avoidCache();
 			img = "<img  src = '/extraimg?" + query + "' id='pic' width='256px' />"
-			$('#urlimg').append(img);
+			$('#ofertaurlimg').append(img);
 		} else {
 			_putDefault();
 		}
@@ -887,65 +896,6 @@ var ofertas = (function() {
 			Ajax.hidePreload($('#ofertas-lista'));
 		});
 		
-//		Ajax.get('/r/wso/get?IdOft=' + rel, function(response){
-//			if(response.status == 'ok'){
-//				idemp = resp.IdEmp;
-//	            blobkey = resp.BlobKey;
-//	            var d = new Date(Date.parse(resp.FechaPub));
-//	            uploadurl = resp.UploadUrl;
-//	            $("#enviar").attr('action', uploadurl);
-//	            $("#uploadimg_id").attr('value', rel);
-//	            $("#oferta").val(resp.Oferta);
-//	            $("#descripcion").val(resp.Descripcion);
-//	            $("#date1").val(d.getUTCDate()+ " Nov");
-//	            $("#url").val(resp.Url);
-//	            $(resp.categorias).each(function() {
-//	            	$("#categoria").append($("<option>").attr('value',this.idcat).attr("selected",this.selected).text(this.categoria));
-//	            });
-//			}
-//	        if(typeof rel === 'undefined') {
-//	            // se ocultan los campos que requieren IdOft
-//	            putDefault();
-//	            $('#imgform').hide();
-//	            $('#modbtn').hide();
-//	            $('#newbtn').show();
-//	            $('#statuspub').attr("checked", true);
-//	        } else {
-//	            /* solo se actualizan estos datos si hay id de oferta */
-//	            fillpcve(idoft, idemp);
-//	            fillsucursales(idoft, idemp);
-//	            $('#imgform').show();
-//	            $('#modbtn').show();
-//	            $('#newbtn').hide();	
-//	        }
-//
-//	        if(typeof blobkey === 'undefined' || blobkey != "none") {
-//	            _updateimg(blobkey);
-//	        } else {
-//	            _putDefault();
-//	        }
-//	        $('#loader').hide();
-//	        $('#urlreq').hide();
-//	        $('#placereq').hide();
-//	        $('#tituloreq').hide();
-//	        $('#enlinea').live('change', function() { 
-//	            if($('#enlinea').attr('checked')) {
-//	                $('#muestraur	l').show();
-//	            } else {
-//	                $('#muestraurl').hide();
-//	            }
-//	        });
-//
-//	        if($('#enlinea').attr('checked')) {
-//	            $('#muestraurl').show();
-//	        } else {
-//	            $('#muestraurl').hide();
-//	        }
-//	
-//	        $("#url").blur(function() {
-//	            if($('#enlinea').attr('checked') && $('#url').val()=='') { $('#urlreq').show(); } else {$('#urlreq').hide();}
-//	        });
-//		});
 	};
 	/**
 	 * showOfertaForm
@@ -966,10 +916,11 @@ var ofertas = (function() {
 		}else{
 			$('#oferta-paso-1').attr('action','/r/wso/post');
 			$('#oferta-paso-1').append('<input type="hidden" name="IdOft" value="'+rel+'" />');
-			$('#imgform').hide();
-      $('#boton-enviar-oferta').html('Editar Oferta');
+			$('#boton-enviar-oferta').html('Editar Oferta');
       $('#AddWordButton').attr('rel',rel);
+      // $('#oferta-paso-2').parent().removeClass('inactivo');
       $('#oferta-paso-3').parent().removeClass('inactivo');
+      $('#oferta-paso-4').parent().removeClass('inactivo');
       var dataResp = {
 				id : rel
 			}
@@ -984,12 +935,18 @@ var ofertas = (function() {
       Ajax.get('/r/wso/get?IdOft=' + rel, function(response){
 				if(response.status == 'ok'){
 					var d = new Date(Date.parse(response.FechaPub));
+					var blobkey = response.BlobKey;
 					$('.OfertaIdEmp').val(response.IdEmp);
 					$('#oferta-paso-1 #oferta').val(response.Oferta);
 					$('#oferta-paso-1 #descripcion').val(response.Descripcion);
 					$('#oferta-paso-1 #categoria').val(response.IdCat);
 					$('#oferta-paso-1 #date1').val(d.getUTCDate()+ " Nov");
-
+					$('#oferta-paso-4').attr('action', response.UploadUrl);
+					if (blobkey) {
+						_updateimg(blobkey);
+					} else {
+						_putDefault();
+					}
 				}
 			});
 		}
@@ -1006,6 +963,7 @@ var ofertas = (function() {
 					$('#AddWordButton').attr('rel',response.IdOft);
 					// $('#oferta-paso-2').parent().removeClass('inactivo');
 					$('#oferta-paso-3').parent().removeClass('inactivo');
+					$('#oferta-paso-4').parent().removeClass('inactivo');
 					// initOfertas(idEmp);
 				}
 			});
@@ -1068,133 +1026,59 @@ var ofertas = (function() {
 	}
 	
 	/**
-	 * cargarmicrositio
-	 * Método que llena y muestra el formulario de micrositios.
-	 * @param {string} empresaID - Identificador de la empresa.
+	 * enviarimagen
+	 * Método que realiza el upload de la imagen.
 	 */
-//	var cargarmicrositio = function(empresaID) {
-//		Ajax.get('/r/wsed/get?IdEmp=' + empresaID, function(response){
-//			if(response.status == 'ok'){
-//				var blobkey = response.BlobKey;
-//				var uploadurl = response.UploadUrl;
-//				$("#IdEmp").attr("value", response.IdEmp);
-//				$("#enviar").attr('action', uploadurl);
-//				$("#BlobKey").attr("value", blobkey);
-//				$("#uploadimg_id").attr('value', empresaID);
-//				$("#empresa").html(response.Empresa);
-//				$("#descripcion").val(response.Desc);
-//				$("#facebook").val(response.Facebook);
-//				$("#twitter").val(response.Twitter);
-//				if (blobkey) {
-//					_updateimg(blobkey);
-//				} else {
-//					_putDefault();
-//				}
-//			} else {
-//				_putDefault();
-//			}
-//		});
-//	};
-//
-//	/**
-//	 * enviarimagen
-//	 * Método que realiza el upload de la imagen.
-//	 */
-//	var enviarimagen = function() {
-//		var bar = $('.bar');
-//	    var percent = $('.percent');
-//	    var status = $('#status');
-//		$('#enviar').ajaxSubmit({
-//			dataType : 'json',
-//			iframe:true,
-//			beforeSend : function() {
-//				status.empty();
-//				var percentVal = '0%';
-//				bar.width(percentVal);
-//				percent.html(percentVal);
-//			},
-//			uploadProgress : function(event, position, total, percentComplete) {
-//				var percentVal = percentComplete + '%';
-//				bar.width(percentVal);
-//				// percent.html(percentVal);
-//			},
-//			success : function(data) {
-//				//console.log(data);
-//				var resp = "";
-//				switch (data.status) {
-//				case "invalidUpload":
-//					resp = "<p>Intente nuevamente, su imagen no puede ser integrada.</p>";
-//				case "uploadSessionError":
-//					resp = "<p>Favor de refrescar la página para continuar.</p>";
-//				case "notFound":
-//					resp = "<p>La oferta no existe.</p>";
-//				case "ok":
-//					resp = "<p>La imagen se integró exitosamente</p>";
-//					var uploadurl;
-//					uploadurl = data.UploadUrl;
-//					$("#enviar").attr("action", uploadurl);
-//					setTimeout(function() {
-//						_updateimg(data.BlobKey);
-//					}, 1000);
-//					break;
-//				default:
-//					resp = "<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>";
-//				}
-//				status.html(resp);
-//			},
-//			complete : function() {
-//				bar.width('100%');
-//			},
-//			error : function() {
-//				status.html("<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>");
-//			}
-//		});
-//	};
-//	
-//	/**
-//	 * enviarDatos
-//	 * Método que envia los datos del formulario de micrositios, via Ajax.
-//	 */
-//	var enviarDatos = function() {
-//		$(document).on('submit', '#enviardata', function(event){
-//			event.preventDefault();
-//			var data = $(this).serialize();
-//			var action = $(this).attr('action');
-//			Ajax.post(action, data, function(response){
-//				if (response.status == "ok") {
-//					alert('Micrositio registrado correctamente');
-//					location.href = "/r/index";
-//				}
-//			});
-//		});
-//	}
-//	
-//	/**
-//	 * extrasformulario
-//	 * ?? Método desconocido
-//	 * @todo Averiguar que hace.
-//	 */
-//	var extrasformulario = function() {
-//		$("#pic").error(function() {
-//			putDefault();
-//		});
-//
-//		$('textarea[maxlength]').live('keyup blur', function() {
-//			var maxlength = $(this).attr('maxlength');
-//			var val = $(this).val();
-//			if (val.length > maxlength) {
-//				$(this).val(val.slice(0, maxlength));
-//			}
-//		});
-//
-//		$('input[maxlength]').live('keyup blur', function() {
-//			var maxlength = $(this).attr('maxlength');
-//			var val = $(this).val();
-//			if (val.length > maxlength) {
-//				$(this).val(val.slice(0, maxlength));
-//			}
-//		});
-//	};
+	var enviarimagen = function() {
+		var bar = $('.bar');
+	    var percent = $('.percent');
+	    var status = $('#ofertaimgstatus');
+		$('#oferta-paso-4').ajaxSubmit({
+			dataType : 'json',
+			iframe:true,
+			beforeSend : function() {
+				status.empty();
+				var percentVal = '0%';
+				bar.width(percentVal);
+				percent.html(percentVal);
+			},
+			uploadProgress : function(event, position, total, percentComplete) {
+				var percentVal = percentComplete + '%';
+				bar.width(percentVal);
+				// percent.html(percentVal);
+			},
+			success : function(data) {
+				//console.log(data);
+				var resp = "";
+				switch (data.status) {
+				case "invalidUpload":
+					resp = "<p>Intente nuevamente, su imagen no puede ser integrada.</p>";
+				case "uploadSessionError":
+					resp = "<p>Favor de refrescar la página para continuar.</p>";
+				case "notFound":
+					resp = "<p>La oferta no existe.</p>";
+				case "ok":
+					resp = "<p>La imagen se integró exitosamente</p>";
+					var uploadurl;
+					uploadurl = data.UploadUrl;
+					$("#oferta-paso-4").attr("action", uploadurl);
+					setTimeout(function() {
+						_updateimg(data.BlobKey);
+					}, 1000);
+					break;
+				default:
+					resp = "<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>";
+				}
+				status.html(resp);
+			},
+			complete : function() {
+				bar.width('100%');
+			},
+			error : function() {
+				status.html("<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>");
+			}
+		});
+	};
 
 	
 	// Registro de métodos públicos.
@@ -1204,6 +1088,7 @@ var ofertas = (function() {
 		enviarDatosBasicos:enviarDatosBasicos,
 		agregarPalabra:agregarPalabra,
 		eliminarOferta:eliminarOferta,
-		eliminarPalabra:eliminarPalabra
+		eliminarPalabra:eliminarPalabra,
+		enviarimagen:enviarimagen
 	};
 })();

@@ -911,6 +911,7 @@
 											<div class="well well-small">
 												<form action="/r/wso/put" class="form-horizontal" id="oferta-paso-1">
 												<input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
+												<input type="hidden" name="BlobKey" id="OfertaBlobKey"/>
 												<div class="control-group">
 													<label for="nombre" class="control-label"> Título de la oferta *</label>
 													<div class="controls"><input type="text" class="validate[required, maxSize[55]]" name="Oferta" id="oferta" maxlength="55" /></div>
@@ -1064,7 +1065,47 @@
 													</div>
 												</form>
 											</div>
+											<div class="inactivo well well-small">
+												<div id="ofertaurlimg">
+													<img src="" alt="Logo de Empresa" width="258" id="OfertaPic" />
+												</div>
+												<form class="form-horizontal"  method="post" id="oferta-paso-4" enctype="multipart/form-data">
+													<div class="control-group">
+														<input type="hidden" name="IdEmp" id="uploadimg_id"/>
+														<div id="ofertaimgstatus"></div>
 
+													</div>
+													<h4>Subir imagen</h4>
+													<div class="control-group">
+														<label for="" class="control-label">Selecciona archivo</label>
+														<div class="controls">
+															<input id="imgfileoferta" type="text" class="" readonly="readonly" />
+															<input id="infileoferta" type="file" class="" name="image" />
+															<input type="submit" class="btn" id="submitImageOferta" value="Subir Imagen" />		
+															<img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
+														</div>
+													</div>
+													<div class="control-group">
+														<label for="" class="control-label">Progreso de subida</label>
+														<div class="controls">
+															<div class="progress progress-striped active">
+																<div class="bar"></div>
+															</div>
+														</div>
+													</div>
+													<div class="well well-small">
+											
+														<ul>
+															<li>Sólo imágenes formato jpeg o png.</li>
+															<li>Tamaño máximo 800x600 pixeles.</li>
+															<li>Logotipo con fondo blanco.</li>
+															<li>La imagen debe ser el logotipo de la empresa.</li>
+															<li>No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
+														</ul>
+													</div>
+												</form>
+												<a href="/r/index" class="btn btn-warning">Finalizar</a>
+											</div>
 
 										</div>
 									</div>
