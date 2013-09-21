@@ -863,7 +863,7 @@ var ofertas = (function() {
 	 */
 	var _putDefault = function() {
 		$('#OfertaPic').remove();
-		img = "<img  src = 'imgs/imageDefault.jpg' id='pic' width='258px' />"
+		img = "<img  src = 'imgs/imageDefault.jpg' id='OfertaPic' width='258px' />"
 		$('#ofertaurlimg').append(img);
 	}
 	
@@ -886,7 +886,7 @@ var ofertas = (function() {
 		if (blob) {
 			$('#OfertaPic').remove();
 			var query = "id=" + blob + "&Avc=" + _avoidCache();
-			img = "<img  src = '/extraimg?" + query + "' id='pic' width='256px' />"
+			img = "<img  src = '/extraimg?" + query + "' id='OfertaPic' width='256px' />"
 			$('#ofertaurlimg').append(img);
 		} else {
 			_putDefault();
@@ -968,7 +968,7 @@ var ofertas = (function() {
 					$('#oferta-paso-1 #url').val(response.Url);
 					$('#oferta-paso-4').attr('action', response.UploadUrl);
 					$('#oferta-paso-4 #oferta_uploadimg_id').val(rel);
-					if (blobkey) {
+					if (blobkey && blobkey != 'none') {
 						_updateimg(blobkey);
 					} else {
 						_putDefault();
@@ -999,6 +999,11 @@ var ofertas = (function() {
 						$('#oferta-paso-4').attr('action', resp.UploadUrl);
 						$('#oferta-paso-4 #oferta_uploadimg_id').val(resp.IdOft);
 						$('#oferta-paso-4').parent().removeClass('inactivo');
+						if(resp.blobkey) {
+							_updateimg(blobkey);
+						} else {
+							_putDefault();
+						}
 					});
 					
 					// initOfertas(idEmp);
@@ -1097,7 +1102,7 @@ var ofertas = (function() {
 				// percent.html(percentVal);
 			},
 			success : function(data) {
-				//console.log(data);
+				// console.log(data);
 				var resp = "";
 				switch (data.status) {
 				case "invalidUpload":
@@ -1112,7 +1117,7 @@ var ofertas = (function() {
 					uploadurl = data.UploadUrl;
 					$("#oferta-paso-4").attr("action", uploadurl);
 					setTimeout(function() {
-						_updateimg(data.BlobKey);
+						_updateimg(data.blobkey);
 					}, 1000);
 					break;
 				default:
