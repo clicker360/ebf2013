@@ -1015,9 +1015,53 @@
 												<p>
 													Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.
 												</p>
+												<div class="control-group">
+													<label for="ofertaDescuento">Descuento</label>
+													<div class="controls">
+														<select name="Descuento" id="ofertaDescuento">
+															<option value="">Seleccionar</option>
+															<option value="10% de descuento">10% de descuento</option>
+															<option value="15% de descuento">15% de descuento</option>
+															<option value="20% de descuento">20% de descuento</option>
+															<option value="25% de descuento">25% de descuento</option>
+															<option value="30% de descuento">30% de descuento</option>
+															<option value="40% de descuento">40% de descuento</option>
+															<option value="50% de descuento">50% de descuento</option>
+															<option value="60% de descuento">60% de descuento</option>
+															<option value="70% de descuento">70% de descuento</option>
+															<option value="80% de descuento">80% de descuento</option>
+														</select>
+													</div>
+												</div>
+												<div class="control-group">
+													<label for="ofertaMeses">Meses sin intereses</label>
+													<div class="controls">
+														<select name="Meses" id="ofertaMeses">
+															<option value="">Seleccionar</option>
+															<option value="6 meses sin intereses">6 meses sin intereses</option>
+															<option value="12 meses sin intereses">12 meses sin intereses</option>
+															<option value="18 meses sin intereses">18 meses sin intereses</option>
+														</select>
+													</div>
+												</div>
+												<div class="control-group">
+													<label for="ofertaPromocion">Otras promociones</label>
+													<div class="controls">
+														<select name="Promocion" id="ofertaPromocion">
+															<option value="">Seleccionar</option>
+															<option value="(2x1) Dos por uno">(2x1) Dos por uno</option>
+															<option value="(3x2) Tres por dos">(3x2) Tres por dos</option>
+															<option value="Bonificación">Bonificación</option>
+															<option value="Devolución del IVA">Devolución del IVA</option>
+														</select>
+													</div>
+												</div>
 												<div class="control-group"> 
 						                            <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
-						                            <input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
+						                            <div class="controls">
+						                            	<input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
+						                            </div>
+						                            
 						                        </div>
 												<div class="control-group">
 													<button type="submit" class="btn" id="boton-enviar-oferta">Modificar</button>
@@ -1037,22 +1081,13 @@
 																	<th></th>
 																</tr>
 															</thead>
-															
 															<tbody>
-																<tr>
-																	<td>Sucursal 1</td>
-																	<th><input type="checkbox"></th>
-																</tr>
-																<tr>
-																	<td>Sucursal 1</td>
-																	<th><input type="checkbox"></th>
-																</tr>
 															</tbody>
 														</table>
 													</div>
 												</form>
 											</div>
-											<div class="inactivo well well-small">
+											<!-- <div class="inactivo well well-small">
 												<form action="" id="oferta-paso-3">
 													<h4>Palabras relacionadas con la oferta</h4>
 													<div class="control-group">
@@ -1064,7 +1099,7 @@
 														</div>
 													</div>
 												</form>
-											</div>
+											</div> -->
 											<div class="inactivo well well-small">
 												<div id="ofertaurlimg">
 													<img src="" alt="Logo de Empresa" width="258" id="OfertaPic" />
