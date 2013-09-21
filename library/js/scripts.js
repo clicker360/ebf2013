@@ -967,6 +967,7 @@ var ofertas = (function() {
 					$('#oferta-paso-1 #ofertaPromocion').val(response.Promocion);
 					$('#oferta-paso-1 #url').val(response.Url);
 					$('#oferta-paso-4').attr('action', response.UploadUrl);
+					$('#oferta-paso-4 #oferta_uploadimg_id').val(rel);
 					if (blobkey) {
 						_updateimg(blobkey);
 					} else {
@@ -994,7 +995,12 @@ var ofertas = (function() {
 					$('#AddWordButton').attr('rel',response.IdOft);
 					$('#oferta-paso-2').parent().removeClass('inactivo');
 					// $('#oferta-paso-3').parent().removeClass('inactivo');
-					$('#oferta-paso-4').parent().removeClass('inactivo');
+					Ajax.get('/r/wso/get?IdOft='+response.IdOft, function(resp){
+						$('#oferta-paso-4').attr('action', resp.UploadUrl);
+						$('#oferta-paso-4 #oferta_uploadimg_id').val(resp.IdOft);
+						$('#oferta-paso-4').parent().removeClass('inactivo');
+					});
+					
 					// initOfertas(idEmp);
 				}
 			});
