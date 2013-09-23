@@ -205,19 +205,19 @@
 		});
 	}
 
-	var toggleSucursalOft = function() {
-		$(document).on('click','input[name="sucursales[]"]',function(event){
-			// event.preventDefault();
-			var idEmpresa = $(this).attr('data-idemp');
-			var idOferta = $(this).attr('data-idoft');
-			var idSucursal = $(this).val();
-			if($(this).is(':checked')){
-				ofertas.agregarSucursal(idEmpresa, idOferta, idSucursal);
-			}else{
-				ofertas.eliminarSucursal(idEmpresa, idOferta, idSucursal);
-			}
-		});
-	}
+	// var toggleSucursalOft = function() {
+	// 	$(document).on('click','input[name="sucursales[]"]',function(event){
+	// 		// event.preventDefault();
+	// 		var idEmpresa = $(this).attr('data-idemp');
+	// 		var idOferta = $(this).attr('data-idoft');
+	// 		var idSucursal = $(this).val();
+	// 		if($(this).is(':checked')){
+	// 			ofertas.agregarSucursal(idEmpresa, idOferta, idSucursal);
+	// 		}else{
+	// 			ofertas.eliminarSucursal(idEmpresa, idOferta, idSucursal);
+	// 		}
+	// 	});
+	// }
 
 	var uploadImageOferta = function() {
 		$('#submitImageOferta').on('click', function(event){
@@ -253,7 +253,7 @@
 			eliminarSucursal();
 			eliminarPalabra();
 			uploadImageOferta();
-			toggleSucursalOft();
+			// toggleSucursalOft();
 		});
 	};
 	return execute();
@@ -922,6 +922,12 @@ var ofertas = (function() {
 			$('#imgform').hide();
       $('#boton-enviar-oferta').html('Siguiente Paso');
       $('.OfertaIdEmp').val(rel);
+	    Ajax.get('/r/wss/gets?IdEmp='+rel, function(resp){	
+				$('#ofertas-lista-sucursales tbody').empty();
+				for(var a in resp){
+					$('#ofertas-lista-sucursales tbody').append('<tr><td>'+resp[a].Nombre+'</td><td><input type="checkbox" name="sucursales[]" value="'+resp[a].IdSuc+'"></td></tr>');
+				}
+	  	});
 		}else{
 			$('#oferta-paso-1').attr('action','/r/wso/post');
 			$('#oferta-paso-1').append('<input type="hidden" name="IdOft" value="'+rel+'" />');
@@ -930,33 +936,23 @@ var ofertas = (function() {
       $('#oferta-paso-2').parent().removeClass('inactivo');
       $('#oferta-paso-3').parent().removeClass('inactivo');
       $('#oferta-paso-4').parent().removeClass('inactivo');
-      var dataResp = {
-				id : rel
-			}
-      Ajax.post('/r/wordsxo', dataResp, function(resp){
-				$('#WordsAdded').empty();
-				if(resp.status != 'notFound'){
-					for(var a in resp){
-						$('#WordsAdded').append('<div class="palabraAgregada" data-idoft="'+rel+'"><span class="label-bf">'+resp[a].token+'</span><a class="close-bf eliminarpalabra" href="">&times;</a></div>');
-					}
-				}
-			});
       Ajax.get('/r/wso/get?IdOft=' + rel, function(response){
 				if(response.status == 'ok'){
 					var d = new Date(Date.parse(response.FechaPub));
 					var blobkey = response.BlobKey;
-					Ajax.get('/r/wss/gets?IdEmp='+response.IdEmp, function(resp){	
+			  	Ajax.get('/r/wss/gets?IdEmp='+response.IdEmp, function(resp){	
 						$('#ofertas-lista-sucursales tbody').empty();
 						for(var a in resp){
-							$('#ofertas-lista-sucursales tbody').append('<tr><td>'+resp[a].Nombre+'</td><td><input type="checkbox" data-idemp="'+resp[a].IdEmp+'" data-idoft="'+response.IdOft+'" name="sucursales[]" value="'+resp[a].IdSuc+'"></td></tr>');
+							$('#ofertas-lista-sucursales tbody').append('<tr><td>'+resp[a].Nombre+'</td><td><input type="checkbox" name="sucursales[]" value="'+resp[a].IdSuc+'"></td></tr>');
 						}
-						Ajax.get('/r/ofsuc?idemp='+response.IdEmp+'&idoft='+rel, function(response){
-				  		for(var a in response){
-				  			$('input[value="'+response[a].idsuc+'"]').attr('checked', true);
-				  		}
-				  	});
 			  	});
-			  	
+			  	Ajax.get('/r/ofsuc?idemp='+response.IdEmp+'&idoft='+rel, function(resp){
+			  		for(var a in resp){
+			  			if(resp[a].idoft == rel){
+				  			$('input[value="'+resp[a].idsuc+'"]').attr('checked',true);
+				  		}
+			  		}
+			  	});
 					$('.OfertaIdEmp').val(response.IdEmp);
 					$('#oferta-paso-1 #oferta').val(response.Oferta);
 					$('#oferta-paso-1 #descripcion').val(response.Descripcion);
@@ -982,18 +978,18 @@ var ofertas = (function() {
 	var enviarDatosBasicos = function() {
 		$(document).on('submit', '#oferta-paso-1', function(event){
 			event.preventDefault();
+			$('input[name="sucursales[]"]').each(function(){
+				if($(this).is(':checked')){
+					$('#schain').val($('#schain').val()+' '+$(this).val());
+				}
+			});
 			var data = $(this).serialize();
 			var action = $(this).attr('action');
+			
 			Ajax.post(action, data, function(response){
 				if(response.status == 'ok'){
-					Ajax.get('/r/wss/gets?IdEmp='+response.IdEmp, function(resp){	
-						$('#ofertas-lista-sucursales tbody').empty();
-						for(var a in resp){
-							$('#ofertas-lista-sucursales tbody').append('<tr><td>'+resp[a].Nombre+'</td><td><input type="checkbox" data-idemp="'+resp[a].IdEmp+'" data-idoft="'+response.IdOft+'" name="sucursales[]" value="'+resp[a].IdSuc+'"></td></tr>');
-						}
-			  	});
 					$('#AddWordButton').attr('rel',response.IdOft);
-					$('#oferta-paso-2').parent().removeClass('inactivo');
+					// $('#oferta-paso-2').parent().removeClass('inactivo');
 					// $('#oferta-paso-3').parent().removeClass('inactivo');
 					Ajax.get('/r/wso/get?IdOft='+response.IdOft, function(resp){
 						$('#oferta-paso-4').attr('action', resp.UploadUrl);
@@ -1058,17 +1054,17 @@ var ofertas = (function() {
 		});
 	}
 
-	var agregarSucursal = function(idEmpresa, idSucursal, idOferta) {
-		Ajax.get('/r/addofsuc?idemp='+idEmpresa+'&idsuc='+idSucursal+'&idoft='+idOferta, function(response){
-			alert('Sucursal Agregada.');
-		});
-	}
+	// var agregarSucursal = function(idEmpresa, idSucursal, idOferta) {
+	// 	Ajax.get('/r/addofsuc?idemp='+idEmpresa+'&idsuc='+idSucursal+'&idoft='+idOferta, function(response){
+	// 		alert('Sucursal Agregada.');
+	// 	});
+	// }
 
-	var eliminarSucursal = function(idEmpresa, idSucursal, idOferta) {
-		Ajax.get('/r/delofsuc?idemp='+idEmpresa+'&idsuc='+idSucursal+'&idoft='+idOferta, function(response){
-			alert('Sucursal Eliminada.');
-		});
-	}
+	// var eliminarSucursal = function(idEmpresa, idSucursal, idOferta) {
+	// 	Ajax.get('/r/delofsuc?idemp='+idEmpresa+'&idsuc='+idSucursal+'&idoft='+idOferta, function(response){
+	// 		alert('Sucursal Eliminada.');
+	// 	});
+	// }
 
 	var eliminarOferta = function(idOferta, idEmpresa) {
 		Ajax.get('/r/wso/del?IdEmp='+idEmpresa+'&IdOft='+idOferta, function(response){
@@ -1143,8 +1139,8 @@ var ofertas = (function() {
 		agregarPalabra:agregarPalabra,
 		eliminarOferta:eliminarOferta,
 		eliminarPalabra:eliminarPalabra,
-		enviarimagen:enviarimagen,
-		agregarSucursal:agregarSucursal,
-		eliminarSucursal:eliminarSucursal
+		enviarimagen:enviarimagen
+		// agregarSucursal:agregarSucursal,
+		// eliminarSucursal:eliminarSucursal
 	};
 })();

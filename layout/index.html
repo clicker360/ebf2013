@@ -912,6 +912,7 @@
 												<form action="/r/wso/put" class="form-horizontal" id="oferta-paso-1">
 												<input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
 												<input type="hidden" name="BlobKey" id="OfertaBlobKey"/>
+												<input type="hidden" name="schain" id="schain"/>
 												<div class="control-group">
 													<label for="nombre" class="control-label"> Título de la oferta *</label>
 													<div class="controls"><input type="text" class="validate[required, maxSize[55]]" name="Oferta" id="oferta" maxlength="55" /></div>
@@ -1056,6 +1057,21 @@
 														</select>
 													</div>
 												</div>
+												<div class="control-group">
+													<label>Selecciona las sucursales donde estará activa tu oferta.</label>
+													<div class="controls">
+														<table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
+															<thead>
+																<tr>
+																	<th>Sucursal</th>
+																	<th></th>
+																</tr>
+															</thead>
+															<tbody>
+															</tbody>
+														</table>	
+													</div>
+												</div>
 												<div class="control-group"> 
 						                            <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
 						                            <div class="controls">
@@ -1070,7 +1086,7 @@
 											</div>
 										</div>
 										<div class="span6">
-											<div class="inactivo well well-small">
+											<!-- <div class="inactivo well well-small">
 												<form action="" id="oferta-paso-2">
 													<input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
 													<div class="control-group">
@@ -1086,7 +1102,7 @@
 														</table>
 													</div>
 												</form>
-											</div>
+											</div> -->
 											<!-- <div class="inactivo well well-small">
 												<form action="" id="oferta-paso-3">
 													<h4>Palabras relacionadas con la oferta</h4>
