@@ -331,10 +331,10 @@ func DelOferta(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		if empresa, err := u.GetEmpresa(c, r.FormValue("IdEmp")); err != nil {
-			out.Status = "notFound"
+			out.Status = "notFoundE"
 		} else {
 			if err := empresa.DelOferta(c, r.FormValue("IdOft")); err != nil {
-				out.Status = "notFound"
+				out.Status = "notFoundO"
 			} else {
 				out.Status = "ok"
 			}
