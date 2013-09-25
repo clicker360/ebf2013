@@ -56,6 +56,10 @@ Stylesheet: Tema.
   width: 24px;
   height: 24px;
 }
+input[type='email'],
+#EmailAlt {
+  text-transform: lowercase;
+}
 .frontpages {
   background: url("../images/pattern.jpg") repeat scroll 0% 0% #f7f7f7 !important;
 }
