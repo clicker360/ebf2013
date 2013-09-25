@@ -33,17 +33,20 @@ Stylesheet: Tema.
 			background: @white;
 			span {
 				display: block;
-				width: 96px;
+				//width: 96px;
 				height: 24px;
 				float: left;
 				margin: 0 10px;
 				padding: 20px 0;
 				font-weight: bold;
+				font-size: 110%;
+				//text-transform: uppercase;
 			}
 			ul {
 				list-style: none;
+				text-align: center;
 				li {
-					float: left;
+					display: inline-block;
 					a {
 						display: block;
 						width: 96px;
@@ -261,7 +264,11 @@ ul#iconos-footer  {
 }
 .footer {
 	color:@white;
-	padding: 10px;
+	padding: 12px;
+	p {
+		text-align: center;
+		font-size: 110%;
+	}
 }
 
 a.brand-alt {

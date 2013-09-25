@@ -75,18 +75,19 @@ Stylesheet: Tema.
 }
 .frontpages .footer .footer-a span {
   display: block;
-  width: 96px;
   height: 24px;
   float: left;
   margin: 0 10px;
   padding: 20px 0;
   font-weight: bold;
+  font-size: 110%;
 }
 .frontpages .footer .footer-a ul {
   list-style: none;
+  text-align: center;
 }
 .frontpages .footer .footer-a ul li {
-  float: left;
+  display: inline-block;
 }
 .frontpages .footer .footer-a ul li a {
   display: block;
@@ -311,7 +312,11 @@ ul#iconos-footer li #f-twit {
 }
 .footer {
   color: #ffffff;
-  padding: 10px;
+  padding: 12px;
+}
+.footer p {
+  text-align: center;
+  font-size: 110%;
 }
 a.brand-alt {
   display: none;
