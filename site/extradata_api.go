@@ -360,67 +360,74 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 		file := blobs["image"]
 		out.BlobKey = file[0].BlobKey
 		out.IdEmp = form.Get("IdEmp")
-		if err != nil {
-			out.Status = "invalidParseUpload"
-			berr := blobstore.Delete(c, file[0].BlobKey)
-			model.Check(berr)
-		} else {
-			if extra, err := u.GetExtraData(c, out.IdEmp); err != nil {
-				out.Status = "notFound"
-				if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
-					out.Ackn = "cantDeleteBlob"
-				}
-				return
-			} else {
-				if len(file) == 0 {
-					out.Status = "invalidFileSize0"
-					if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
-						out.Ackn = "cantDeleteBlob"
-					}
-					return
-				}
-				var oldblobkey = extra.BlobKey
-				extra.BlobKey = file[0].BlobKey
-				out.IdEmp = extra.IdEmp
+        out.BlobKey = file[0].BlobKey
 
-				// Se crea la URL para servir la extra desde el CDN, si no se puede
-				var imgprops image.ServingURLOptions
-				imgprops.Secure = true
-				imgprops.Size = 400
-				imgprops.Crop = false
-				if url, err := image.ServingURL(c, extra.BlobKey, &imgprops); err != nil {
-					c.Errorf("Cannot construct ServingURL : %v", extra.IdEmp)
-					extra.ImageUrl = ""
-				} else {
-					extra.ImageUrl = url.String()
-				}
+        UploadURL, err := blobstore.UploadURL(c, "/r/extraimgput", &blobOpts)
+        out.UploadURL = UploadURL.String()
+        if err != nil {
+            out.Status = "uploadSessionError"
+            return
+        }
 
-				if err := u.PutExtraData(c, extra); err != nil {
-					out.Status = "invalidUpload"
-					if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
-						out.Ackn = "cantDeleteBlob"
-					}
-					return
-				}
-				/*
-				   Se borra el blob anterior, porque siempre crea uno nuevo
-				   No se necesita revisar el error
-				   Si es el blobkey = none no se borra por obvias razones
-				   Se genera una sesion nueva de upload en caso de que quieran
-				   cambiar la imágen en la misma pantalla. Esto es debido a que
-				   se utiliza un form estático con ajax
-				*/
-				if oldblobkey != "none" {
-					blobstore.Delete(c, oldblobkey)
-					UploadURL, err := blobstore.UploadURL(c, "/r/extraimgput", &blobOpts)
-					if err != nil {
-						out.Status = "uploadSessionError"
-						return
-					}
-					out.UploadURL = UploadURL.String()
-				}
-				out.Status = "ok"
-			}
-		}
+        if file[0].ContentType != "image/png" && file[0].ContentType != "image/jpeg" {
+			out.Status = "invalidContentType"
+        } else {
+            if err != nil {
+                out.Status = "invalidParseUpload"
+                berr := blobstore.Delete(c, file[0].BlobKey)
+                model.Check(berr)
+            } else {
+                if extra, err := u.GetExtraData(c, out.IdEmp); err != nil {
+                    out.Status = "notFound"
+                    if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
+                        out.Ackn = "cantDeleteBlob"
+                    }
+                    return
+                } else {
+                    if len(file) == 0 {
+                        out.Status = "invalidFileSize0"
+                        if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
+                            out.Ackn = "cantDeleteBlob"
+                        }
+                        return
+                    }
+                    var oldblobkey = extra.BlobKey
+                    extra.BlobKey = file[0].BlobKey
+                    out.IdEmp = extra.IdEmp
+
+                    // Se crea la URL para servir la extra desde el CDN, si no se puede
+                    var imgprops image.ServingURLOptions
+                    imgprops.Secure = true
+                    imgprops.Size = 400
+                    imgprops.Crop = false
+                    if url, err := image.ServingURL(c, extra.BlobKey, &imgprops); err != nil {
+                        c.Errorf("Cannot construct ServingURL : %v", extra.IdEmp)
+                        extra.ImageUrl = ""
+                    } else {
+                        extra.ImageUrl = url.String()
+                    }
+
+                    if err := u.PutExtraData(c, extra); err != nil {
+                        out.Status = "invalidUpload"
+                        if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
+                            out.Ackn = "cantDeleteBlob"
+                        }
+                        return
+                    }
+                    /*
+                       Se borra el blob anterior, porque siempre crea uno nuevo
+                       No se necesita revisar el error
+                       Si es el blobkey = none no se borra por obvias razones
+                       Se genera una sesion nueva de upload en caso de que quieran
+                       cambiar la imágen en la misma pantalla. Esto es debido a que
+                       se utiliza un form estático con ajax
+                    */
+                    if oldblobkey != "none" {
+                        blobstore.Delete(c, oldblobkey)
+                    }
+                    out.Status = "ok"
+                }
+            }
+        }
 	}
 }

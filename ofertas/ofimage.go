@@ -182,68 +182,72 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
         u, _ := model.GetCta(c, s.User)
 		blobs, form, err := blobstore.ParseUpload(r)
 		file := blobs["image"]
-		out.IdBlob = string(file[0].BlobKey)
-		out.IdOft = form.Get("IdOft")
-		if err != nil {
-			out.Status = "invalidParseUpload"
-			berr := blobstore.Delete(c, file[0].BlobKey)
-			model.Check(berr)
-		} else {
-			oferta := model.GetOferta(c, out.IdOft)
-            empresa, _ := u.GetEmpresa(c, oferta.IdEmp)
-			if oferta.IdEmp == "none" {
-				out.Status = "invalidIdOft"
-				berr := blobstore.Delete(c, file[0].BlobKey)
-				model.Check(berr)
-			} else {
-				out.Status = "ok"
-				if len(file) == 0 {
-					out.Status = "invalidFileSize0"
-					berr := blobstore.Delete(c, file[0].BlobKey)
-					model.Check(berr)
-				} else {
-					var oldblobkey = oferta.BlobKey
-					oferta.BlobKey = file[0].BlobKey
-					out.IdOft = oferta.IdOft
+        out.IdOft = form.Get("IdOft")
+        out.IdBlob = string(file[0].BlobKey)
+        if file[0].ContentType != "image/png" && file[0].ContentType != "image/jpeg" {
+			out.Status = "invalidContentType"
+        } else {
+            if err != nil {
+                out.Status = "invalidParseUpload"
+                berr := blobstore.Delete(c, file[0].BlobKey)
+                model.Check(berr)
+            } else {
+                oferta := model.GetOferta(c, out.IdOft)
+                empresa, _ := u.GetEmpresa(c, oferta.IdEmp)
+                if oferta.IdEmp == "none" {
+                    out.Status = "invalidIdOft"
+                    berr := blobstore.Delete(c, file[0].BlobKey)
+                    model.Check(berr)
+                } else {
+                    out.Status = "ok"
+                    if len(file) == 0 {
+                        out.Status = "invalidFileSize0"
+                        berr := blobstore.Delete(c, file[0].BlobKey)
+                        model.Check(berr)
+                    } else {
+                        var oldblobkey = oferta.BlobKey
+                        oferta.BlobKey = file[0].BlobKey
+                        out.IdOft = oferta.IdOft
 
-					// Se crea la URL para servir la oferta desde el CDN, si no se puede
-					var imgprops image.ServingURLOptions
-					imgprops.Secure = true
-					imgprops.Size = 400
-					imgprops.Crop = false
-					if url, err := image.ServingURL(c, oferta.BlobKey, &imgprops); err != nil {
-						c.Errorf("Cannot construct ServingURL : %v", oferta.IdOft)
-						oferta.ImageBig = ""
-					} else {
-						oferta.ImageBig = url.String()
-					}
+                        // Se crea la URL para servir la oferta desde el CDN, si no se puede
+                        var imgprops image.ServingURLOptions
+                        imgprops.Secure = true
+                        imgprops.Size = 400
+                        imgprops.Crop = false
+                        if url, err := image.ServingURL(c, oferta.BlobKey, &imgprops); err != nil {
+                            c.Errorf("Cannot construct ServingURL : %v", oferta.IdOft)
+                            oferta.ImageBig = ""
+                        } else {
+                            oferta.ImageBig = url.String()
+                        }
 
-					_,err = empresa.PutOferta(c, oferta)
-					if err != nil {
-						out.Status = "invalidUploadWriteErr"
-						berr := blobstore.Delete(c, file[0].BlobKey)
-						model.Check(berr)
-					}
-					/* 
-						Se borra el blob anterior, porque siempre crea uno nuevo
-						No se necesita revisar el error
-						Si es el blobkey = none no se borra por obvias razones
-						Se genera una sesion nueva de upload en caso de que quieran
-						cambiar la imágen en la misma pantalla. Esto es debido a que
-						se utiliza un form estático con ajax
-					*/
-					if oldblobkey != "none" {
-						blobstore.Delete(c, oldblobkey)
-						UploadURL, err := blobstore.UploadURL(c, "/r/ofimgup", &blobOpts)
-						out.UploadURL = UploadURL.String()
-						if err != nil {
-							out.Status = "uploadSessionError"
-						}
-					}
-				}
-			}
-		}
+                        _,err = empresa.PutOferta(c, oferta)
+                        if err != nil {
+                            out.Status = "invalidUploadWriteErr"
+                            berr := blobstore.Delete(c, file[0].BlobKey)
+                            model.Check(berr)
+                        }
+                        /* 
+                            Se borra el blob anterior, porque siempre crea uno nuevo
+                            No se necesita revisar el error
+                            Si es el blobkey = none no se borra por obvias razones
+                            Se genera una sesion nueva de upload en caso de que quieran
+                            cambiar la imágen en la misma pantalla. Esto es debido a que
+                            se utiliza un form estático con ajax
+                        */
+                        if oldblobkey != "none" {
+                            blobstore.Delete(c, oldblobkey)
+                        }
+                    }
+                }
+            }
+        }
 	}
+    UploadURL, err := blobstore.UploadURL(c, "/r/ofimgup", &blobOpts)
+    out.UploadURL = UploadURL.String()
+    if err != nil {
+        out.Status = "uploadSessionError"
+    }
 	w.Header().Set("Content-Type", "application/json")
 	b, _ := json.Marshal(out)
 	w.Write(b)
