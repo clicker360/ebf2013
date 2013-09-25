@@ -21,8 +21,9 @@ import (
 type OfImg struct{
 	IdOft		string `json:"idoft"`
 	IdBlob		string `json:"blobkey"`
-	Status		string `json:"status"`
 	UploadURL	string `json:"UploadUrl"`
+	Status		string `json:"status"`
+	Ackn        string `json:"ackn,omitempty"`
 }
 
 type detalle struct {
@@ -196,14 +197,16 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
                 empresa, _ := u.GetEmpresa(c, oferta.IdEmp)
                 if oferta.IdEmp == "none" {
                     out.Status = "invalidIdOft"
-                    berr := blobstore.Delete(c, file[0].BlobKey)
-                    model.Check(berr)
+                    if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
+                        out.Ackn = "cantDeleteBlob"
+                    }
                 } else {
                     out.Status = "ok"
                     if len(file) == 0 {
                         out.Status = "invalidFileSize0"
-                        berr := blobstore.Delete(c, file[0].BlobKey)
-                        model.Check(berr)
+                        if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
+                            out.Ackn = "cantDeleteBlob"
+                        }
                     } else {
                         var oldblobkey = oferta.BlobKey
                         oferta.BlobKey = file[0].BlobKey
@@ -223,9 +226,10 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 
                         _,err = empresa.PutOferta(c, oferta)
                         if err != nil {
-                            out.Status = "invalidUploadWriteErr"
-                            berr := blobstore.Delete(c, file[0].BlobKey)
-                            model.Check(berr)
+                            out.Status = "invalidUpload"
+                            if err := blobstore.Delete(c, file[0].BlobKey); err != nil {
+                                out.Ackn = "cantDeleteBlob"
+                            }
                         }
                         /* 
                             Se borra el blob anterior, porque siempre crea uno nuevo
