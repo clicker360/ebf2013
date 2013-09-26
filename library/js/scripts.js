@@ -409,7 +409,7 @@ var empresas = (function() {
             if ($('#btn-empresa').html() === 'Siguiente paso') {
                 Ajax.post('/r/wse/put', post, function(response) {
                     if (response.status === "ok") {
-                        alert('registrado correctamente');
+                        alertify.alert('registrado correctamente');
                         micrositio.cargarmicrositio(response.IdEmp);
                         $('#paso-empresa').addClass('inactivo');   
                     }
@@ -418,7 +418,7 @@ var empresas = (function() {
             } else {
                 Ajax.post('/r/wse/post', post, function(response) {
                     if (response.status === "ok") {
-                        alert('registrado correctamente');
+                        alertify.alert('registrado correctamente');
                         //location.href = "/r/index";
                         micrositio.cargarmicrositio(response.IdEmp);
                         $('#paso-empresa').addClass('inactivo');
@@ -432,7 +432,7 @@ var empresas = (function() {
     var eliminarEmpresa = function(idEmpresa) {
         Ajax.get('/r/wse/del?IdEmp=' + idEmpresa, function(response) {
             if (response.status === 'ok') {
-                alert('Empresa eliminada.');
+                alertify.alert('Empresa eliminada.');
                 location.reload();
             }
         });
@@ -622,7 +622,7 @@ var sucursales = (function() {
             if ($('#btn-sucursal').html() === 'Crear') {
                 Ajax.post('/r/wss/put', post, function(response) {
                     if (response.status === "ok") {
-                        alert('registrado correctamente');
+                        alertify.alert('registrado correctamente');
                         location.href = "/r/index";
                     }
                 });
@@ -630,7 +630,7 @@ var sucursales = (function() {
             } else {
                 Ajax.post('/r/wss/post', post, function(response) {
                     if (response.status === "ok") {
-                        alert('registrado correctamente');
+                        alertify.alert('registrado correctamente');
                         location.href = "/r/index";
                     }
                 });
@@ -640,7 +640,7 @@ var sucursales = (function() {
     var eliminarSucursal = function(idSucursal, idEmpresa) {
         Ajax.get('/r/wss/del?IdEmp=' + idEmpresa + '&IdSuc=' + idSucursal, function(response) {
             if (response.status === 'ok') {
-                alert('Sucursal elmiminada.');
+                alertify.alert('Sucursal elmiminada.');
                 initSucursales(idEmpresa);
             }
         });
@@ -673,7 +673,7 @@ var registros = (function() {
             var post = $(this).serialize();
             Ajax.post('/r/wsr/put', post, function(response) {
                 if (response.success) {
-                    alert('registrado correctamente');
+                    alertify.alert('Registrado correctamente');
                 }
             });
         });
@@ -830,7 +830,7 @@ var micrositio = (function() {
             var action = $(this).attr('action');
             Ajax.post(action, data, function(response) {
                 if (response.status === "ok") {
-                    alert('Micrositio registrado correctamente');
+                    alertify.alert('Micrositio registrado correctamente');
                     location.href = "/r/index";
                 }
             });
@@ -1010,7 +1010,7 @@ var ofertas = (function() {
 
             Ajax.post(action, data, function(response) {
                 if (response.status === 'ok') {
-                    alert('Datos enviados exitosamente.');
+                    alertify.alert('Datos enviados exitosamente.');
                     // $('#AddWordButton').attr('rel',response.IdOft);
                     // $('#oferta-paso-2').parent().removeClass('inactivo');
                     // $('#oferta-paso-3').parent().removeClass('inactivo');
@@ -1092,7 +1092,7 @@ var ofertas = (function() {
     var eliminarOferta = function(idOferta, idEmpresa) {
         Ajax.get('/r/wso/del?IdEmp=' + idEmpresa + '&IdOft=' + idOferta, function(response) {
             if (response.status === 'ok') {
-                alert('Oferta elmiminada.');
+                alertify.alert('Oferta elmiminada.');
                 initOfertas(idEmpresa);
             }
         });
