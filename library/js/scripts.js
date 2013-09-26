@@ -378,16 +378,19 @@ var empresas = (function() {
     var empresaformdesdejson = function(codeRel) {
         // Si existe el parámetro codeRel, llena y muestra el formulario de modificar empresa.
         if (codeRel) {
-            $('#btn-empresa').html("Siguiente paso");
+            $('#btn-empresa').html("Guardar y editar micrositio");
             Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
                 $('#empresa-form').formParams(response, true);
                 llenamuniEmpresa(response.DirEnt, response.DirMun);
                 llenaorganismos(response.OrgEmp);
+                $('input[name="PartLinea"]').attr('checked', true);
+                $('input[name="ExpComer"]').attr('checked', true);
+                $('input[name="TermCond"]').attr('checked', true);
                 Ajax.hidePreload($('#empresas-detalle'));
             });
             // De lo contrario, muestra el formulario de empresa nueva.
         } else {
-            $('#btn-empresa').html("Crear");
+            $('#btn-empresa').html("Siguiente paso");
             llenamuniEmpresa("01");
             llenaorganismos();
             Ajax.hidePreload($('#empresas-detalle'));
@@ -403,12 +406,12 @@ var empresas = (function() {
             event.preventDefault();
             var post = $(this).serialize();
             // Si el formulario es para crear, los datos se envían al método "put" de la API.
-            if ($('#btn-empresa').html() === 'Crear') {
+            if ($('#btn-empresa').html() === 'Siguiente paso') {
                 Ajax.post('/r/wse/put', post, function(response) {
                     if (response.status === "ok") {
                         alert('registrado correctamente');
-                        location.href = "/r/index";
-                        
+                        micrositio.cargarmicrositio(response.IdEmp);
+                        $('#paso-empresa').addClass('inactivo');   
                     }
                 });
                 // De lo contrario, los datos se envían al método "post" de la API.
