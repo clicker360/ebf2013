@@ -66,6 +66,18 @@ input[type='email'],
 .frontpages h1 {
   text-align: center;
 }
+.frontpages ul.faq-list {
+  list-style: none;
+}
+.frontpages ul.faq-list li {
+  margin-top: 5px;
+}
+.frontpages ul.faq-list li ul {
+  list-style: disc;
+}
+.frontpages ul.faq-list li ul li {
+  margin: 0;
+}
 .frontpages .buenfin-txt {
   padding: 0 35px;
 }
