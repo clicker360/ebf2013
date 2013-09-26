@@ -418,6 +418,8 @@ var empresas = (function() {
                         alert('registrado correctamente');
                         //location.href = "/r/index";
                         micrositio.cargarmicrositio(response.IdEmp);
+                        $('#paso-empresa').addClass('inactivo');
+                        
                     }
                 });
             }
