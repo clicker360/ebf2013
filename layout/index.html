@@ -1,1212 +1,1223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>El Buen Fin // Panel de administración</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
+    <head>
+         <script type="text/javascript" src="../library/js/libs/backfix.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            bajb_backdetect.OnBack = function()
+            {
+                location.reload();
+            }
+        </script>
+        <meta charset="utf-8">
+        <title>El Buen Fin // Panel de administración</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-	<link href="../library/css/libs/bootstrap.css" rel="stylesheet">
-	<link href="../library/css/style.css" rel="stylesheet">
-	<link href="../library/css/libs/tagmanager.css" rel="stylesheet">
-	<style>
-	body {
-		padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
-	}
-	</style>
-	<link href="../library/css/libs/responsive.css" rel="stylesheet">
-	<link rel="stylesheet" href="../../library/css/font-awesome/css/font-awesome.min.css">
+        <link href="../library/css/libs/bootstrap.css" rel="stylesheet">
+        <link href="../library/css/style.css" rel="stylesheet">
+        <link href="../library/css/libs/tagmanager.css" rel="stylesheet">
+        <style>
+            body {
+                padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
+            }
+        </style>
+        <link href="../library/css/libs/responsive.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../library/css/font-awesome/css/font-awesome.min.css">
 
-	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-		<script src="../library/js/libs/html5shiv.js"></script>
-	<![endif]-->
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+                <script src="../library/js/libs/html5shiv.js"></script>
+        <![endif]-->
 
-	<!--[if IE 7]>
-		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
-	<![endif]-->
+        <!--[if IE 7]>
+                <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
 
-	<!-- Fav and touch icons -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../library/images/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../library/images/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="../library/images/ico/favicon.png">
-	<script src="../library/js/libs/underscore-min.js"></script>
-	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
-	<script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
-	<script type="text/javascript" src="../scripts/jquery.form.js" charset="utf-8"></script>
-		
-	<script type="text/javascript">
+        <!-- Fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../library/images/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../library/images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../library/images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="../library/images/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="../library/images/ico/favicon.png">
+        <script src="../library/js/libs/underscore-min.js"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="../library/js/libs/jquery.validationEngine-es.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../library/js/libs/jquery.validationEngine.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../scripts/jquery.form.js" charset="utf-8"></script>
 
-	$(document).ready(function(){
-		$('#empresa-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
-		$('#sucursal-form').validationEngine({promptPosition : 'bottomRight', scroll: true});
-		$("#enviar").validationEngine({promptPosition : "topRight", scroll: false});
-		$("#enviardata").validationEngine({promptPosition : "topRight", scroll: false});
-	});
-	</script>
-	
-</head>
+        <script type="text/javascript">
 
-<body>
-	<!-- menu -->
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="brand-alt" href="/r/index">
-					<img src="../library/images/logo_med.png">
-				</a>
-				<a class="brand" href="/r/index">
-					<img src="../library/images/logo_header.png">
-				</a>
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li>
-							<a href="/r/index"><i class="icon-home"></i> Panel principal</a>
-						</li>
-						<li class="dropdown active">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<i class="icon-building"></i> Empresa
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="nuevaempresa" href="#"><i class="icon-plus"></i> Añadir Nueva</a></li>
-								<li><a href="/r/index"><i class="icon-list"></i> Lista Empresas</a></li>
-							</ul>
-						</li>
-						<li><a href="/admin/descargas.html"><i class="icon-download-alt"></i>  Descargas</a></li>
-						<li><a href="/admin/faqs.html"><i class="icon-question-sign"></i>   Preguntas Frecuentes</a></li>
-						<!--
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								Sucursales
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="nuevasucursal" href="#">Añadir Nueva</a></li>
-								<li><a href="#">Lista Sucursales</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								Ofertas
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="oferta-detalle.html">Añadir Nueva</a></li>
-								<li><a href="ofertas.html">Lista Ofertas</a></li>
-							</ul>
-						</li
-						<li>
-							<a href="#">
-								El Buen Fin en linea
-							</a>
-						</li>
-						-->
-					</ul>
-					<ul class="nav pull-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-user"></i> Cuenta
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="/admin/usuario.html">Editar</a></li>
-								<li><a href="/r/logout">Salir</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div><!--/.nav-collapse -->
-			</div>
-		</div>
-	</div>
+            $(document).ready(function() {
+                $('#empresa-form').validationEngine({promptPosition: 'bottomRight', scroll: true});
+                $('#sucursal-form').validationEngine({promptPosition: 'bottomRight', scroll: true});
+                $("#enviar").validationEngine({promptPosition: "topRight", scroll: false});
+                $("#enviardata").validationEngine({promptPosition: "topRight", scroll: false});
+                $("#oferta-paso-1").validationEngine({promptPosition: "topRight", scroll: false});
+            });</script>
 
-	<div id="container" class="row-fluid">
-			<div id="dashboard" class="activo container-fluid">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="block">
-							<div class="row-fluid">
-								<div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
-								<div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i>Añadir nueva empresa</a></div>
-							</div>
-							<div class="well well-small">
-								<table class="table-condensed table-hover table-bordered table-striped">
-									
-									<script id="empresaTemplateDash" type="text/template">
-												<% for (var i in empresasArrayDash){ %>
-												<% var empresa = empresasArrayDash[i]; %>
-													<tr>
-														<td><%= empresa.Nombre %></td>
-														<td><%= empresa.RFC %></td>
-														<td><%= empresa.DirEnt %></td>
-														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a>
-														</th>
-														<th>
-															<a class="eliminarempresa btn btn-mini btn-warning" rel="<%= empresa.IdEmp %>"><i class="icon-minus"></i> Eliminar Empresa </a>
-														</th>
-														<th>
-															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i>Ver Sucursales</a>
-															<a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Sucursales</a>
-														</th>
-														<th>
-															<a class="ver-ofertas btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i>Ver Ofertas</a>
-															<a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
-														</th>
-													</tr>
-												<% } %>
-											</script>
+    </head>
 
-									<tbody id="empresasBlockDash">
-										
-									</tbody>
-								</table>
-								
-							</div>
-						</div>
-					</div>
-					<div class="span6">
-						<div class="row-fluid inactivo">
-							<div class="span12">
-								<div class="block">
-									<div class="row-fluid">
-										<div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
-										<div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
-									</div>
-									<div class="well well-small">
-										<table class="table-condensed table-hover table-bordered table-striped">
-									
-										<thead>
-											<tr>
-												<th>Sucursal</th>
-												<th>Estado</th>
-												<th>Ubicación</th>
-												<th>Editar</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Sucursal</td>
-												<td>Distrito Federal</td>
-												<td>Benito Juarez</td>
-												<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											</tr>
-											<tr>
-												<th>Sucursal</th>
-												<td>Distrito Federal</td>
-												<td>Benito Juarez</td>
-												<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											</tr>
-											<tr>
-												<td>Sucursal</td>
-												<td>Distrito Federal</td>
-												<td>Benito Juarez</td>
-												<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											</tr>
-											<tr>
-												<th>Sucursal</th>
-												<td>Distrito Federal</td>
-												<td>Benito Juarez</td>
-												<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											</tr>
-											<tr>
-												<td>Sucursal</td>
-												<td>Distrito Federal</td>
-												<td>Benito Juarez</td>
-												<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											</tr>
-											<tr>
-												<th>Sucursal</th>
-												<td>Distrito Federal</td>
-												<td>Benito Juarez</td>
-												<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-											</tr>
-										</tbody>
-									</table>
+    <body>
+        <!-- menu -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand-alt" href="/r/index">
+                        <img src="../library/images/logo_med.png">
+                    </a>
+                    <a class="brand" href="/r/index">
+                        <img src="../library/images/logo_header.png">
+                    </a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li>
+                                <a href="/r/index"><i class="icon-home"></i> Panel principal</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-building"></i> Empresa
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nuevaempresa" href="#"><i class="icon-plus"></i> Añadir Nueva</a></li>
+                                    <li><a href="/r/index"><i class="icon-list"></i> Lista Empresas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/admin/descargas.html"><i class="icon-download-alt"></i>  Descargas</a></li>
+                            <li><a href="/admin/faqs.html"><i class="icon-question-sign"></i>   Preguntas Frecuentes</a></li>
+                            <!--
+                            <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            Sucursales
+                                            <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                            <li><a class="nuevasucursal" href="#">Añadir Nueva</a></li>
+                                            <li><a href="#">Lista Sucursales</a></li>
+                                    </ul>
+                            </li>
+                            <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            Ofertas
+                                            <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                            <li><a href="oferta-detalle.html">Añadir Nueva</a></li>
+                                            <li><a href="ofertas.html">Lista Ofertas</a></li>
+                                    </ul>
+                            </li
+                            <li>
+                                    <a href="#">
+                                            El Buen Fin en linea
+                                    </a>
+                            </li>
+                            -->
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-user"></i> Cuenta
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/admin/usuario.html">Editar</a></li>
+                                    <li><a href="/r/logout">Salir</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
 
-									</div>
+        <div id="container" class="row-fluid">
+            <div id="dashboard" class="activo container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="block">
+                            <div class="row-fluid">
+                                <div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
+                                <div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i>Añadir nueva empresa</a></div>
+                            </div>
+                            <div class="well well-small">
+                                <table class="table-condensed table-hover table-bordered table-striped">
 
-								</div>
-							</div>
-						</div>
-						<div class="inactivo row-fluid">
-							<div class="span12">
-								<div class="block">
-									<div class="row-fluid">
-										<div class="span9"><h3><i class="icon-tag"></i> Ofertas </h3></div>
-										<div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
-									</div>
-									<div class="well well-small">
-										<table class="table-condensed table-hover table-bordered table-striped">
-											<thead>
-												<tr>
-													<th>Producto</th>
-													<th>Descuento</th>
-													<th>Desde</th>
-													<th>Hasta</th>
-													<th>Editar</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Producto</td>
-													<td><span class="badge badge-important">25%</span></td>
-													<td>20/05/2013</td>
-													<td>29/05/2013</td>
-													<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-												</tr>
-												<tr>
-													<td>Producto</td>
-													<td><span class="badge badge-important">25%</span></td>
-													<td>20/05/2013</td>
-													<td>29/05/2013</td>
-													<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-												</tr>
-												<tr>
-													<td>Producto</td>
-													<td><span class="badge badge-important">25%</span></td>
-													<td>20/05/2013</td>
-													<td>29/05/2013</td>
-													<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-												</tr>
-												<tr>
-													<td>Producto</td>
-													<td><span class="badge badge-important">25%</span></td>
-													<td>20/05/2013</td>
-													<td>29/05/2013</td>
-													<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-												</tr>
-												<tr>
-													<td>Producto</td>
-													<td><span class="badge badge-important">25%</span></td>
-													<td>20/05/2013</td>
-													<td>29/05/2013</td>
-													<th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                                    <script id="empresaTemplateDash" type="text/template">
+                                        <% for (var i in empresasArrayDash){ %>
+                                        <% var empresa = empresasArrayDash[i]; %>
+                                        <tr>
+                                        <td><%= empresa.Nombre %></td>
+                                        <td><%= empresa.RFC %></td>
+                                        <td><%= empresa.DirEnt %></td>
+                                        <th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a>
+                                        </th>
+                                        <th>
+                                        <a class="eliminarempresa btn btn-mini btn-warning" rel="<%= empresa.IdEmp %>"><i class="icon-minus"></i> Eliminar Empresa </a>
+                                        </th>
+                                        <th>
+                                        <a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i>Ver Sucursales</a>
+                                        <a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Sucursales</a>
+                                        </th>
+                                        <th>
+                                        <a class="ver-ofertas btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i>Ver Ofertas</a>
+                                        <a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
+                                        </th>
+                                        </tr>
+                                        <% } %>
+                                    </script>
 
-				</div>
-				<div class="row-fluid">
-					<!--div class="span4">
-							<div class="block">
-								<div class="row-fluid">
-									<div class="span9"><h3><i class="icon-user"></i> Usuario</h3></div>
-									<div class="span3"><a class="span12 btn btn-success"><i class="icon-edit"> </i> Editar</a></div>
-								</div>
-									<div class="row-fluid">
-										<div class="span12">
-													<div class="well well-small">
-														<ul class="unstyled">
-															<li><STRONG>Nombre: </STRONG></li>
-															<li><strong>Apellido: </strong></li>
-															<li><strong>Telefono: </strong></li>
-															<li><strong>Correo: </strong></li>
-														</ul>
-													</div>
-										</div>
-									</div>
-							</div>
-						</div
-						<div class="span8">
-							<div class="block">
-								<h3><i class="icon-shopping-cart"></i> El buen fin en linea</h3>
-								<div class="well well-small">
-									<p>A continuación se ofrecen algunos consejos que pueden ser útiles para las empresas que se están sumando al comercio electrónico: </p>
-									<div class="row-fluid">
-										<div class="span6">
-											<ul>
-												<li><a href="">Sitio o página de internet</a></li>
-												<li><a href="">Transacciones en un sitio web</a></li>
-											</ul>
-										</div>
-										<div class="span6">
-											<ul>
-												<li><a href="">Entrega de pedidos de compra</a></li>
-												<li><a href="">Sellos de confianza</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-				</div>
-				 Alertas Se deshabilita hasta que se utilize -->
-				<!--div class="row-fluid">
-						<div class="span12">
-							<div class="block">
-								<div class="row-fluid">
-									<div class="span12">
-										<h3><i class="icon-info"></i> Alertas</h3>
-									</div>
-									<div class="row-fluid">
-										<div class="span12 well well-small">
-											<div class="alert">soy un mensaje</div>
-											<div class="alert">soy un mensaje</div>
-											<div class="alert">soy un mensaje</div>
-											<div class="alert">soy un mensaje</div>
-											<div class="alert">soy un mensaje</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-				</div-->
-			</div>
-			<div id="empresas-lista" class="inactivo container-fluid">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="block">
-							<div class="row-fluid">
-								<div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
-								<div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
-							</div>
-							<div class="well well-small">
-								<table class="table-condensed table-hover table-bordered table-striped">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>RFC</th>
-											<th>Estado</th>
-											<th>Web</th>
-											<th>Editar</th>
-											<th>Sucursales</th>
-											<th>Ofertas</th>
-										</tr>
-									</thead>
-									
-									<script id="empresaTemplate" type="text/template">
-												<% for (var i in empresasArray){ %>
-												<% var empresa = empresasArray[i]; %>
-													<tr>
-														<td><%= empresa.Nombre %></td>
-														<td><%= empresa.RFC %></td>
-														<td><%= empresa.DirEnt %></td>
-														<td><a href="<%= empresa.Url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
-														<th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a></th>
-														<th>
-															<a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
-															<a href="" class="nuevasucursal btn btn-mini btn-success"><i class="icon-plus"></i> Añadir</a>
-														</th>
-													</tr>
-												<% } %>
-											</script>
-									<tbody id="empresasBlock">
-											
-									</tbody>
-								</table>
-								
-							</div>
-						</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                                    <tbody id="empresasBlockDash">
 
-			<!-- formato de empresa -->
-			<div id="empresas-detalle" class="inactivo container-fluid">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="block">
-							<h3><i class="icon-building"></i> Detalle de empresa</h3>
-							<div class="well well-small">
-								
-								<form id="empresa-form" class="form-horizontal">
-									<div class="row-fluid">
-										<div class="span6">
-											<div class="control-group">
-												<div class="controls"><input id="idemp-empresas" name="IdEmp" type="hidden"></div>
-											</div>
-											<div class="control-group">
-												<label for="RFC" class="control-label">R.F.C. *</label>
-												<div class="controls"><input name="RFC" class="validate[required,custom[onlyRFC]]" type="text"></div>
-											</div>
-											<div class="control-group">
-												<label for="Nombre" class="control-label">Nombre comercial *</label>
-												<div class="controls">
-													<input type="text"  class="validate[required]" name="Nombre">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="RazonSoc" class="control-label">Razón Social *</label>
-												<div class="controls">
-													<input type="text"  class="validate[required]" name="RazonSoc">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirEntEmp" class="control-label">Entidad Federativa *</label>
-												<div class="controls">
-													<select id="DirEntEmp" name="DirEnt">
-														<option value="01">Aguascalientes</option>
-														<option value="02">Baja California</option>
-														<option value="03">Baja California Sur</option>
-														<option value="04">Campeche</option>
-														<option value="05">Coahuila de Zaragoza</option>
-														<option value="06">Colima</option>
-														<option value="07">Chiapas</option>
-														<option value="08">Chihuahua</option>
-														<option value="09">Distrito Federal</option>
-														<option value="10">Durango</option>
-														<option value="11">Guanajuato</option>
-														<option value="12">Guerrero</option>
-														<option value="13">Hidalgo</option>
-														<option value="14">Jalisco</option>
-														<option value="15">México</option>
-														<option value="16">Michoacán de Ocampo</option>
-														<option value="17">Morelos</option>
-														<option value="18">Nayarit</option>
-														<option value="19">Nuevo León</option>
-														<option value="20">Oaxaca</option>
-														<option value="21">Puebla</option>
-														<option value="22">Querétaro Arteaga</option>
-														<option value="23">Quintana Roo</option>
-														<option value="24">San Luis Potosí</option>
-														<option value="25">Sinaloa</option>
-														<option value="26">Sonora</option>
-														<option value="27">Tabasco</option>
-														<option value="28">Tamaulipas</option>
-														<option value="29">Tlaxcala</option>
-														<option value="30">Veracruz de Ignacio de la Llave</option>
-														<option value="31">Yucatán</option>
-														<option value="32">Zacatecas</option>
-													</select>
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirMunEmp" class="control-label">Delegación o municipio *</label>
-												<div class="controls">
-													
-													<select id="DirMunEmp" name="DirMun"> </select>
-													<script id="muniTemplateEmp" type="text/template">
-														<% for (var i in MunicipiosArray){ %>
-														<% var municipio = MunicipiosArray[i]; %>
-															<option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
-														<% } %>
-													</script>
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirCalle" class="control-label">Calle y numero</label>
-												<div class="controls">
-													<input type="text" class="validate[required]" name="DirCalle">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirCol" class="control-label">Colonia y/o localidad * </label>
-												<div class="controls">
-													<input type="text" class="validate[required]" name="DirCol">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirCp" class="control-label">Código Postal * </label>
-												<div class="controls">
-													<input type="text" class="validate[required,minSize[5],maxSize[5],custom[onlyNumberSp]]" name="DirCp">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="NumSuc" class="control-label">Número de sucursales</label>
-												<div class="controls">
-													<input type="text"  class="validate[optional,minSize[1],custom[integer]]" name="NumSuc">
-												</div>
-											</div>											
-										</div>
-										<div class="span6">
-											<div class="control-group">
-												<label for="OrgEmp" class="control-label">Organismo empresarial</label>
-												<div class="controls">
-													
-													<select id="OrgEmpId" name="OrgEmp">
-													</select>
-													<script id="orgTemplate" type="text/template">
-														<% for (var i in OrganismosArray){ %>
-														<% var org = OrganismosArray[i]; %>
-															<option value="<%= org.Siglas %>"><%= org.Nombre %></option>
-														<% } %>
-													</script>
-												</div>
-											</div>
+                                    </tbody>
+                                </table>
 
-											<div class="control-group">
-												<label for="OrgEmpOtro" class="control-label">Otro (Especificar)</label>
-												<div class="controls">
-													<input type="text" class="validate[optional,custom[onlyLetterSp]]" name="OrgEmpOtro">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="OrgEmpReg" class="control-label">Número de registro o afiliación a tu organismo empresarial</label>
-												<div class="controls">
-													<input type="text" class="validate[optional]" name="OrgEmpReg">
-												</div>
-											</div>
-											<div class="control-group">
-												<label class="checkbox">
-													<input type="checkbox" name="PartLinea" class="validate[required]"> Me comprometo a ofrecer ofertas y/o promociones superiores al 10% de descuento.
-												</label>
-											</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="row-fluid inactivo">
+                            <div class="span12">
+                                <div class="block">
+                                    <div class="row-fluid">
+                                        <div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
+                                        <div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+                                    </div>
+                                    <div class="well well-small">
+                                        <table class="table-condensed table-hover table-bordered table-striped">
 
-											<div class="control-group">
-												<label class="checkbox">
-													<input type="checkbox" name="ExpComer" class="validate[required]"> Acepto seguir las normas de buen comportamiento y manejar un lenguaje adecuado.
-												</label>
-											</div>
-											<div class="control-group">
-												<label class="checkbox">
-													<input type="checkbox" class="validate[required]" name="TermCond" value="1" id="accept"/>
-													Para aceptar y realizar cambios a esta empresa haga clic en el recuadro * 
-												</label>
-											</div>
-										</div>
-									</div>
-									<div class="row-fluid">
-										<div class="span12">
-											<div class="control-group">
-												<button type="submit" id="btn-empresa" class="btn btn-success"><i class="icon-save"></i>  Crear</button>
-												<button type="reset" class="btn btn-danger" id="cancelbtn"><i class="icon-remove"></i> Limpiar Campos</button>
-												<a href="" class="btn btn-info"><i class="icon-edit"></i> Editar micrositio</a>
+                                            <thead>
+                                                <tr>
+                                                    <th>Sucursal</th>
+                                                    <th>Estado</th>
+                                                    <th>Ubicación</th>
+                                                    <th>Editar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Sucursal</td>
+                                                    <td>Distrito Federal</td>
+                                                    <td>Benito Juarez</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Sucursal</th>
+                                                    <td>Distrito Federal</td>
+                                                    <td>Benito Juarez</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sucursal</td>
+                                                    <td>Distrito Federal</td>
+                                                    <td>Benito Juarez</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Sucursal</th>
+                                                    <td>Distrito Federal</td>
+                                                    <td>Benito Juarez</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sucursal</td>
+                                                    <td>Distrito Federal</td>
+                                                    <td>Benito Juarez</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Sucursal</th>
+                                                    <td>Distrito Federal</td>
+                                                    <td>Benito Juarez</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-						<div class="inactivo block" id="micrositio-detalle">
-							<h3><i class="icon-globe"></i> Micrositio de empresa</h3>
-							<div class="well well-small">
-								<div class="row-fluid">
-									<div class="span6">
-										<form action="/r/wsed/post" method="post" id="enviardata" class="form-horizontal">
-												<div class="control-group">
-													<input type="hidden" value="a" name="s"/>
-													<input type="hidden" name="IdEmp" id="IdEmp"/>
-													<input type="hidden" name="BlobKey" id="BlobKey"/>
-												</div>
-												<h4>Redes sociales</h4>
-												<div class="control-group">
-													<label for="" class="control-label">Sitio de Facebook:</label>
-													<div class="controls">
-														<input type="text" class="validate[maxSize[255]]" name="Facebook" id="facebook" maxlength="255"/>
-													</div>
-												</div>
-												<div class="control-group">
-													<label for="" class="control-label"> Twitter:</label>
-													<div class="controls">
-														<input type="text" class="validate[maxSize[30]]" name="Twitter" id="twitter" maxlength="30"/>
-													</div>
-												</div>
-												<h4>Datos adicionales</h4>
-												<div class="control-group">
-													<label for="" class="control-label"> Descripción de la empresa visible al público:</label>
-													<div class="controls">
-														 <textarea class="validate[required, maxSize[350]]" name="Desc" cols="6" rows="6" id="descripcion" maxlength="350"></textarea>
-													</div>
-												</div>
-												<div class="control-group">
+                                    </div>
 
-													<button class="btn btn-success" type="submit">Guardar</button>
-													<button class="btn btn-danger" id="cancelbtn">Limpiar Campos</button>
-												</div>
-										</form>
-									</div>
-									<div class="span6">
-										<div id="urlimg"><img src="" alt="Logo de Empresa" width="258" id="pic" /> </div>
-										<form class="form-horizontal"  method="post" id="enviar" enctype="multipart/form-data">
-											<div class="control-group">
-												<input type="hidden" name="IdEmp" id="uploadimg_id"/>
-												<div id="status"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inactivo row-fluid">
+                            <div class="span12">
+                                <div class="block">
+                                    <div class="row-fluid">
+                                        <div class="span9"><h3><i class="icon-tag"></i> Ofertas </h3></div>
+                                        <div class="span3"><a class="span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+                                    </div>
+                                    <div class="well well-small">
+                                        <table class="table-condensed table-hover table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Producto</th>
+                                                    <th>Descuento</th>
+                                                    <th>Desde</th>
+                                                    <th>Hasta</th>
+                                                    <th>Editar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Producto</td>
+                                                    <td><span class="badge badge-important">25%</span></td>
+                                                    <td>20/05/2013</td>
+                                                    <td>29/05/2013</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Producto</td>
+                                                    <td><span class="badge badge-important">25%</span></td>
+                                                    <td>20/05/2013</td>
+                                                    <td>29/05/2013</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Producto</td>
+                                                    <td><span class="badge badge-important">25%</span></td>
+                                                    <td>20/05/2013</td>
+                                                    <td>29/05/2013</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Producto</td>
+                                                    <td><span class="badge badge-important">25%</span></td>
+                                                    <td>20/05/2013</td>
+                                                    <td>29/05/2013</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Producto</td>
+                                                    <td><span class="badge badge-important">25%</span></td>
+                                                    <td>20/05/2013</td>
+                                                    <td>29/05/2013</td>
+                                                    <th><a class="btn btn-mini"><i class="icon-edit"></i> Editar</a></th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-											</div>
-											<h4>Subir tu logotipo</h4>
-											<div class="control-group">
-												<label for="" class="control-label">Selecciona archivo</label>
-												<div class="controls">
-													<input id="imgfile" type="text" class="" readonly="readonly" />
-													<input id="infile" type="file" class="" name="image" />
-													<input type="submit" class="btn" id="submitImage" value="Subir Imagen" />		
-													<img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="" class="control-label">Progreso de subida</label>
-												<div class="controls">
-													<div class="progress progress-striped active">
-														<div class="bar"></div>
-													</div>
-												</div>
-											</div>
-											<div class="well well-small">
-									
-												<ul>
-													<li>Sólo imágenes formato jpeg o png.</li>
-													<li>Tamaño máximo 800x600 pixeles.</li>
-													<li>Logotipo con fondo blanco.</li>
-													<li>La imagen debe ser el logotipo de la empresa.</li>
-													<li>No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
-												</ul>
-											</div>
-										</form>	
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="sucursales-lista" class="inactivo container-fluid">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="block">
-							<div class="row-fluid">
-								<div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
-								<div class="span3" id="añadir-suc-empresa"></div>
-							</div>
-							<div class="well well-small">
-								<table class="table-condensed table-hover table-bordered table-striped">
+                </div>
+                <div class="row-fluid">
+                    <!--div class="span4">
+                                    <div class="block">
+                                            <div class="row-fluid">
+                                                    <div class="span9"><h3><i class="icon-user"></i> Usuario</h3></div>
+                                                    <div class="span3"><a class="span12 btn btn-success"><i class="icon-edit"> </i> Editar</a></div>
+                                            </div>
+                                                    <div class="row-fluid">
+                                                            <div class="span12">
+                                                                                    <div class="well well-small">
+                                                                                            <ul class="unstyled">
+                                                                                                    <li><STRONG>Nombre: </STRONG></li>
+                                                                                                    <li><strong>Apellido: </strong></li>
+                                                                                                    <li><strong>Telefono: </strong></li>
+                                                                                                    <li><strong>Correo: </strong></li>
+                                                                                            </ul>
+                                                                                    </div>
+                                                            </div>
+                                                    </div>
+                                    </div>
+                            </div
+                            <div class="span8">
+                                    <div class="block">
+                                            <h3><i class="icon-shopping-cart"></i> El buen fin en linea</h3>
+                                            <div class="well well-small">
+                                                    <p>A continuación se ofrecen algunos consejos que pueden ser útiles para las empresas que se están sumando al comercio electrónico: </p>
+                                                    <div class="row-fluid">
+                                                            <div class="span6">
+                                                                    <ul>
+                                                                            <li><a href="">Sitio o página de internet</a></li>
+                                                                            <li><a href="">Transacciones en un sitio web</a></li>
+                                                                    </ul>
+                                                            </div>
+                                                            <div class="span6">
+                                                                    <ul>
+                                                                            <li><a href="">Entrega de pedidos de compra</a></li>
+                                                                            <li><a href="">Sellos de confianza</a></li>
+                                                                    </ul>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                            </div>
+            </div>
+             Alertas Se deshabilita hasta que se utilize -->
+                    <!--div class="row-fluid">
+                                    <div class="span12">
+                                            <div class="block">
+                                                    <div class="row-fluid">
+                                                            <div class="span12">
+                                                                    <h3><i class="icon-info"></i> Alertas</h3>
+                                                            </div>
+                                                            <div class="row-fluid">
+                                                                    <div class="span12 well well-small">
+                                                                            <div class="alert">soy un mensaje</div>
+                                                                            <div class="alert">soy un mensaje</div>
+                                                                            <div class="alert">soy un mensaje</div>
+                                                                            <div class="alert">soy un mensaje</div>
+                                                                            <div class="alert">soy un mensaje</div>
+                                                                    </div>
+                                                            </div>
+                                                    </div>
+                                            </div>
+                                    </div>
+                    </div-->
+                </div>
+                <div id="empresas-lista" class="inactivo container-fluid">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="block">
+                                <div class="row-fluid">
+                                    <div class="span9"><h3><i class="icon-building"></i> empresa </h3></div>
+                                    <div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
+                                </div>
+                                <div class="well well-small">
+                                    <table class="table-condensed table-hover table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>RFC</th>
+                                                <th>Estado</th>
+                                                <th>Web</th>
+                                                <th>Editar</th>
+                                                <th>Sucursales</th>
+                                                <th>Ofertas</th>
+                                            </tr>
+                                        </thead>
 
-									<thead>
-										<tr>
-											<th>Sucursal</th>
-											<th>Colonia</th>
-											<th>Municipio</th>
-											<th>Entidad</th>
-											<th>Editar</th>
-											<th>Eliminar</th>
-										</tr>
-									</thead>
-									
-										<script id="sucursalesTemplate" type="text/template">
-												<% for (var i in sucursalesArray){ %>
-												<% var sucursal = sucursalesArray[i]; %>
-													<tr>
-														<td><%= sucursal.Nombre %></td>
-														<td><%= sucursal.DirCol %></td>
-														<td><%= sucursal.DirEnt %></td>
-														<td><%= sucursal.DirMun %></td>
+                                        <script id="empresaTemplate" type="text/template">
+                                            <% for (var i in empresasArray){ %>
+                                            <% var empresa = empresasArray[i]; %>
+                                            <tr>
+                                            <td><%= empresa.Nombre %></td>
+                                            <td><%= empresa.RFC %></td>
+                                            <td><%= empresa.DirEnt %></td>
+                                            <td><a href="<%= empresa.Url %>" class="btn btn-mini"><i class="icon-globe"> Web</i></a></td>
+                                            <th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a></th>
+                                            <th>
+                                            <a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Sucursales</a>
+                                            <a href="" class="nuevasucursal btn btn-mini btn-success"><i class="icon-plus"></i> Añadir</a>
+                                            </th>
+                                            </tr>
+                                            <% } %>
+                                        </script>
+                                        <tbody id="empresasBlock">
 
-														<th><a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a></th>
-														<th><a class="eliminarsucursal btn btn-mini btn-warning" data-idsuc="<%= sucursal.IdSuc %>" data-idemp="<%= sucursal.IdEmp %>"><i class="icon-edit"></i> Eliminar</a></th>
+                                        </tbody>
+                                    </table>
 
-													</tr>
-												<% } %>
-											</script>
-									<tbody id="sucursalesBlock">
-										
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<!--SUCURSAL-->
-			<div id="sucursal-detalle" class="inactivo container-fluid">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="block">
-							<h3><i class="icon-sitemap"></i> Detalle de sucursal</h3>
-							<div class="well well-small">
-								
-								<form id="sucursal-form" class="form-horizontal">
-									<div class="row-fluid">
-										<div class="span6">
-											<div class="control-group">
-												<div class="controls">
-													<input id="IdEmpSuc" name="IdEmp" type="hidden">
-												</div>
-												<div class="controls">
-													<input id="IdSuc" name="IdSuc" type="hidden">
-												</div>
-												<div class="controls">
-													<input id="lat" name="Geo1" value="" type="hidden">
-												</div>
-												<div class="controls">
-													<input id="lng" name="Geo2" value="" type="hidden">
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="Nombre" class="control-label">Nombre de sucursal * </label>
-												<div class="controls">
-													<input name="Nombre" id="Nombre" class="validate[required]" type="text">
-												</div>
-											</div>
-										</div>
-										<div class="span6">
-											<div class="control-group">
-												<label for="Tel" class="control-label">Teléfono fijo con lada</label>
-												<div class="controls">
-													<input  id="Tel"  class="validate[optional,custom[phone]]" type="text" name="Tel">
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row-fluid">
-										<div class="span12">
-											<div class="well well-small">
-												<ol>
-													<li>Captura la dirección de la sucursal y en el mapa se irá ubicando conforme la ingreses.</li>
-													<li>Puedes mover, alejar o acercar el mapa para verificar la ubicación de la sucursal.</li>
-													<li>Si el puntero no está en la ubicación puedes moverlo al lugar preciso.</li>
-												</ol>
-											</div>
-										</div>
-									</div>
-									<div class="row-fluid">
-										<div class="span6">
-											<div class="control-group">
-												<label for="DirEntSuc" class="control-label">Entidad Federativa *</label>
-												<div class="controls">
-													<select id="DirEntSuc" name="DirEnt">
-														<option value="01">Aguascalientes</option>
-														<option value="02">Baja California</option>
-														<option value="03">Baja California Sur</option>
-														<option value="04">Campeche</option>
-														<option value="05">Coahuila de Zaragoza</option>
-														<option value="06">Colima</option>
-														<option value="07">Chiapas</option>
-														<option value="08">Chihuahua</option>
-														<option value="09">Distrito Federal</option>
-														<option value="10">Durango</option>
-														<option value="11">Guanajuato</option>
-														<option value="12">Guerrero</option>
-														<option value="13">Hidalgo</option>
-														<option value="14">Jalisco</option>
-														<option value="15">México</option>
-														<option value="16">Michoacán de Ocampo</option>
-														<option value="17">Morelos</option>
-														<option value="18">Nayarit</option>
-														<option value="19">Nuevo León</option>
-														<option value="20">Oaxaca</option>
-														<option value="21">Puebla</option>
-														<option value="22">Querétaro Arteaga</option>
-														<option value="23">Quintana Roo</option>
-														<option value="24">San Luis Potosí</option>
-														<option value="25">Sinaloa</option>
-														<option value="26">Sonora</option>
-														<option value="27">Tabasco</option>
-														<option value="28">Tamaulipas</option>
-														<option value="29">Tlaxcala</option>
-														<option value="30">Veracruz de Ignacio de la Llave</option>
-														<option value="31">Yucatán</option>
-														<option value="32">Zacatecas</option>
-													</select>
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirMunSuc" class="control-label">Delegación o municipio *</label>
-												<input type="hidden" name="DirMunSel"  id="municipio"/>
-												<div class="controls">
-													
-													<select id="DirMunSuc" name="DirMun"></select>
-													<script id="muniTemplateSuc" type="text/template">
-														<% for (var i in MunicipiosArray){ %>
-														<% var municipio = MunicipiosArray[i]; %>
-															<option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
-														<% } %>
-													</script>
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirCalle" class="control-label">Calle y numero</label>
-												<div class="controls">
-													<input type="text" name="DirCalle" id="calle" class="validate[required]" />
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirCol" class="control-label">Colonia y/o localidad * </label>
-												<div class="controls">
-													<input type="text" name="DirCol" id="colonia" class="validate[required]" />
-												</div>
-											</div>
-											<div class="control-group">
-												<label for="DirCp" class="control-label">Codigo Postal * </label>
-												<div class="controls">
-													<input type="text" name="DirCp" class="validate[required,minSize[5],maxSize[5],custom[onlyNumberSp]]">
-												</div>
-											</div>
-										</div>
-										<div class="span6">
-											<div id="mapas" class="embed-container"></div>
-										</div>
-									</div>
-									<div class="row-fluid">
-										<div class="span12">
-											<div class="control-group">
-												<button type="submit" id="btn-sucursal" class="btn">Crear</button>
-												<button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="ofertas-lista" class="inactivo container-fluid">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="block">
-							<div class="row-fluid">
-								<div class="span9"><h3><i class="icon-sitemap"></i> Ofertas </h3></div>
-								<div class="span3" id="añadir-oferta-empresa"></div>
-							</div>
-							<div class="well well-small">
-								<table class="table-condensed table-hover table-bordered table-striped">
-									<thead>
-										<tr>
-											<th>Oferta</th>
-											<th>Descripcion</th>
-											<th>Empresa</th>
-											<th>Fecha Publicación</th>
-										</tr>
-									</thead>
+            <!-- formato de empresa -->
+            <div id="empresas-detalle" class="inactivo container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="block">
+                            <h3><i class="icon-building"></i> Detalle de empresa</h3>
+                            <div class="well well-small">
 
-									<script id="ofertasTemplate" type="text/template">
-												<% for (var i in ofertasArray){ %>
-												<% var oferta = ofertasArray[i]; %>
-													<tr>
-														<td><%= oferta.oferta %></td>
-														<td><%= oferta.desc %></td>
-														<td><%= oferta.empresa %></td>
-														<td><%= oferta.fechapub %></td>
+                                <form id="empresa-form" class="form-horizontal">
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <div class="control-group">
+                                                <div class="controls"><input id="idemp-empresas" name="IdEmp" type="hidden"></div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="RFC" class="control-label">R.F.C. *</label>
+                                                <div class="controls"><input name="RFC" class="validate[required,custom[onlyRFC]]" type="text"></div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="Nombre" class="control-label">Nombre comercial *</label>
+                                                <div class="controls">
+                                                    <input type="text"  class="validate[required]" name="Nombre">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="RazonSoc" class="control-label">Razón Social *</label>
+                                                <div class="controls">
+                                                    <input type="text"  class="validate[required]" name="RazonSoc">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirEntEmp" class="control-label">Entidad Federativa *</label>
+                                                <div class="controls">
+                                                    <select id="DirEntEmp" name="DirEnt">
+                                                        <option value="01">Aguascalientes</option>
+                                                        <option value="02">Baja California</option>
+                                                        <option value="03">Baja California Sur</option>
+                                                        <option value="04">Campeche</option>
+                                                        <option value="05">Coahuila de Zaragoza</option>
+                                                        <option value="06">Colima</option>
+                                                        <option value="07">Chiapas</option>
+                                                        <option value="08">Chihuahua</option>
+                                                        <option value="09">Distrito Federal</option>
+                                                        <option value="10">Durango</option>
+                                                        <option value="11">Guanajuato</option>
+                                                        <option value="12">Guerrero</option>
+                                                        <option value="13">Hidalgo</option>
+                                                        <option value="14">Jalisco</option>
+                                                        <option value="15">México</option>
+                                                        <option value="16">Michoacán de Ocampo</option>
+                                                        <option value="17">Morelos</option>
+                                                        <option value="18">Nayarit</option>
+                                                        <option value="19">Nuevo León</option>
+                                                        <option value="20">Oaxaca</option>
+                                                        <option value="21">Puebla</option>
+                                                        <option value="22">Querétaro Arteaga</option>
+                                                        <option value="23">Quintana Roo</option>
+                                                        <option value="24">San Luis Potosí</option>
+                                                        <option value="25">Sinaloa</option>
+                                                        <option value="26">Sonora</option>
+                                                        <option value="27">Tabasco</option>
+                                                        <option value="28">Tamaulipas</option>
+                                                        <option value="29">Tlaxcala</option>
+                                                        <option value="30">Veracruz de Ignacio de la Llave</option>
+                                                        <option value="31">Yucatán</option>
+                                                        <option value="32">Zacatecas</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirMunEmp" class="control-label">Delegación o municipio *</label>
+                                                <div class="controls">
 
-														<th><a class="editar-oferta btn btn-mini" rel="<%= oferta.idoft %>"><i class="icon-edit"></i> Editar</a></th>
-														<th>
-															<a class="eliminaroferta btn btn-mini btn-warning" data-idoft="<%= oferta.idoft %>" data-idemp="<%= oferta.idemp %>"><i class="icon-minus"></i> Eliminar </a>
-														</th>
-													</tr>
-												<% } %>
-											</script>
+                                                    <select id="DirMunEmp" name="DirMun"> </select>
+                                                    <script id="muniTemplateEmp" type="text/template">
+                                                        <% for (var i in MunicipiosArray){ %>
+                                                        <% var municipio = MunicipiosArray[i]; %>
+                                                        <option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
+                                                        <% } %>
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirCalle" class="control-label">Calle y numero</label>
+                                                <div class="controls">
+                                                    <input type="text" class="validate[required]" name="DirCalle">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirCol" class="control-label">Colonia y/o localidad * </label>
+                                                <div class="controls">
+                                                    <input type="text" class="validate[required]" name="DirCol">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirCp" class="control-label">Código Postal * </label>
+                                                <div class="controls">
+                                                    <input type="text" class="validate[required,minSize[5],maxSize[5],custom[onlyNumberSp]]" name="DirCp">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="NumSuc" class="control-label">Número de sucursales</label>
+                                                <div class="controls">
+                                                    <input type="text"  class="validate[optional,minSize[1],custom[integer]]" name="NumSuc">
+                                                </div>
+                                            </div>											
+                                        </div>
+                                        <div class="span6">
+                                            <div class="control-group">
+                                                <label for="OrgEmp" class="control-label">Organismo empresarial</label>
+                                                <div class="controls">
 
-									<tbody id="ofertasLista">
-										
-									</tbody>
-								</table>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="oferta-detalle" class="inactivo container-fluid">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="block">
-							<h3><i class="icon-sitemap"></i> Detalle de Oferta </h3>
-							<div class="well well-small">
-								
-									<div class="row-fluid">
-										<div class="span6">
-											<div class="well well-small">
-												<form action="/r/wso/put" class="form-horizontal" id="oferta-paso-1">
-												<input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
-												<input type="hidden" name="BlobKey" id="OfertaBlobKey"/>
-												<input type="hidden" name="schain" id="schain"/>
-												<div class="control-group">
-													<label for="nombre" class="control-label"> Título de la oferta *</label>
-													<div class="controls"><input type="text" class="validate[required, maxSize[55]]" name="Oferta" id="oferta" maxlength="55" /></div>
-												</div>
-												<div class="control-group">
-													<label for="" class="control-label"> ¿En qué consiste la oferta? *</label>
-													<div class="controls">
-														<textarea class="validate[required, maxSize[350]]" name="Descripcion" cols="30" rows="" id="descripcion" maxlength="350"></textarea>
-													</div>
-												</div>
-													<strong>Máximo 350 caracteres</strong>
-													<p>Esta es la información que quieres compartirle al público sobre tu oferta. Te recomendamos incluir algunos de los siguientes datos: monto del descuento, tipo de promoción, producto o servicio, departamento, público objetivo.<br>Por ejemplo: “40% de descuento en zapatos para dama en todas las marcas.”</p>
-											
-												<div class="control-group">
-													<label for="" class="control-label"> Categoría *</label>
-													<div class="controls">
-														<select name="IdCat" size="1" id="categoria" class="validate[required]">
-									                        <option value=""> SELECCIONAR UNA </option>
-									                        <option value="1" >Abarrotes</option>
-												            <option value="2" >Automóviles y transportes</option>
-												            <option value="3" >Bancos y seguros</option>
-												            <option value="4" >Blancos</option>
-												            <option value="5" >Calzado</option>
-												            <option value="6" >Cuidado e higiene personal</option>
-												            <option value="7" >Deportes</option>
-												            <option value="8" >Electrónica y video</option>
-												            <option value="9" >Electrodomésticos</option>
-												            <option value="10" >Farmacias</option>
-												            <option value="11" >Ferretería</option>
-												            <option value="12" >Fotografía y cómputo</option>
-												            <option value="13" >Hogar y decoración</option>
-												            <option value="14" >Jardinería</option>
-												            <option value="15" >Joyería</option>
-												            <option value="16" >Jugetería</option>
-												            <option value="17" >Línea blanca</option>
-												            <option value="18" >Muebles</option>
-												            <option value="19" >Oficina y papelería</option>
-												            <option value="20" >Oportunidades</option>
-												            <option value="21" >Óptica</option>
-												            <option value="22" >Perecederos</option>
-												            <option value="23" >Regalos</option>
-												            <option value="24" >Restaurantes</option>
-												            <option value="25" >Ropa</option>
-												            <option value="26" >Servicios</option>
-												            <option value="27" >Varios</option>
-												            <option value="28" >Viajes</option>
-									                    </select>
-													</div>
-												</div>										
-												<div class="control-group">
-													<label for="nombre" class="control-label">La oferta estará publicada a partir de</label>
-													<div class="controls"><input type="text" class="validate[optional]" name="FechaHoraPub" id="date1" readonly="readonly" onclick="return toggleCalendar(this);"/></div>
-													<div id="datePick">
-								                        <a href="#null" onclick="untogleCalendar();">X</a>
-								                        <p> Noviembre 2012</p>
-								                        <ul class="datepicker">
-								                            <li>L</li>
-								                            <li>M</li>
-								                            <li>M</li>
-								                            <li>J</li>
-								                            <li>V</li>
-								                            <li>S</li>
-								                            <li>D</li>
-								                            <li></li>
-								                            <li></li>
-								                            <li></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="1">1</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="2">2</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="3">3</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="4">4</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="5">5</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="6">6</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="7">7</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="8">8</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="9">9</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="10">10</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="11">11</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="12">12</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="13">13</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="14">14</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="15">15</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="16">16</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="17">17</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="18">18</a></li>
-								                            <li><a href="#null" onClick="getTheDate(this)" id="19">19</a></li>
-								                            <li>20</li>
-								                            <li>21</li>
-								                            <li>22</li>
-								                            <li>23</li>
-								                            <li>24</li>
-								                            <li>25</li>
-								                            <li>26</li>
-								                            <li>27</li>
-								                            <li>28</li>
-								                            <li>29</li>
-								                            <li>30</li>
-								                            <li>31</li>
-								                        </ul>
-								                    </div>
-												</div>
-												<p>
-													Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.
-												</p>
-												<div class="control-group">
-													<label for="ofertaDescuento">Descuento</label>
-													<div class="controls">
-														<select name="Descuento" id="ofertaDescuento">
-															<option value="">Seleccionar</option>
-															<option value="10% de descuento">10% de descuento</option>
-															<option value="15% de descuento">15% de descuento</option>
-															<option value="20% de descuento">20% de descuento</option>
-															<option value="25% de descuento">25% de descuento</option>
-															<option value="30% de descuento">30% de descuento</option>
-															<option value="40% de descuento">40% de descuento</option>
-															<option value="50% de descuento">50% de descuento</option>
-															<option value="60% de descuento">60% de descuento</option>
-															<option value="70% de descuento">70% de descuento</option>
-															<option value="80% de descuento">80% de descuento</option>
-														</select>
-													</div>
-												</div>
-												<div class="control-group">
-													<label for="ofertaMeses">Meses sin intereses</label>
-													<div class="controls">
-														<select name="Meses" id="ofertaMeses">
-															<option value="">Seleccionar</option>
-															<option value="6 meses sin intereses">6 meses sin intereses</option>
-															<option value="12 meses sin intereses">12 meses sin intereses</option>
-															<option value="18 meses sin intereses">18 meses sin intereses</option>
-														</select>
-													</div>
-												</div>
-												<div class="control-group">
-													<label for="ofertaPromocion">Otras promociones</label>
-													<div class="controls">
-														<select name="Promocion" id="ofertaPromocion">
-															<option value="">Seleccionar</option>
-															<option value="(2x1) Dos por uno">(2x1) Dos por uno</option>
-															<option value="(3x2) Tres por dos">(3x2) Tres por dos</option>
-															<option value="Bonificación">Bonificación</option>
-															<option value="Devolución del IVA">Devolución del IVA</option>
-														</select>
-													</div>
-												</div>
-												<div class="control-group">
-													<label>Selecciona las sucursales donde estará activa tu oferta.</label>
-													<div class="controls">
-														<table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
-															<thead>
-																<tr>
-																	<th>Sucursal</th>
-																	<th></th>
-																</tr>
-															</thead>
-															<tbody>
-															</tbody>
-														</table>	
-													</div>
-												</div>
-												<div class="control-group"> 
-						                            <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
-						                            <div class="controls">
-						                            	<input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
-						                            </div>
-						                            
-						                        </div>
-												<div class="control-group">
-													<button type="submit" class="btn" id="boton-enviar-oferta">Modificar</button>
-												</div>
-											</form>
-											</div>
-										</div>
-										<div class="span6">
-											<!-- <div class="inactivo well well-small">
-												<form action="" id="oferta-paso-2">
-													<input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
-													<div class="control-group">
-							                        	<table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
-															<thead>
-																<tr>
-																	<th>Sucursal</th>
-																	<th></th>
-																</tr>
-															</thead>
-															<tbody>
-															</tbody>
-														</table>
-													</div>
-												</form>
-											</div> -->
-											<!-- <div class="inactivo well well-small">
-												<form action="" id="oferta-paso-3">
-													<h4>Palabras relacionadas con la oferta</h4>
-													<div class="control-group">
-														<div class="input-append">
-															<input class="span10" id="AddWordInput"  type="text">
-															<button class="btn" id="AddWordButton" type="button" rel="">Añadir Palabra</button>
-														</div>
-														<div id="WordsAdded">
-														</div>
-													</div>
-												</form>
-											</div> -->
-											<div class="inactivo well well-small">
-												<div id="ofertaurlimg">
-													<img src="" alt="Logo de Empresa" width="258" id="OfertaPic" />
-												</div>
-												<form class="form-horizontal"  method="post" id="oferta-paso-4" enctype="multipart/form-data">
-													<div class="control-group">
-														<input type="hidden" name="IdOft" id="oferta_uploadimg_id"/>
-														<div id="ofertaimgstatus"></div>
+                                                    <select id="OrgEmpId" name="OrgEmp">
+                                                    </select>
+                                                    <script id="orgTemplate" type="text/template">
+                                                        <% for (var i in OrganismosArray){ %>
+                                                        <% var org = OrganismosArray[i]; %>
+                                                        <option value="<%= org.Siglas %>"><%= org.Nombre %></option>
+                                                        <% } %>
+                                                    </script>
+                                                </div>
+                                            </div>
 
-													</div>
-													<h4>Subir imagen</h4>
-													<div class="control-group">
-														<label for="" class="control-label">Selecciona archivo</label>
-														<div class="controls">
-															<input id="imgfileoferta" type="text" class="" readonly="readonly" />
-															<input id="infileoferta" type="file" class="" name="image" />
-															<input type="submit" class="btn" id="submitImageOferta" value="Subir Imagen" />		
-															<img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
-														</div>
-													</div>
-													<div class="control-group">
-														<label for="" class="control-label">Progreso de subida</label>
-														<div class="controls">
-															<div class="progress progress-striped active">
-																<div class="bar"></div>
-															</div>
-														</div>
-													</div>
-													<div class="well well-small">
-											
-														<ul>
-															<li>Sólo imágenes formato jpeg o png.</li>
-															<li>Tamaño máximo 800x600 pixeles.</li>
-															<li>Logotipo con fondo blanco.</li>
-															<li>La imagen debe ser el logotipo de la empresa.</li>
-															<li>No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
-														</ul>
-													</div>
-												</form>
-												<a href="/r/index" class="btn btn-warning">Finalizar</a>
-											</div>
+                                            <div class="control-group">
+                                                <label for="OrgEmpOtro" class="control-label">Otro (Especificar)</label>
+                                                <div class="controls">
+                                                    <input type="text" class="validate[optional,custom[onlyLetterSp]]" name="OrgEmpOtro">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="OrgEmpReg" class="control-label">Número de registro o afiliación a tu organismo empresarial</label>
+                                                <div class="controls">
+                                                    <input type="text" class="validate[optional]" name="OrgEmpReg">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="PartLinea" class="validate[required]"> Me comprometo a ofrecer ofertas y/o promociones superiores al 10% de descuento.
+                                                </label>
+                                            </div>
 
-										</div>
-									</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                                            <div class="control-group">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="ExpComer" class="validate[required]"> Acepto seguir las normas de buen comportamiento y manejar un lenguaje adecuado.
+                                                </label>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" class="validate[required]" name="TermCond" value="1" id="accept"/>
+                                                    Para aceptar y realizar cambios a esta empresa haga clic en el recuadro * 
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <button type="submit" id="btn-empresa" class="btn btn-success"><i class="icon-save"></i>  Crear</button>
+                                                <button type="reset" class="btn btn-danger" id="cancelbtn"><i class="icon-remove"></i> Limpiar Campos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="inactivo block" id="micrositio-detalle">
+                            <h3><i class="icon-globe"></i> Micrositio de empresa</h3>
+                            <div class="well well-small">
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <form action="/r/wsed/post" method="post" id="enviardata" class="form-horizontal">
+                                            <div class="control-group">
+                                                <input type="hidden" value="a" name="s"/>
+                                                <input type="hidden" name="IdEmp" id="IdEmp"/>
+                                                <input type="hidden" name="BlobKey" id="BlobKey"/>
+                                            </div>
+                                            <h4>Redes sociales</h4>
+                                            <div class="control-group">
+                                                <label for="" class="control-label">Sitio de Facebook:</label>
+                                                <div class="controls">
+                                                    <input type="text" class="validate[custom[url]]" name="Facebook" id="facebook" maxlength="255"/>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="" class="control-label"> Twitter:</label>
+                                                <div class="controls">
+                                                    @<input type="text" class="validate[maxSize[30]]" name="Twitter" id="twitter" maxlength="30"/>
+                                                </div>
+                                            </div>
+                                            <h4>Datos adicionales</h4>
+                                            <div class="control-group">
+                                                <label for="" class="control-label"> Descripción de la empresa visible al público:</label>
+                                                <div class="controls">
+                                                    <textarea class="validate[required, maxSize[350]]" name="Desc" cols="6" rows="6" id="descripcion" maxlength="350"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+
+                                                <button class="btn btn-success" type="submit">Guardar</button>
+                                                <button class="btn btn-danger" id="cancelbtn">Limpiar Campos</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="span6">
+                                        <div id="urlimg"><img src="" alt="Logo de Empresa" width="258" id="pic" /> </div>
+                                        <form class="form-horizontal"  method="post" id="enviar" enctype="multipart/form-data">
+                                            <div class="control-group">
+                                                <input type="hidden" name="IdEmp" id="uploadimg_id"/>
+                                                <div id="status"></div>
+
+                                            </div>
+                                            <h4>Subir tu logotipo</h4>
+                                            <div class="control-group">
+                                                <label for="" class="control-label">Selecciona archivo</label>
+                                                <div class="controls">
+                                                    <input id="imgfile" type="text" class="" readonly="readonly" />
+                                                    <input id="infile" type="file" class="" name="image" />
+                                                    <input type="submit" class="btn" id="submitImage" value="Subir Imagen" />		
+                                                    <img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
+                                                </div>
+                                            </div>
+                                            <!-- <div class="control-group">
+                                                <label for="" class="control-label">Progreso de subida</label>
+                                                <div class="controls">
+                                                    <div class="progress progress-striped active">
+                                                        <div class="bar"></div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div class="well well-small">
+
+                                                <ul>
+                                                    <li>Sólo imágenes formato jpeg o png.</li>
+                                                    <li>Tamaño máximo 800x600 pixeles.</li>
+                                                    <li>Logotipo con fondo blanco.</li>
+                                                    <li>La imagen debe ser el logotipo de la empresa.</li>
+                                                    <li>No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
+                                                </ul>
+                                            </div>
+                                        </form>	
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sucursales-lista" class="inactivo container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="block">
+                            <div class="row-fluid">
+                                <div class="span9"><h3><i class="icon-sitemap"></i> Sucursales </h3></div>
+                                <div class="span3" id="añadir-suc-empresa"></div>
+                            </div>
+                            <div class="well well-small">
+                                <table class="table-condensed table-hover table-bordered table-striped">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Sucursal</th>
+                                            <th>Colonia</th>
+                                            <th>Municipio</th>
+                                            <th>Entidad</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+
+                                    <script id="sucursalesTemplate" type="text/template">
+                                        <% for (var i in sucursalesArray){ %>
+                                        <% var sucursal = sucursalesArray[i]; %>
+                                        <tr>
+                                        <td><%= sucursal.Nombre %></td>
+                                        <td><%= sucursal.DirCol %></td>
+                                        <td><%= sucursal.DirEnt %></td>
+                                        <td><%= sucursal.DirMun %></td>
+
+                                        <th><a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a></th>
+                                        <th><a class="eliminarsucursal btn btn-mini btn-warning" data-idsuc="<%= sucursal.IdSuc %>" data-idemp="<%= sucursal.IdEmp %>"><i class="icon-edit"></i> Eliminar</a></th>
+
+                                        </tr>
+                                        <% } %>
+                                    </script>
+                                    <tbody id="sucursalesBlock">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--SUCURSAL-->
+            <div id="sucursal-detalle" class="inactivo container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="block">
+                            <h3><i class="icon-sitemap"></i> Detalle de sucursal</h3>
+                            <div class="well well-small">
+
+                                <form id="sucursal-form" class="form-horizontal">
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <input id="IdEmpSuc" name="IdEmp" type="hidden">
+                                                </div>
+                                                <div class="controls">
+                                                    <input id="IdSuc" name="IdSuc" type="hidden">
+                                                </div>
+                                                <div class="controls">
+                                                    <input id="lat" name="Geo1" value="" type="hidden">
+                                                </div>
+                                                <div class="controls">
+                                                    <input id="lng" name="Geo2" value="" type="hidden">
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="Nombre" class="control-label">Nombre de sucursal * </label>
+                                                <div class="controls">
+                                                    <input name="Nombre" id="Nombre" class="validate[required]" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="span6">
+                                            <div class="control-group">
+                                                <label for="Tel" class="control-label">Teléfono fijo con lada</label>
+                                                <div class="controls">
+                                                    <input  id="Tel"  class="validate[optional,custom[phone]]" type="text" name="Tel">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="well well-small">
+                                                <ol>
+                                                    <li>Captura la dirección de la sucursal y en el mapa se irá ubicando conforme la ingreses.</li>
+                                                    <li>Puedes mover, alejar o acercar el mapa para verificar la ubicación de la sucursal.</li>
+                                                    <li>Si el puntero no está en la ubicación puedes moverlo al lugar preciso.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <div class="control-group">
+                                                <label for="DirEntSuc" class="control-label">Entidad Federativa *</label>
+                                                <div class="controls">
+                                                    <select id="DirEntSuc" name="DirEnt">
+                                                        <option value="01">Aguascalientes</option>
+                                                        <option value="02">Baja California</option>
+                                                        <option value="03">Baja California Sur</option>
+                                                        <option value="04">Campeche</option>
+                                                        <option value="05">Coahuila de Zaragoza</option>
+                                                        <option value="06">Colima</option>
+                                                        <option value="07">Chiapas</option>
+                                                        <option value="08">Chihuahua</option>
+                                                        <option value="09">Distrito Federal</option>
+                                                        <option value="10">Durango</option>
+                                                        <option value="11">Guanajuato</option>
+                                                        <option value="12">Guerrero</option>
+                                                        <option value="13">Hidalgo</option>
+                                                        <option value="14">Jalisco</option>
+                                                        <option value="15">México</option>
+                                                        <option value="16">Michoacán de Ocampo</option>
+                                                        <option value="17">Morelos</option>
+                                                        <option value="18">Nayarit</option>
+                                                        <option value="19">Nuevo León</option>
+                                                        <option value="20">Oaxaca</option>
+                                                        <option value="21">Puebla</option>
+                                                        <option value="22">Querétaro Arteaga</option>
+                                                        <option value="23">Quintana Roo</option>
+                                                        <option value="24">San Luis Potosí</option>
+                                                        <option value="25">Sinaloa</option>
+                                                        <option value="26">Sonora</option>
+                                                        <option value="27">Tabasco</option>
+                                                        <option value="28">Tamaulipas</option>
+                                                        <option value="29">Tlaxcala</option>
+                                                        <option value="30">Veracruz de Ignacio de la Llave</option>
+                                                        <option value="31">Yucatán</option>
+                                                        <option value="32">Zacatecas</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirMunSuc" class="control-label">Delegación o municipio *</label>
+                                                <input type="hidden" name="DirMunSel"  id="municipio"/>
+                                                <div class="controls">
+
+                                                    <select id="DirMunSuc" name="DirMun"></select>
+                                                    <script id="muniTemplateSuc" type="text/template">
+                                                        <% for (var i in MunicipiosArray){ %>
+                                                        <% var municipio = MunicipiosArray[i]; %>
+                                                        <option value="<%= municipio.cvemun %>"><%= municipio.municipio %></option>
+                                                        <% } %>
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirCalle" class="control-label">Calle y numero</label>
+                                                <div class="controls">
+                                                    <input type="text" name="DirCalle" id="calle" class="validate[required]" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirCol" class="control-label">Colonia y/o localidad * </label>
+                                                <div class="controls">
+                                                    <input type="text" name="DirCol" id="colonia" class="validate[required]" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label for="DirCp" class="control-label">Codigo Postal * </label>
+                                                <div class="controls">
+                                                    <input type="text" name="DirCp" class="validate[required,minSize[5],maxSize[5],custom[onlyNumberSp]]">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="span6">
+                                            <div id="mapas" class="embed-container"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <button type="submit" id="btn-sucursal" class="btn">Crear</button>
+                                                <button type="reset" class="btn" id="cancelbtn">Limpiar Campos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ofertas-lista" class="inactivo container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="block">
+                            <div class="row-fluid">
+                                <div class="span9"><h3><i class="icon-sitemap"></i> Ofertas </h3></div>
+                                <div class="span3" id="añadir-oferta-empresa"></div>
+                            </div>
+                            <div class="well well-small">
+                                <table class="table-condensed table-hover table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Oferta</th>
+                                            <th>Descripcion</th>
+                                            <th>Empresa</th>
+                                            <th>Fecha Publicación</th>
+                                        </tr>
+                                    </thead>
+
+                                    <script id="ofertasTemplate" type="text/template">
+                                        <% for (var i in ofertasArray){ %>
+                                        <% var oferta = ofertasArray[i]; %>
+                                        <tr>
+                                        <td><%= oferta.oferta %></td>
+                                        <td><%= oferta.desc %></td>
+                                        <td><%= oferta.empresa %></td>
+                                        <td><%= oferta.fechapub %></td>
+
+                                        <th><a class="editar-oferta btn btn-mini" rel="<%= oferta.idoft %>"><i class="icon-edit"></i> Editar</a></th>
+                                        <th>
+                                        <a class="eliminaroferta btn btn-mini btn-warning" data-idoft="<%= oferta.idoft %>" data-idemp="<%= oferta.idemp %>"><i class="icon-minus"></i> Eliminar </a>
+                                        </th>
+                                        </tr>
+                                        <% } %>
+                                    </script>
+
+                                    <tbody id="ofertasLista">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="oferta-detalle" class="inactivo container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="block">
+                            <h3><i class="icon-sitemap"></i> Detalle de Oferta </h3>
+                            <div class="well well-small">
+
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <div class="well well-small">
+                                            <form action="/r/wso/put" class="form-horizontal" id="oferta-paso-1">
+                                                <input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
+                                                <input type="hidden" name="BlobKey" id="OfertaBlobKey"/>
+                                                <input type="hidden" name="schain" id="schain"/>
+                                                <div class="control-group">
+                                                    <label for="nombre" class="control-label"> Título de la oferta *</label>
+                                                    <div class="controls"><input type="text" class="validate[required, maxSize[55]]" name="Oferta" id="oferta" maxlength="55" /></div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label for="" class="control-label"> ¿En qué consiste la oferta? *</label>
+                                                    <div class="controls">
+                                                        <textarea class="validate[required, maxSize[350]]" name="Descripcion" cols="30" rows="" id="descripcion" maxlength="350"></textarea>
+                                                    </div>
+                                                </div>
+                                                <strong>Máximo 350 caracteres</strong>
+                                                <p>Esta es la información que quieres compartirle al público sobre tu oferta. Te recomendamos incluir algunos de los siguientes datos: monto del descuento, tipo de promoción, producto o servicio, departamento, público objetivo.<br>Por ejemplo: “40% de descuento en zapatos para dama en todas las marcas.”</p>
+
+                                                <div class="control-group">
+                                                    <label for="" class="control-label"> Categoría *</label>
+                                                    <div class="controls">
+                                                        <select name="IdCat" size="1" id="categoria" class="validate[required]">
+                                                            <option value=""> SELECCIONAR UNA </option>
+                                                            <option value="1" >Abarrotes</option>
+                                                            <option value="2" >Automóviles y transportes</option>
+                                                            <option value="3" >Bancos y seguros</option>
+                                                            <option value="4" >Blancos</option>
+                                                            <option value="5" >Calzado</option>
+                                                            <option value="6" >Cuidado e higiene personal</option>
+                                                            <option value="7" >Deportes</option>
+                                                            <option value="8" >Electrónica y video</option>
+                                                            <option value="9" >Electrodomésticos</option>
+                                                            <option value="10" >Farmacias</option>
+                                                            <option value="11" >Ferretería</option>
+                                                            <option value="12" >Fotografía y cómputo</option>
+                                                            <option value="13" >Hogar y decoración</option>
+                                                            <option value="14" >Jardinería</option>
+                                                            <option value="15" >Joyería</option>
+                                                            <option value="16" >Jugetería</option>
+                                                            <option value="17" >Línea blanca</option>
+                                                            <option value="18" >Muebles</option>
+                                                            <option value="19" >Oficina y papelería</option>
+                                                            <option value="20" >Oportunidades</option>
+                                                            <option value="21" >Óptica</option>
+                                                            <option value="22" >Perecederos</option>
+                                                            <option value="23" >Regalos</option>
+                                                            <option value="24" >Restaurantes</option>
+                                                            <option value="25" >Ropa</option>
+                                                            <option value="26" >Servicios</option>
+                                                            <option value="27" >Varios</option>
+                                                            <option value="28" >Viajes</option>
+                                                        </select>
+                                                    </div>
+                                                </div>										
+                                                <div class="control-group">
+                                                    <label for="nombre" class="control-label">La oferta estará publicada a partir de</label>
+                                                    <div class="controls"><input type="text" class="validate[optional]" name="FechaHoraPub" id="date1" readonly="readonly" onclick="return toggleCalendar(this);"/></div>
+                                                    <div id="datePick">
+                                                        <a href="#null" onclick="untogleCalendar();">X</a>
+                                                        <p> Noviembre 2012</p>
+                                                        <ul class="datepicker">
+                                                            <li>L</li>
+                                                            <li>M</li>
+                                                            <li>M</li>
+                                                            <li>J</li>
+                                                            <li>V</li>
+                                                            <li>S</li>
+                                                            <li>D</li>
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="1">1</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="2">2</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="3">3</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="4">4</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="5">5</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="6">6</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="7">7</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="8">8</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="9">9</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="10">10</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="11">11</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="12">12</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="13">13</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="14">14</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="15">15</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="16">16</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="17">17</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="18">18</a></li>
+                                                            <li><a href="#null" onClick="getTheDate(this)" id="19">19</a></li>
+                                                            <li>20</li>
+                                                            <li>21</li>
+                                                            <li>22</li>
+                                                            <li>23</li>
+                                                            <li>24</li>
+                                                            <li>25</li>
+                                                            <li>26</li>
+                                                            <li>27</li>
+                                                            <li>28</li>
+                                                            <li>29</li>
+                                                            <li>30</li>
+                                                            <li>31</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <p>
+                                                    Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.
+                                                </p>
+                                                <div class="control-group">
+                                                    <label for="ofertaDescuento">Descuento</label>
+                                                    <div class="controls">
+                                                        <select name="Descuento" id="ofertaDescuento">
+                                                            <option value="">Seleccionar</option>
+                                                            <option value="10% de descuento">10% de descuento</option>
+                                                            <option value="15% de descuento">15% de descuento</option>
+                                                            <option value="20% de descuento">20% de descuento</option>
+                                                            <option value="25% de descuento">25% de descuento</option>
+                                                            <option value="30% de descuento">30% de descuento</option>
+                                                            <option value="40% de descuento">40% de descuento</option>
+                                                            <option value="50% de descuento">50% de descuento</option>
+                                                            <option value="60% de descuento">60% de descuento</option>
+                                                            <option value="70% de descuento">70% de descuento</option>
+                                                            <option value="80% de descuento">80% de descuento</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label for="ofertaMeses">Meses sin intereses</label>
+                                                    <div class="controls">
+                                                        <select name="Meses" id="ofertaMeses">
+                                                            <option value="">Seleccionar</option>
+                                                            <option value="6 meses sin intereses">6 meses sin intereses</option>
+                                                            <option value="12 meses sin intereses">12 meses sin intereses</option>
+                                                            <option value="18 meses sin intereses">18 meses sin intereses</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label for="ofertaPromocion">Otras promociones</label>
+                                                    <div class="controls">
+                                                        <select name="Promocion" id="ofertaPromocion">
+                                                            <option value="">Seleccionar</option>
+                                                            <option value="(2x1) Dos por uno">(2x1) Dos por uno</option>
+                                                            <option value="(3x2) Tres por dos">(3x2) Tres por dos</option>
+                                                            <option value="Bonificación">Bonificación</option>
+                                                            <option value="Devolución del IVA">Devolución del IVA</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label for="ofertaPrecio">Precio</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="Precio" class="validate[optional,custom[number]]" id="ofertaPrecio"/>
+                                                    </div>
+                                                </div>  
+                                                <div class="control-group">
+                                                    <label>Selecciona las sucursales donde estará activa tu oferta.</label>
+                                                    <div class="controls">
+                                                        <table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Sucursal</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>	
+                                                    </div>
+                                                </div>
+                                                <div class="control-group"> 
+                                                    <label> Si tu oferta esta disponible en internet, favor de indicar la URL donde será publicada.</label>
+                                                    <div class="controls">
+                                                        <input type="text" class="validate[optional,custom[url]]" name="Url" id="url"/>
+                                                    </div>
+
+                                                </div>
+                                                <div class="control-group">
+                                                    <button type="submit" class="btn" id="boton-enviar-oferta">Modificar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="span6">
+                                        <!-- <div class="inactivo well well-small">
+                                                <form action="" id="oferta-paso-2">
+                                                        <input type="hidden" name="IdEmp" class="OfertaIdEmp" value="" />
+                                                        <div class="control-group">
+                                        <table class="table-condensed table-hover table-bordered table-striped" id="ofertas-lista-sucursales">
+                                                                        <thead>
+                                                                                <tr>
+                                                                                        <th>Sucursal</th>
+                                                                                        <th></th>
+                                                                                </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        </tbody>
+                                                                </table>
+                                                        </div>
+                                                </form>
+                                        </div> -->
+                                        <!-- <div class="inactivo well well-small">
+                                                <form action="" id="oferta-paso-3">
+                                                        <h4>Palabras relacionadas con la oferta</h4>
+                                                        <div class="control-group">
+                                                                <div class="input-append">
+                                                                        <input class="span10" id="AddWordInput"  type="text">
+                                                                        <button class="btn" id="AddWordButton" type="button" rel="">Añadir Palabra</button>
+                                                                </div>
+                                                                <div id="WordsAdded">
+                                                                </div>
+                                                        </div>
+                                                </form>
+                                        </div> -->
+                                        <div class="inactivo well well-small">
+                                            <div id="ofertaurlimg">
+                                                <img src="" alt="Logo de Empresa" width="258" id="OfertaPic" />
+                                            </div>
+                                            <form class="form-horizontal"  method="post" id="oferta-paso-4" enctype="multipart/form-data">
+                                                <div class="control-group">
+                                                    <input type="hidden" name="IdOft" id="oferta_uploadimg_id"/>
+                                                    <div id="ofertaimgstatus"></div>
+
+                                                </div>
+                                                <h4>Subir imagen</h4>
+                                                <div class="control-group">
+                                                    <label for="" class="control-label">Selecciona archivo</label>
+                                                    <div class="controls">
+                                                        <input id="imgfileoferta" type="text" class="" readonly="readonly" />
+                                                        <input id="infileoferta" type="file" class="" name="image" />
+                                                        <input type="submit" class="btn" id="submitImageOferta" value="Subir Imagen" />		
+                                                        <img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="control-group">
+                                                    <label for="" class="control-label">Progreso de subida</label>
+                                                    <div class="controls">
+                                                        <div class="progress progress-striped active">
+                                                            <div class="bar"></div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="well well-small">
+
+                                                    <ul>
+                                                        <li>Sólo imágenes formato jpeg o png.</li>
+                                                        <li>Tamaño máximo 800x600 pixeles.</li>
+                                                        <li>Logotipo con fondo blanco.</li>
+                                                        <li>La imagen debe ser el logotipo de la empresa.</li>
+                                                        <li>No son admisibles imágenes políticas, religiosas o que atenten contra las buenas costumbres, de ser así no se publicará la empresa en el sitio.</li>
+                                                    </ul>
+                                                </div>
+                                            </form>
+                                            <a href="/r/index" class="btn btn-warning">Finalizar</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-	</div> <!-- /container -->
+        </div> <!-- /container -->
 
-	<div class="footer">
-		<p>
-		El Buen Fin © Todos los derechos reservados, México 2013
-		Toda la información aquí publicada relativa a las características
-		de los productos y servicios que participan en El Buen Fin © es 
-		responsabilidad exclusiva de las tiendas que ofrecen los servicios 
-		y/o la venta de los productos. 
-		<br />
-		Del mismo modo, los precios, los porcentajes de descuento, 
-		las promociones y todas las ofertas financieras y/o económicas 
-		aquí publicadas son responsabilidad de las tiendas que lo ofrecen.
-		</p>
-	</div>
-	<div class="preloader"></div>
-		<!-- Le javascript
-		================================================== -->
-		<script src="../library/js/libs/bootstrap-transition.js"></script>
-		<script src="../library/js/libs/bootstrap-alert.js"></script>
-		<script src="../library/js/libs/bootstrap-modal.js"></script>
-		<script src="../library/js/libs/bootstrap-dropdown.js"></script>
-		<script src="../library/js/libs/bootstrap-scrollspy.js"></script>
-		<script src="../library/js/libs/bootstrap-tab.js"></script>
-		<script src="../library/js/libs/bootstrap-tooltip.js"></script>
-		<script src="../library/js/libs/bootstrap-popover.js"></script>
-		<script src="../library/js/libs/bootstrap-button.js"></script>
-		<script src="../library/js/libs/bootstrap-collapse.js"></script>
-		<script src="../library/js/libs/bootstrap-carousel.js"></script>
-		<script src="../library/js/libs/bootstrap-typeahead.js"></script>
-		<script src="../library/js/libs/jquery.formparams.js"></script>
-		<script src="../library/js/libs/datepicker.js"></script>
-		<script src="../library/js/libs/tagmanager.js"></script>
-		<script src="../library/js/scripts.js"></script>
-		<script src="../library/js/llenamuni.js"></script>
-		<script src="../library/js/llenaorg.js"></script>
-</body>
+        <div class="footer">
+            <p>
+                El Buen Fin © Todos los derechos reservados, México 2013
+                Toda la información aquí publicada relativa a las características
+                de los productos y servicios que participan en El Buen Fin © es 
+                responsabilidad exclusiva de las tiendas que ofrecen los servicios 
+                y/o la venta de los productos. 
+                <br />
+                Del mismo modo, los precios, los porcentajes de descuento, 
+                las promociones y todas las ofertas financieras y/o económicas 
+                aquí publicadas son responsabilidad de las tiendas que lo ofrecen.
+            </p>
+        </div>
+        <div class="preloader"></div>
+        <!-- Le javascript
+        ================================================== -->
+        <script src="../library/js/libs/bootstrap-transition.js"></script>
+        <script src="../library/js/libs/bootstrap-alert.js"></script>
+        <script src="../library/js/libs/bootstrap-modal.js"></script>
+        <script src="../library/js/libs/bootstrap-dropdown.js"></script>
+        <script src="../library/js/libs/bootstrap-scrollspy.js"></script>
+        <script src="../library/js/libs/bootstrap-tab.js"></script>
+        <script src="../library/js/libs/bootstrap-tooltip.js"></script>
+        <script src="../library/js/libs/bootstrap-popover.js"></script>
+        <script src="../library/js/libs/bootstrap-button.js"></script>
+        <script src="../library/js/libs/bootstrap-collapse.js"></script>
+        <script src="../library/js/libs/bootstrap-carousel.js"></script>
+        <script src="../library/js/libs/bootstrap-typeahead.js"></script>
+        <script src="../library/js/libs/jquery.formparams.js"></script>
+        <script src="../library/js/libs/datepicker.js"></script>
+        <script src="../library/js/libs/tagmanager.js"></script>
+        <script src="../library/js/scripts.js"></script>
+        <script src="../library/js/llenamuni.js"></script>
+        <script src="../library/js/llenaorg.js"></script>
+    </body>
 </html>

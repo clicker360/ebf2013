@@ -35,7 +35,7 @@
             event.preventDefault();
             var empresaID = $(this).attr('rel');
             empresas.empresaformdesdejson(empresaID);
-            micrositio.cargarmicrositio(empresaID);
+            
         });
     };
 
@@ -378,7 +378,7 @@ var empresas = (function() {
     var empresaformdesdejson = function(codeRel) {
         // Si existe el parámetro codeRel, llena y muestra el formulario de modificar empresa.
         if (codeRel) {
-            $('#btn-empresa').html("Modificar");
+            $('#btn-empresa').html("Siguiente paso");
             Ajax.get('/r/wse/get?IdEmp=' + codeRel, function(response) {
                 $('#empresa-form').formParams(response, true);
                 llenamuniEmpresa(response.DirEnt, response.DirMun);
@@ -408,6 +408,7 @@ var empresas = (function() {
                     if (response.status === "ok") {
                         alert('registrado correctamente');
                         location.href = "/r/index";
+                        
                     }
                 });
                 // De lo contrario, los datos se envían al método "post" de la API.
@@ -415,7 +416,8 @@ var empresas = (function() {
                 Ajax.post('/r/wse/post', post, function(response) {
                     if (response.status === "ok") {
                         alert('registrado correctamente');
-                        location.href = "/r/index";
+                        //location.href = "/r/index";
+                        micrositio.cargarmicrositio(response.IdEmp);
                     }
                 });
             }
@@ -975,6 +977,7 @@ var ofertas = (function() {
                     $('#oferta-paso-1 #ofertaDescuento').val(response.Descuento);
                     $('#oferta-paso-1 #ofertaMeses').val(response.Meses);
                     $('#oferta-paso-1 #ofertaPromocion').val(response.Promocion);
+                    $('#oferta-paso-1 #ofertaPrecio').val(response.Precio);
                     $('#oferta-paso-1 #url').val(response.Url);
                     $('#oferta-paso-4').attr('action', response.UploadUrl);
                     $('#oferta-paso-4 #oferta_uploadimg_id').val(rel);
