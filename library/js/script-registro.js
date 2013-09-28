@@ -7,6 +7,9 @@
     var execute = function() {
         $(document).ready(function() {
             registrarse();
+            $('.emailow').val(function(i,val) {
+            return val.toLowerCase();
+            }) 
         });
     };
     return execute();
@@ -73,7 +76,7 @@ var registros = (function() {
                             + '<dl class="dl-horizontal">'
                             + '<dt>Usuario:</dt><dd>' + response.Nombre + '</dd>'
                             + '<dt>Apellido:</dt><dd>' + response.Apellidos + '</dd>'
-                            + '<dt>Correo:</dt><dd>' + response.Email + '</dd>'
+                            + '<dt>Correo:</dt><dd class="emailows">' + response.Email + '</dd>'
                             + '<dt>Contraseña:</dt><dd>' + response.Pass + '</dd>'
                             + '</dl>'
                             + '</div>'

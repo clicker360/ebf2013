@@ -150,36 +150,39 @@
                                 <div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i>Añadir nueva empresa</a></div>
                             </div>
                             <div class="well well-small">
-                                <table class="table-condensed table-hover table-bordered table-striped">
-
-                                    <script id="empresaTemplateDash" type="text/template">
+                                <script id="empresaTemplateDash" type="text/template">
                                         <% for (var i in empresasArrayDash){ %>
                                         <% var empresa = empresasArrayDash[i]; %>
-                                        <tr>
-                                        <td><%= empresa.Nombre %></td>
-                                        <td><%= empresa.RFC %></td>
-                                        <td><%= empresa.DirEnt %></td>
-                                        <th><a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a>
-                                        </th>
-                                        <th>
-                                        <a class="eliminarempresa btn btn-mini btn-warning" rel="<%= empresa.IdEmp %>"><i class="icon-minus"></i> Eliminar Empresa </a>
-                                        </th>
-                                        <th>
-                                        <a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i>Ver Sucursales</a>
-                                        <a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Sucursales</a>
-                                        </th>
-                                        <th>
-                                        <a class="ver-ofertas btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i>Ver Ofertas</a>
-                                        <a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
-                                        </th>
-                                        </tr>
+                                        <div class="row-fluid">
+                                            <div class="span2">
+                                                <%= empresa.Nombre %>
+                                                </div>
+                                            <div class="span2">
+                                                <%= empresa.RFC %>
+                                            </div>
+                                            <div class="span1">
+                                                <%= empresa.DirEnt %>
+                                            </div>
+                                            <div class="span2">
+                                                <a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a>
+                                            </div>
+                                            <div class="span1">
+                                                <a class="eliminarempresa btn btn-mini btn-warning" rel="<%= empresa.IdEmp %>"><i class="icon-minus"></i> Eliminar Empresa </a>
+                                            </div>
+                                            <div class="span2">
+                                                <a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i>Ver Sucursales</a>
+                                                <a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Sucursales</a>
+                                            </div>
+                                            <div  class="span2">
+                                                <a class="ver-ofertas btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i>Ver Ofertas</a>
+                                                 <a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i>Añadir Oferta</a>
+                                            </div>
+                                        </div>
                                         <% } %>
                                     </script>
+                                <div  id="empresasBlockDash" class="row-fluid listas-back">
 
-                                    <tbody id="empresasBlockDash">
-
-                                    </tbody>
-                                </table>
+                                </div>
 
                             </div>
                         </div>
@@ -386,7 +389,11 @@
                                     <div class="span3"><a class="nuevaempresa span12 btn btn-success"><i class="icon-plus"></i> Añadir nueva</a></div>
                                 </div>
                                 <div class="well well-small">
+                                    <div class="row-fluid">
+
+                                    </div>
                                     <table class="table-condensed table-hover table-bordered table-striped">
+
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
@@ -684,38 +691,34 @@
                                 <div class="span3" id="añadir-suc-empresa"></div>
                             </div>
                             <div class="well well-small">
-                                <table class="table-condensed table-hover table-bordered table-striped">
+                                <div class="row-fluid">
+                                    <div class="span2">Sucursal</div>
+                                    <div class="span2">Colonia</div>
+                                    <div class="span2">Municipio</div>
+                                    <div class="span2">Entidad</div>
+                                    <div class="span2">Editar</div>
+                                    <div class="span2">Eliminar</div>
+                                </div>
+                                <script id="sucursalesTemplate" type="text/template">
+                                            <% for (var i in sucursalesArray){ %>
+                                            <% var sucursal = sucursalesArray[i]; %>
+                                            <div class="row-fluid">
+                                                <div class="span2"><%= sucursal.Nombre %></div>
+                                                <div class="span2"><%= sucursal.DirCol %></div>
+                                                <div class="span2"><%= sucursal.DirEnt %></div>
+                                                <div class="span2"><%= sucursal.DirMun %></div>
+                                                <div class="span2">
+                                                    <a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a>
+                                                </div>
+                                                <div class="span2">
+                                                    <a class="eliminarsucursal btn btn-mini btn-warning" data-idsuc="<%= sucursal.IdSuc %>" data-idemp="<%= sucursal.IdEmp %>"><i class="icon-edit"></i> Eliminar</a>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                </script>
+                                <div  id="sucursalesBlock" class="row-fluid listas-back">
 
-                                    <thead>
-                                        <tr>
-                                            <th>Sucursal</th>
-                                            <th>Colonia</th>
-                                            <th>Municipio</th>
-                                            <th>Entidad</th>
-                                            <th>Editar</th>
-                                            <th>Eliminar</th>
-                                        </tr>
-                                    </thead>
-
-                                    <script id="sucursalesTemplate" type="text/template">
-                                        <% for (var i in sucursalesArray){ %>
-                                        <% var sucursal = sucursalesArray[i]; %>
-                                        <tr>
-                                        <td><%= sucursal.Nombre %></td>
-                                        <td><%= sucursal.DirCol %></td>
-                                        <td><%= sucursal.DirEnt %></td>
-                                        <td><%= sucursal.DirMun %></td>
-
-                                        <th><a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a></th>
-                                        <th><a class="eliminarsucursal btn btn-mini btn-warning" data-idsuc="<%= sucursal.IdSuc %>" data-idemp="<%= sucursal.IdEmp %>"><i class="icon-edit"></i> Eliminar</a></th>
-
-                                        </tr>
-                                        <% } %>
-                                    </script>
-                                    <tbody id="sucursalesBlock">
-
-                                    </tbody>
-                                </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -875,38 +878,37 @@
                                 <div class="span3" id="añadir-oferta-empresa"></div>
                             </div>
                             <div class="well well-small">
-                                <table class="table-condensed table-hover table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Oferta</th>
-                                            <th>Descripcion</th>
-                                            <th>Empresa</th>
-                                            <th>Fecha Publicación</th>
-                                        </tr>
-                                    </thead>
+                                <div class="row-fluid">
+                                    <div class="span2">Oferta</div>
+                                    <div class="span2">Descripcion</div>
+                                    <div class="span2">Empresa</div>
+                                    <div class="span2">Fecha Publicación</div>
 
+
+                                    
+                                </div>
                                     <script id="ofertasTemplate" type="text/template">
                                         <% for (var i in ofertasArray){ %>
                                         <% var oferta = ofertasArray[i]; %>
-                                        <tr>
-                                        <td><%= oferta.oferta %></td>
-                                        <td><%= oferta.desc %></td>
-                                        <td><%= oferta.empresa %></td>
-                                        <td><%= oferta.fechapub %></td>
+                                        <div class="row-fluid">
+                                            <div class="span2"><%= oferta.oferta %></div>
+                                            <div class="span2"><%= oferta.desc %></div>
+                                            <div class="span2"><%= oferta.empresa %></div>
+                                            <div class="span2"><%= oferta.fechapub %></div>
 
-                                        <th><a class="editar-oferta btn btn-mini" rel="<%= oferta.idoft %>"><i class="icon-edit"></i> Editar</a></th>
-                                        <th>
-                                        <a class="eliminaroferta btn btn-mini btn-warning" data-idoft="<%= oferta.idoft %>" data-idemp="<%= oferta.idemp %>"><i class="icon-minus"></i> Eliminar </a>
-                                        </th>
-                                        </tr>
+                                            <div class="span2">
+                                                <a class="editar-oferta btn btn-mini" rel="<%= oferta.idoft %>"><i class="icon-edit"></i> Editar</a>
+                                            </div>
+                                            <div class="span2">
+                                                <a class="eliminaroferta btn btn-mini btn-warning" data-idoft="<%= oferta.idoft %>" data-idemp="<%= oferta.idemp %>"><i class="icon-minus"></i> Eliminar </a>
+                                            </div>
+                                        </div>
                                         <% } %>
                                     </script>
 
-                                    <tbody id="ofertasLista">
+                                <div  id="ofertasLista" class="row-fluid listas-back">
 
-                                    </tbody>
-                                </table>
-
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -977,55 +979,30 @@
                                                 </div>										
                                                 <div class="control-group">
                                                     <label for="nombre" class="control-label">La oferta estará publicada a partir de</label>
-                                                    <div class="controls"><input type="text" class="validate[optional]" name="FechaHoraPub" id="date1" readonly="readonly" onclick="return toggleCalendar(this);"/></div>
-                                                    <div id="datePick">
-                                                        <a href="#null" onclick="untogleCalendar();">X</a>
-                                                        <p> Noviembre 2013</p>
-                                                        <ul class="datepicker">
-                                                            <li>L</li>
-                                                            <li>M</li>
-                                                            <li>M</li>
-                                                            <li>J</li>
-                                                            <li>V</li>
-                                                            <li>S</li>
-                                                            <li>D</li>
-                                                            <li></li>
-                                                            <li></li>
-                                                            <li></li>
-                                                            <li></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="1">1</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="2">2</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="3">3</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="4">4</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="5">5</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="6">6</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="7">7</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="8">8</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="9">9</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="10">10</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="11">11</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="12">12</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="13">13</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="14">14</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="15">15</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="16">16</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="17">17</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="18">18</a></li>
-                                                            <li><a href="#null" onClick="getTheDate(this)" id="19">19</a></li>
-                                                            <li>20</li>
-                                                            <li>21</li>
-                                                            <li>22</li>
-                                                            <li>23</li>
-                                                            <li>24</li>
-                                                            <li>25</li>
-                                                            <li>26</li>
-                                                            <li>27</li>
-                                                            <li>28</li>
-                                                            <li>29</li>
-                                                            <li>30</li>
-                                                            <li>31</li>
-                                                        </ul>
-                                                    </div>
+                                                    <div class="controls">
+                                                        <select name="FechaHoraPub" id="">
+                                                            <option value="01 Nov">01 Noviembre</option>
+                                                            <option value="02 Nov">02 Noviembre</option>
+                                                            <option value="03 Nov">03 Noviembre</option>
+                                                            <option value="04 Nov">04 Noviembre</option>
+                                                            <option value="05 Nov">05 Noviembre</option>
+                                                            <option value="06 Nov">06 Noviembre</option>
+                                                            <option value="07 Nov">07 Noviembre</option>
+                                                            <option value="08 Nov">08 Noviembre</option>
+                                                            <option value="09 Nov">09 Noviembre</option>
+                                                            <option value="10 Nov">10 Noviembre</option>
+                                                            <option value="11 Nov">11 Noviembre</option>
+                                                            <option value="12 Nov">12 Noviembre</option>
+                                                            <option value="13 Nov">13 Noviembre</option>
+                                                            <option value="14 Nov">14 Noviembre</option>
+                                                            <option value="15 Nov">15 Noviembre</option>
+                                                            <option value="16 Nov">16 Noviembre</option>
+                                                            <option value="17 Nov">17 Noviembre</option>
+                                                            <option value="18 Nov">18 Noviembre</option>
+                                                            <option value="19 Nov">19 Noviembre</option>
+                                                        </select>
+                                                    
+                                                     </div>
                                                 </div>
                                                 <p>
                                                     Se refiere al día en que se hará pública la oferta en la página de internet de El Buen Fin. Puedes elegir cualquier fecha antes del 19 noviembre.
@@ -1151,7 +1128,7 @@
                                                     <label for="" class="control-label">Selecciona archivo</label>
                                                     <div class="controls">
                                                         <input id="imgfileoferta" type="text" class="" readonly="readonly" />
-                                                        <input id="infileoferta" type="file" class="" name="image" />
+                                                        <input id="infileoferta" type="file" class="" name="image"  accept="Image/jpeg,Image/png" />
                                                         <input type="submit" class="btn" id="submitImageOferta" value="Subir Imagen" />		
                                                         <img id="loading" src="imgs/loader.gif" style="display:none;" alt="cargador" name="loading" />
                                                     </div>

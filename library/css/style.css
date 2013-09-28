@@ -60,6 +60,14 @@ input[type='email'],
 #EmailAlt {
   text-transform: lowercase;
 }
+.listas-back .row-fluid {
+  border-bottom: 1px solid #999999;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.listas-back .btn {
+  width: 95%;
+}
 .frontpages {
   background: url("../images/pattern.jpg") repeat scroll 0% 0% #f7f7f7 !important;
 }
