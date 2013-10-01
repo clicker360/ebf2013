@@ -66,28 +66,32 @@ input[type='email'],
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.listas-back .btn {
-  width: 95%;
-  font-weight: bold;
-  text-transform: uppercase;
+.listas-back .btn-group {
+  width: 87%;
+  margin: 5px 0;
+}
+.listas-back .btn-group .btn {
+  width: 50%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+ul.faq-list {
+  list-style: none;
+}
+ul.faq-list li {
+  margin-top: 5px;
+}
+ul.faq-list li ul {
+  list-style: disc;
+}
+ul.faq-list li ul li {
+  margin: 0;
 }
 .frontpages {
   background: url("../images/pattern.jpg") repeat scroll 0% 0% #f7f7f7 !important;
 }
 .frontpages h1 {
   text-align: center;
-}
-.frontpages ul.faq-list {
-  list-style: none;
-}
-.frontpages ul.faq-list li {
-  margin-top: 5px;
-}
-.frontpages ul.faq-list li ul {
-  list-style: disc;
-}
-.frontpages ul.faq-list li ul li {
-  margin: 0;
 }
 .frontpages .buenfin-txt {
   padding: 0 35px;

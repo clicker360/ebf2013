@@ -155,27 +155,94 @@
                                         <% var empresa = empresasArrayDash[i]; %>
                                         <div class="row-fluid">
                                             <div class="span2">
-                                                <%= empresa.Nombre %>
+                                                <%= empresa.Nombre %> <br/>
+                                                <%= empresa.RFC %>  <br/>
+                                                <% if(empresa.DirEnt === '01') { %>
+                                                    Aguascalientes
+                                                <% } else if(empresa.DirEnt === '02') { %>
+                                                    Baja California
+                                                <% } else if(empresa.DirEnt === '03') { %>
+                                                    Baja California Sur
+                                                <% } else if(empresa.DirEnt === '04') { %>
+                                                    Campeche
+                                                <% } else if(empresa.DirEnt === '05') { %>
+                                                    Coahuila de Zaragoza
+                                                <% } else if(empresa.DirEnt === '06') { %>
+                                                    Colima
+                                                <% } else if(empresa.DirEnt === '07') { %>
+                                                    Chiapas
+                                                <% } else if(empresa.DirEnt === '08') { %>
+                                                    Chihuahua
+                                                <% } else if(empresa.DirEnt === '09') { %>
+                                                    Distrito Federal
+                                                <% } else if(empresa.DirEnt === '10') { %>
+                                                    Durango
+                                                <% } else if(empresa.DirEnt === '11') { %>
+                                                    Guanajuato
+                                                <% } else if(empresa.DirEnt === '12') { %>
+                                                    Guerrero
+                                                <% } else if(empresa.DirEnt === '13') { %>
+                                                    Hidalgo
+                                                <% } else if(empresa.DirEnt === '14') { %>
+                                                    Jalisco
+                                                <% } else if(empresa.DirEnt === '15') { %>
+                                                    México
+                                                <% } else if(empresa.DirEnt === '16') { %>
+                                                    Michoacán de Ocampo
+                                                <% } else if(empresa.DirEnt === '17') { %>
+                                                    Morelos
+                                                <% } else if(empresa.DirEnt === '18') { %>
+                                                    Nayarit
+                                                <% } else if(empresa.DirEnt === '19') { %>
+                                                    Nuevo León
+                                                <% } else if(empresa.DirEnt === '20') { %>
+                                                    Oaxaca
+                                                <% } else if(empresa.DirEnt === '21') { %>
+                                                    Puebla
+                                                <% } else if(empresa.DirEnt === '22') { %>
+                                                    Querétaro Arteaga
+                                                <% } else if(empresa.DirEnt === '23') { %>
+                                                    Quintana Roo
+                                                <% } else if(empresa.DirEnt === '24') { %>
+                                                    San Luis Potosí
+                                                <% } else if(empresa.DirEnt === '25') { %>
+                                                    Sinaloa
+                                                <% } else if(empresa.DirEnt === '26') { %>
+                                                    Sonora
+                                                <% } else if(empresa.DirEnt === '27') { %>
+                                                    Tabasco
+                                                <% } else if(empresa.DirEnt === '28') { %>
+                                                    Tamaulipas
+                                                <% } else if(empresa.DirEnt === '29') { %>
+                                                    Tlaxcala
+                                                <% } else if(empresa.DirEnt === '30') { %>
+                                                    Veracruz de Ignacio de la Llave
+                                                <% } else if(empresa.DirEnt === '31') { %>
+                                                    Yucatán
+                                                <% } else if(empresa.DirEnt === '32') { %>
+                                                    Zacatecas
+                                                <% } %>
+
+                                            </div>
+
+                                               
+                                            <div class="span3">
+                                                 <div class="btn-group">
+                                                    <a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa</a>
+                                                    <a class="eliminarempresa btn btn-mini btn-warning" rel="<%= empresa.IdEmp %>"><i class="icon-minus"></i> Eliminar Empresa </a>
                                                 </div>
-                                            <div class="span2">
-                                                <%= empresa.RFC %>
                                             </div>
-                                            <div class="span1">
-                                                <%= empresa.DirEnt %>
+                                            <div class="span3">
+                                                <div class="btn-group">
+                                                    <a class="ver-sucursales btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Ver Sucursales</a>
+                                                    <a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i> Añadir Sucursales</a>
+                                                </div>
                                             </div>
-                                            <div class="span2">
-                                                <a class="editar-empresa btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-edit"></i> Editar Empresa y Micrositio</a>
-                                            </div>
-                                            <div class="span1">
-                                                <a class="eliminarempresa btn btn-mini btn-warning" rel="<%= empresa.IdEmp %>"><i class="icon-minus"></i> Eliminar Empresa </a>
-                                            </div>
-                                            <div class="span2">
-                                                <a class="ver-sucursales btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-sitemap"></i> Ver Sucursales</a>
-                                                <a href="" class="nuevasucursal btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i> Añadir Sucursales</a>
-                                            </div>
-                                            <div  class="span2">
-                                                <a class="ver-ofertas btn btn-mini btn-primary" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i> Ver Ofertas</a>
+                                            <div  class="span3">
+                                            <div class="btn-group">
+                                                <a class="ver-ofertas btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i> Ver Ofertas</a>
                                                  <a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i> Añadir Oferta</a>
+                                                 </div>
                                             </div>
                                         </div>
                                         <% } %>
