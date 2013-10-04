@@ -247,5 +247,17 @@
 		<script src="../library/js/libs/jquery.formparams.js"></script>
 		<script src="../library/js/script-registro.js"></script>
 
+		<!-- Parche para menus de bootstrap -->
+        <script type="text/javascript">
+            $('.dropdown-toggle').click(function(e) {
+              e.preventDefault();
+              setTimeout($.proxy(function() {
+                if ('ontouchstart' in document.documentElement) {
+                  $(this).siblings('.dropdown-backdrop').off().remove();
+                }
+              }, this), 0);
+            });
+        </script>
+
 </body>
 </html>

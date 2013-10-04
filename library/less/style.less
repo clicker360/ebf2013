@@ -11,11 +11,14 @@ Stylesheet: Tema.
 
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
 @import "mixins.less";
-#preloader {
-	display: block;
-	background: url('../images/loader.gif') no-repeat;
+#preloader{
+	display: none;
+	// background: url('../images/loader.gif') no-repeat;
 	width: 24px;
 	height: 24px;
+	margin: 19px 0 0 0;
+	color: @white;
+	font-size: 20px;
 }
 
 input[type='email'], #EmailAlt, .emailows {
@@ -31,7 +34,7 @@ input[type='email'], #EmailAlt, .emailows {
 	}
 	.btn-group {
 		width: 87%;
-		margin: 5px 0;
+		margin: 0 0 5px;
 		.btn {
 			width: 50%;
 			padding-top: 5px;

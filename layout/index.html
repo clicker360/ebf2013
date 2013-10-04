@@ -58,6 +58,7 @@
                 $("#enviar").validationEngine({promptPosition: "topRight", scroll: false});
                 $("#enviardata").validationEngine({promptPosition: "topRight", scroll: false});
                 $("#oferta-paso-1").validationEngine({promptPosition: "topRight", scroll: false});
+
             });</script>
 
     </head>
@@ -95,6 +96,7 @@
                             </li>
                             <li><a href="/admin/descargas.html"><i class="icon-download-alt"></i>  Descargas</a></li>
                             <li><a href="/admin/faqs.html"><i class="icon-question-sign"></i>   Preguntas Frecuentes</a></li>
+                            <li><div id="preloader"><i class="icon-spinner icon-spin icon-large icon-white"></i></div></li>
                             <!--
                             <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -123,6 +125,7 @@
                             </li>
                             -->
                         </ul>
+
                         <ul class="nav pull-right">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -239,10 +242,10 @@
                                                 </div>
                                             </div>
                                             <div  class="span3">
-                                            <div class="btn-group">
-                                                <a class="ver-ofertas btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i> Ver Ofertas</a>
-                                                 <a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i> Añadir Oferta</a>
-                                                 </div>
+                                                <div class="btn-group">
+                                                    <a class="ver-ofertas btn btn-mini" rel="<%= empresa.IdEmp %>"><i class="icon-tag"></i> Ver Ofertas</a>
+                                                     <a href="" class="nuevaoferta btn btn-mini btn-success" rel="<%= empresa.IdEmp %>"><i class="icon-plus"></i> Añadir Oferta</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <% } %>
@@ -761,10 +764,8 @@
                                 <div class="row-fluid">
                                     <div class="span2">Sucursal</div>
                                     <div class="span2">Colonia</div>
-                                    <div class="span2">Municipio</div>
                                     <div class="span2">Entidad</div>
-                                    <div class="span2">Editar</div>
-                                    <div class="span2">Eliminar</div>
+                                    <div class="span2">Municipio</div>
                                 </div>
                                 <script id="sucursalesTemplate" type="text/template">
                                             <% for (var i in sucursalesArray){ %>
@@ -772,13 +773,79 @@
                                             <div class="row-fluid">
                                                 <div class="span2"><%= sucursal.Nombre %></div>
                                                 <div class="span2"><%= sucursal.DirCol %></div>
-                                                <div class="span2"><%= sucursal.DirEnt %></div>
+                                                <div class="span2">
+                                                     <% if(sucursal.DirEnt === '01') { %>
+                                                        Aguascalientes
+                                                    <% } else if(sucursal.DirEnt === '02') { %>
+                                                        Baja California
+                                                    <% } else if(sucursal.DirEnt === '03') { %>
+                                                        Baja California Sur
+                                                    <% } else if(sucursal.DirEnt === '04') { %>
+                                                        Campeche
+                                                    <% } else if(sucursal.DirEnt === '05') { %>
+                                                        Coahuila de Zaragoza
+                                                    <% } else if(sucursal.DirEnt === '06') { %>
+                                                        Colima
+                                                    <% } else if(sucursal.DirEnt === '07') { %>
+                                                        Chiapas
+                                                    <% } else if(sucursal.DirEnt === '08') { %>
+                                                        Chihuahua
+                                                    <% } else if(sucursal.DirEnt === '09') { %>
+                                                        Distrito Federal
+                                                    <% } else if(sucursal.DirEnt === '10') { %>
+                                                        Durango
+                                                    <% } else if(sucursal.DirEnt === '11') { %>
+                                                        Guanajuato
+                                                    <% } else if(sucursal.DirEnt === '12') { %>
+                                                        Guerrero
+                                                    <% } else if(sucursal.DirEnt === '13') { %>
+                                                        Hidalgo
+                                                    <% } else if(sucursal.DirEnt === '14') { %>
+                                                        Jalisco
+                                                    <% } else if(sucursal.DirEnt === '15') { %>
+                                                        México
+                                                    <% } else if(sucursal.DirEnt === '16') { %>
+                                                        Michoacán de Ocampo
+                                                    <% } else if(sucursal.DirEnt === '17') { %>
+                                                        Morelos
+                                                    <% } else if(sucursal.DirEnt === '18') { %>
+                                                        Nayarit
+                                                    <% } else if(sucursal.DirEnt === '19') { %>
+                                                        Nuevo León
+                                                    <% } else if(sucursal.DirEnt === '20') { %>
+                                                        Oaxaca
+                                                    <% } else if(sucursal.DirEnt === '21') { %>
+                                                        Puebla
+                                                    <% } else if(sucursal.DirEnt === '22') { %>
+                                                        Querétaro Arteaga
+                                                    <% } else if(sucursal.DirEnt === '23') { %>
+                                                        Quintana Roo
+                                                    <% } else if(sucursal.DirEnt === '24') { %>
+                                                        San Luis Potosí
+                                                    <% } else if(sucursal.DirEnt === '25') { %>
+                                                        Sinaloa
+                                                    <% } else if(sucursal.DirEnt === '26') { %>
+                                                        Sonora
+                                                    <% } else if(sucursal.DirEnt === '27') { %>
+                                                        Tabasco
+                                                    <% } else if(sucursal.DirEnt === '28') { %>
+                                                        Tamaulipas
+                                                    <% } else if(sucursal.DirEnt === '29') { %>
+                                                        Tlaxcala
+                                                    <% } else if(sucursal.DirEnt === '30') { %>
+                                                        Veracruz de Ignacio de la Llave
+                                                    <% } else if(sucursal.DirEnt === '31') { %>
+                                                        Yucatán
+                                                    <% } else if(sucursal.DirEnt === '32') { %>
+                                                        Zacatecas
+                                                    <% } %>
+                                                </div>
                                                 <div class="span2"><%= sucursal.DirMun %></div>
                                                 <div class="span2">
-                                                    <a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a>
-                                                </div>
-                                                <div class="span2">
-                                                    <a class="eliminarsucursal btn btn-mini btn-warning" data-idsuc="<%= sucursal.IdSuc %>" data-idemp="<%= sucursal.IdEmp %>"><i class="icon-edit"></i> Eliminar</a>
+                                                    <div class="btn-group">
+                                                        <a class="editar-sucursal btn btn-mini" rel="<%= sucursal.IdSuc %>"><i class="icon-edit"></i> Editar</a>
+                                                        <a class="eliminarsucursal btn btn-mini btn-warning" data-idsuc="<%= sucursal.IdSuc %>" data-idemp="<%= sucursal.IdEmp %>"><i class="icon-edit"></i> Eliminar</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <% } %>
@@ -946,28 +1013,90 @@
                             </div>
                             <div class="well well-small">
                                 <div class="row-fluid">
-                                    <div class="span2">Oferta</div>
-                                    <div class="span2">Descripcion</div>
-                                    <div class="span2">Empresa</div>
-                                    <div class="span2">Fecha Publicación</div>
-
-
-                                    
                                 </div>
                                     <script id="ofertasTemplate" type="text/template">
                                         <% for (var i in ofertasArray){ %>
                                         <% var oferta = ofertasArray[i]; %>
                                         <div class="row-fluid">
-                                            <div class="span2"><%= oferta.oferta %></div>
-                                            <div class="span2"><%= oferta.desc %></div>
-                                            <div class="span2"><%= oferta.empresa %></div>
-                                            <div class="span2"><%= oferta.fechapub %></div>
-
+                                            
                                             <div class="span2">
-                                                <a class="editar-oferta btn btn-mini" rel="<%= oferta.idoft %>"><i class="icon-edit"></i> Editar</a>
+                                                <strong>Categoría: </strong>
+                                                <% if(oferta.idcat === 1) { %>
+                                                      Abarrotes
+                                                <% } else if(oferta.idcat === 2) { %>
+                                                      Automóviles y transportes
+                                                <% } else if(oferta.idcat === 3) { %>
+                                                      Bancos y seguros
+                                                <% } else if(oferta.idcat === 4) { %>
+                                                      Blancos
+                                                <% } else if(oferta.idcat === 5) { %>
+                                                      Calzado
+                                                <% } else if(oferta.idcat === 6) { %>
+                                                      Cuidado e higiene personal
+                                                <% } else if(oferta.idcat === 7) { %>
+                                                      Deportes
+                                                <% } else if(oferta.idcat === 8) { %>
+                                                      Electrónica y video
+                                                <% } else if(oferta.idcat === 9) { %>
+                                                      Electrodomésticos
+                                                <% } else if(oferta.idcat === 10) { %>
+                                                      Farmacias
+                                                <% } else if(oferta.idcat === 11) { %>
+                                                      Ferretería
+                                                <% } else if(oferta.idcat === 12) { %>
+                                                      Fotografía y cómputo
+                                                <% } else if(oferta.idcat === 13) { %>
+                                                      Hogar y decoración
+                                                <% } else if(oferta.idcat === 14) { %>
+                                                      Jardinería
+                                                <% } else if(oferta.idcat === 15) { %>
+                                                      Joyería
+                                                <% } else if(oferta.idcat === 16) { %>
+                                                      Jugetería
+                                                <% } else if(oferta.idcat === 17) { %>
+                                                      Línea blanca
+                                                <% } else if(oferta.idcat === 18) { %>
+                                                      Muebles
+                                                <% } else if(oferta.idcat === 19) { %>
+                                                      Oficina y papelería
+                                                <% } else if(oferta.idcat === 20) { %>
+                                                      Oportunidades
+                                                <% } else if(oferta.idcat === 21) { %>
+                                                      Óptica
+                                                <% } else if(oferta.idcat === 22) { %>
+                                                      Perecederos
+                                                <% } else if(oferta.idcat === 23) { %>
+                                                      Regalos
+                                                <% } else if(oferta.idcat === 24) { %>
+                                                      Restaurantes
+                                                <% } else if(oferta.idcat === 25) { %>
+                                                      Ropa
+                                                <% } else if(oferta.idcat === 26) { %>
+                                                      Servicios
+                                                <% } else if(oferta.idcat === 27) { %>
+                                                      Varios
+                                                <% } else if(oferta.idcat === 28) { %>
+                                                      Viajes
+                                                <% } %>
+                                            </div>
+                                            <div class="span5">
+                                               <strong>Título de oferta: </strong><%= oferta.oferta %>
+                                            </div>
+                                            <div class="span3">
+                                                <strong>Fecha de publicación: </strong>
+                                                <% var timeStr = oferta.fechapub; %>
+                                                <% var date = new Date(timeStr); %>
+                                                <% var day = date.getDate(); %>
+                                                <% var year = date.getFullYear(); %>
+                                                <% var month = date.getMonth()+1; %>
+                                                <% var dateStr = month+"/"+day+"/"+year; %>
+                                                <%= dateStr %>
                                             </div>
                                             <div class="span2">
-                                                <a class="eliminaroferta btn btn-mini btn-warning" data-idoft="<%= oferta.idoft %>" data-idemp="<%= oferta.idemp %>"><i class="icon-minus"></i> Eliminar </a>
+                                                <div class="btn-group">
+                                                    <a class="editar-oferta btn btn-mini" rel="<%= oferta.idoft %>"><i class="icon-edit"></i> Editar</a>
+                                                    <a class="eliminaroferta btn btn-mini btn-warning" data-idoft="<%= oferta.idoft %>" data-idemp="<%= oferta.idemp %>"><i class="icon-minus"></i> Eliminar </a>
+                                                </div>
                                             </div>
                                         </div>
                                         <% } %>
@@ -1267,5 +1396,16 @@
         <script src="../library/js/scripts.js"></script>
         <script src="../library/js/llenamuni.js"></script>
         <script src="../library/js/llenaorg.js"></script>
+        <!-- Parche para menus de bootstrap -->
+        <script type="text/javascript">
+            $('.dropdown-toggle').click(function(e) {
+              e.preventDefault();
+              setTimeout($.proxy(function() {
+                if ('ontouchstart' in document.documentElement) {
+                  $(this).siblings('.dropdown-backdrop').off().remove();
+                }
+              }, this), 0);
+            });
+        </script>
     </body>
 </html>

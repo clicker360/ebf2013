@@ -51,10 +51,12 @@ Stylesheet: Tema.
   box-sizing: border-box;
 }
 #preloader {
-  display: block;
-  background: url('../images/loader.gif') no-repeat;
+  display: none;
   width: 24px;
   height: 24px;
+  margin: 19px 0 0 0;
+  color: #ffffff;
+  font-size: 20px;
 }
 input[type='email'],
 #EmailAlt,
@@ -68,7 +70,7 @@ input[type='email'],
 }
 .listas-back .btn-group {
   width: 87%;
-  margin: 5px 0;
+  margin: 0 0 5px;
 }
 .listas-back .btn-group .btn {
   width: 50%;
