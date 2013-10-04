@@ -811,7 +811,7 @@ var micrositio = (function() {
                 status.html(resp);
             },
             complete: function() {
-                bar.width('100%');
+                //bar.width('100%');
             },
             error: function() {
                 status.html("<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>");
@@ -1151,7 +1151,7 @@ var ofertas = (function() {
                 status.html(resp);
             },
             complete: function() {
-                bar.width('100%');
+                //bar.width('100%');
             },
             error: function() {
                 status.html("<p>Intente nuevamente con una imagen de menor peso, su imagen no puede ser integrada.</p>");

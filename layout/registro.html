@@ -110,13 +110,13 @@
 												<label for="Email" class="control-label">Email</label>
 												<div class="controls">
 													
-													  <input type="email" id="Email" name="Email" class="validate[required,lowercase,custom[email]] emailow" value="" />
+													  <input type="email" id="Email" name="Email" class="validate[required,lowercase,custom[email]] emailow" value="" onkeyup="this.value = this.value.toLowerCase()" />
 												</div>
 											</div>
 
 											<div class="control-group">
 												<label for="EmailAlt" class="control-label">Email Alternativo</label>
-												<div class="controls"><input id="EmailAlt" name="EmailAlt" class="validate[optional,funcCall[validateEmail] emailow" type="text"></div>
+												<div class="controls"><input id="EmailAlt" name="EmailAlt" class="validate[optional,funcCall[validateEmail] emailow" type="text" onkeyup="this.value = this.value.toLowerCase()"></div>
 											</div>
 										</div>
 										<div class="span6">
