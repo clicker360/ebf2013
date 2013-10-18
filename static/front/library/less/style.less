@@ -1,0 +1,969 @@
+/******************************************************************
+Site Name: El buen fin.
+Author: Alonso I. Avila
+
+Stylesheet: Tema.
+******************************************************************/
+/******************************* Mapas responsivos ******************************************/
+.embed-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; width: 100% }
+.embed-container iframe, .embed-container object, .embed-container embed, .embed-container .gm-style { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+
+@import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "mixins.less";
+
+
+.frontpages {
+	// background
+	background: url("../images/pattern.jpg") repeat scroll 0% 0% rgb(247, 247, 247) !important;
+	// Titulos
+	h1 {text-align: center;}
+	// Cajas de texto
+	 .buenfin-txt {
+	 	padding: 0 35px;	
+	 }
+
+	 // Ofertas Lista
+
+	#buscador {
+                margin: 40px 0 10px;
+		form.form-inline  {
+			select{
+				width: 100%;
+			}
+		}
+	}
+        .pub-home {
+            margin: 40px 0 0;
+            
+        }
+.pub-home > div {
+        margin: 0 0 10px;
+    }
+
+	.oferta-lista{
+	background: #fff;
+	border: 1px #dbdbdb solid;
+	}
+	 // Footer del front
+	.footer {
+		padding: 0px;
+		.footer-a {
+			padding: 10px  0 0;
+			color: @black;
+			background: @white;
+			span {
+				display: block;
+				//width: 96px;
+				height: 24px;
+				float: left;
+				margin: 0 10px;
+				padding: 20px 0;
+				font-weight: bold;
+				font-size: 110%;
+				//text-transform: uppercase;
+			}
+			ul {
+				list-style: none;
+				text-align: center;
+				li {
+					display: inline-block;
+					a {
+						display: block;
+						width: 96px;
+						height: 64px;
+						background: url('../images/patrocinadores.png') no-repeat;
+					}
+					#patr-1 { background-position: 0 0px;}
+					#patr-2 { background-position: 0 -64px;}
+					#patr-3 { background-position: 0 -128px;}
+					#patr-4 { background-position: 0 -192px;}
+					#patr-5 { background-position: 0 -256px;}
+					#patr-6 { background-position: 0 -320px;}
+					#patr-7 { background-position: 0 -384px;}
+					#patr-8 { background-position: 0 -448px;}
+					#patr-9 { background-position: 0 -512px;}
+					#patr-10 { background-position: 0 -576px;}
+				}
+			}
+		}
+		.footer-b {
+			padding: 10px  0 0;
+			background: @black;	
+			color: @white !important;
+			a {
+				color: @white;
+			}
+		}
+	}
+}
+
+
+
+
+#preloader {
+	display: block;
+	background: url('../images/loader.gif') no-repeat;
+	width: 24px;
+	height: 24px;
+}
+
+input[type='email'], #EmailAlt, .emailows {
+	text-transform: lowercase;
+}
+
+.listas-back {
+	.row-fluid {
+		//border-top: 1px solid @grayLight;
+		border-bottom: 1px solid @grayLight;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	.btn-group {
+		width: 87%;
+		margin: 5px 0;
+		.btn {
+			width: 50%;
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		
+	}
+}
+ul.faq-list {
+	list-style: none;
+	li {
+		margin-top: 5px;
+		ul {
+			list-style: disc;
+			li {
+				margin:0;
+			}
+		}
+	}
+
+}
+#contador {
+	margin-top: 30px;
+}
+#reg-container {
+margin-top: 40px;
+	margin-bottom: 40px;
+}
+#registro-intro {
+	#gradient > .vertical(@grayDark, @black);
+	padding: 5px 10px;
+	border: 1px solid transparent;
+	color: @white;
+	text-align: center;
+		img {
+			width: 70%;
+			height: auto;
+			margin-top: 15px;
+		}
+	  h1 {
+		font-size: 20px;
+		text-transform: uppercase;
+		text-align: center;
+	  }
+	  h3  {
+		font-size: 15px;
+		text-align: center;	
+		text-transform: uppercase;
+	  }
+}
+ul#iconos-footer  {
+	list-style: none;
+	li {
+		float: left;
+		a {
+			color: #FFFFFF;
+			display: block;
+			font-size: 20px;
+			height: 33px;
+			margin: 0 5px;
+			padding: 9px 4px 0;
+			text-align: center;
+			text-decoration: none;
+			width: 40px;
+		}
+		#f-face {
+			background: #37589a;
+		}
+		#f-twit {
+			background: #38a8e0;
+		}
+	}
+}
+
+#faq-list {
+	ul {
+		li {
+			margin-top: 10px;
+		}
+	}
+}
+
+
+
+.activo {
+	display: block !important;
+}
+.inactivo { 
+	display: none;	
+}
+
+#sidebar {
+	position: absolute;
+	width: 215px;
+	height: auto !important;
+	overflow: visible !important;
+	border-radius: 4px 4px 4px 4px !important;
+	ul {
+		margin:0;
+		li {
+			a {
+				border: 0 none;
+				border-radius: 0 0 0 0 !important;
+				display: block;
+				font-size: 14px;
+				font-weight: normal;
+				margin: 0;
+				padding: 10px 15px;
+				position: relative;
+				text-decoration: none;
+				border-bottom: 1px solid #282828 !important;
+				border-top: 1px solid #424242 !important;
+				color: #D1D0D0 !important;
+				text-shadow: 0 1px 1px #333333 !important;
+				 i {
+					color: #999999 !important; 
+				 }
+				 &:hover {
+					background: -moz-linear-gradient(center bottom , #1E1F21, #232527) repeat scroll 0 0 transparent;
+					border-bottom: 1px solid #161718;
+					border-top: 1px solid #303234;
+					color: #FFFFFF !important;
+					text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+				 }
+			}
+
+
+			ul.sub {
+				margin:0 ;
+				background: @grayDarker; 
+				li {
+					a {
+						padding-left: 30px;
+						color: #CCCCCC;
+						text-shadow: 0 1px 1px #000000;
+					}
+					a:hover {
+						background: none repeat scroll 0 0 #534F4E !important;
+					}
+				}
+				li.active {
+					a, a:hover {
+						background: none repeat scroll 0 0 #534F4E !important;
+						border-radius: 2px 2px 2px 2px !important;
+						color: #FFFFFF !important;
+					}
+				}
+			}
+		}
+		li.active {
+			background: #000 !important;
+			border-bottom: 1px solid #242628 !important;
+			border-top: 1px solid #1C1D1E !important;
+			}
+	}
+}
+
+
+#body {
+	margin-top: 0px;
+	margin-left: 215px;
+	min-height: 800px;
+	background: url("../images/pattern.jpg") repeat scroll 0% 0% rgb(247, 247, 247);
+	border-bottom: 2px solid rgb(221, 221, 221);
+}
+.block-a {
+	background: @white;
+	border: 1px solid transparent; 
+	@shadow: 0 1px 3px rgba(0,0,0,.75);
+	  .box-shadow(@shadow);
+	  .border-radius(@baseBorderRadius);
+	  &:hover {
+		border:1px solid lighten(@blue, 40%);
+	  }
+	  h3 {
+		text-transform: uppercase;
+	  }
+}
+
+.block {
+	margin:5px;
+	padding: 5px 10px;
+	background: @white;
+	border: 1px solid transparent; 
+	@shadow: 0 1px 3px rgba(0,0,0,.75);
+	  .box-shadow(@shadow);
+	  .border-radius(@baseBorderRadius);
+	  &:hover {
+		border:1px solid lighten(@blue, 40%);
+	  }
+	  h3 {
+		text-transform: uppercase;
+	  }
+}
+.block-black {
+	margin:5px;
+	padding: 5px 10px;
+	background: @black;
+	border: 1px solid transparent;
+	color: @white;
+	  h3 {
+		text-transform: uppercase;
+	  }
+}
+.footer {
+	color:@white;
+	padding: 12px;
+	p {
+		text-align: center;
+		font-size: 110%;
+	}
+}
+
+a.brand-alt {
+	display: none;
+}
+div#datePick {
+	width: 200px;
+	height: 200px;
+	margin: 20px;
+	display: none;
+	ul{
+		list-style: none;
+		li {
+			width: 23px;
+			height: 23px;
+			text-align: center;
+			float: left;
+		}
+	}
+}
+
+
+
+/* Ofertas Lista */
+.img-oferta{
+	width: 100%;
+}
+
+	
+.oferta-lista{
+	position: relative;
+	background: #fff;
+	border: 1px #dbdbdb solid;
+	margin-bottom: 20px;
+}
+
+	ul.hijos{
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+			ul.hijos li.negro{
+				background: #000;
+				opacity: 0.8; /* transparencia */
+				color: white;
+				font-size: 18px;
+				font-weight: bold;
+				text-align: right;
+				padding: 10px;
+				margin-bottom: 2px;
+				list-style: none;
+			}
+			ul.hijos li.rojo{
+				background: #ff0000;
+				opacity: 0.8; /* transparencia */
+				color: white;
+				font-size: 18px;
+				text-align: right;
+				padding: 10px;
+				margin-bottom: 2px;
+				list-style: none;
+			}	
+		.oferta-lista ul.destacado{
+			position: absolute;
+			top: 0;
+			left: 0;	
+		}		
+			.oferta-lista ul.destacado li{
+				background: #ffc000;
+				color: white;
+				font-size: 18px;
+				padding: 15px;
+				list-style: none;
+			}
+	
+		.oferta-lista ul.redes-sociales{
+			background: #ff0000;
+			position: absolute;
+			bottom: 34%;
+			right: 0;
+
+		}
+			
+			.oferta-lista ul.redes-sociales li{
+				color: white;
+				list-style: none;
+				float: left;
+				margin: 5px 10px;
+			}
+
+			.oferta-lista ul.redes-sociales li a, li a:hover{
+				color: white;
+				text-decoration: none;
+			}
+
+
+.oferta-pie{
+}
+	.oferta-pie h2{
+		color: white;
+		font-size: 23px;
+		text-transform: uppercase;
+		text-align: center;
+		font-weight: normal;
+		background: #656565;
+	}
+		.empresa{
+			color: black;
+			font-size: 14px;
+			text-align: center;
+			font-weight: bold;
+		}
+	.icon-building{
+		color: #ff0000;
+	}
+	
+	.oferta-pie .btn{
+		font-size: 19px;
+		width: 80%;
+		padding: 10px;
+		margin-bottom: 10px;
+	}
+
+
+/* //Ofertas Lista */
+
+
+/* Micrositio Empresa */
+
+.imagen-empresa{
+	width: 100%;
+	margin-top: 60px;
+	position: relative;
+}
+		.imagen-empresa ul.destacado{
+			position: absolute;
+			top: 0;
+			left: 0;	
+		}		
+			.imagen-empresa ul.destacado li{
+				background: #ffc000;
+				color: white;
+				font-size: 18px;
+				padding: 15px;
+				list-style: none;
+			}
+.empresa-bloque{
+	position: relative;
+	background: #fff;
+	border: 1px #dbdbdb solid;
+	margin-top: 60px;
+	margin-bottom: 10px;
+	padding: 20px;
+	
+}
+	.empresa-bloque h1{
+		color: black;
+		font-size: 43px;
+		line-height: 45px;
+		font-weight: 500;
+		text-align: left;
+		text-transform: uppercase;
+	}
+	.icon-info-sign{
+		color: #ff0000;
+		padding-right: 20px;
+
+	}
+	.categoria-empresa{
+		height: 40px;
+	}
+		.categoria{
+			color: #656565;
+			font-size: 23px;
+			font-weight: 400;
+			text-transform: uppercase;
+		}
+			
+			ul.redes-sociales-empresa{
+			float: right;
+	/* 		margin-top: -10px; */
+	
+			}
+				
+				ul.redes-sociales-empresa li{
+					background: #ff0000;
+					color: white;
+					text-align: center;
+					list-style: none;
+					float: left;
+					width: 25px;
+					height: 25px;
+					padding-top: 5px;
+					margin: 5px 5px;
+				}
+	
+				ul.redes-sociales-empresa li a{
+					color: white;
+					text-decoration: none;
+				}
+				ul.redes-sociales-empresa li a, li a:hover{
+					color: white;
+					text-decoration: none;
+				}
+				
+
+.sucursales{
+	position: relative;
+	background: #fff;
+	border: 1px #dbdbdb solid;
+	margin-bottom: 10px;
+	padding: 20px;
+}
+	.sucursales-titulo{
+		color: black;
+		font-size: 23px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	.icon-map-marker{
+		color: #ff0000;
+		padding-right: 5px;
+	}
+	ul.lista-sucursales{
+		list-style-type: disc;
+		list-style-image: url(bullet.gif);
+		list-style-position: inside;
+		padding-top: 10px;
+	}
+		ul.lista-sucursales li{
+		    color: black;
+		    display: inline-block;
+		    font-size: 14px;
+		    font-weight: bold;
+		    padding: 5px 20px 0 0;
+		}
+		ul.lista-sucursales li a{
+			color: black;
+			text-decoration: none;
+		}	
+		ul.lista-sucursales li a:hover{
+			color: black;
+			text-decoration: underline;
+		}			
+	.load .btn{
+		font-size: 19px;
+		text-transform: uppercase;
+		line-height: 40px;
+		width: 97%;
+		margin-bottom: 10px;	
+		}	
+	.icon-ok{
+		color: black;
+		font-size: 8px;
+		padding-right: 5px;
+	}	
+	
+/* //Micrositio Empresa */
+
+/* Resultado de Oferta */
+.imagen-oferta{
+	width: 100%;
+	margin-top: 40px;
+	position: relative;
+}
+		.imagen-oferta ul.destacado{
+			position: absolute;
+			top: 0;
+			left: 0;	
+		}		
+			.imagen-oferta ul.destacado li{
+				background: #ffc000;
+				color: white;
+				font-size: 18px;
+				padding: 15px;
+				list-style: none;
+			}
+.oferta-bloque{
+	position: relative;
+	background: #fff;
+	border: 1px #dbdbdb solid;
+	margin-top: 40px;
+	margin-bottom: 10px;
+	padding: 20px;
+	
+}
+	.oferta-bloque h1{
+		color: black;
+		font-size: 43px;
+		line-height: 45px;
+		font-weight: 500;
+		text-align: left;
+		text-transform: uppercase;
+	}
+	.oferta-bloque h2{
+		color: #656565;
+		font-size: 23px;
+		font-weight: normal;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		text-align: left;
+		text-transform: uppercase;
+	}	
+	.logo-empresa{
+		float: left;
+		position: relative;
+		width: 50px;
+		height: 50px;
+		padding-right: 10px;
+	}
+	
+	.icon-info-sign{
+		color: #ff0000;
+		padding-right: 20px;
+
+	}
+	.compartir-bloque{
+		height: 40px;
+	}
+		.compartir{
+		    color: #656565;
+		    float: left;
+		    font-size: 16px;
+		    font-weight: 400;
+		    padding-top: 10px;
+		    text-transform: uppercase;
+		}
+			
+			ul.redes-sociales-oferta{
+			float: right;
+	/* 		margin-top: -10px; */
+			}
+				
+				ul.redes-sociales-oferta li{
+					background: #ff0000;
+					color: white;
+					text-align: center;
+					list-style: none;
+					float: left;
+					width: 25px;
+					height: 25px;
+					padding-top: 5px;
+					margin: 5px 5px;
+				}
+	
+				ul.redes-sociales-oferta li a{
+					color: white;
+					text-decoration: none;
+				}
+				ul.redes-sociales-oferta li a, li a:hover{
+					color: white;
+					text-decoration: none;
+				}
+		.categoria-oferta{
+		padding-top: 10px;
+		}
+			.categoria-oferta .categoria {
+				color: #656565;
+				font-size: 23px;
+				font-weight: 400;
+				}
+.desc-oferta{
+	background: #656565;
+    color: #FFFFFF;
+    float: left;
+    margin-left: -20px;
+    margin-top: -10px;
+    min-height: 136px;
+    padding: 15px;
+    width: 60%;
+}
+	ul.precio{
+		float: right;
+		width: 40%;
+		margin: -10px -20px 0 0;
+		
+	}
+		ul.precio li.negro{
+			background: #000;
+			opacity: 0.8; /* transparencia */
+			color: white;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: right;
+			padding: 10px;
+			margin-bottom: 2px;
+			list-style: none;
+			}
+			ul.precio li.rojo{
+				background: #ff0000;
+				opacity: 0.8; /* transparencia */
+				color: white;
+				font-size: 18px;
+				text-align: right;
+				padding: 10px;
+				margin-bottom: 2px;
+				list-style: none;
+			}	
+	.sucursales-disponibles .icon-map-marker{
+		color: #ff0000;
+		padding-right: 25px;
+		padding-left: 5px;
+	}
+	.sucursales-disponibles ul.sucursales-lista{
+		list-style-type: disc;
+		list-style-position: inside;
+		padding-top: 10px;
+		padding-left: 25px;
+	}
+		.sucursales-disponibles ul.sucursales-lista li{
+		    color: black;
+		    font-size: 14px;
+		    font-weight: bold;
+		}
+		.sucursales-disponibles ul.sucursales-lista li a{
+			color: black;
+			text-decoration: none;
+		}	
+		.sucursales-disponibles sucursales-lista li a:hover{
+			color: black;
+			text-decoration: underline;
+		}
+.comprar{
+	text-align: center;
+}	
+.comprar .btn{
+	font-size: 19px;
+	width: 90%;
+	padding: 20px;
+	text-transform: uppercase;
+}		
+/* //Resultado de Oferta */
+
+
+
+/* Listado de empresas */
+
+.img-empresas{
+	width: 100%;
+}
+
+	
+.empresas-lista{
+	position: relative;
+	background: #fff;
+	border: 1px #dbdbdb solid;
+	margin-bottom: 20px;
+}
+
+	ul.hijos{
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+			ul.hijos li.negro{
+				background: #000;
+				opacity: 0.8; /* transparencia */
+				color: white;
+				font-size: 18px;
+				font-weight: bold;
+				text-align: right;
+				padding: 10px;
+				margin-bottom: 2px;
+				list-style: none;
+			}
+			ul.hijos li.rojo{
+				background: #ff0000;
+				opacity: 0.8; /* transparencia */
+				color: white;
+				font-size: 18px;
+				text-align: right;
+				padding: 10px;
+				margin-bottom: 2px;
+				list-style: none;
+			}	
+		.empresas-lista ul.destacado{
+			position: absolute;
+			top: 0;
+			left: 0;	
+		}		
+			.empresas-lista ul.destacado li{
+				background: #ffc000;
+				color: white;
+				font-size: 18px;
+				padding: 15px;
+				list-style: none;
+			}
+	
+		.empresas-lista ul.redes-sociales{
+			background: #ff0000;
+			position: absolute;
+			bottom: 20%;
+			right: 0;
+
+		}
+			
+			.empresas-lista ul.redes-sociales li{
+				color: white;
+				list-style: none;
+				float: left;
+				margin: 5px 10px;
+			}
+
+			.empresas-lista ul.redes-sociales li a, li a:hover{
+				color: white;
+				text-decoration: none;
+			}
+
+
+.empresas-pie{
+	margin: -10px 0;
+}
+	.empresas-pie h2{
+		background: #ff0000;;
+		color: #FFFFFF;
+		font-size: 14px;
+		font-weight: bold;
+		line-height: 20px;
+		padding: 10px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+		.empresa{
+			color: black;
+			font-size: 14px;
+			text-align: center;
+			font-weight: bold;
+		}
+	.icon-building{
+		color: #ff0000;
+	}
+	
+	.empresas-pie .btn{
+		font-size: 19px;
+		width: 80%;
+		padding: 10px;
+		margin-bottom: 10px;
+	}
+
+.empresa-chica{
+	background: #fff;
+    border: 1px solid #DBDBDB;
+    margin-bottom: 20px;
+    min-height: 120px;
+    position: relative;
+}
+	.empresa-chica h2{
+		color: black;
+		font-size: 19px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	.logo-chico{
+		float: left;
+		margin-right: 20px;
+		border: 1px #dbdbdb solid;
+	}
+	
+		.empresa-chica ul.redes-sociales{
+			background: #ff0000;
+			float: right;
+
+		}
+			
+			.empresa-chica ul.redes-sociales li{
+				color: white;
+				list-style: none;
+				float: left;
+				margin: 5px 10px;
+			}
+
+			.empresa-chica ul.redes-sociales li a, li a:hover{
+				color: white;
+				text-decoration: none;
+				}
+
+			
+/* //Listado de empresas */
+
+@media only screen and (max-width: 320px) {
+
+.pub-home {
+    margin:10px 0 0 -10px !important;
+    
+}
+
+
+}
+
+
+
+@media only screen and (min-width: 960px) {
+	a.brand {
+		margin-right: 130px;	
+		img {
+			display: none;
+		}
+	}
+	a.brand-alt {
+		display: block;
+		position: absolute;
+	}
+	
+}
+
+@media (min-width: 700px) {
+	// .frontpages {
+	// 	.footer{
+	// 		padding: 0px;
+	// 		position: absolute;
+	// 		bottom: 0;
+	// 		width: 100%;
+	// 		min-height: 100px ;
+	// 		 }
+	// }
+
+}
+
+// Media Queries para Front
+@media (max-width: 767px) {
+	.frontpages {
+		.footer-a {
+			span {
+				padding: 0 !important;
+			}
+		}
+		.footer-a, .footer-b {
+			padding: 10px 10px !important;
+			 }
+	}
+
+}
+
+@import "valengine.less";

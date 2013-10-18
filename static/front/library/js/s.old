@@ -1,0 +1,147 @@
+var empresas = (function(){
+	var thepage = 1;
+	var jalalasmalditasrecetas = function(){
+		var tag=[];
+		jQuery('.receta-option input').each( function() {
+			if(jQuery(this).attr('checked')) {
+				tag.push(jQuery(this).attr('name'));
+			}
+		} );
+		jQuery("#animacion").show();
+		//var ajaxurl = 'http://localhost:26936//ajax?tags=';
+		var ajaxurl = 'http://dev.clicker360.com/daily_salad/ajax?tags=';
+		jQuery.ajax({   
+			//url: 'http://localhost:26936//ajax?tags='+tag+'&pg='+thepage,   
+			url: 'http://dev.clicker360.com/daily_salad/ajax?tags='+tag+'&pg='+thepage,   
+			type:'GET',   
+			success: function(response){
+				jQuery('#lasrecetas').append(response);
+				jQuery('#animacion').hide();
+				jQuery('#mas-recetas')!.show();
+			}
+		})
+		thepage++;
+	}
+	
+	return {
+		jalalasmalditasrecetas:jalalasmalditasrecetas
+	}
+})();
+
+
+(fucntion(){
+  var funcionA = function(){
+    $('a.loquesea').on('click', function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      var rel = $(this).attr('rel');
+      empresas.funcion1(rel);
+    });
+  }
+
+  var initPage = function(){
+    empresas.initPage();
+  }
+
+  var excute = function() {
+    $(document).ready(function(){
+        funcionA();
+        initPage();
+    });
+  }
+  return excute();
+})();
+
+window.onload = initPage;
+
+      function initPage() {
+        var empresasArray = {},
+        imprimeTemplate = "",
+        underTemplateID = $('#empresaTemplate').html(),
+        underTemplate = _.template(underTemplateID);        
+        $.ajax({
+          url: "  ",
+          async: false,
+          dataType: "json",
+          success: function(json) {
+            empresasArray = json;
+          }
+        });
+        imprimeTemplate = underTemplate({ empresasArray:empresasArray });
+
+        $("#empresasBlock").html(imprimeTemplate);
+        
+      }
+var empresas = (function(){
+  var config = {
+
+  }
+  var l = 9;
+
+  var a = function(rel){
+      $.ajax({
+        url: 'http://dev.clicker360.com/daily_salad/ajax?tags='+rel
+
+      });
+  }
+  var b = function(){
+    
+  }
+  var _funcion3 = function(){
+    
+  }
+  var initPage = function(){
+    var empresasArray = {},
+        imprimeTemplate = "",
+        underTemplateID = $('#empresaTemplate').html(),
+        underTemplate = _.template(underTemplateID);        
+        $.ajax({
+          url: '/r/wse/gets'+rel
+          async: false,
+          dataType: "json",
+          success: function(json) {
+            empresasArray = json;
+          }
+        });
+        imprimeTemplate = underTemplate({ empresasArray:empresasArray });
+
+        $("#empresasBlock").html(imprimeTemplate);
+  }
+  return {
+    funcion1:a,
+    funcion2:b,
+    initPage:initPage
+  }
+})();
+empresas.funcion2()
+
+
+    <script type="text/javascript">
+      window.onload = initPage;
+      function initPage() {
+        var empresasArray = {},
+        imprimeTemplate = "",
+        underTemplateID = $('#empresaTemplate').html(),
+        underTemplate = _.template(underTemplateID);        
+        $.ajax({
+          url: "/r/wse/gets",
+          async: false,
+          dataType: "json",
+          success: function(json) {
+            empresasArray = json;
+          }
+        });
+        imprimeTemplate = underTemplate({ empresasArray:empresasArray });
+
+        $("#empresasBlock").html(imprimeTemplate);
+
+      }
+    </script>
+
+
+
+     $(document).ready(function() {
+  $("#myform").dform({"....]});
+ 
+  $('#myform').formParams({"firstName":"xxx"});
+        });
